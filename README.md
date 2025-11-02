@@ -4,6 +4,14 @@ Built using twitch IGDB API: https://www.igdb.com/api
 
 Maybe add price chart data after developing (API price options like PriceCharting.com, costs $)
 
+Pseudo HomePage mounts:
+  - mount retrieves games
+  - fetchmore initiates
+  - new games are set, infinite scroll adds to dom
+  - hasMore is set and index is added
+  - setGames dependency re-ignites mounting fetch
+  - 
+
 DONE:
   - query for all genres, platforms, developers, years upon mount
   - pass value category props to HomePage component
@@ -17,6 +25,7 @@ DONE:
 
 
 TODO:
+  - Upon category selection, page must reset (remount), upon retrieiving more games doesn't refresh
   - perhaps change the original consoles to right platforms (like the wii snes games before 2006)
   - Either mesh duplicate gamedata or delete duplicates (platform or regional releases 
   causing duplicates??)

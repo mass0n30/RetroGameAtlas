@@ -99,38 +99,53 @@ async function handleGetGames(req, res, next) {
       }
     }
 
-
-    const offsetCal = offset * limit;
-
-    // normalize search, replacing space to - for slugs 
-    const searchTerm = search
-      ?.toLowerCase()
-      .trim()
-      .replace(/\s+/g, "-"); 
-
-    // if category find games where category id's in array
-    const games = await prisma.game.findMany({
+  const originalPlatforms = await prisma.platform.findMany({
       where: {
-        genres: genre && genre.length > 0
-          ? { some: { id: { in: genreArray }}}
-          : undefined,
-        platforms: platform && platform.length > 0
-          ? { some: { id: { in: platformArray }}} 
-          : undefined,
-        developerId: developer && developer !== "undefined"
-          ? { some: { id: { in: developerArray }}} 
-          : undefined,
-        slug: searchTerm && searchTerm !== ""
-          ? { contains: searchTerm, mode: "insensitive" }
-          : name && name !== "undefined"
-          ? name
-          : undefined,
+        id: {in: platformArray}
       },
-      take: parseInt(limit),
-      skip: parseInt(offsetCal),
+      select: {
+        name: true,
+      }
     });
 
-    res.json({ games });
+  const originalPlatformNames = originalPlatforms.map((plat) => {
+    return plat.name;
+  })
+
+  console.log(originalPlatformNames);
+
+
+  const offsetCal = offset * limit;
+
+  // normalize search, replacing space to - for slugs 
+  const searchTerm = search
+    ?.toLowerCase()
+    .trim()
+    .replace(/\s+/g, "-"); 
+
+  // if category find games where category id's in array
+  const games = await prisma.game.findMany({
+    where: {
+      genres: genre && genre.length > 0
+        ? { some: { id: { in: genreArray }}}
+        : undefined,
+      originalPlatform: platform && platform.length > 0
+        ? { in: originalPlatformNames }
+        : undefined,
+      developer: developer && developer.length > 0
+        ?  { id: { in: developerArray }} 
+        : undefined,
+      slug: searchTerm && searchTerm !== ""
+        ? { contains: searchTerm, mode: "insensitive" }
+        : name && name !== "undefined"
+        ? name
+        : undefined,
+    },
+    take: parseInt(limit),
+    skip: parseInt(offsetCal),
+  });
+
+  res.json({ games });
 
     
   } catch (error) {

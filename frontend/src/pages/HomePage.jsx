@@ -17,7 +17,7 @@ function HomePage() {
 
   // InfiniteScroll state var
   const [hasMore, setHasMore] = useState(true);
-  const [index, setIndex] = useState(1);
+  const [index, setIndex] = useState(0);
   const [gameLoad, setGameLoad] = useState(false);
 
   // temporary
@@ -34,7 +34,7 @@ function HomePage() {
   if (year) year.forEach(y => params.append("year", y));
 
   if (search) params.append("search", search);
-  params.append("offset", String(offset));
+  params.append("offset", String(index));
   params.append("limit", String(limit));
 
   const query = params.toString();
@@ -54,7 +54,7 @@ function HomePage() {
   const fetchMoreData = () => {
     setTimeout(() => {
       axios
-      .get(`http://localhost:5000/home/games?offset=${index}0&limit=100`)
+      .get(`http://localhost:5000/home/games?${query}`)
       .then((res) => {
         console.log(res, 'response');
         setGames((prevItems) => [...prevItems, ...res.data.games]);
