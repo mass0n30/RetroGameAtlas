@@ -18,13 +18,12 @@ function Home() {
   const [developer, setDeveloper] = useState();
   const [year, setYear] = useState();
 
-  const [games, setGames] = useState(null);
+  const [games, setGames] = useState([]);
   const [gameId, setGameId] = useState(null);
   const [search, setSearch] = useState("");
 
 
   // loading state settings
-  const [fetched, SetNewFetch] = useState(false);
   const [loading, SetLoading] = useState(true);
   const [success, SetSuccess] = useState(false);
   const [error, setError] = useState(null);
@@ -64,13 +63,12 @@ function Home() {
         SetUser(result.user); // (only non sensitive user data from backend)
         setCategoryData(result.categoryData);
         // reset boolean fetch after updated posts fetch
-        SetNewFetch(false);
       } catch (error) {
         setError(error);
       } 
     };
     fetchUser();
-  }, [token, fetched]);  // token dependency?
+  }, [token]);  // token dependency?
 
   if (error) {
     return <div>Error: {error.message}</div>;
@@ -111,7 +109,7 @@ function Home() {
           categoryData={categoryData.allData}
         />
       </aside>
-      <Outlet context={{loading, success, SetLoading, SetSuccess, SetNewFetch, 
+      <Outlet context={{loading, success, SetLoading, SetSuccess, 
         user, gameId, setGameId, games, setCategoryData, setGames, search, setSearch, genre, platform, developer, year }} />
     </main>
     </>
