@@ -10,10 +10,6 @@
   gap: 1rem;
 }
 
-.categorysection {
-  display: flex;
-  flex-direction: column;
-}
 
 
 .categoryheader {

@@ -64,7 +64,7 @@ async function getAllCategoryData(req, res, next) {
 async function handleGetGames(req, res, next) {
 
   try {
-    const { genre, platform, developer, name, search, year, offset, limit } = req.query;
+    const { genre, platform, developer, name, search, minyear, maxyear, offset, limit } = req.query;
 
     // convert array query params to parsed arrays for Prisma query
     if (genre) {
@@ -91,12 +91,11 @@ async function handleGetGames(req, res, next) {
       }
     }
 
-    if (year) {
-      if (Array.isArray(year) && year.length > 1) {
-        var yearArray = year.map((element) => parseInt(element));
-      } else {
-        var yearArray = [parseInt(year)];
-      }
+    if (minyear && maxyear) {
+      var yearminStr = `${minyear}-01-01T00:00:00.000Z`;
+      var yearmaxStr = `${maxyear}-12-31T23:59:59.999Z`;
+      var yearMin =  new Date(yearminStr);
+      var yearMax =  new Date(yearmaxStr);
     }
 
   const originalPlatforms = await prisma.platform.findMany({
@@ -135,6 +134,10 @@ async function handleGetGames(req, res, next) {
       developer: developer && developer.length > 0
         ?  { id: { in: developerArray }} 
         : undefined,
+      firstReleaseDate: {
+        gte:yearMin,  //greater than date format
+        lte:yearMax,  //lower than date format
+      },
       slug: searchTerm && searchTerm !== ""
         ? { contains: searchTerm, mode: "insensitive" }
         : name && name !== "undefined"

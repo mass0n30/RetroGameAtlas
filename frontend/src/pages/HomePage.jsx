@@ -1,6 +1,6 @@
 
-import { useEffect, useState } from 'react';
-import { useOutletContext, useNavigate } from "react-router-dom";
+import { useEffect, useRef, useState } from 'react';
+import { useOutletContext, useLocation } from "react-router-dom";
 import InfiniteScroll from "react-infinite-scroll-component";
 import GameCard from '../components/GameCard';
 import styles from '../styles/components/home.module.css';
@@ -12,15 +12,14 @@ import CustomSpinner from '../components/Spinner';
 
 
 function HomePage() {
-  const { success, SetSuccess, SetNewFetch, gameId, setGameId, games, 
-  setGames, setCategoryData, search, setSearch, genre, platform, developer, year} = useOutletContext();
-  const token = localStorage.getItem('usertoken');
+  const {  setGameId, games, 
+  setGames, setCategoryData, search, setSearch, genre, platform, developer, minyear, maxyear} = useOutletContext();
 
   // InfiniteScroll state var
   const [hasMore, setHasMore] = useState(true);
   const [index, setIndex] = useState(0);
   const [loading, SetLoading] = useState(true);
-
+  
   useEffect(() => {
     const timer = setTimeout(() => {
       SetLoading(false);
@@ -39,7 +38,8 @@ function HomePage() {
   if (genre) genre.forEach(g => params.append("genre", g));
   if (platform) platform.forEach(p => params.append("platform", p));
   if (developer) developer.forEach(d => params.append("developer", d));
-  if (year) year.forEach(y => params.append("year", y));
+  if (minyear) params.append("minyear", minyear);
+  if (maxyear) params.append("maxyear", maxyear);
 
   if (search) params.append("search", search);
 
@@ -49,14 +49,13 @@ function HomePage() {
   useEffect(() => {
     SetLoading(true);
     // scrolls to top page upon category changes
-    window.scrollTo(0, 0);
     axios
       .get(`http://localhost:5000/home/games?${query}&offset=${0}&limit=${limit}`,{
       })
       .then((res) => setGames(res.data.games))
       .catch((err) => console.log(err));
 
-  }, [ query, genre, platform, year, developer, setGames ]);
+  }, [ query, genre, platform, minyear, maxyear, developer, setGames ]);
 
   // fetch more logic for Infinite Scroll
   // Loader logic or Load more ?????
@@ -70,6 +69,7 @@ function HomePage() {
       
       setGames(prev => [...prev, ...res.data.games]);
       setIndex((prevIndex) => prevIndex + 1);
+
 
       res.data.games.length > 0 ? setHasMore(true) : setHasMore(false);       
     })
@@ -92,6 +92,8 @@ function HomePage() {
       next={fetchMoreData}
       hasMore={hasMore}
       loader={<CustomSpinnerBottom/>}
+      scrollThreshold={"20px"}
+      scrollableTarget={'gamesScrollContainer'}
       >
       <section>
       {games.map(game => (

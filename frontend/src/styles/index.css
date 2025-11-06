@@ -66,6 +66,24 @@ aside {
   height:  calc(100vh - 5rem);
   background-color: aquamarine;
   opacity: 50%;
+  display: flex;
+  flex-direction: column;
+}
+
+.react-aria-Tree {
+  height: 10%;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  flex: 2;
+}
+
+#yearsfiltercontainer {
+  flex: 1;
+}
+
+#orderfiltercontainer {
+  flex: 1;
 }
 
 .infinite-scroll-component__outerdiv {

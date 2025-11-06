@@ -16,7 +16,7 @@ function Home() {
   const [platform, setPlatform] = useState();
   const [genre, setGenre] = useState();
   const [developer, setDeveloper] = useState();
-  const [year, setYear] = useState();
+  const [year, setYear] = useState({min: 1985, max: 2006});
 
   const [games, setGames] = useState([]);
   const [gameId, setGameId] = useState(null);
@@ -101,7 +101,8 @@ function Home() {
           platform={platform}
           genre={genre}
           developer={developer}
-          year={year}
+          minyear={year.min}
+          maxyear={year.max}
           setPlatform={setPlatform}
           setGenre={setGenre}
           setDeveloper={setDeveloper}
@@ -110,7 +111,7 @@ function Home() {
         />
       </aside>
       <Outlet context={{loading, success, SetLoading, SetSuccess, 
-        user, gameId, setGameId, games, setCategoryData, setGames, search, setSearch, genre, platform, developer, year }} />
+        user, gameId, setGameId, games, setCategoryData, setGames, search, setSearch, genre, platform, developer, minyear: year.min, maxyear: year.max, setYear }} />
     </main>
     </>
   )

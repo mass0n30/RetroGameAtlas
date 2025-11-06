@@ -4,13 +4,6 @@ Built using twitch IGDB API: https://www.igdb.com/api
 
 Maybe add price chart data after developing (API price options like PriceCharting.com, costs $)
 
-Pseudo HomePage mounts:
-  - mount retrieves games
-  - fetchmore initiates
-  - new games are set, infinite scroll adds to dom
-  - hasMore is set and index is added
-  - setGames dependency re-ignites mounting fetch
-  - 
 
 DONE:
   - query for all genres, platforms, developers, years upon mount
@@ -22,18 +15,19 @@ DONE:
   - fix error when refreshing details page
   - fix sliding down page upon details load in
   - normalize dashes other symbols for search
+  - Upon category selection, page must reset (remount), upon retrieiving more games doesn't refresh
 
 
 TODO:
-  - Upon category selection, page must reset (remount), upon retrieiving more games doesn't refresh
-  - perhaps change the original consoles to right platforms (like the wii snes games before 2006)
-  - Either mesh duplicate gamedata or delete duplicates (platform or regional releases 
-  causing duplicates??)
-  - Add no cover holder for no cover art so cells aren't offset
   - adding additional filter logic for order by
   - discover games selection route (filter logic still applying?)
 Additional tasks
   - search debounce?
+  - perhaps change the original consoles to right platforms (like the wii snes games before 2006)
+  - Either mesh duplicate gamedata or delete duplicates (platform or regional releases 
+  causing duplicates??)
+  - Add no cover holder for no cover art so cells aren't offset
+
   - adding MVP features, user features 
   - adding additional user features(completed games list, watch list)?
   - adding custom loader
@@ -66,6 +60,8 @@ This could be helpful as far as lining up screenshots in grid: https://www.theod
 10/18 UPDATE: Framer Motion React doesn't seem to have what I am looking for - although useful to know about.
 Here is an article on using the library Reacts Infinite Scroll:
 https://builtin.com/articles/react-infinite-scroll 
+
+(ScrollRestoration) https://api.reactrouter.com/v7/functions/react_router.ScrollRestoration.html
 
 I am looking for endless scrolling where data fetches upon scrolling to 'next page'. One problem that should be addressed is 'saving state' upon user navigating off of where they scrolled. 
 This article addresses this, along with other problems caused by infinite scrolling: https://addyosmani.com/blog/infinite-scroll-without-layout-shifts/
