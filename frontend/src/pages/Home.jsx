@@ -9,19 +9,21 @@ import CustomSpinner from "../components/Spinner";
 
 function Home() {
 
-  // state data
+  // initial mount state data
   const [user, SetUser] = useState(null);
-
   const [categoryData, setCategoryData] = useState();
+
+  // state query filters
   const [platform, setPlatform] = useState();
   const [genre, setGenre] = useState();
   const [developer, setDeveloper] = useState();
   const [year, setYear] = useState({min: 1985, max: 2006});
+  const [search, setSearch] = useState("");
+  const [order, setOrder] = useState({data: "Popularity", order: false}); //false = desc, true = asc
 
+  // games state
   const [games, setGames] = useState([]);
   const [gameId, setGameId] = useState(null);
-  const [search, setSearch] = useState("");
-
 
   // loading state settings
   const [loading, SetLoading] = useState(true);
@@ -108,10 +110,13 @@ function Home() {
           setDeveloper={setDeveloper}
           setYear={setYear}
           categoryData={categoryData.allData}
+          orderData={order.data}
+          orderDirection={order.order}
+          setOrder={setOrder}
         />
       </aside>
       <Outlet context={{loading, success, SetLoading, SetSuccess, 
-        user, gameId, setGameId, games, setCategoryData, setGames, search, setSearch, genre, platform, developer, minyear: year.min, maxyear: year.max, setYear }} />
+        user, gameId, setGameId, games, setCategoryData, orderData: order.data, orderDirection: order.order, setOrder, setGames, search, setSearch, genre, platform, developer, minyear: year.min, maxyear: year.max, setYear }} />
     </main>
     </>
   )

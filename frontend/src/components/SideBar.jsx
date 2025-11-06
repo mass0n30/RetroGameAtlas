@@ -3,7 +3,7 @@ import { Tree, TreeItem, TreeItemContent, Button } from 'react-aria-components';
 import styles from '../styles/components/sidebar.module.css';
 
  // eslint-disable-next-line react/prop-types
-export default function SideBar({ categoryData, setPlatform, setGenre, setYear, setDeveloper, platform, genre, developer, minyear, maxyear
+export default function SideBar({ categoryData, orderData, orderDirection, setOrder, setPlatform, setGenre, setYear, setDeveloper, platform, genre, developer, minyear, maxyear
  }) {
 
     function toggleItem(id, category) {
@@ -30,6 +30,20 @@ export default function SideBar({ categoryData, setPlatform, setGenre, setYear, 
         setYear(newSet);
       }
 
+  };
+
+  const handleToggleOrder = (dataType) => {
+    if (orderData === dataType) {
+      setOrder(prevOrder => ({
+        data: dataType,
+        order: prevOrder.order === "Ascending" ? "Descending" : "Ascending"
+      }));
+    } else {
+      setOrder({
+        data: dataType,
+        order: "Descending"
+      });
+    }
   };
 
 
@@ -78,6 +92,21 @@ export default function SideBar({ categoryData, setPlatform, setGenre, setYear, 
         </div>
       </div>
       <div id='orderfiltercontainer'>
+        <div id='orderbydata'>
+          <Button onClick={() => handleToggleOrder("Release Date")}>
+            Order by Release Date {orderData === "Release Date" ? (orderDirection === "Ascending" ? "↑" : "↓") : ""}
+          </Button>
+        </div>
+        <div id='orderbyrating'>
+          <Button onClick={() => handleToggleOrder("Rating")}>
+            Order by Rating {orderData === "Rating" ? (orderDirection === "Ascending" ? "↑" : "↓") : ""}
+          </Button>
+        </div> 
+        <div id='orderbypopularity'>
+          <Button onClick={() => handleToggleOrder("Popularity")}>
+            Order by Popularity {orderData === "Popularity" ? (orderDirection === "Ascending" ? "↑" : "↓") : ""}
+          </Button>
+        </div>
 
       </div>
     </>

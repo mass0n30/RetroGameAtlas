@@ -12,7 +12,7 @@ import CustomSpinner from '../components/Spinner';
 
 
 function HomePage() {
-  const {  setGameId, games, 
+  const {  setGameId, games, orderData, orderDirection,
   setGames, setCategoryData, search, setSearch, genre, platform, developer, minyear, maxyear} = useOutletContext();
 
   // InfiniteScroll state var
@@ -57,6 +57,13 @@ function HomePage() {
 
   }, [ query, genre, platform, minyear, maxyear, developer, setGames ]);
 
+  useEffect(() => {
+
+    const orderedGames = orderGames(orderData, orderDirection, games);
+    setGames(orderedGames);
+
+  }, [orderData, orderDirection, setGames, games]);
+
   // fetch more logic for Infinite Scroll
   // Loader logic or Load more ?????
   const fetchMoreData = () => {
@@ -66,15 +73,105 @@ function HomePage() {
     .get(`http://localhost:5000/home/games?${query}&offset=${index + 1}&limit=${limit}`)
     .then((res) => {
       console.log(res, 'response');
-      
-      setGames(prev => [...prev, ...res.data.games]);
-      setIndex((prevIndex) => prevIndex + 1);
 
+      const combinedGames = [...games, ...res.data.games];
+      const orderedGames = orderGames(orderData, orderDirection, combinedGames);
+      
+      setGames(orderedGames);
+      setIndex((prevIndex) => prevIndex + 1);
 
       res.data.games.length > 0 ? setHasMore(true) : setHasMore(false);       
     })
     .catch((err) => console.log(err));
     }, 4000)
+  };
+
+  // if data if asc/desc if a or b null push to bottom or sort above vice versa
+  function orderGames(orderData, orderDirection, unorderedGames) {
+     orderData === "Release Date" ? (
+      orderDirection === "Ascending" ? (
+      unorderedGames.sort((a, b) => {
+        if (a === null && b !== null) {
+          return 1; 
+        }
+        if (a !== null && b === null) {
+          return -1; 
+        }
+        if (a === null && b === null) {
+          return 0; 
+        }
+        return new Date(a.releaseDate) - new Date(b.releaseDate);
+      })
+      ) : (
+      unorderedGames.sort((a, b) => {
+        if (a === null && b !== null) {
+          return 1; 
+        }
+        if (a !== null && b === null) {
+          return -1;
+        }
+        if (a === null && b === null) {
+          return 0; 
+        }
+        return new Date(b.releaseDate) - new Date(a.releaseDate);
+      })
+    )
+    ) : orderData === "Rating" ? (
+      orderDirection === "Ascending" ? (
+        unorderedGames.sort((a, b) => {
+          if (a === null && b !== null) {
+            return 1; 
+          }
+          if (a !== null && b === null) {
+            return -1; 
+          }
+          if (a === null && b === null) {
+            return 0; 
+          }
+          return (Math.round(a.rating * 100) / 100) - (Math.round(b.rating * 100) / 100);
+        })
+      ) : (
+        unorderedGames.sort((a, b) => {
+          if (a === null && b !== null) {
+            return 1; 
+          }
+          if (a !== null && b === null) {
+            return -1;
+          }
+          if (a === null && b === null) {
+            return 0; 
+          }
+          return (Math.round(b.rating * 100) / 100) - (Math.round(a.rating * 100) / 100);
+        }))
+    ) : orderData === "Popularity" ? (
+      orderDirection === "Ascending" ? (
+        unorderedGames.sort((a, b) => {
+          if (a === null && b !== null) {
+            return 1; 
+          }
+          if (a !== null && b === null) {
+            return -1; 
+          }
+          if (a === null && b === null) {
+            return 0; 
+          }
+          return (a.totalRatingCount) - (b.totalRatingCount);
+        })
+      ) : (
+        unorderedGames.sort((a, b) => {
+          if (a === null && b !== null) {
+            return 1; 
+          }
+          if (a !== null && b === null) {
+            return -1; 
+          }
+          if (a === null && b === null) {
+            return 0; // 
+          }
+          return (b.totalRatingCount) - (a.totalRatingCount);
+        }))
+    ) : null; 
+    return unorderedGames;
   };
 
 
