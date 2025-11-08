@@ -39,6 +39,7 @@ Additional tasks
   
 Production tasks
   - adding user accessibility (keyboard shortucts)
+  - handling errors on client side form API (redirect on 401 error code to login)
 
 
 tree: datatype(genre)

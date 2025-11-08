@@ -19,7 +19,7 @@ function Home() {
   const [developer, setDeveloper] = useState();
   const [year, setYear] = useState({min: 1985, max: 2006});
   const [search, setSearch] = useState("");
-  const [order, setOrder] = useState({data: "Popularity", order: false}); //false = desc, true = asc
+  const [order, setOrder] = useState({data: "Popularity", order: true}); //false = desc, true = asc
 
   // games state
   const [games, setGames] = useState([]);

@@ -23,11 +23,6 @@ export default function SideBar({ categoryData, orderData, orderDirection, setOr
         if (newSet.has(id)) newSet.delete(id);
         else newSet.add(id);
         setGenre(newSet);
-      } else if (category == "Years") {
-        const newSet = new Set(year);
-        if (newSet.has(id)) newSet.delete(id);
-        else newSet.add(id);
-        setYear(newSet);
       }
 
   };
@@ -36,12 +31,12 @@ export default function SideBar({ categoryData, orderData, orderDirection, setOr
     if (orderData === dataType) {
       setOrder(prevOrder => ({
         data: dataType,
-        order: prevOrder.order === "Ascending" ? "Descending" : "Ascending"
+        order: prevOrder.order === true ? false : true
       }));
     } else {
       setOrder({
         data: dataType,
-        order: "Descending"
+        order: true
       });
     }
   };
@@ -94,17 +89,17 @@ export default function SideBar({ categoryData, orderData, orderDirection, setOr
       <div id='orderfiltercontainer'>
         <div id='orderbydata'>
           <Button onClick={() => handleToggleOrder("Release Date")}>
-            Order by Release Date {orderData === "Release Date" ? (orderDirection === "Ascending" ? "↑" : "↓") : ""}
+            Order by Release Date {orderData === "Release Date" ? (orderDirection === true ? "asc" : "desc") : ""}
           </Button>
         </div>
         <div id='orderbyrating'>
           <Button onClick={() => handleToggleOrder("Rating")}>
-            Order by Rating {orderData === "Rating" ? (orderDirection === "Ascending" ? "↑" : "↓") : ""}
+            Order by Rating {orderData === "Rating" ? (orderDirection === true ? "asc" : "desc") : ""}
           </Button>
         </div> 
         <div id='orderbypopularity'>
           <Button onClick={() => handleToggleOrder("Popularity")}>
-            Order by Popularity {orderData === "Popularity" ? (orderDirection === "Ascending" ? "↑" : "↓") : ""}
+            Order by Popularity {orderData === "Popularity" ? (orderDirection === true ? "asc" : "desc") : ""}
           </Button>
         </div>
 

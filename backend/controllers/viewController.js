@@ -64,10 +64,12 @@ async function getAllCategoryData(req, res, next) {
 async function handleGetGames(req, res, next) {
 
   try {
-    const { genre, platform, developer, name, search, minyear, maxyear, offset, limit } = req.query;
+    const query = { ...req.query };
+
+    const { genre, platform, developer, name, search, minyear, maxyear, offset, limit, order, dir } = query;
 
     // convert array query params to parsed arrays for Prisma query
-    if (genre) {
+    if (req.query.genre) {
       if (Array.isArray(genre) && genre.length > 1) {
         var genreArray = genre.map((element) => parseInt(element));
       } else {
@@ -122,35 +124,66 @@ async function handleGetGames(req, res, next) {
     .trim()
     .replace(/\s+/g, "-"); 
 
-  // if category find games where category id's in array
-  const games = await prisma.game.findMany({
-    where: {
-      genres: genre && genre.length > 0
-        ? { some: { id: { in: genreArray }}}
-        : undefined,
-      originalPlatform: platform && platform.length > 0
-        ? { in: originalPlatformNames }
-        : undefined,
-      developer: developer && developer.length > 0
-        ?  { id: { in: developerArray }} 
-        : undefined,
-      firstReleaseDate: {
-        gte:yearMin,  //greater than date format
-        lte:yearMax,  //lower than date format
-      },
-      slug: searchTerm && searchTerm !== ""
-        ? { contains: searchTerm, mode: "insensitive" }
-        : name && name !== "undefined"
-        ? name
-        : undefined,
-    },
-    take: parseInt(limit),
-    skip: parseInt(offsetCal),
-  });
+  // if no category filters order all games with years, else category find games where category id's in array
 
+let games = [];
+
+let orderBy = {};
+
+if (order === "Release Date") {
+  orderBy = { firstReleaseDate: dir === "true" ? "desc" : "asc" };
+} else if (order === "Rating") {
+  orderBy = { rating: dir === "true" ? "desc" : "asc" };
+} else if (order === "Popularity") {
+  orderBy = { totalRatingCount: dir === "true" ? "desc" : "asc" };
+}
+
+if (!genre && !platform && !developer && !searchTerm) {
+  games = await prisma.game.findMany({
+
+  orderBy: [
+    {
+      totalRatingCount: {
+        sort: dir === "true" ? "desc" : "asc",
+        nulls: dir === "true" ? "last" : "first"
+      }
+    },
+    { firstReleaseDate: 'desc' } 
+  ],
+      take: parseInt(limit),
+      skip: parseInt(offsetCal),
+    });
+    // order games based on query params 
+
+  } else {
+     games = await prisma.game.findMany({
+      where: {
+        genres: genre && genre.length > 0
+          ? { some: { id: { in: genreArray }}}
+          : undefined,
+        originalPlatform: platform && platform.length > 0
+          ? { in: originalPlatformNames }
+          : undefined,
+        developer: developer && developer.length > 0
+          ?  { id: { in: developerArray }} 
+          : undefined,
+        firstReleaseDate: {
+          gte:yearMin,  //greater than date format
+          lte:yearMax,  //lower than date format
+        },
+        slug: searchTerm && searchTerm !== ""
+          ? { contains: searchTerm, mode: "insensitive" }
+          : name && name !== "undefined"
+          ? name
+          : undefined,
+      },
+      orderBy,
+      take: parseInt(limit),
+      skip: parseInt(offsetCal),
+    });
+  }
   res.json({ games });
 
-    
   } catch (error) {
     next(error)
   }
@@ -179,6 +212,7 @@ async function handleGetGameDetails(req, res, next) {
     next(error)
   }
 };
+
 
 
 module.exports = {handleGetGames, handleGetGameDetails, getAllCategoryData};
