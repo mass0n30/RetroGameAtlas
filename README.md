@@ -4,6 +4,9 @@ Built using twitch IGDB API: https://www.igdb.com/api
 
 Maybe add price chart data after developing (API price options like PriceCharting.com, costs $)
 
+Errors: 
+  - Year setting need to add debounce for year selection 
+  - Popularity fetchMore has duplicate games (concurrent fetch issue?)
 
 DONE:
   - query for all genres, platforms, developers, years upon mount

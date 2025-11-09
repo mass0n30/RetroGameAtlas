@@ -58,33 +58,16 @@ export default function SideBar({ categoryData, orderData, orderDirection, setOr
               </TreeItem>
             ))}
           </TreeItem>
-        ))}
+        ))}  
       </Tree>
       <div id='yearsfiltercontainer'>
-        <div>
-          <input id="yearInput"
-          type="number"
-          min="1985"
-          max="2006"
-          step="1"
-          value={minyear}
-          onChange={(e) => setYear(prev => ({ ...prev, min: e.target.value }))}
-          className="year-input">
-          </input>
-        </div>
-          <input id="yearInput"
-          type="number"
-          min="1985"
-          max="2006"
-          step="1"
-          value={maxyear}
-          onChange={(e) => setYear(prev => ({ ...prev, max: e.target.value }))}
-          className="year-input">
-          </input>
-        <div>
+        <YearDropdown selectedYear={minyear} compYear={maxyear} setSelectedYear={setYear} arg={"min"}/>
+        <div style={{ marginTop: '10px' }}>to</div>
+        <YearDropdown selectedYear={maxyear} compYear={minyear} setSelectedYear={setYear} arg={"max"}/>
+      </div>
+      <div id='searchfiltercontainer'>
           <input>
           </input>
-        </div>
       </div>
       <div id='orderfiltercontainer'>
         <div id='orderbydata'>
@@ -107,3 +90,35 @@ export default function SideBar({ categoryData, orderData, orderDirection, setOr
     </>
   );
 }
+
+// preventing invalid year selections
+function handleSetYear(compYear, setSelectedYear, arg, e) {
+
+  if (arg == "min" && parseInt(e) > parseInt(compYear)) {
+    return;
+  } else if (arg == "max" && parseInt(e) < parseInt(compYear)) {
+    return;
+  }
+
+  setSelectedYear (prev => (arg == "min" ? ({ ...prev, min: e }) : ({...prev, max: e})));
+}
+
+
+// eslint-disable-next-line react/prop-types
+const YearDropdown = ({ selectedYear, compYear, setSelectedYear, arg }) => {
+  const years = [ 1985, 1986, 1987, 1988, 1989, 1990, 1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006 ];
+
+  return (
+    <select
+      value={selectedYear}
+      onChange={(e) => handleSetYear(compYear,setSelectedYear ,arg, e.target.value )}
+    >
+      <option value="">All Years</option>
+      {years.map((year) => (
+        <option key={year} value={year}>
+          {year}
+        </option>
+      ))}
+    </select>
+  );
+};

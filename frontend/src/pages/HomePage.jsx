@@ -55,22 +55,22 @@ function HomePage() {
       .then((res) => setGames(res.data.games))
       .catch((err) => console.log(err));
 
+      window.scrollTo({top: 0, behavior: 'smooth'});
+
   }, [ query, genre, platform, minyear, maxyear, developer, setGames, orderData, orderDirection ]);
 
   // fetch more logic for Infinite Scroll
   // Loader logic or Load more ?????
   const fetchMoreData = () => {
     setTimeout(() => {
-
     axios
     .get(`http://localhost:5000/home/games?${query}&order=${orderData}&dir=${orderDirection}&offset=${index + 1}&limit=${limit}`)
     .then((res) => {
       console.log(res, 'response');
 
       const combinedGames = [...games, ...res.data.games];
-      
-      setGames(combinedGames);
       setIndex((prevIndex) => prevIndex + 1);
+      setGames(combinedGames);
 
       res.data.games.length > 0 ? setHasMore(true) : setHasMore(false);       
     })

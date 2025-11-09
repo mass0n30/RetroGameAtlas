@@ -62,11 +62,14 @@ async function getAllCategoryData(req, res, next) {
 
 
 async function handleGetGames(req, res, next) {
+  
 
   try {
     const query = { ...req.query };
 
     const { genre, platform, developer, name, search, minyear, maxyear, offset, limit, order, dir } = query;
+
+    console.log(`Fetching offset: ${offset}, limit: ${limit}`);
 
     // convert array query params to parsed arrays for Prisma query
     if (req.query.genre) {
@@ -131,29 +134,50 @@ let games = [];
 let orderBy = {};
 
 if (order === "Release Date") {
-  orderBy = { firstReleaseDate: dir === "true" ? "desc" : "asc" };
+  orderBy = {
+    firstReleaseDate: {
+      sort: dir === "true" ? "desc" : "asc",
+      nulls: dir === "true" ? "last" : "first"
+    }
+  };
 } else if (order === "Rating") {
-  orderBy = { rating: dir === "true" ? "desc" : "asc" };
+  orderBy = [
+    {
+      rating: {
+        sort: dir === "true" ? "desc" : "asc",
+        nulls: dir === "true" ? "last" : "first",
+      },
+    },
+    {
+      totalRatingCount: {
+        sort: dir === "true" ? "desc" : "asc",
+        nulls: dir === "true" ? "last" : "first",
+      },
+    },
+  ];
 } else if (order === "Popularity") {
-  orderBy = { totalRatingCount: dir === "true" ? "desc" : "asc" };
+  orderBy = {
+    totalRatingCount: {
+      sort: dir === "true" ? "desc" : "asc",
+      nulls: dir === "true" ? "last" : "first"
+    }
+  };
 }
 
 if (!genre && !platform && !developer && !searchTerm) {
   games = await prisma.game.findMany({
-
-  orderBy: [
-    {
-      totalRatingCount: {
-        sort: dir === "true" ? "desc" : "asc",
-        nulls: dir === "true" ? "last" : "first"
-      }
+    where: {
+      firstReleaseDate: {
+        gte:yearMin,  //greater than date format
+        lte:yearMax,  //lower than date format
+      },
     },
-    { firstReleaseDate: 'desc' } 
-  ],
-      take: parseInt(limit),
-      skip: parseInt(offsetCal),
+    orderBy,
+
+    take: parseInt(limit),
+    skip: parseInt(offsetCal),
+
     });
-    // order games based on query params 
 
   } else {
      games = await prisma.game.findMany({
@@ -182,12 +206,38 @@ if (!genre && !platform && !developer && !searchTerm) {
       skip: parseInt(offsetCal),
     });
   }
+
+  if (order === "Rating") {
+
+    games.sort((a, b) => {
+      const scoreA = calculateWeightedRating(a.rating || 0, a.totalRatingCount || 0);
+      const scoreB = calculateWeightedRating(b.rating || 0, b.totalRatingCount || 0);
+
+      if (dir === "true") {
+        return scoreB - scoreA; 
+      } else {
+        return scoreA - scoreB; 
+      }
+    });
+  }
   res.json({ games });
 
   } catch (error) {
     next(error)
   }
 };
+
+// Bayesian formula for weighted results for Rating
+function calculateWeightedRating(itemRating, itemVotes) {
+    // Estimated Global Average Rating (C) for most games
+    const C = 75; 
+    
+    // Estimated Minimum Votes Required (m) for a reliable rating
+    const m = 50; 
+    
+    const weightedRating = (itemRating * itemVotes + C * m) / (itemVotes + m);
+    return weightedRating;
+}
 
 async function handleGetGameDetails(req, res, next) {
 
