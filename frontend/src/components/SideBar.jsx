@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Tree, TreeItem, TreeItemContent, Button } from 'react-aria-components';
 import styles from '../styles/components/sidebar.module.css';
+import { resetFilters } from '../helpers';
 
  // eslint-disable-next-line react/prop-types
 export default function SideBar({ categoryData, orderData, orderDirection, setOrder, setPlatform, setGenre, setYear, setDeveloper, platform, genre, developer, minyear, maxyear
@@ -44,6 +45,9 @@ export default function SideBar({ categoryData, orderData, orderDirection, setOr
 
   return (
     <>
+    <div id='resetfilterscontainer'>
+      <Button onClick={() => resetFilters(setPlatform, setDeveloper, setGenre, setYear, setOrder)}>Reset Filters</Button>
+    </div>
       <Tree aria-label="Categories"
         >
         {categoryData.map((section) => (
@@ -65,10 +69,6 @@ export default function SideBar({ categoryData, orderData, orderDirection, setOr
         <div style={{ marginTop: '10px' }}>to</div>
         <YearDropdown selectedYear={maxyear} compYear={minyear} setSelectedYear={setYear} arg={"max"}/>
       </div>
-      <div id='searchfiltercontainer'>
-          <input>
-          </input>
-      </div>
       <div id='orderfiltercontainer'>
         <div id='orderbydata'>
           <Button onClick={() => handleToggleOrder("Release Date")}>
@@ -86,6 +86,8 @@ export default function SideBar({ categoryData, orderData, orderDirection, setOr
           </Button>
         </div>
 
+      </div>
+      <div id='discovercontainer'>
       </div>
     </>
   );

@@ -119,7 +119,7 @@ async function handleGetGames(req, res, next) {
   console.log(originalPlatformNames);
 
 
-  const offsetCal = offset * limit;
+  const offsetCal = parseInt(offset) * parseInt(limit);
 
   // normalize search, replacing space to - for slugs 
   const searchTerm = search
@@ -156,12 +156,15 @@ if (order === "Release Date") {
     },
   ];
 } else if (order === "Popularity") {
-  orderBy = {
-    totalRatingCount: {
-      sort: dir === "true" ? "desc" : "asc",
-      nulls: dir === "true" ? "last" : "first"
-    }
-  };
+  orderBy = [
+    {
+      totalRatingCount: {
+        sort: dir === "true" ? "desc" : "asc",
+        nulls: dir === "true" ? "last" : "first"
+      }
+    },
+    { id: 'asc' } // further sorting for any duplicate counts during pagination ordering
+  ];
 }
 
 if (!genre && !platform && !developer && !searchTerm) {
@@ -175,7 +178,7 @@ if (!genre && !platform && !developer && !searchTerm) {
     orderBy,
 
     take: parseInt(limit),
-    skip: parseInt(offsetCal),
+    skip: offsetCal,
 
     });
 

@@ -4,10 +4,6 @@ Built using twitch IGDB API: https://www.igdb.com/api
 
 Maybe add price chart data after developing (API price options like PriceCharting.com, costs $)
 
-Errors: 
-  - Year setting need to add debounce for year selection 
-  - Popularity fetchMore has duplicate games (concurrent fetch issue?)
-
 DONE:
   - query for all genres, platforms, developers, years upon mount
   - pass value category props to HomePage component
@@ -19,10 +15,11 @@ DONE:
   - fix sliding down page upon details load in
   - normalize dashes other symbols for search
   - Upon category selection, page must reset (remount), upon retrieiving more games doesn't refresh
+  - adding additional filter logic for order by
+
 
 
 TODO:
-  - adding additional filter logic for order by
   - discover games selection route (filter logic still applying?)
 Additional tasks
   - search debounce?

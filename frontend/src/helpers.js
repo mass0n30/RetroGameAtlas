@@ -39,6 +39,14 @@ function normalizeScreenshots(screenshots) {
   }));
 };
 
+export function resetFilters(setPlatform, setDeveloper, setGenre, setYear, setOrder) {
+  setPlatform(new Set());
+  setDeveloper(new Set());
+  setGenre(new Set());
+  setYear({ min: "1985", max: "2006" });
+  setOrder(new Set());
+};
+
 import { useEffect, useState } from 'react';
 
 export function useDebounce(value, delay) {
