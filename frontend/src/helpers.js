@@ -47,6 +47,12 @@ export function resetFilters(setPlatform, setDeveloper, setGenre, setYear, setOr
   setOrder(new Set());
 };
 
+export function randomizeIndex(min, max) {
+  min = Math.ceil(min); // min current offset value
+  max = Math.floor(max); // max offset + limit value
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+};
+
 import { useEffect, useState } from 'react';
 
 export function useDebounce(value, delay) {

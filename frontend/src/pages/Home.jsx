@@ -113,6 +113,7 @@ function Home() {
           orderData={order.data}
           orderDirection={order.order}
           setOrder={setOrder}
+          setSearch={setSearch}
         />
       </aside>
       <Outlet context={{loading, success, SetLoading, SetSuccess, 

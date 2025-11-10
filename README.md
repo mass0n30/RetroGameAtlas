@@ -4,6 +4,18 @@ Built using twitch IGDB API: https://www.igdb.com/api
 
 Maybe add price chart data after developing (API price options like PriceCharting.com, costs $)
 
+Pseudo Randomize:
+  - User clicks to discover games onclick callback fires
+  - Callback reset filters
+    - Callback changes routes?
+  - Callback setState discover true parent
+  - HomePage remounts with discover param
+  - *Refactor 170 line handleGetGames for conditional query for screenshots or Game obj
+  - Get games length from Query for math.random (ex. over 1k for PS1)
+  - Take 100 random games, each game is unique ID (more variety)
+  - For each random game, check if screenshot null, then get random screenshot if multiple from game
+  - Next pagination possibly have duplicate screenshots but unlikely for broader category search's, under 100 can add additional logic to prevent duplicate screenshots?
+
 DONE:
   - query for all genres, platforms, developers, years upon mount
   - pass value category props to HomePage component
@@ -16,17 +28,20 @@ DONE:
   - normalize dashes other symbols for search
   - Upon category selection, page must reset (remount), upon retrieiving more games doesn't refresh
   - adding additional filter logic for order by
-
+  - clear search value upon category change (not sure 100% working?)
 
 
 TODO:
   - discover games selection route (filter logic still applying?)
 Additional tasks
   - search debounce?
+  - screenshot image object fit discovering by screenshot (most are 1080x720) (screenshot thumbs replaced for big for mapping them on discovery route)
   - perhaps change the original consoles to right platforms (like the wii snes games before 2006)
   - Either mesh duplicate gamedata or delete duplicates (platform or regional releases 
   causing duplicates??)
   - Add no cover holder for no cover art so cells aren't offset
+  - ***Look at the Metrics under peformance where culmative shift is poor, ect (image dimensions)
+  - Re look into design principles for UI and consider mobile React wrapper? before further design changes
 
   - adding MVP features, user features 
   - adding additional user features(completed games list, watch list)?
@@ -35,6 +50,10 @@ Additional tasks
     - with price data, users can keep track of collection value, price fluctuations. 
   - maybe add tag group components in main body, for better user exp?
   - maybe replace my custom Form with more cohesive Form Component Library
+  - maybe populate more games for a modern section, excluding pc games. 
+  Could toggle for Retro or Modern games - but I may want to keep it retro and limit my games to consoles
+  - maybe integrate ebay API for price data and ebay listing links
+  - maybe put in Twitch data for World record speed runs?
   (!Games Are loading in duplicate!)
   
 Production tasks

@@ -4,10 +4,12 @@ import styles from '../styles/components/sidebar.module.css';
 import { resetFilters } from '../helpers';
 
  // eslint-disable-next-line react/prop-types
-export default function SideBar({ categoryData, orderData, orderDirection, setOrder, setPlatform, setGenre, setYear, setDeveloper, platform, genre, developer, minyear, maxyear
+export default function SideBar({ categoryData, orderData, orderDirection, setOrder, setPlatform, setGenre, setYear, setDeveloper, platform, genre, developer, minyear, maxyear, setSearch
  }) {
 
     function toggleItem(id, category) {
+
+      setSearch("");
 
       if (category == "Consoles") {
         const newSet = new Set(platform);
@@ -88,6 +90,7 @@ export default function SideBar({ categoryData, orderData, orderDirection, setOr
 
       </div>
       <div id='discovercontainer'>
+        <Button onClick={() => setSearch("")}>Discover Games</Button>
       </div>
     </>
   );
