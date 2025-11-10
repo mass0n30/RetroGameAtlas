@@ -5,6 +5,7 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import SideBar from "../components/SideBar";
 import CustomSpinner from "../components/Spinner";
+import { resetFilters } from '../helpers';
 
 
 function Home() {
@@ -20,7 +21,7 @@ function Home() {
   const [year, setYear] = useState({min: 1985, max: 2006});
   const [search, setSearch] = useState("");
   const [order, setOrder] = useState({data: "Popularity", order: true}); //false = desc, true = asc
-
+  const [discover, setDiscover] = useState(false);
   // games state
   const [games, setGames] = useState([]);
   const [gameId, setGameId] = useState(null);
@@ -79,7 +80,7 @@ function Home() {
   if (loading  || !user || !categoryData ) {
     return (
       <>
-      <Navbar toggle={toggle} setToggle={setToggle} setSearch={setSearch}/>
+      <Navbar toggle={toggle} setToggle={setToggle} setSearch={setSearch} resetFilters={resetFilters} setDiscover={setDiscover}/>
         <div style={{ display: "flex", flex: 1, alignItems: "center", justifyContent: "center", marginTop: "2rem" }}>
           <CustomSpinner/>
         </div>
@@ -90,7 +91,7 @@ function Home() {
 
     return (
     <>
-    <Navbar toggle={toggle} setToggle={setToggle} search={search} setSearch={setSearch}/>
+    <Navbar toggle={toggle} setToggle={setToggle} search={search} setSearch={setSearch} discover={discover} setDiscover={setDiscover}/>
     <main>
     <aside
       style={{
@@ -114,9 +115,11 @@ function Home() {
           orderDirection={order.order}
           setOrder={setOrder}
           setSearch={setSearch}
+          discover={discover}
+          setDiscover={setDiscover}
         />
       </aside>
-      <Outlet context={{loading, success, SetLoading, SetSuccess, 
+      <Outlet context={{loading, success, SetLoading, SetSuccess, discover, setDiscover, 
         user, gameId, setGameId, games, setCategoryData, orderData: order.data, orderDirection: order.order, setOrder, setGames, search, setSearch, genre, platform, developer, minyear: year.min, maxyear: year.max, setYear }} />
     </main>
     </>

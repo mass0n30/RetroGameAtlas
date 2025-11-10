@@ -24,16 +24,29 @@ async function getAllCategoryData(req, res, next) {
         },
     ];
 
-    return ({platforms, years, genres, developers, allData})
+    return ({platforms, genres, developers, allData})
   } catch (error) {
     next(error);
   }
 
 };
 
+const { constructQueryByCategory, constructQueryArrays } = require( "../db/queries.js");
+
+
+async function handleGetRandomGames(req, res, next) {
+  try {
+    const query = { ...req.query };
+
+    const { genre, platform, developer, name, search, minyear, maxyear, offset, limit, order, dir } = query;  
+
+  } catch (error) {
+    next(error)
+  }
+};
+
 
 async function handleGetGames(req, res, next) {
-  
 
   try {
     const query = { ...req.query };
@@ -42,30 +55,17 @@ async function handleGetGames(req, res, next) {
 
     console.log(`Fetching offset: ${offset}, limit: ${limit}`);
 
-    // convert array query params to parsed arrays for Prisma query
-    if (req.query.genre) {
-      if (Array.isArray(genre) && genre.length > 1) {
-        var genreArray = genre.map((element) => parseInt(element));
-      } else {
-        var genreArray = [parseInt(genre)];
-      }
-    }
+    const orderBy = await constructQueryByCategory(order, dir);
 
-    if (platform) {
-      if (Array.isArray(platform) && platform.length > 1) {
-        var platformArray = platform.map((element) => parseInt(element));
-      } else {
-        var platformArray = [parseInt(platform)];
-      }
-    }
+    const queryArrays = await constructQueryArrays(req);
 
-    if (developer) {
-      if (Array.isArray(developer) && developer.length > 1) {
-        var developerArray = developer.map((element) => parseInt(element));
-      } else {
-        var developerArray = [parseInt(developer)];
-      }
-    }
+    const offsetCal = parseInt(offset) * parseInt(limit);
+
+    // normalize search, replacing space to - for slugs 
+    const searchTerm = search
+      ?.toLowerCase()
+      .trim()
+      .replace(/\s+/g, "-"); 
 
     if (minyear && maxyear) {
       var yearminStr = `${minyear}-01-01T00:00:00.000Z`;
@@ -74,70 +74,10 @@ async function handleGetGames(req, res, next) {
       var yearMax =  new Date(yearmaxStr);
     }
 
-  const originalPlatforms = await prisma.platform.findMany({
-      where: {
-        id: {in: platformArray}
-      },
-      select: {
-        name: true,
-      }
-    });
-
-  const originalPlatformNames = originalPlatforms.map((plat) => {
-    return plat.name;
-  })
-
-  console.log(originalPlatformNames);
-
-
-  const offsetCal = parseInt(offset) * parseInt(limit);
-
-  // normalize search, replacing space to - for slugs 
-  const searchTerm = search
-    ?.toLowerCase()
-    .trim()
-    .replace(/\s+/g, "-"); 
-
-  // if no category filters order all games with years, else category find games where category id's in array
 
 let games = [];
 
-let orderBy = {};
-
-if (order === "Release Date") {
-  orderBy = {
-    firstReleaseDate: {
-      sort: dir === "true" ? "desc" : "asc",
-      nulls: dir === "true" ? "last" : "first"
-    }
-  };
-} else if (order === "Rating") {
-  orderBy = [
-    {
-      rating: {
-        sort: dir === "true" ? "desc" : "asc",
-        nulls: dir === "true" ? "last" : "first",
-      },
-    },
-    {
-      totalRatingCount: {
-        sort: dir === "true" ? "desc" : "asc",
-        nulls: dir === "true" ? "last" : "first",
-      },
-    },
-  ];
-} else if (order === "Popularity") {
-  orderBy = [
-    {
-      totalRatingCount: {
-        sort: dir === "true" ? "desc" : "asc",
-        nulls: dir === "true" ? "last" : "first"
-      }
-    },
-    { id: 'asc' } // further sorting for any duplicate counts during pagination ordering
-  ];
-}
-
+  // if no category filters order all games with years, else category find games where category id's in array
 if (!genre && !platform && !developer && !searchTerm) {
   games = await prisma.game.findMany({
     where: {
@@ -157,13 +97,13 @@ if (!genre && !platform && !developer && !searchTerm) {
      games = await prisma.game.findMany({
       where: {
         genres: genre && genre.length > 0
-          ? { some: { id: { in: genreArray }}}
+          ? { some: { id: { in: queryArrays.genreArray }}}
           : undefined,
         originalPlatform: platform && platform.length > 0
-          ? { in: originalPlatformNames }
+          ? { in: queryArrays.originalPlatformNames }
           : undefined,
         developer: developer && developer.length > 0
-          ?  { id: { in: developerArray }} 
+          ?  { id: { in: queryArrays.developerArray }} 
           : undefined,
         firstReleaseDate: {
           gte:yearMin,  //greater than date format
@@ -200,6 +140,7 @@ if (!genre && !platform && !developer && !searchTerm) {
     next(error)
   }
 };
+
 
 // Bayesian formula for weighted results for Rating
 function calculateWeightedRating(itemRating, itemVotes) {

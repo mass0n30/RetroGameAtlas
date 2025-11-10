@@ -12,7 +12,7 @@ import CustomSpinner from '../components/Spinner';
 
 
 function HomePage() {
-  const {  setGameId, games, orderData, orderDirection,
+  const {  setGameId, games, orderData, orderDirection, discover, setDiscover,
   setGames, setCategoryData, search, setSearch, genre, platform, developer, minyear, maxyear} = useOutletContext();
 
   // InfiniteScroll state var
@@ -50,14 +50,14 @@ function HomePage() {
     SetLoading(true);
     // scrolls to top page upon category changes
     axios
-      .get(`http://localhost:5000/home/games?${query}&order=${orderData}&dir=${orderDirection}&offset=${0}&limit=${limit}`,{
+      .get(`http://localhost:5000/home/games?${query}&order=${orderData}&dir=${orderDirection}&offset=${0}&limit=${limit}&discover=${discover}`,{
       })
       .then((res) => setGames(res.data.games))
       .catch((err) => console.log(err));
 
       window.scrollTo({top: 0, behavior: 'smooth'});
 
-  }, [ query, genre, platform, minyear, maxyear, developer, setGames, orderData, orderDirection ]);
+  }, [ query, genre, platform, minyear, maxyear, developer, setGames, orderData, orderDirection, discover ]);
 
   // fetch more logic for Infinite Scroll
   // Loader logic or Load more ?????

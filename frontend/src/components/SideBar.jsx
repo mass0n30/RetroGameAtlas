@@ -4,7 +4,7 @@ import styles from '../styles/components/sidebar.module.css';
 import { resetFilters } from '../helpers';
 
  // eslint-disable-next-line react/prop-types
-export default function SideBar({ categoryData, orderData, orderDirection, setOrder, setPlatform, setGenre, setYear, setDeveloper, platform, genre, developer, minyear, maxyear, setSearch
+export default function SideBar({ categoryData, orderData, orderDirection, setOrder, setPlatform, setGenre, setYear, setDeveloper, platform, genre, developer, minyear, maxyear, setSearch, discover, setDiscover
  }) {
 
     function toggleItem(id, category) {
@@ -44,11 +44,18 @@ export default function SideBar({ categoryData, orderData, orderDirection, setOr
     }
   };
 
+  // upon discovering games toggle, reset category filters
+  const handleDiscoverGames = () => {
+    resetFilters(setPlatform, setDeveloper, setGenre, setYear, setOrder, setSearch);
+    setSearch("");
+    discover ? setDiscover(false) : setDiscover(true);
+  };
+
 
   return (
     <>
     <div id='resetfilterscontainer'>
-      <Button onClick={() => resetFilters(setPlatform, setDeveloper, setGenre, setYear, setOrder)}>Reset Filters</Button>
+      <Button onClick={() => resetFilters(setPlatform, setDeveloper, setGenre, setYear, setOrder, setSearch)}>Reset Filters</Button>
     </div>
       <Tree aria-label="Categories"
         >
@@ -90,7 +97,7 @@ export default function SideBar({ categoryData, orderData, orderDirection, setOr
 
       </div>
       <div id='discovercontainer'>
-        <Button onClick={() => setSearch("")}>Discover Games</Button>
+        <Button onClick={() => handleDiscoverGames()}>Discover Games</Button>
       </div>
     </>
   );

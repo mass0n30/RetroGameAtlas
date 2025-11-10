@@ -39,12 +39,13 @@ function normalizeScreenshots(screenshots) {
   }));
 };
 
-export function resetFilters(setPlatform, setDeveloper, setGenre, setYear, setOrder) {
+export function resetFilters(setPlatform, setDeveloper, setGenre, setYear, setOrder, setSearch) {
   setPlatform(new Set());
   setDeveloper(new Set());
   setGenre(new Set());
   setYear({ min: "1985", max: "2006" });
   setOrder(new Set());
+  setSearch("");
 };
 
 export function randomizeIndex(min, max) {

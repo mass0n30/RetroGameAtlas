@@ -15,6 +15,7 @@ Pseudo Randomize:
   - Take 100 random games, each game is unique ID (more variety)
   - For each random game, check if screenshot null, then get random screenshot if multiple from game
   - Next pagination possibly have duplicate screenshots but unlikely for broader category search's, under 100 can add additional logic to prevent duplicate screenshots?
+  - Normalize screenshots 
 
 DONE:
   - query for all genres, platforms, developers, years upon mount

@@ -6,11 +6,15 @@ import { Link } from 'react-router-dom';
 
 
 // eslint-disable-next-line react/prop-types
-export default function Navbar({ toggle, setToggle, setSearch, search }) {
+export default function Navbar({ toggle, setToggle, setSearch, search, discover, setDiscover, resetFilters }) {
 
   const handleToggle = () => {
     toggle ? setToggle(false) : setToggle(true);
-  }
+  };
+
+  const handleSearchChange = () => {
+    (discover) ? setDiscover(false) : null;
+  };
 
 
   return (
@@ -38,7 +42,7 @@ export default function Navbar({ toggle, setToggle, setSearch, search }) {
         type="text" 
         placeholder="Search games..." 
         value={search} 
-        onChange={(e) => setSearch(e.target.value)} 
+        onChange={(e) => {setSearch(e.target.value) ,handleSearchChange()}} 
         className={styles.searchInput}
         />
       <button className={styles.searchButton}>
