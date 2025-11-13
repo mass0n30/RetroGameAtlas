@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import styles from '../styles/components/nav.module.css';
 import { useDebounce } from '../helpers';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 
 
@@ -16,6 +16,12 @@ export default function Navbar({ toggle, setToggle, setSearch, search, discover,
     (discover) ? setDiscover(false) : null;
   };
 
+  const navigate = useNavigate();
+
+  const handleSearch = (value) => {
+    setSearch(value);
+    navigate(-1);
+  };
 
   return (
     <nav className={styles.nav}>
@@ -35,21 +41,27 @@ export default function Navbar({ toggle, setToggle, setSearch, search, discover,
         </Link>
 
       </div>
- 
-
-    <div className={styles.searchBarContainer}>
-      <input 
-        type="text" 
-        placeholder="Search games..." 
-        value={search} 
-        onChange={(e) => {setSearch(e.target.value) ,handleSearchChange()}} 
-        className={styles.searchInput}
+      <form
+        className={styles.searchBarContainer}
+        onSubmit={(e) => {
+          e.preventDefault();
+          handleSearch(search);
+        }}>
+        <input 
+          id='searchInput'
+          type="text" 
+          placeholder="Search games..." 
+          value={search} 
+          onChange={(e) => {
+            setSearch(e.target.value);
+            handleSearchChange();
+          }} 
+          className={styles.searchInput}
         />
-      <button className={styles.searchButton}>
-        <img src="/icons/search.png" alt="search" />
-      </button>
-    </div>
-
+        <button className={styles.searchButton} type="submit">
+          <img src="/icons/search.png" alt="search" />
+        </button>
+      </form>
     </nav>
   );
 }

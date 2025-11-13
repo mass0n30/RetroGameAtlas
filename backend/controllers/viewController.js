@@ -63,7 +63,7 @@ async function handleGetRandomGames(req, res, next) {
         firstReleaseDate: {
           gte:yearMin,  //greater than date format
           lte:yearMax,  //lower than date format
-        }
+        },
       },
       include: {
         screenshots: true,
@@ -163,6 +163,9 @@ if (!genre && !platform && !developer && !searchTerm) {
         lte:yearMax,  //lower than date format
       },
     },
+    include: {
+      screenshots: true,
+    },
     orderBy,
 
     take: parseInt(limit),
@@ -192,6 +195,9 @@ if (!genre && !platform && !developer && !searchTerm) {
           ? name
           : undefined,
       },
+    include: {
+      screenshots: true,
+    },
       orderBy,
       take: parseInt(limit),
       skip: parseInt(offsetCal),
@@ -211,7 +217,23 @@ if (!genre && !platform && !developer && !searchTerm) {
       }
     });
   }
-  res.json({ games });
+
+
+    const gamesResult = games.map(game => {
+    const normalizedScreenshots = game.screenshots.map(ss => ({
+      id: ss.id,
+      gameId: ss.gameId,
+      url: ss.url?.replace("t_thumb", "t_screenshot_huge") ?? "",
+      width: ss.width,
+      height: ss.height,
+    }));
+    return {
+      ...game,
+      screenshots: normalizedScreenshots
+    };
+  });
+
+  res.json({ games:gamesResult });
 
   } catch (error) {
     next(error)

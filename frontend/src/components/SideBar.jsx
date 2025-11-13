@@ -5,7 +5,7 @@ import { resetFilters } from '../helpers';
 import { useEffect } from 'react';
 
  // eslint-disable-next-line react/prop-types
-export default function SideBar({ categoryData, orderData, orderDirection, setOrder, setPlatform, setGenre, setYear, setDeveloper, platform, genre, developer, minyear, maxyear, setSearch, discover, setDiscover, screenshotMode, setScreenshotMode
+export default function SideBar({ categoryData, orderData, orderDirection, setOrder, setPlatform, setGenre, setYear, setDeveloper, platform, genre, developer, minyear, maxyear, setSearch, discover, setDiscover, screenshotMode, setScreenshotMode, SetLoading
  }) {
 
     function toggleItem(id, category) {
@@ -32,6 +32,7 @@ export default function SideBar({ categoryData, orderData, orderDirection, setOr
   };
 
   const handleToggleOrder = (dataType) => {
+    setDiscover(false);
     if (orderData === dataType) {
       setOrder(prevOrder => ({
         data: dataType,
@@ -53,15 +54,13 @@ export default function SideBar({ categoryData, orderData, orderDirection, setOr
   };
 
   const handleDiscoverMode = () => {
-    resetFilters(setPlatform, setDeveloper, setGenre, setYear, setOrder, setSearch);
-    setSearch("");
     screenshotMode ? setScreenshotMode(false) : setScreenshotMode(true);
   }
 
   return (
     <>
     <div id='resetfilterscontainer'>
-      <Button onClick={() => resetFilters(setPlatform, setDeveloper, setGenre, setYear, setOrder, setSearch)}>Reset Filters</Button>
+      <Button onClick={() => resetFilters(setPlatform, setDeveloper, setGenre, setYear, setOrder, setSearch)}>Clear Filters</Button>
     </div>
       <Tree aria-label="Categories"
         >
@@ -104,11 +103,9 @@ export default function SideBar({ categoryData, orderData, orderDirection, setOr
       </div>
       <div id='discovercontainer'>
         <Button onClick={() => handleDiscoverGames()}>Discover Games</Button>
-        {discover && (
           <Button onClick={handleDiscoverMode}>
             {screenshotMode ? "Discover By Title" : "Discover By Screenshot"}
           </Button>
-        )}
       </div>
     </>
   );

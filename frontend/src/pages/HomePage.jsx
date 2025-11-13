@@ -58,7 +58,7 @@ function HomePage() {
 
       window.scrollTo({top: 0, behavior: 'smooth'});
 
-  }, [ query, genre, platform, minyear, maxyear, developer, setGames, orderData, orderDirection, discover ]);
+  }, [ query, genre, platform, minyear, maxyear, developer, setGames, orderData, orderDirection, discover, screenshotMode ]);
 
   // fetch more logic for Infinite Scroll
   // Loader logic or Load more ?????
@@ -100,7 +100,7 @@ function HomePage() {
       <section>
 
       { screenshotMode ? (
-
+    
       games.map(game => (
         <GameCardSS key={game.id} gameId={game.id} setGameId={setGameId} coverUrl={game.coverUrl} loading={loading} screenshots={game.screenshots} length={game.screenshots.length}/>
     ))) : (

@@ -8,7 +8,6 @@ function GameCardSS(props) {
    // eslint-disable-next-line react/prop-types
    const {gameId, screenshots, length} = props;
 
-   console.log(screenshots, "from GameCardSS");
    let randomSS = 0;
    let screenshot = null;
 
@@ -28,9 +27,9 @@ function GameCardSS(props) {
     <>
     { length && length != 0 ? (
       <button onClick={(() => handleNavigate())}>
-         <div className={styles.card}>
-            <div className={styles.card_cover_container}>
-               <img className={styles.card_image} src={screenshot.url}></img>
+         <div className={styles.ss_card}>
+            <div className={styles.ss_card_cover_container}>
+               <img className={styles.ss_card_image} src={screenshot.url}></img>
             </div>
          </div>
       </button>

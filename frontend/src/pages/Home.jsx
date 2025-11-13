@@ -78,7 +78,7 @@ function Home() {
     return <div>Error: {error.message}</div>;
   }
   
-  if (loading  || !user || !categoryData ) {
+  if ( !user || !categoryData ) {
     return (
       <>
       <Navbar toggle={toggle} setToggle={setToggle} setSearch={setSearch} resetFilters={resetFilters} setDiscover={setDiscover}/>
@@ -120,6 +120,7 @@ function Home() {
           setDiscover={setDiscover}
           screenshotMode={screenshotMode}
           setScreenshotMode={setScreenshotMode}
+          SetLoading={SetLoading}
         />
       </aside>
       <Outlet context={{loading, success, SetLoading, SetSuccess, discover, setDiscover, screenshotMode, setScreenshotMode,
