@@ -63,26 +63,29 @@ async function handleGetRandomGames(req, res, next) {
         firstReleaseDate: {
           gte:yearMin,  //greater than date format
           lte:yearMax,  //lower than date format
-        },
+        }
+      },
+      include: {
+        screenshots: true,
       },
     });
 
     console.log(games.length, 'total games found for discover');
 
-    const randomGames = [];
+    const retrievedGames = [];
     const ints = [];
 
     for (let i = 0; i < 100; i++) {
       const randomOffset = Math.floor(Math.random() * (games.length));
 
-      const check = randomGames.some((game, index) => {
+      const check = retrievedGames.some((game, index) => {
         if (game.id === games[randomOffset].id) {
           return true; 
         }
       });
 
-      if (randomGames.length == 0) {
-        randomGames.push(games[randomOffset]);
+      if (retrievedGames.length == 0) {
+        retrievedGames.push(games[randomOffset]);
         continue;
       }
 
@@ -90,10 +93,25 @@ async function handleGetRandomGames(req, res, next) {
         continue; // duplicate found, skip adding this game
       }
       // if no duplicates found, add to random games
-      randomGames.push(games[randomOffset]);
+      retrievedGames.push(games[randomOffset]);
 
     };
-    console.log(randomGames.length, 'random games selected for discover');
+    console.log(retrievedGames.length, 'random games selected for discover');
+
+    const randomGames = retrievedGames.map(game => {
+      const normalizedScreenshots = game.screenshots.map(ss => ({
+        id: ss.id,
+        gameId: ss.gameId,
+        url: ss.url?.replace("t_thumb", "t_screenshot_huge") ?? "",
+        width: ss.width,
+        height: ss.height,
+      }));
+      return {
+        ...game,
+        screenshots: normalizedScreenshots
+      };
+    });
+
     return randomGames;
 
     } catch (error) {

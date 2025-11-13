@@ -2,9 +2,10 @@ import { useState } from 'react';
 import { Tree, TreeItem, TreeItemContent, Button } from 'react-aria-components';
 import styles from '../styles/components/sidebar.module.css';
 import { resetFilters } from '../helpers';
+import { useEffect } from 'react';
 
  // eslint-disable-next-line react/prop-types
-export default function SideBar({ categoryData, orderData, orderDirection, setOrder, setPlatform, setGenre, setYear, setDeveloper, platform, genre, developer, minyear, maxyear, setSearch, discover, setDiscover, discoverMode, setDiscoverMode
+export default function SideBar({ categoryData, orderData, orderDirection, setOrder, setPlatform, setGenre, setYear, setDeveloper, platform, genre, developer, minyear, maxyear, setSearch, discover, setDiscover, screenshotMode, setScreenshotMode
  }) {
 
     function toggleItem(id, category) {
@@ -46,7 +47,7 @@ export default function SideBar({ categoryData, orderData, orderDirection, setOr
 
   // upon discovering games toggle, reset category filters
   const handleDiscoverGames = () => {
-    resetFilters(setPlatform, setDeveloper, setGenre, setYear, setOrder, setSearch, setDiscoverMode);
+    resetFilters(setPlatform, setDeveloper, setGenre, setYear, setOrder, setSearch, setScreenshotMode);
     setSearch("");
     discover ? setDiscover(false) : setDiscover(true);
   };
@@ -54,9 +55,8 @@ export default function SideBar({ categoryData, orderData, orderDirection, setOr
   const handleDiscoverMode = () => {
     resetFilters(setPlatform, setDeveloper, setGenre, setYear, setOrder, setSearch);
     setSearch("");
-    discoverMode ? setDiscoverMode(false) : setDiscoverMode(true);
+    screenshotMode ? setScreenshotMode(false) : setScreenshotMode(true);
   }
-
 
   return (
     <>
@@ -104,9 +104,11 @@ export default function SideBar({ categoryData, orderData, orderDirection, setOr
       </div>
       <div id='discovercontainer'>
         <Button onClick={() => handleDiscoverGames()}>Discover Games</Button>
-        {discover ? 
-        ( discoverMode ? <Button onClick={() => handleDiscoverMode()}>Discover By Title</Button> : <Button onClick={() => handleDiscoverMode()}>Discover By Screenshot</Button>
-        ) : null}
+        {discover && (
+          <Button onClick={handleDiscoverMode}>
+            {screenshotMode ? "Discover By Title" : "Discover By Screenshot"}
+          </Button>
+        )}
       </div>
     </>
   );

@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 import { useOutletContext, useLocation } from "react-router-dom";
 import InfiniteScroll from "react-infinite-scroll-component";
 import GameCard from '../components/GameCard';
+import GameCardSS from '../components/GameCardSS';
 import styles from '../styles/components/home.module.css';
 import axios from "axios";
 import CustomSpinnerBottom from '../components/Spinner';
@@ -12,7 +13,7 @@ import CustomSpinner from '../components/Spinner';
 
 
 function HomePage() {
-  const {  setGameId, games, orderData, orderDirection, discover, setDiscover, discoverMode, setDiscoverMode,
+  const {  setGameId, games, orderData, orderDirection, discover, setDiscover, screenshotMode, setScreenshotMode,
   setGames, setCategoryData, search, setSearch, genre, platform, developer, minyear, maxyear} = useOutletContext();
 
   // InfiniteScroll state var
@@ -98,9 +99,11 @@ function HomePage() {
       >
       <section>
 
-      { discoverMode ? (
-        <h2 className={styles.sectiontitle}>Discover Games By Screenshot</h2>
-      ) : (
+      { screenshotMode ? (
+
+      games.map(game => (
+        <GameCardSS key={game.id} gameId={game.id} setGameId={setGameId} coverUrl={game.coverUrl} loading={loading} screenshots={game.screenshots} length={game.screenshots.length}/>
+    ))) : (
       games.map(game => (
         <GameCard key={game.id} gameId={game.id} setGameId={setGameId} coverUrl={game.coverUrl} loading={loading}/>
       ))

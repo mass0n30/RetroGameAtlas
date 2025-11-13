@@ -22,7 +22,7 @@ function Home() {
   const [search, setSearch] = useState("");
   const [order, setOrder] = useState({data: "Popularity", order: true}); //false = desc, true = asc
   const [discover, setDiscover] = useState(false);
-  const [discoverMode, setDiscoverMode] = useState(false);
+  const [screenshotMode, setScreenshotMode] = useState(false);
   // games state
   const [games, setGames] = useState([]);
   const [gameId, setGameId] = useState(null);
@@ -118,11 +118,11 @@ function Home() {
           setSearch={setSearch}
           discover={discover}
           setDiscover={setDiscover}
-          discoverMode={discoverMode}
-          setDiscoverMode={setDiscoverMode}
+          screenshotMode={screenshotMode}
+          setScreenshotMode={setScreenshotMode}
         />
       </aside>
-      <Outlet context={{loading, success, SetLoading, SetSuccess, discover, setDiscover, discoverMode, setDiscoverMode,
+      <Outlet context={{loading, success, SetLoading, SetSuccess, discover, setDiscover, screenshotMode, setScreenshotMode,
         user, gameId, setGameId, games, setCategoryData, orderData: order.data, orderDirection: order.order, setOrder, setGames, search, setSearch, genre, platform, developer, minyear: year.min, maxyear: year.max, setYear }} />
     </main>
     </>
