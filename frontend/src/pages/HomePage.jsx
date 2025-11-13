@@ -12,7 +12,7 @@ import CustomSpinner from '../components/Spinner';
 
 
 function HomePage() {
-  const {  setGameId, games, orderData, orderDirection, discover, setDiscover,
+  const {  setGameId, games, orderData, orderDirection, discover, setDiscover, discoverMode, setDiscoverMode,
   setGames, setCategoryData, search, setSearch, genre, platform, developer, minyear, maxyear} = useOutletContext();
 
   // InfiniteScroll state var
@@ -97,9 +97,14 @@ function HomePage() {
       scrollableTarget={'gamesScrollContainer'}
       >
       <section>
-      {games.map(game => (
+
+      { discoverMode ? (
+        <h2 className={styles.sectiontitle}>Discover Games By Screenshot</h2>
+      ) : (
+      games.map(game => (
         <GameCard key={game.id} gameId={game.id} setGameId={setGameId} coverUrl={game.coverUrl} loading={loading}/>
-      ))}
+      ))
+    )}
       </section>
       {!hasMore && <p>No More Results</p>}
     </InfiniteScroll>

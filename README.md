@@ -2,14 +2,6 @@ Project Details
 
 Built using twitch IGDB API: https://www.igdb.com/api 
 
-Pseudo Loop:
-  - for i less 100 
-  - generate a random number
-  - if no random games, push first game and continue to next iteration
-  - for j less than total games from params
-  - checking every game, we check against random games array
-  for any duplicates, if duplicate break out of inner loop
-  - if no duplicates push random game
 
 Maybe add price chart data after developing (API price options like PriceCharting.com, costs $)
 

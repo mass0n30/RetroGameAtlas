@@ -4,7 +4,7 @@ import styles from '../styles/components/sidebar.module.css';
 import { resetFilters } from '../helpers';
 
  // eslint-disable-next-line react/prop-types
-export default function SideBar({ categoryData, orderData, orderDirection, setOrder, setPlatform, setGenre, setYear, setDeveloper, platform, genre, developer, minyear, maxyear, setSearch, discover, setDiscover
+export default function SideBar({ categoryData, orderData, orderDirection, setOrder, setPlatform, setGenre, setYear, setDeveloper, platform, genre, developer, minyear, maxyear, setSearch, discover, setDiscover, discoverMode, setDiscoverMode
  }) {
 
     function toggleItem(id, category) {
@@ -46,10 +46,16 @@ export default function SideBar({ categoryData, orderData, orderDirection, setOr
 
   // upon discovering games toggle, reset category filters
   const handleDiscoverGames = () => {
-    resetFilters(setPlatform, setDeveloper, setGenre, setYear, setOrder, setSearch);
+    resetFilters(setPlatform, setDeveloper, setGenre, setYear, setOrder, setSearch, setDiscoverMode);
     setSearch("");
     discover ? setDiscover(false) : setDiscover(true);
   };
+
+  const handleDiscoverMode = () => {
+    resetFilters(setPlatform, setDeveloper, setGenre, setYear, setOrder, setSearch);
+    setSearch("");
+    discoverMode ? setDiscoverMode(false) : setDiscoverMode(true);
+  }
 
 
   return (
@@ -98,6 +104,9 @@ export default function SideBar({ categoryData, orderData, orderDirection, setOr
       </div>
       <div id='discovercontainer'>
         <Button onClick={() => handleDiscoverGames()}>Discover Games</Button>
+        {discover ? 
+        ( discoverMode ? <Button onClick={() => handleDiscoverMode()}>Discover By Title</Button> : <Button onClick={() => handleDiscoverMode()}>Discover By Screenshot</Button>
+        ) : null}
       </div>
     </>
   );
