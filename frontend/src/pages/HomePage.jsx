@@ -64,7 +64,7 @@ function HomePage() {
   const fetchMoreData = () => {
     setTimeout(() => {
     axios
-    .get(`http://localhost:5000/home/games?${query}&order=${orderData}&dir=${orderDirection}&offset=${index + 1}&limit=${limit}`)
+    .get(`http://localhost:5000/home/games?${query}&order=${orderData}&dir=${orderDirection}&offset=${index + 1}&limit=${limit}&discover=${discover}`,)
     .then((res) => {
       console.log(res, 'response');
 

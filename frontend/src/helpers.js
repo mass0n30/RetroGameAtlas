@@ -44,7 +44,7 @@ export function resetFilters(setPlatform, setDeveloper, setGenre, setYear, setOr
   setDeveloper(new Set());
   setGenre(new Set());
   setYear({ min: "1985", max: "2006" });
-  setOrder(new Set());
+  setOrder("");
   setSearch("");
 };
 
