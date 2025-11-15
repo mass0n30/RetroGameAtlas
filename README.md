@@ -2,6 +2,10 @@ Project Details
 
 Built using twitch IGDB API: https://www.igdb.com/api 
 
+Responsive Images, for better loading times, using smaller images
+from IGDB with t_medium, or t_thumb, ect
+https://developer.mozilla.org/en-US/docs/Web/HTML/Guides/Responsive_images  (srcset tag**)
+
 
 Maybe add price chart data after developing (API price options like PriceCharting.com, costs $)
 
@@ -31,13 +35,13 @@ DONE:
   - Upon category selection, page must reset (remount), upon retrieiving more games doesn't refresh
   - adding additional filter logic for order by
   - clear search value upon category change (not sure 100% working?)
-
-
-TODO:
   - discover games selection route (filter logic still applying?)
 Additional tasks
-  - search debounce?
   - screenshot image object fit discovering by screenshot (most are 1080x720) (screenshot thumbs replaced for big for mapping them on discovery route)
+
+TODO:
+  - Delayed fetch on discover games by screenshots
+  - search debounce?
   - perhaps change the original consoles to right platforms (like the wii snes games before 2006)
   - Either mesh duplicate gamedata or delete duplicates (platform or regional releases 
   causing duplicates??)

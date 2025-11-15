@@ -6,16 +6,9 @@ import styles from '../styles/components/card.module.css';
 function GameCardSS(props) {
 
    // eslint-disable-next-line react/prop-types
-   const {gameId, screenshots, length} = props;
+   const {gameId, randomScreenshot, length, index} = props;
 
-   let randomSS = 0;
-   let screenshot = null;
-
-   if (length && length != 0) {
-     randomSS = Math.floor(Math.random() * (length));
-     screenshot = screenshots[randomSS];
-   }
-
+ 
    // maybe replace <button> with React Button for more custom options?
    const navigate = useNavigate();
 
@@ -26,12 +19,15 @@ function GameCardSS(props) {
    return (
     <>
     { length && length != 0 ? (
-      <button onClick={(() => handleNavigate())}>
-         <div className={styles.ss_card}>
-            <div className={styles.ss_card_cover_container}>
-               <img className={styles.ss_card_image} src={screenshot.url}></img>
-            </div>
-         </div>
+      <button onClick={() => handleNavigate()}>
+        <div className={styles.ss_card} >
+          <img
+            width={400}
+            height={267}
+            src={randomScreenshot}
+            alt=""
+          />
+        </div>
       </button>
     ) : (
       <></>

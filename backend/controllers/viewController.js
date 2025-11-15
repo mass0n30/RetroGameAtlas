@@ -99,15 +99,25 @@ async function handleGetRandomGames(req, res, next) {
     console.log(retrievedGames.length, 'random games selected for discover');
 
     const randomGames = retrievedGames.map(game => {
+      let randomSS = 0;
+      const length = game.screenshots.length;
+
       const normalizedScreenshots = game.screenshots.map(ss => ({
         id: ss.id,
         gameId: ss.gameId,
-        url: ss.url?.replace("t_thumb", "t_screenshot_huge") ?? "",
+        url: ss.url?.replace("t_thumb", "t_screenshot_big") ?? "",
         width: ss.width,
         height: ss.height,
       }));
+
+      if (length && length != 0) {
+        randomSS = Math.floor(Math.random() * (length));
+        randomScreenshot = normalizedScreenshots[randomSS];
+      }
+
       return {
         ...game,
+        randomScreenshot,
         screenshots: normalizedScreenshots
       };
     });
@@ -220,15 +230,25 @@ if (!genre && !platform && !developer && !searchTerm) {
 
 
     const gamesResult = games.map(game => {
+    let randomSS = 0;
+    const length = game.screenshots.length;
+
     const normalizedScreenshots = game.screenshots.map(ss => ({
       id: ss.id,
       gameId: ss.gameId,
-      url: ss.url?.replace("t_thumb", "t_screenshot_huge") ?? "",
+      url: ss.url?.replace("t_thumb", "t_screenshot_big") ?? "",
       width: ss.width,
       height: ss.height,
     }));
+
+    if (length && length != 0) {
+      randomSS = Math.floor(Math.random() * (length));
+      randomScreenshot = normalizedScreenshots[randomSS];
+    }
+
     return {
       ...game,
+      randomScreenshot,
       screenshots: normalizedScreenshots
     };
   });

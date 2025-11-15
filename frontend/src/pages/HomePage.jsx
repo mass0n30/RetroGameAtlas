@@ -101,11 +101,13 @@ function HomePage() {
 
       { screenshotMode ? (
     
-      games.map(game => (
-        <GameCardSS key={game.id} gameId={game.id} setGameId={setGameId} coverUrl={game.coverUrl} loading={loading} screenshots={game.screenshots} length={game.screenshots.length}/>
+      games.map((game, index) => (
+        <GameCardSS key={game.id} index={index} randomScreenshot={game.randomScreenshot.url}
+        gameId={game.id} setGameId={setGameId} coverUrl={game.coverUrl} loading={loading} screenshots={game.screenshots} length={game.screenshots.length}/>
     ))) : (
-      games.map(game => (
-        <GameCard key={game.id} gameId={game.id} setGameId={setGameId} coverUrl={game.coverUrl} loading={loading}/>
+      games.map((game, index) => (
+        <GameCard key={game.id} index={index}
+        gameId={game.id} setGameId={setGameId} coverUrl={game.coverUrl} loading={loading}/>
       ))
     )}
       </section>
