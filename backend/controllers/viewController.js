@@ -75,7 +75,7 @@ async function handleGetRandomGames(req, res, next) {
     const retrievedGames = [];
     const ints = [];
 
-    for (let i = 0; i < 100; i++) {
+    for (let i = 0; i < parseInt(limit); i++) {
       const randomOffset = Math.floor(Math.random() * (games.length));
 
       const check = retrievedGames.some((game, index) => {

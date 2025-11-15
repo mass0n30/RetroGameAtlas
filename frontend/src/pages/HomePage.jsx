@@ -14,7 +14,7 @@ import CustomSpinner from '../components/Spinner';
 
 function HomePage() {
   const {  setGameId, games, orderData, orderDirection, discover, setDiscover, screenshotMode, setScreenshotMode,
-  setGames, setCategoryData, search, setSearch, genre, platform, developer, minyear, maxyear} = useOutletContext();
+  setGames, setCategoryData, search, setSearch, genre, platform, developer, minyear, maxyear, mount, setMount} = useOutletContext();
 
   // InfiniteScroll state var
   const [hasMore, setHasMore] = useState(true);
@@ -63,6 +63,7 @@ function HomePage() {
   // fetch more logic for Infinite Scroll
   // Loader logic or Load more ?????
   const fetchMoreData = () => {
+    setMount(false);
     setTimeout(() => {
     axios
     .get(`http://localhost:5000/home/games?${query}&order=${orderData}&dir=${orderDirection}&offset=${index + 1}&limit=${limit}&discover=${discover}`,)
@@ -102,11 +103,11 @@ function HomePage() {
       { screenshotMode ? (
     
       games.map((game, index) => (
-        <GameCardSS key={game.id} index={index} randomScreenshot={game.randomScreenshot.url}
+        <GameCardSS key={game.id} index={index} randomScreenshot={game.randomScreenshot.url} mount={mount}
         gameId={game.id} setGameId={setGameId} coverUrl={game.coverUrl} loading={loading} screenshots={game.screenshots} length={game.screenshots.length}/>
     ))) : (
       games.map((game, index) => (
-        <GameCard key={game.id} index={index}
+        <GameCard key={game.id} index={index} mount={mount}
         gameId={game.id} setGameId={setGameId} coverUrl={game.coverUrl} loading={loading}/>
       ))
     )}

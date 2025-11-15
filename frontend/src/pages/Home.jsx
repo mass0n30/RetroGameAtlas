@@ -31,6 +31,7 @@ function Home() {
   const [loading, SetLoading] = useState(true);
   const [success, SetSuccess] = useState(false);
   const [error, setError] = useState(null);
+  const [mount, setMount] = useState(true);
 
   const [toggle, setToggle] = useState(false);
 
@@ -123,7 +124,7 @@ function Home() {
           SetLoading={SetLoading}
         />
       </aside>
-      <Outlet context={{loading, success, SetLoading, SetSuccess, discover, setDiscover, screenshotMode, setScreenshotMode,
+      <Outlet context={{loading, success, SetLoading, SetSuccess, discover, setDiscover, screenshotMode, setScreenshotMode, mount, setMount,
         user, gameId, setGameId, games, setCategoryData, orderData: order.data, orderDirection: order.order, setOrder, setGames, search, setSearch, genre, platform, developer, minyear: year.min, maxyear: year.max, setYear }} />
     </main>
     </>

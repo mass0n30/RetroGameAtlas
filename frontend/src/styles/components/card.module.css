@@ -1,21 +1,28 @@
 
 /* following BEM */
 
+.card_image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  aspect-ratio: 264 / 374;
+}
+
 .card {
-  flex: 1;
-  opacity: 0;                    
-  transform: translateY(20px); 
+  aspect-ratio: 264 / 374;
+  max-width: 264px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  opacity: 0;
+  transform: translateY(20px);
   animation: fadeInUp 0.6s ease-out forwards;
 }
 
-.card img {
-  width: 100%;
-  height: auto;
-  max-width: 300px;          
-  object-fit: cover;
-  border-radius: 8px;
-}
 .ss_card {
+  aspect-ratio: 400/ 267;
+  flex: 1;
   height: auto;
   border-radius: 10px;
   overflow: hidden;
@@ -23,17 +30,16 @@
   opacity: 0;
   transform: translateY(20px);
   animation: fadeInUp 0.6s ease-out forwards;
-  aspect-ratio: 3 / 2;
   width: 100%;
-  max-width: 400px;
 }
 
-.ss_card img {
+.ss_card_image {
   width: 100%;
-  height: 100%;
+  max-width: 400px;
+  height: auto;
   display: block;
   object-fit: cover;
-  aspect-ratio: 3 / 2;
+  aspect-ratio: 400/ 267;
 }
 
 

@@ -40,7 +40,6 @@ Additional tasks
   - screenshot image object fit discovering by screenshot (most are 1080x720) (screenshot thumbs replaced for big for mapping them on discovery route)
 
 TODO:
-  - Delayed fetch on discover games by screenshots
   - search debounce?
   - perhaps change the original consoles to right platforms (like the wii snes games before 2006)
   - Either mesh duplicate gamedata or delete duplicates (platform or regional releases 
