@@ -39,14 +39,19 @@ function normalizeScreenshots(screenshots) {
   }));
 };
 
-export function resetFilters(setPlatform, setDeveloper, setGenre, setYear, setOrder, setSearch, setDiscoverMode, setMount) {
+export function resetFilters(setPlatform, setDeveloper, setGenre, setYear, setOrder, setSearch, setDiscoverMode, setMount, setOpen) {
   setPlatform(new Set());
   setDeveloper(new Set());
   setGenre(new Set());
   setYear({ min: "1985", max: "2006" });
   setOrder("");
   setSearch("");
+  if (setMount) {
   setMount(true);
+  }
+  if (setOpen) {
+    setOpen(new Set());
+  }
 
   if (setDiscoverMode) {
     setDiscoverMode(false);

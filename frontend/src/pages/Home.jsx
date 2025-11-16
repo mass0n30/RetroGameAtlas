@@ -13,6 +13,7 @@ function Home() {
   // initial mount state data
   const [user, SetUser] = useState(null);
   const [categoryData, setCategoryData] = useState();
+  const [open, setOpen] = useState(new Set());
 
   // state query filters
   const [platform, setPlatform] = useState();
@@ -82,7 +83,7 @@ function Home() {
   if ( !user || !categoryData ) {
     return (
       <>
-      <Navbar toggle={toggle} setToggle={setToggle} setSearch={setSearch} resetFilters={resetFilters} setDiscover={setDiscover}/>
+      <Navbar toggle={toggle} setToggle={setToggle} setSearch={setSearch} resetFilters={resetFilters} setDiscover={setDiscover} setOpen={setOpen}/>
         <div style={{ display: "flex", flex: 1, alignItems: "center", justifyContent: "center", marginTop: "2rem" }}>
           <CustomSpinner/>
         </div>
@@ -93,7 +94,7 @@ function Home() {
 
     return (
     <>
-    <Navbar toggle={toggle} setToggle={setToggle} search={search} setSearch={setSearch} discover={discover} setDiscover={setDiscover}/>
+    <Navbar toggle={toggle} setToggle={setToggle} search={search} setSearch={setSearch} discover={discover} setDiscover={setDiscover} resetFilters={resetFilters} setOpen={setOpen}/>
     <main>
     <aside
       style={{
@@ -122,9 +123,11 @@ function Home() {
           screenshotMode={screenshotMode}
           setScreenshotMode={setScreenshotMode}
           SetLoading={SetLoading}
+          open={open}
+          setOpen={setOpen}
         />
       </aside>
-      <Outlet context={{loading, success, SetLoading, SetSuccess, discover, setDiscover, screenshotMode, setScreenshotMode, mount, setMount,
+      <Outlet context={{loading, success, SetLoading, SetSuccess, discover, setDiscover, screenshotMode, setScreenshotMode, mount, setMount, open, setOpen,
         user, gameId, setGameId, games, setCategoryData, orderData: order.data, orderDirection: order.order, setOrder, setGames, search, setSearch, genre, platform, developer, minyear: year.min, maxyear: year.max, setYear }} />
     </main>
     </>

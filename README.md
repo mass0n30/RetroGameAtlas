@@ -1,6 +1,7 @@
 Project Details
 
 Built using twitch IGDB API: https://www.igdb.com/api 
+Speedrun API: https://github.com/speedruncomorg/api/blob/master/version1/README.md 
 
 Responsive Images, for better loading times, using smaller images
 from IGDB with t_medium, or t_thumb, ect
@@ -22,7 +23,16 @@ Pseudo Randomize:
   - Next pagination possibly have duplicate screenshots but unlikely for broader category search's, under 100 can add additional logic to prevent duplicate screenshots?
   - Normalize screenshots 
 
-DONE:
+Pseudo Speedrun Fetch: 
+  1. https://www.speedrun.com/api/v1/games?name=super+mario+64 → "id": "sm64"
+
+  2. https://www.speedrun.com/api/v1/games/sm64/categories → Find Any% (id: "zd19q5yd"?), 120 Star (100%, id: "wkpoo02r")
+
+  3a. Any%: https://www.speedrun.com/api/v1/categories/{anyId}/records?top=1 → WR time/player/video
+
+  3b. 100%: https://www.speedrun.com/api/v1/categories/{100Id}/records?top=1
+
+  DONE:
   - query for all genres, platforms, developers, years upon mount
   - pass value category props to HomePage component
   - pass setState category props to SideBar component
@@ -38,14 +48,16 @@ DONE:
   - discover games selection route (filter logic still applying?)
 Additional tasks
   - screenshot image object fit discovering by screenshot (most are 1080x720) (screenshot thumbs replaced for big for mapping them on discovery route)
+  - Add no cover holder for no cover art so cells aren't offset
+  - ***Look at the Metrics under peformance where culmative shift is poor, ect (image dimensions)
 
 TODO:
+  ** I can worry about fixing CLS to be a good rating upon every render and fetch after trying to see if I can integrate ebay and speedrun wrc data, since I want to complete those for anything thoughts of actually publishing project publicly, considering design, MVP, mobile wrapping, ect. , tasks such as CLS can wait for now. 
+
   - search debounce?
   - perhaps change the original consoles to right platforms (like the wii snes games before 2006)
   - Either mesh duplicate gamedata or delete duplicates (platform or regional releases 
   causing duplicates??)
-  - Add no cover holder for no cover art so cells aren't offset
-  - ***Look at the Metrics under peformance where culmative shift is poor, ect (image dimensions)
   - Re look into design principles for UI and consider mobile React wrapper? before further design changes
 
   - adding MVP features, user features 

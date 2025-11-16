@@ -3,10 +3,12 @@ import { Tree, TreeItem, TreeItemContent, Button } from 'react-aria-components';
 import styles from '../styles/components/sidebar.module.css';
 import { resetFilters } from '../helpers';
 import { useEffect } from 'react';
+import  SectionTreeItem  from './SectionTreeItem';
+import { use } from 'react';
 
  // eslint-disable-next-line react/prop-types
-export default function SideBar({ categoryData, orderData, orderDirection, setOrder, setPlatform, setGenre, setYear, setDeveloper, platform, genre, developer, minyear, maxyear, setSearch, discover, setDiscover, screenshotMode, setScreenshotMode, SetLoading
- }) {
+export default function SideBar({ categoryData, orderData, orderDirection, setOrder, setPlatform, setGenre, setYear, setDeveloper, platform, genre, developer, minyear, maxyear, setSearch, discover, setDiscover, screenshotMode, setScreenshotMode, SetLoading, open, setOpen}) {
+
 
     function toggleItem(id, category) {
 
@@ -48,7 +50,7 @@ export default function SideBar({ categoryData, orderData, orderDirection, setOr
 
   // upon discovering games toggle, reset category filters
   const handleDiscoverGames = () => {
-    resetFilters(setPlatform, setDeveloper, setGenre, setYear, setOrder, setSearch, setScreenshotMode);
+    resetFilters(setPlatform, setDeveloper, setGenre, setYear, setOrder, setSearch, setScreenshotMode, setOpen);
     setSearch("");
     discover ? setDiscover(false) : setDiscover(true);
   };
@@ -60,7 +62,7 @@ export default function SideBar({ categoryData, orderData, orderDirection, setOr
   return (
     <>
     <div id='resetfilterscontainer'>
-      <Button onClick={() => resetFilters(setPlatform, setDeveloper, setGenre, setYear, setOrder, setSearch)}>Clear Filters</Button>
+      <Button onClick={() => resetFilters(setPlatform, setDeveloper, setGenre, setYear, setOrder, setSearch, setOpen)}>Clear Filters</Button>
     </div>
       <Tree aria-label="Categories"
         >
@@ -69,11 +71,10 @@ export default function SideBar({ categoryData, orderData, orderDirection, setOr
             <TreeItemContent>{section.category}</TreeItemContent>
 
             {section.array.map((item) => (
-              <TreeItem key={item.name} id={item.name} textValue={item.name} selected={false}>
-                <TreeItemContent>
-                <Button onClick={() => toggleItem(item.id, section.category)} >{item.name}</Button>
-                </TreeItemContent>
+              <TreeItem key={item.name} id={item.name} textValue={item.name} > 
+                <SectionTreeItem open={open} setOpen={setOpen} category={section.category} itemname={item.name} itemId={item.id} toggleItem={toggleItem} />
               </TreeItem>
+
             ))}
           </TreeItem>
         ))}  
@@ -86,12 +87,12 @@ export default function SideBar({ categoryData, orderData, orderDirection, setOr
       <div id='orderfiltercontainer'>
         <div id='orderbydata'>
           <Button onClick={() => handleToggleOrder("Release Date")}>
-            Order by Release Date {orderData === "Release Date" ? (orderDirection === true ? "asc" : "desc") : ""}
+            Order by Release Date {orderData === "Release Date" ? (orderDirection === true ? "↓" : "↑") : ""}
           </Button>
         </div>
         <div id='orderbyrating'>
           <Button onClick={() => handleToggleOrder("Rating")}>
-            Order by Rating {orderData === "Rating" ? (orderDirection === true ? "asc" : "desc") : ""}
+            Order by Rating {orderData === "Rating" ? (orderDirection === true ? "↓" : "↑") : ""}
           </Button>
         </div> 
         <div id='orderbypopularity'>

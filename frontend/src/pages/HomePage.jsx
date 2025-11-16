@@ -13,7 +13,7 @@ import CustomSpinner from '../components/Spinner';
 
 
 function HomePage() {
-  const {  setGameId, games, orderData, orderDirection, discover, setDiscover, screenshotMode, setScreenshotMode,
+  const {  setGameId, games, orderData, orderDirection, discover, setDiscover, screenshotMode, setScreenshotMode, open, setOpen,
   setGames, setCategoryData, search, setSearch, genre, platform, developer, minyear, maxyear, mount, setMount} = useOutletContext();
 
   // InfiniteScroll state var

@@ -273,9 +273,12 @@ function calculateWeightedRating(itemRating, itemVotes) {
     return weightedRating;
 }
 
+const {getWorldRecordTime, getHundredPercentTime} = require('../services/speedrun.js');
+
 async function handleGetGameDetails(req, res, next) {
 
   const gameId = parseInt(req.params.gameid);
+
 
   try {
 
@@ -290,6 +293,22 @@ async function handleGetGameDetails(req, res, next) {
         ageRating: true,
       },
     });
+
+    const originalConsoleObj = await prisma.platform.findUnique({
+      where: {
+        name: gameDetails.originalPlatform
+      }
+    });
+
+    console.log(originalConsoleObj);
+    const consoleAbbrev = originalConsoleObj ? originalConsoleObj.abbreviation : null;
+    
+    const worldRecord = await getWorldRecordTime(gameDetails.name, consoleAbbrev);
+    const hundredPercentRecord = await getHundredPercentTime(gameDetails.name, consoleAbbrev);
+
+    console.log(worldRecord);
+    console.log(hundredPercentRecord);
+    
     return gameDetails;
     
   } catch (error) {

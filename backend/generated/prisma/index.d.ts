@@ -12437,17 +12437,17 @@ export namespace Prisma {
 
   export type PlatformWhereUniqueInput = Prisma.AtLeast<{
     id?: number
+    name?: string
     releaseOrder?: number
     AND?: PlatformWhereInput | PlatformWhereInput[]
     OR?: PlatformWhereInput[]
     NOT?: PlatformWhereInput | PlatformWhereInput[]
-    name?: StringFilter<"Platform"> | string
     abbreviation?: StringNullableFilter<"Platform"> | string | null
     generation?: IntNullableFilter<"Platform"> | number | null
     slug?: StringFilter<"Platform"> | string
     platformLogo?: IntNullableFilter<"Platform"> | number | null
     games?: GameListRelationFilter
-  }, "id" | "releaseOrder">
+  }, "id" | "name" | "releaseOrder">
 
   export type PlatformOrderByWithAggregationInput = {
     id?: SortOrder

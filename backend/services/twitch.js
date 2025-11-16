@@ -334,7 +334,7 @@ async function getCompanyId(id, options) {
 }
 
 
-const { handleCreateCover, handleCreateScreenshots, handleCreateGenre} = require('../controllers/dataController/createController');
+const { handleCreateCover, handleCreateScreenshots, handleCreateGenre} = require('../controllers/dataController/createController.js');
 const { handleUpdateGamePlatforms, handleUpdateGameAgeRating, handleUpdateGameDeveloper } = require('../controllers/dataController/updateController.js');
 
 async function mapGameData(game, platformData) {
