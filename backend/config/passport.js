@@ -63,10 +63,10 @@ passport.use(
 
 
 const { validationResult } = require("express-validator");
+const { getEbayToken} = require('../services/ebay.js');
 var jwt = require('jsonwebtoken');
 
 const authenticateUser = async (req, res, next) => {
-
 
   const errors = validationResult(req);
   if (!errors.isEmpty()) {

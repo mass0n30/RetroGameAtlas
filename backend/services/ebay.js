@@ -1,30 +1,54 @@
 
 require('dotenv').config(); 
 
- async function getEbayGamePriceData() {
+ async function getEbayToken() {
 
-  const game = "super mario 64";
-  const platform = "nintendo 64";
-  const token = process.env.EBAY_APP_ID
+  const res = await fetch('https://api.ebay.com/identity/v1/oauth2/token',
+    {
+      method:'POST',
+      
+      headers: {
+        'Content-Type' : 'application/x-www-form-urlencoded',
+        Authorization: "Basic " + Buffer.from(
+          `${process.env.EBAY_APP_ID}:${process.env.EBAY_APP_SECRET}`
+        ).toString("base64"),
+      
+      },
+      body: "grant_type=client_credentials&scope=https://api.ebay.com/oauth/api_scope",
+    }
+  );
+
+  const data = await res.json();
+
+  if (data) {
+    return data.access_token;
+  } else {
+    return null;
+  }
+};
+
+async function getGamePrice(gameName) {
+  const token = await getEbayToken();  
+
+  console.log(token);
+
+  if (token == null) {
+    return null
+  };
 
   const res = await fetch(
-    `https://api.ebay.com/buy/browse/v1/item_summary/search?q=${encodeURIComponent(
-      game + " " + platform
-    )}&limit=20&filter=conditions:{3000|1000|2000}`,
+    `https://api.ebay.com/buy/browse/v1/item_summary/search?q=${encodeURIComponent(`${gameName}`
+    )}&limit=50&filter=conditions:{3000|1000|2000},buyingOptions:{FIXED_PRICE|AUCTON}`,
     {
       headers: {
-        'Authorization': `Bearer ${token}`,
-
+        Authorization: `Bearer ${token}`,
         "X-EBAY-C-MARKETPLACE-ID": "EBAY_US",
-        // affiliate optional in future
-        "X-EBAY-C-ENDUSERCTX": "affiliateCampaignId=5338836542",
       },
     }
   );
 
   const data = await res.json();
   console.log(data);
-  return Response.json(data);
 };
 
-module.exports = { getEbayGamePriceData};
+module.exports = { getGamePrice};
