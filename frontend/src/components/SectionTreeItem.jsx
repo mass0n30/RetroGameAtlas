@@ -11,7 +11,6 @@ import { useEffect } from 'react';
 function SectionTreeItem({  category, itemname,itemId, toggleItem,open, setOpen,  }) {
 
   const set = new Set(open);
-  const isCurrentlyOpen = set.has(itemId);
 
   const openHandler = (itemId) => {
     const newSet = new Set(open);
@@ -19,7 +18,7 @@ function SectionTreeItem({  category, itemname,itemId, toggleItem,open, setOpen,
     if (newSet.has(itemId)) {
       newSet.delete(itemId);
     } else {
-      newSet.add(itemId);
+      newSet.add(itemId)
     };
 
     setOpen(newSet);
@@ -27,7 +26,7 @@ function SectionTreeItem({  category, itemname,itemId, toggleItem,open, setOpen,
 
   return (
         <TreeItemContent>
-          <Button onClick={() => {openHandler(itemId), toggleItem(itemId, category)}} style={isCurrentlyOpen ? { backgroundColor: '#007bff', color: '#ffffffff' } : {backgroundColor: '#7a7a7aff'}} >{itemname}</Button>
+          <Button onClick={() => {openHandler(itemId), toggleItem(itemId, category)}} style={set.has(itemId) ? { backgroundColor: '#007bff', color: '#ffffffff' } : {backgroundColor: '#ffffffff'}} >{itemname}</Button>
         </TreeItemContent>
       )
   };

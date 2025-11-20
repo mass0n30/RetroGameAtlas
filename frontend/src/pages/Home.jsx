@@ -125,6 +125,7 @@ function Home() {
           SetLoading={SetLoading}
           open={open}
           setOpen={setOpen}
+          setMount={setMount}
         />
       </aside>
       <Outlet context={{loading, success, SetLoading, SetSuccess, discover, setDiscover, screenshotMode, setScreenshotMode, mount, setMount, open, setOpen,

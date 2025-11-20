@@ -4,10 +4,9 @@ import styles from '../styles/components/sidebar.module.css';
 import { resetFilters } from '../helpers';
 import { useEffect } from 'react';
 import  SectionTreeItem  from './SectionTreeItem';
-import { use } from 'react';
 
  // eslint-disable-next-line react/prop-types
-export default function SideBar({ categoryData, orderData, orderDirection, setOrder, setPlatform, setGenre, setYear, setDeveloper, platform, genre, developer, minyear, maxyear, setSearch, discover, setDiscover, screenshotMode, setScreenshotMode, SetLoading, open, setOpen}) {
+export default function SideBar({ categoryData, orderData, orderDirection, setOrder, setPlatform, setGenre, setYear, setDeveloper, platform, genre, developer, minyear, maxyear, setSearch, discover, setDiscover, screenshotMode, setScreenshotMode, SetLoading, open, setOpen, setMount}) {
 
     function toggleItem(id, category) {
 
@@ -48,7 +47,7 @@ export default function SideBar({ categoryData, orderData, orderDirection, setOr
 
   // upon discovering games toggle, reset category filters
   const handleDiscoverGames = () => {
-    resetFilters(setPlatform, setDeveloper, setGenre, setYear, setOrder, setSearch, setScreenshotMode, setOpen);
+    resetFilters(setPlatform, setDeveloper, setGenre, setYear, setOrder, setSearch, setScreenshotMode, setMount, setOpen);
     setSearch("");
     discover ? setDiscover(false) : setDiscover(true);
   };
@@ -60,7 +59,7 @@ export default function SideBar({ categoryData, orderData, orderDirection, setOr
   return (
     <>
     <div id='resetfilterscontainer'>
-      <Button onClick={() => resetFilters(setPlatform, setDeveloper, setGenre, setYear, setOrder, setSearch, setOpen)}>Clear Filters</Button>
+      <Button onClick={() => resetFilters(setPlatform, setDeveloper, setGenre, setYear, setOrder, setSearch, undefined, setMount, setOpen)}>Clear Filters</Button>
     </div>
       <Tree aria-label="Categories"
         >
@@ -68,7 +67,7 @@ export default function SideBar({ categoryData, orderData, orderDirection, setOr
           <TreeItem key={section.category} id={section.category} textValue={section.category}>
             <TreeItemContent>{section.category}</TreeItemContent>
 
-            {section.array.map((item) => (
+            {section.array.map((item) => ( 
               <TreeItem key={item.name} id={item.name} textValue={item.name} > 
                 <SectionTreeItem open={open} setOpen={setOpen} category={section.category} itemname={item.name} itemId={item.id} toggleItem={toggleItem}/>
               </TreeItem>

@@ -39,7 +39,7 @@ function normalizeScreenshots(screenshots) {
   }));
 };
 
-export function resetFilters(setPlatform, setDeveloper, setGenre, setYear, setOrder, setSearch, setDiscoverMode, setMount, setOpen, load, setLoad) {
+export function resetFilters(setPlatform, setDeveloper, setGenre, setYear, setOrder, setSearch, setDiscoverMode, setMount, setOpen) {
   setPlatform(new Set());
   setDeveloper(new Set());
   setGenre(new Set());
@@ -47,11 +47,10 @@ export function resetFilters(setPlatform, setDeveloper, setGenre, setYear, setOr
   setOrder("");
   setSearch("");
   if (setMount) {
-  setMount(true);
+    setMount(true);
   }
-  if (setOpen) {
-    setOpen(new Set());
-  }
+  
+  setOpen(new Set());
 
   if (setDiscoverMode) {
     setDiscoverMode(false);
