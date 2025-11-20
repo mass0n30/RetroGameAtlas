@@ -8,25 +8,26 @@ import { resetFilters } from '../helpers';
 import { useEffect } from 'react';
 
 
-function SectionTreeItem({  category, itemname,itemId, toggleItem, open, setOpen }) {
+function SectionTreeItem({  category, itemname,itemId, toggleItem,open, setOpen,  }) {
 
-  const [isOpen, setIsOpen] = useState(false);
+  const set = new Set(open);
+  const isCurrentlyOpen = set.has(itemId);
 
   const openHandler = (itemId) => {
     const newSet = new Set(open);
-    isOpen ? setIsOpen(false) : setIsOpen(true);
 
     if (newSet.has(itemId)) {
       newSet.delete(itemId);
     } else {
       newSet.add(itemId);
-      setOpen(newSet);
     };
+
+    setOpen(newSet);
   };
 
   return (
         <TreeItemContent>
-          <Button onClick={() => {openHandler(itemId), toggleItem(itemId, category)}} style={isOpen ? { backgroundColor: '#007bff', color: 'white' } : {}} >{itemname}</Button>
+          <Button onClick={() => {openHandler(itemId), toggleItem(itemId, category)}} style={isCurrentlyOpen ? { backgroundColor: '#007bff', color: '#ffffffff' } : {backgroundColor: '#7a7a7aff'}} >{itemname}</Button>
         </TreeItemContent>
       )
   };

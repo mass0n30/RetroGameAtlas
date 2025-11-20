@@ -48,7 +48,7 @@ function Home() {
       SetSuccess(false);
     }, 5000);
     return () => clearTimeout(timer, successTimer); 
-  } ,[loading, SetSuccess, SetLoading]);
+  } ,[loading, SetSuccess, SetLoading, open]);
 
   useEffect(() => {
     const fetchUser = async () => {

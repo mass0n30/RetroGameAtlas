@@ -18,14 +18,13 @@ async function getWorldRecordTime(gameName, gameConsole) {
 
   const wr = await fetch(`https://www.speedrun.com/api/v1/categories/${anyPercent.id}/records?top=1`);
   const test = (await wr.json()).data[0].runs[0];
-  const runLink = test.run.weblink;
+  const runLink = test.run?.weblink || null;
   const videoLink = test.run.videos?.links[0]?.uri || null;
-  const timeInSeconds = test.run.times.primary_t;
+  const timeInSeconds = test.run?.times?.primary_t || null;
   const timeConverted = formatSecondsToHHMMSS(timeInSeconds);
 
 
   return {
-    timeInSeconds,
     timeConverted,
     runLink,
     videoLink,
@@ -58,13 +57,12 @@ async function getHundredPercentTime(gameName, gameConsole) {
 
   const wr = await fetch(`https://www.speedrun.com/api/v1/categories/${hundredPercent.id}/records?top=1`);
   const test = (await wr.json()).data[0].runs[0];
-  const runLink = test.run.weblink;
+  const runLink = test.run?.weblink || null;
   const videoLink = test.run.videos?.links[0]?.uri || null;
-  const timeInSeconds = test.run.times.primary_t;
+  const timeInSeconds = test.run?.times?.primary_t || null;
   const timeConverted = formatSecondsToHHMMSS(timeInSeconds);
 
   return {
-    timeInSeconds,
     timeConverted,
     runLink,
     videoLink,
@@ -77,13 +75,13 @@ function formatSecondsToHHMMSS(totalSeconds) {
   const minutes = Math.floor((totalSeconds % 3600) / 60);
   const seconds = totalSeconds % 60;
 
-  // Pad with leading zeros if necessary
   const formattedHours = String(hours).padStart(2, '0');
   const formattedMinutes = String(minutes).padStart(2, '0');
-  const formattedSeconds = String(seconds).padStart(2, '0');
+  const formattedSeconds = String(seconds.toFixed(2)).padStart(2, '0');
+  
 
   return `${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
-}
+};
 
 
 

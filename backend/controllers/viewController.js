@@ -274,6 +274,7 @@ function calculateWeightedRating(itemRating, itemVotes) {
 }
 
 const {getWorldRecordTime, getHundredPercentTime} = require('../services/speedrun.js');
+const {getEbayGamePriceData} = require('../services/ebay.js');
 
 async function handleGetGameDetails(req, res, next) {
 
@@ -303,13 +304,17 @@ async function handleGetGameDetails(req, res, next) {
     console.log(originalConsoleObj);
     const consoleAbbrev = originalConsoleObj ? originalConsoleObj.abbreviation : null;
     
-    const worldRecord = await getWorldRecordTime(gameDetails.name, consoleAbbrev);
-    const hundredPercentRecord = await getHundredPercentTime(gameDetails.name, consoleAbbrev);
+    const [worldRecord, worldRecordAlt, gamePriceData] = await Promise.all([
+      getWorldRecordTime(gameDetails.name, consoleAbbrev),
+      getHundredPercentTime(gameDetails.name, consoleAbbrev),
+      getEbayGamePriceData(gameDetails.name, consoleAbbrev) // fix, causing delay
+    ]);
 
     console.log(worldRecord);
-    console.log(hundredPercentRecord);
+    console.log(worldRecordAlt);
+    console.log(gamePriceData);
     
-    return gameDetails;
+    return {gameDetails, worldRecord, worldRecordAlt};
     
   } catch (error) {
     next(error)

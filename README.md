@@ -10,6 +10,29 @@ https://developer.mozilla.org/en-US/docs/Web/HTML/Guides/Responsive_images  (src
 
 Maybe add price chart data after developing (API price options like PriceCharting.com, costs $)
 
+Ebay Notes: Ebay uses OAuth for all Restful endpoints, meaning an access token will be needed upon every request. 
+Application keys can be generated for developer or sandbox environment
+
+**************
+To get price data using the Browse API in production, you need a User access token. Here’s the flow:
+
+Get user consent using your production App ID, RuName, and redirect the user to eBay’s consent page.
+After consent, exchange the authorization code for a User access token and a refresh token.
+Use the access token in your API requests to get price data.
+When the access token expires (usually after 2 hours), use the refresh token to get a new access token. The refresh token is long-lived.
+For refreshing, send a POST request to https://api.ebay.com/identity/v1/oauth2/token with:
+
+grant_type=refresh_token
+refresh_token=your_refresh_token
+scope=your_scopes
+Set headers:
+
+Content-Type: application/x-www-form-urlencoded
+Authorization: Basic <Base64(client_id:client_secret)>
+You only need to get user consent once. After that, keep using the refresh token to renew your access token and continue making Browse API calls for price data.
+
+***************
+
 Pseudo Randomize:
   - User clicks to discover games onclick callback fires
   - Callback reset filters
@@ -54,6 +77,7 @@ Additional tasks
 TODO:
   ** I can worry about fixing CLS to be a good rating upon every render and fetch after trying to see if I can integrate ebay and speedrun wrc data, since I want to complete those for anything thoughts of actually publishing project publicly, considering design, MVP, mobile wrapping, ect. , tasks such as CLS can wait for now. 
 
+  - Screenshots in a carosel 
   - search debounce?
   - perhaps change the original consoles to right platforms (like the wii snes games before 2006)
   - Either mesh duplicate gamedata or delete duplicates (platform or regional releases 
@@ -72,6 +96,8 @@ TODO:
   - maybe integrate ebay API for price data and ebay listing links
   - maybe put in Twitch data for World record speed runs?
   (!Games Are loading in duplicate!)
+  - Maybe integrating Ebay's Buy API for affiliate buying on Game Details pages, listing to buy next to embedded videos. 
+
   
 Production tasks
   - adding user accessibility (keyboard shortucts)

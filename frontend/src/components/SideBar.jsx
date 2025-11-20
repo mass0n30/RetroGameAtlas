@@ -9,7 +9,6 @@ import { use } from 'react';
  // eslint-disable-next-line react/prop-types
 export default function SideBar({ categoryData, orderData, orderDirection, setOrder, setPlatform, setGenre, setYear, setDeveloper, platform, genre, developer, minyear, maxyear, setSearch, discover, setDiscover, screenshotMode, setScreenshotMode, SetLoading, open, setOpen}) {
 
-
     function toggleItem(id, category) {
 
       setSearch("");
@@ -30,7 +29,6 @@ export default function SideBar({ categoryData, orderData, orderDirection, setOr
         else newSet.add(id);
         setGenre(newSet);
       }
-
   };
 
   const handleToggleOrder = (dataType) => {
@@ -72,7 +70,7 @@ export default function SideBar({ categoryData, orderData, orderDirection, setOr
 
             {section.array.map((item) => (
               <TreeItem key={item.name} id={item.name} textValue={item.name} > 
-                <SectionTreeItem open={open} setOpen={setOpen} category={section.category} itemname={item.name} itemId={item.id} toggleItem={toggleItem} />
+                <SectionTreeItem open={open} setOpen={setOpen} category={section.category} itemname={item.name} itemId={item.id} toggleItem={toggleItem}/>
               </TreeItem>
 
             ))}

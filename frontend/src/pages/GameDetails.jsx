@@ -4,6 +4,7 @@ import styles from '../styles/components/details.module.css';
 import axios from "axios";
 import normalizeGameData from '../helpers';
 import CustomSpinner from '../components/Spinner';
+import YouTubeEmbed from '../components/Youtube';
 
 
 function GameDetails() {
@@ -11,6 +12,9 @@ function GameDetails() {
 const {gameId} = useParams(); 
 const [loading, setLoading] = useState(true);
 const [gameDetails, setGameDetails] = useState(null);
+const [recordData, setRecordData] = useState(null);
+const [recordDataAlt, setRecordDataAlt] = useState(null);
+
 
 useEffect(() => {
     window.scrollTo(0, 0);
@@ -30,7 +34,9 @@ useEffect(() => {
   async function fetchDetails() {
     try {
       const res = await axios.get(`http://localhost:5000/home/details/${gameId}`);
-      setGameDetails(res.data.game);
+      setGameDetails(res.data.game.gameDetails);
+      res.data.game.worldRecord ? setRecordData(res.data.game.worldRecord) : null;
+      res.data.game.worldRecordAlt ? setRecordDataAlt(res.data.game.worldRecordAlt) : null;
     } catch (err) {
       console.error(err);
     } 
@@ -79,6 +85,49 @@ if (loading) {
          ) : (
             <> *** </>
          )}
+      </div>
+
+      <div>
+        {recordData? (
+         <div>
+          <div>
+            {recordData.recordName}
+          </div>
+          <div>
+            {recordData.timeConverted}
+          </div>
+          <div> 
+            <YouTubeEmbed url={recordData.videoLink} title={recordData.recordName}/>
+          </div>
+          <div>
+            <a href={'recordData.runLink'}>{recordData.runLink}</a>
+          </div>
+         </div>
+ 
+        ) : (
+          <></>
+        )}
+
+        {recordDataAlt? (
+         <div>
+          <div>
+            {recordDataAlt.recordName}
+          </div>
+          <div>
+            {recordDataAlt.timeConverted}
+          </div>
+          <div> 
+            <YouTubeEmbed url={recordDataAlt.videoLink} title={recordDataAlt.recordName}/>
+          </div>
+          <div>
+            <a href={'recordDataAlt.runLink'}>{recordDataAlt.runLink}</a>
+          </div>
+         </div>
+ 
+        ) : (
+          <></>
+        )}
+
       </div>
 
         <div className="cover-container">
