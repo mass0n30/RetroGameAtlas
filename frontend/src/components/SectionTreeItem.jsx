@@ -10,6 +10,7 @@ import { useEffect } from 'react';
 
 function SectionTreeItem({  category, itemname,itemId, toggleItem,open, setOpen,  }) {
 
+  // making new set from parent state for toggled element categories, conditionally checking inline upon changes
   const set = new Set(open);
 
   const openHandler = (itemId) => {

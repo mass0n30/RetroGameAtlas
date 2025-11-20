@@ -27,7 +27,7 @@ require('dotenv').config();
   }
 };
 
-async function getGamePrice(gameName) {
+async function getGamePrice(gameName, platform) {
   const token = await getEbayToken();  
 
   console.log(token);
@@ -37,8 +37,8 @@ async function getGamePrice(gameName) {
   };
 
   const res = await fetch(
-    `https://api.ebay.com/buy/browse/v1/item_summary/search?q=${encodeURIComponent(`${gameName}`
-    )}&limit=50&filter=conditions:{3000|1000|2000},buyingOptions:{FIXED_PRICE|AUCTON}`,
+    `https://api.ebay.com/buy/browse/v1/item_summary/search?q=${encodeURIComponent(`${gameName} ${platform}`
+    )}&fieldgroups=MATCHING_ITEMS&aspect_filter=category_id:139973,Title:${gameName}&limit=3&filter=conditions:{NEW|USED},buyingOptions:{FIXED_PRICE}`,
     {
       headers: {
         Authorization: `Bearer ${token}`,

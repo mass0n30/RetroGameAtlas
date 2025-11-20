@@ -64,7 +64,7 @@ if (loading) {
          <p>Unknown Developer</p>
       )}
 
-      <div>Main Platform:</div> {game.originalPlatform ? (
+      <div>Play On:</div> {game.originalPlatform ? (
             game.originalPlatform
       ) : (
          <p>Unknown</p>
