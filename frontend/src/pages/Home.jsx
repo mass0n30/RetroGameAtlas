@@ -6,6 +6,7 @@ import Footer from "../components/Footer";
 import SideBar from "../components/SideBar";
 import CustomSpinner from "../components/Spinner";
 import { resetFilters } from '../helpers';
+import axios from "axios";
 
 
 function Home() {
@@ -27,6 +28,10 @@ function Home() {
   // games state
   const [games, setGames] = useState([]);
   const [gameId, setGameId] = useState(null);
+
+  // temporary
+  const offset = 0;
+  const limit = 100;
 
   // loading state settings
   const [loading, SetLoading] = useState(true);
@@ -75,6 +80,34 @@ function Home() {
     };
     fetchUser();
   }, [token]);  // token dependency?
+
+  // making URL for any games query
+  const params = new URLSearchParams();
+  
+  if (genre) genre.forEach(g => params.append("genre", g));
+  if (platform) platform.forEach(p => params.append("platform", p));
+  if (developer) developer.forEach(d => params.append("developer", d));
+  if (year.min) params.append("minyear", year.min);
+  if (year.max) params.append("maxyear", year.max);
+
+  if (search) params.append("search", search);
+
+  const query = params.toString();
+
+  // initial mount for inital games (maybe save state scroll location?)
+  useEffect(() => {
+    SetLoading(true);
+    // scrolls to top page upon category changes
+    axios
+      .get(`http://localhost:5000/home/games?${query}&order=${order.data}&dir=${order.order}&offset=${0}&limit=${limit}&discover=${discover}`,{
+      })
+      .then((res) => setGames(res.data.games))
+      .catch((err) => console.log(err));
+
+      window.scrollTo({top: 0, behavior: 'smooth'});
+
+  }, [ query, genre, platform, year.min, year.max, developer, setGames, order.data, order.order, discover, screenshotMode ]);
+
 
   if (error) {
     return <div>Error: {error.message}</div>;
@@ -128,7 +161,7 @@ function Home() {
           setMount={setMount}
         />
       </aside>
-      <Outlet context={{loading, success, SetLoading, SetSuccess, discover, setDiscover, screenshotMode, setScreenshotMode, mount, setMount, open, setOpen,
+      <Outlet context={{query, limit, loading, success, SetLoading, SetSuccess, discover, setDiscover, screenshotMode, setScreenshotMode, mount, setMount, open, setOpen, 
         user, gameId, setGameId, games, setCategoryData, orderData: order.data, orderDirection: order.order, setOrder, setGames, search, setSearch, genre, platform, developer, minyear: year.min, maxyear: year.max, setYear }} />
     </main>
     </>

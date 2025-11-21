@@ -14,6 +14,7 @@ const [loading, setLoading] = useState(true);
 const [gameDetails, setGameDetails] = useState(null);
 const [recordData, setRecordData] = useState(null);
 const [recordDataAlt, setRecordDataAlt] = useState(null);
+const [gameEbayData, setGameEbayData] = useState(null);
 
 
 useEffect(() => {
@@ -37,6 +38,8 @@ useEffect(() => {
       setGameDetails(res.data.game.gameDetails);
       res.data.game.worldRecord ? setRecordData(res.data.game.worldRecord) : null;
       res.data.game.worldRecordAlt ? setRecordDataAlt(res.data.game.worldRecordAlt) : null;
+      res.data.game.gameEbayData ? setGameEbayData(res.data.game.gameEbayData) : null;
+
     } catch (err) {
       console.error(err);
     } 
@@ -70,12 +73,19 @@ if (loading) {
          <p>Unknown</p>
       )}
 
+        <div className="cover-container">
+         {game.cover ? (
+            <img src={game.cover} className="cover" />
+         ) : (
+            <p>No Cover Art</p>
+         )}
+        </div>
 
       <div> 
          {game.storyline ? (
             game.storyline
          ) : (
-            <> --- </>
+            <> </>
          )}
 
       </div>
@@ -83,9 +93,23 @@ if (loading) {
          {game.summary ? (
             game.summary
          ) : (
-            <> *** </>
+            <> </>
          )}
       </div>
+
+         {gameEbayData ? (
+          gameEbayData.map((post) => (
+          <div key={post.itemId}> {post.title}
+              <div> {post.condition} </div>
+              <div> {post.price.currency} {' '} {post.price.value} </div>
+              <div>
+                <a href={post.itemWebUrl}target="_blank" rel="noopener noreferrer">View on Ebay</a>
+              </div>
+             </div>
+            )
+          )
+         ) : <></>}
+
 
       <div>
         {recordData? (
@@ -129,14 +153,6 @@ if (loading) {
         )}
 
       </div>
-
-        <div className="cover-container">
-         {game.cover ? (
-            <img src={game.cover} className="cover" />
-         ) : (
-            <p>No Cover Art</p>
-         )}
-        </div>
 
       <div className="screenshots">
         {game.screenshots.length > 0 ? (

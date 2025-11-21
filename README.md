@@ -7,29 +7,16 @@ Responsive Images, for better loading times, using smaller images
 from IGDB with t_medium, or t_thumb, ect
 https://developer.mozilla.org/en-US/docs/Web/HTML/Guides/Responsive_images  (srcset tag**)
 
+Ebay Game Props:
+ data.itemSummaries.  
+  - Condition
+  - image.imageUrl
+  - itemWebUrl
+  - price.value & price.currency
+  - title (actual ebay listing title)
+
+
 ***************
-
-Pseudo Randomize:
-  - User clicks to discover games onclick callback fires
-  - Callback reset filters
-    - Callback changes routes?
-  - Callback setState discover true parent
-  - HomePage remounts with discover param
-  - *Refactor 170 line handleGetGames for conditional query for screenshots or Game obj
-  - Get games length from Query for math.random (ex. over 1k for PS1)
-  - Take 100 random games, each game is unique ID (more variety)
-  - For each random game, check if screenshot null, then get random screenshot if multiple from game
-  - Next pagination possibly have duplicate screenshots but unlikely for broader category search's, under 100 can add additional logic to prevent duplicate screenshots?
-  - Normalize screenshots 
-
-Pseudo Speedrun Fetch: 
-  1. https://www.speedrun.com/api/v1/games?name=super+mario+64 → "id": "sm64"
-
-  2. https://www.speedrun.com/api/v1/games/sm64/categories → Find Any% (id: "zd19q5yd"?), 120 Star (100%, id: "wkpoo02r")
-
-  3a. Any%: https://www.speedrun.com/api/v1/categories/{anyId}/records?top=1 → WR time/player/video
-
-  3b. 100%: https://www.speedrun.com/api/v1/categories/{100Id}/records?top=1
 
   DONE:
   - query for all genres, platforms, developers, years upon mount
@@ -53,15 +40,15 @@ Additional tasks
 TODO:
   ** I can worry about fixing CLS to be a good rating upon every render and fetch after trying to see if I can integrate ebay and speedrun wrc data, since I want to complete those for anything thoughts of actually publishing project publicly, considering design, MVP, mobile wrapping, ect. , tasks such as CLS can wait for now. 
 
+  - Get record type for Record Name on details page (level, Any%, ect)
   - Either mesh duplicate gamedata or delete duplicates (platform or regional releases 
   causing duplicates??)
   - Re look into design principles for UI and consider mobile React wrapper? before further design changes
 
+  - market game value from PriceCharting API (adding a extra API will add an additional fetch to game details, further slowing down load, need work around or fast loading)
   - adding MVP features, user features 
   - adding additional user features(completed games list, watch list)?
   - adding custom loader
-  - adding price data (costs $)
-    - with price data, users can keep track of collection value, price fluctuations. 
   - maybe add tag group components in main body, for better user exp?
   - maybe replace my custom Form with more cohesive Form Component Library
   - maybe populate more games for a modern section, excluding pc games. 
@@ -80,7 +67,7 @@ Production tasks
 Ebay: 
   - Category ID subject to change for ebay price data?: https://developer.ebay.com/api-docs/buy/browse/resources/item_summary/methods/search#uri.filter 
 
-  
+
 
 FRONTEND:
 

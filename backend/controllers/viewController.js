@@ -304,7 +304,7 @@ async function handleGetGameDetails(req, res, next) {
     console.log(originalConsoleObj);
     const consoleAbbrev = originalConsoleObj ? originalConsoleObj.abbreviation : null;
     
-    const [worldRecord, worldRecordAlt, gamePriceData] = await Promise.all([
+    const [worldRecord, worldRecordAlt, gameEbayData] = await Promise.all([
       getWorldRecordTime(gameDetails.name, consoleAbbrev),
       getHundredPercentTime(gameDetails.name, consoleAbbrev),
       getGamePrice(gameDetails.name, gameDetails.originalPlatform) // fix, causing delay
@@ -312,9 +312,9 @@ async function handleGetGameDetails(req, res, next) {
 
     console.log(worldRecord);
     console.log(worldRecordAlt);
-    console.log(gamePriceData);
+    console.log(gameEbayData);
     
-    return {gameDetails, worldRecord, worldRecordAlt};
+    return {gameDetails, worldRecord, worldRecordAlt, gameEbayData};
     
   } catch (error) {
     next(error)

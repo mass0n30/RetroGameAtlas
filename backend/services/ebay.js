@@ -47,8 +47,11 @@ async function getGamePrice(gameName, platform) {
     }
   );
 
-  const data = await res.json();
-  console.log(data);
+  if (res) {
+    const data = await res.json();
+    return data.itemSummaries;
+  }
+
 };
 
 module.exports = { getGamePrice};

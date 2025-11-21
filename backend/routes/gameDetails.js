@@ -8,7 +8,6 @@ gameDetailsRouter.get('/:gameid', async (req, res, next) => {
 
   res.json({
     game: gameData,
-  //  worldRecord: gameData.worldRecord
   })
 });
 
