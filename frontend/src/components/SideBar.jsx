@@ -10,6 +10,7 @@ export default function SideBar({ categoryData, orderData, orderDirection, setOr
 
     function toggleItem(id, category) {
 
+      setMount(true);
       setSearch("");
 
       if (category == "Consoles") {
@@ -31,6 +32,7 @@ export default function SideBar({ categoryData, orderData, orderDirection, setOr
   };
 
   const handleToggleOrder = (dataType) => {
+    setMount(true);
     setDiscover(false);
     if (orderData === dataType) {
       setOrder(prevOrder => ({
@@ -48,11 +50,13 @@ export default function SideBar({ categoryData, orderData, orderDirection, setOr
   // upon discovering games toggle, reset category filters
   const handleDiscoverGames = () => {
     resetFilters(setPlatform, setDeveloper, setGenre, setYear, setOrder, setSearch, setScreenshotMode, setMount, setOpen);
+    setMount(true);
     setSearch("");
     discover ? setDiscover(false) : setDiscover(true);
   };
 
   const handleDiscoverMode = () => {
+    setMount(true);
     screenshotMode ? setScreenshotMode(false) : setScreenshotMode(true);
   }
 
@@ -64,7 +68,7 @@ export default function SideBar({ categoryData, orderData, orderDirection, setOr
       <Tree aria-label="Categories"
         >
         {categoryData.map((section) => (
-          <TreeItem key={section.category} id={section.category} textValue={section.category}>
+          <TreeItem key={section.category} id={section.category} className={styles.treeItem} textValue={section.category}>
             <TreeItemContent>{section.category}</TreeItemContent>
 
             {section.array.map((item) => ( 
@@ -100,9 +104,11 @@ export default function SideBar({ categoryData, orderData, orderDirection, setOr
 
       </div>
       <div id='discovercontainer'>
-        <Button onClick={() => handleDiscoverGames()}>Discover Games</Button>
+        <Button onClick={() => handleDiscoverGames()} style={discover ? { backgroundColor: '#6200ffff', color: '#ffffffff' } : {backgroundColor: '#ffffffff'}}>
+           {discover ? "Show All Games" : "Discover Games"}
+        </Button>
           <Button onClick={handleDiscoverMode}>
-            {screenshotMode ? "Discover By Title" : "Discover By Screenshot"}
+            {screenshotMode ? "Discover By Cover Art" : "Discover By Screenshot"}
           </Button>
       </div>
     </>

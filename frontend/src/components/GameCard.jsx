@@ -17,7 +17,7 @@ function GameCard(props) {
 
    return (
     <>
-      <button onClick={(() => handleNavigate())} >
+      <button onClick={(() => handleNavigate())} className={styles.card_button}>
          <div className={styles.card} style={mount ? { animationDelay: `${index * 0.07}s` }: {}} >
             <img className={styles.card_image} src={coverUrl} width="264" height="374"></img>
          </div>

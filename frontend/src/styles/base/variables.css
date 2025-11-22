@@ -4,12 +4,16 @@
 
 /* ----------------- Colors ----------------- */
 :root {
-  --color-primary: #4f46e5;        /* Main brand color */
-  --color-secondary: #facc15;      /* Accent / secondary buttons */
-  --color-accent: #ec4899;         /* Highlight / alerts */
-  --color-background: #f9fafb;     /* Page background */
-  --color-surface: #ffffff;        /* Cards, modals, panels */
-  --color-text: #111827;           /* Main text */
+  --color-background: #0d0f17;
+  --color-surface: #1a2b29;
+
+  --color-text: #e5e7eb;
+
+  --color-primary: #3b82f6;             /* main neon */
+  --color-primary-hover: #60a5fa;       /* softer neon */
+  --color-primary-glow: #00aaff;        /* bright glow */
+  --color-primary-glow-lite: #5ee7ff;   /* micro glow */
+  --color-secondary: #F03A47;          /* accent red */
   --color-text-link:#646cff;
   --color-text-link-hover: #535bf2;
   --color-text-muted: #6b7280;     /* Secondary / muted text */

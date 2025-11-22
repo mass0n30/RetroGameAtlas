@@ -15,6 +15,7 @@ const [gameDetails, setGameDetails] = useState(null);
 const [recordData, setRecordData] = useState(null);
 const [recordDataAlt, setRecordDataAlt] = useState(null);
 const [gameEbayData, setGameEbayData] = useState(null);
+const [screenshots, setScreenshots] = useState([]);
 
 
 useEffect(() => {
@@ -25,7 +26,7 @@ useEffect(() => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 2000);
+    }, 6000);
 
     return () => clearTimeout(timer,); 
   } ,[loading, setLoading]);
@@ -39,6 +40,7 @@ useEffect(() => {
       res.data.game.worldRecord ? setRecordData(res.data.game.worldRecord) : null;
       res.data.game.worldRecordAlt ? setRecordDataAlt(res.data.game.worldRecordAlt) : null;
       res.data.game.gameEbayData ? setGameEbayData(res.data.game.gameEbayData) : null;
+      res.data.game.normalizedScreenshots ? setScreenshots(res.data.game.normalizedScreenshots) : null;
 
     } catch (err) {
       console.error(err);
@@ -55,7 +57,6 @@ if (loading) {
   )
 }
   if (gameDetails) {
-  console.log(gameDetails);
   const game = normalizeGameData(gameDetails);
   return (
    <>
@@ -155,8 +156,8 @@ if (loading) {
       </div>
 
       <div className="screenshots">
-        {game.screenshots.length > 0 ? (
-          game.screenshots.map((ss) => (
+        {screenshots.length > 0 ? (
+          screenshots.map((ss) => (
             <img
               key={ss.id}
               src={`https:${ss.url}`} 

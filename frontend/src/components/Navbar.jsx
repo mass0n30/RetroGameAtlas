@@ -6,7 +6,7 @@ import { Link, useNavigate } from 'react-router-dom';
 
 
 // eslint-disable-next-line react/prop-types
-export default function Navbar({ toggle, setToggle, setSearch, search, discover, setDiscover, resetFilters, open, setOpen}) {
+export default function Navbar({ toggle, setToggle, setSearch, search, discover, setDiscover, resetFilters, open, setOpen, setMount}) {
 
   const handleToggle = () => {
     toggle ? setToggle(false) : setToggle(true);

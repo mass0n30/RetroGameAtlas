@@ -25,7 +25,7 @@
 }
 
 /* container selectors for flex and grid*/
-* {border: solid red 1px;}
+* {border: solid rgba(255, 0, 0, 0.705) 1px;}
 
 
 body {
@@ -49,8 +49,7 @@ nav {
   top: 0;
   height: 5rem;
   z-index: 100;
-  background-color: aqua;
-  opacity: 50%;
+  background-color: var(--color-surface);
 }
 
 
@@ -64,8 +63,7 @@ aside {
   top: 5rem;
   width: 40rem;
   height:  calc(100vh - 5rem);
-  background-color: aquamarine;
-  opacity: 50%;
+  background-color: var(--color-surface);
   display: flex;
   flex-direction: column;
 }
@@ -106,6 +104,8 @@ aside {
 .spinner {
   border: 4px solid #f3f3f3; 
   border-top: 4px solid #007bff; 
+  border-color: var(--color-primary-glow);
+  box-shadow: 10 10 12px var(--color-primary-glow);
   border-radius: 50%;
   width: 40px;
   height: 40px;

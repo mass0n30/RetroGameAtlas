@@ -9,11 +9,11 @@ const {gameDetailsRouter} = require('./gameDetails');
 const { getAllCategoryData } = require("../controllers/viewController.js");
 
 
-
 homeRouter.get('/', passport.authenticate('jwt', { session: false }), async (req, res, next ) => {
 
   const categoryData = await getAllCategoryData(req, res, next);
 
+  
   // req.user from passport callback authentication
   res.json({
     user: {

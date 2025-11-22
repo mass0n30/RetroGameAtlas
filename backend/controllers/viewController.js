@@ -295,13 +295,22 @@ async function handleGetGameDetails(req, res, next) {
       },
     });
 
+    console.log(gameDetails, 'fetched game details from db');
+
+    const normalizedScreenshots = gameDetails.screenshots.map(ss => ({
+      id: ss.id,
+      gameId: ss.gameId,
+      url: ss.url?.replace("t_thumb", "t_screenshot_huge") ?? "",
+      width: ss.width,
+      height: ss.height,
+    }));
+
     const originalConsoleObj = await prisma.platform.findUnique({
       where: {
         name: gameDetails.originalPlatform
       }
     });
 
-    console.log(originalConsoleObj);
     const consoleAbbrev = originalConsoleObj ? originalConsoleObj.abbreviation : null;
     
     const [worldRecord, worldRecordAlt, gameEbayData] = await Promise.all([
@@ -309,12 +318,8 @@ async function handleGetGameDetails(req, res, next) {
       getHundredPercentTime(gameDetails.name, consoleAbbrev),
       getGamePrice(gameDetails.name, gameDetails.originalPlatform) // fix, causing delay
     ]);
-
-    console.log(worldRecord);
-    console.log(worldRecordAlt);
-    console.log(gameEbayData);
     
-    return {gameDetails, worldRecord, worldRecordAlt, gameEbayData};
+    return {gameDetails, worldRecord, worldRecordAlt, gameEbayData, normalizedScreenshots};
     
   } catch (error) {
     next(error)

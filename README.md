@@ -40,6 +40,10 @@ Additional tasks
 TODO:
   ** I can worry about fixing CLS to be a good rating upon every render and fetch after trying to see if I can integrate ebay and speedrun wrc data, since I want to complete those for anything thoughts of actually publishing project publicly, considering design, MVP, mobile wrapping, ect. , tasks such as CLS can wait for now. 
 
+
+  - Populate more Wii games, populate PSP titles and atari 2600 ?
+  - Loads slow upon discover games(randomize) with screenshots 
+
   - Get record type for Record Name on details page (level, Any%, ect)
   - Either mesh duplicate gamedata or delete duplicates (platform or regional releases 
   causing duplicates??)

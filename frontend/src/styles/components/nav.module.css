@@ -28,7 +28,7 @@ nav {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  border: 3px solid rgba(255, 255, 255, 0.534);
   border-radius: 2rem;
   padding: 0.4rem 0.8rem;
   transition: all 0.25s ease-in-out;

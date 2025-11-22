@@ -47,7 +47,7 @@ function Home() {
   useEffect(() => {
     const timer = setTimeout(() => {
       SetLoading(false);
-    }, 2000);
+    }, 3000);
 
     const successTimer = setTimeout(() => {
       SetSuccess(false);
@@ -116,7 +116,7 @@ function Home() {
   if ( !user || !categoryData ) {
     return (
       <>
-      <Navbar toggle={toggle} setToggle={setToggle} setSearch={setSearch} resetFilters={resetFilters} setDiscover={setDiscover} setOpen={setOpen}/>
+      <Navbar toggle={toggle} setToggle={setToggle} setSearch={setSearch} resetFilters={resetFilters} setDiscover={setDiscover} setOpen={setOpen} setMount={setMount}/>
         <div style={{ display: "flex", flex: 1, alignItems: "center", justifyContent: "center", marginTop: "2rem" }}>
           <CustomSpinner/>
         </div>
@@ -127,7 +127,7 @@ function Home() {
 
     return (
     <>
-    <Navbar toggle={toggle} setToggle={setToggle} search={search} setSearch={setSearch} discover={discover} setDiscover={setDiscover} resetFilters={resetFilters} setOpen={setOpen}/>
+    <Navbar toggle={toggle} setToggle={setToggle} search={search} setSearch={setSearch} discover={discover} setDiscover={setDiscover} resetFilters={resetFilters} setOpen={setOpen} setMount={setMount}/>
     <main>
     <aside
       style={{

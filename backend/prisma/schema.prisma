@@ -31,6 +31,15 @@ model User {
   password String 
 }
 
+model UserProfile {
+  id        Int      @id @default(autoincrement())
+  userId    Int      @unique
+  
+
+  user      User     @relation(fields: [userId], references: [id])
+  savedGames Game[]   @relation("UserSavedGames", references: [id])
+}
+
  model Game {
   id                  Int          @id @default(autoincrement())
   igdbId              Int          @unique

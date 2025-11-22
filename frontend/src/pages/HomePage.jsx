@@ -64,7 +64,7 @@ function HomePage() {
       { screenshotMode ? (
     
       games.map((game, index) => (
-        <GameCardSS key={game.id} index={index} randomScreenshot={game.randomScreenshot.url} mount={mount}
+        <GameCardSS style={mount ? { animationDelay: `${index * 0.24}s` }: {}} key={game.id} index={index} randomScreenshot={game.randomScreenshot.url} mount={mount}
         gameId={game.id} setGameId={setGameId} coverUrl={game.coverUrl} loading={loading} screenshots={game.screenshots} length={game.screenshots.length}/>
     ))) : (
       games.map((game, index) => (

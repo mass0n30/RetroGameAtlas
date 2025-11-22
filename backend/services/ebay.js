@@ -18,13 +18,13 @@ require('dotenv').config();
     }
   );
 
-  const data = await res.json();
-
-  if (data) {
-    return data.access_token;
-  } else {
+  if (!res.ok) {
     return null;
   }
+
+  const data = await res.json();
+  return data.access_token;
+
 };
 
 async function getGamePrice(gameName, platform) {
