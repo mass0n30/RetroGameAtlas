@@ -27,7 +27,9 @@ function SectionTreeItem({  category, itemname,itemId, toggleItem,open, setOpen,
 
   return (
         <TreeItemContent>
-          <Button onClick={() => {openHandler(itemId), toggleItem(itemId, category)}} style={set.has(itemId) ? { backgroundColor: '#007bff', color: '#ffffffff' } : {backgroundColor: '#ffffffff'}} >{itemname}</Button>
+          <Button id={styles.categorybtn} onClick={() => {openHandler(itemId), toggleItem(itemId, category)}} style={set.has(itemId) ? { backgroundColor: '#3b82f6', color: '#a7e9ff' } : null} >
+           <div id={styles.categorybtntxt}>{itemname}</div> 
+            </Button>
         </TreeItemContent>
       )
   };

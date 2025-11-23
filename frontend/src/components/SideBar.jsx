@@ -61,31 +61,34 @@ export default function SideBar({ categoryData, orderData, orderDirection, setOr
   }
 
   return (
-    <>
-    <div id='resetfilterscontainer'>
-      <Button onClick={() => resetFilters(setPlatform, setDeveloper, setGenre, setYear, setOrder, setSearch, undefined, setMount, setOpen)}>Clear Filters</Button>
-    </div>
-      <Tree aria-label="Categories"
-        >
-        {categoryData.map((section) => (
-          <TreeItem key={section.category} id={section.category} className={styles.treeItem} textValue={section.category}>
-            <TreeItemContent>{section.category}</TreeItemContent>
-
-            {section.array.map((item) => ( 
-              <TreeItem key={item.name} id={item.name} textValue={item.name} > 
-                <SectionTreeItem open={open} setOpen={setOpen} category={section.category} itemname={item.name} itemId={item.id} toggleItem={toggleItem}/>
-              </TreeItem>
-
-            ))}
-          </TreeItem>
-        ))}  
-      </Tree>
-      <div id='yearsfiltercontainer'>
-        <YearDropdown selectedYear={minyear} compYear={maxyear} setSelectedYear={setYear} arg={"min"}/>
-        <div style={{ marginTop: '10px' }}>to</div>
-        <YearDropdown selectedYear={maxyear} compYear={minyear} setSelectedYear={setYear} arg={"max"}/>
+    <div id={styles.sidebarcontainer}>
+      <div id={styles.clearfilterscontainer}>
+        <Button onClick={() => resetFilters(setPlatform, setDeveloper, setGenre, setYear, setOrder, setSearch, undefined, setMount, setOpen)}>Clear Filters</Button>
       </div>
-      <div id='orderfiltercontainer'>
+      <div className={styles.categoriescontainer}>
+        <Tree aria-label="Categories"
+          >
+          {categoryData.map((section) => (
+            <TreeItem key={section.category} id={section.category} className={styles.treeItem} textValue={section.category}>
+              <TreeItemContent className={styles.categoryheader}>
+               <div className={styles.categoryheadertxt}> {section.category}</div>
+              </TreeItemContent>
+
+              {section.array.map((item) => ( 
+                <TreeItem key={item.name} id={item.name} textValue={item.name} > 
+                  <SectionTreeItem open={open} setOpen={setOpen} category={section.category} itemname={item.name} itemId={item.id} toggleItem={toggleItem}/>
+                </TreeItem>
+
+              ))}
+            </TreeItem>
+          ))}  
+        </Tree>
+      </div>
+      <div className={styles.yearsfiltercontainer}>
+        <YearDropdown className={styles.yearSelect} selectedYear={minyear} compYear={maxyear} setSelectedYear={setYear} arg={"min"}/>
+        <YearDropdown className={styles.yearSelect} selectedYear={maxyear} compYear={minyear} setSelectedYear={setYear} arg={"max"}/>
+      </div>
+      <div className={styles.orderfiltercontainer}>
         <div id='orderbydata'>
           <Button onClick={() => handleToggleOrder("Release Date")}>
             Order by Release Date {orderData === "Release Date" ? (orderDirection === true ? "↓" : "↑") : ""}
@@ -103,15 +106,15 @@ export default function SideBar({ categoryData, orderData, orderDirection, setOr
         </div>
 
       </div>
-      <div id='discovercontainer'>
-        <Button onClick={() => handleDiscoverGames()} style={discover ? { backgroundColor: '#6200ffff', color: '#ffffffff' } : {backgroundColor: '#ffffffff'}}>
-           {discover ? "Show All Games" : "Discover Games"}
-        </Button>
-          <Button onClick={handleDiscoverMode}>
-            {screenshotMode ? "Discover By Cover Art" : "Discover By Screenshot"}
+        <div id={styles.discovermodecontainer}>
+          <Button onClick={() => handleDiscoverGames()} style={discover ? { backgroundColor: '#6200ffff', color: '#ffffffff' } : {backgroundColor: '#ffffffff'}}>
+            {discover ? "Show All Games" : "Discover Games"}
           </Button>
-      </div>
-    </>
+            <Button onClick={handleDiscoverMode}>
+              {screenshotMode ? "Discover By Cover Art" : "Discover By Screenshot"}
+            </Button>
+        </div>
+    </div>
   );
 }
 

@@ -6,12 +6,14 @@
 :root {
   --color-background: #0d0f17;
   --color-surface: #1a2b29;
+  --color-surface-translucent: rgba(26, 43, 41, 0.8);
 
   --color-text: #e5e7eb;
+  --color-text-active: #a7e9ff; /* sidebar category selected text */
 
   --color-primary: #3b82f6;             /* main neon */
   --color-primary-hover: #60a5fa;       /* softer neon */
-  --color-primary-glow: #00aaff;        /* bright glow */
+  --color-primary-glow: hsl(200, 100%, 50%);        /* bright glow */
   --color-primary-glow-lite: #5ee7ff;   /* micro glow */
   --color-secondary: #F03A47;          /* accent red */
   --color-text-link:#646cff;

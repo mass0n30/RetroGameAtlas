@@ -1,0 +1,10 @@
+
+
+.detailscontainer {
+  width: 100% ;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+};

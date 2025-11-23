@@ -60,7 +60,7 @@ if (loading) {
   const game = normalizeGameData(gameDetails);
   return (
    <>
-    <div className="game-details">
+    <div className={styles.detailscontainer}>
       <div>{game.name}</div>
       <div>Developer:</div> {game.developer.name ? (
             game.developer.name
@@ -74,7 +74,7 @@ if (loading) {
          <p>Unknown</p>
       )}
 
-        <div className="cover-container">
+        <div className={styles.covercontainer}>
          {game.cover ? (
             <img src={game.cover} className="cover" />
          ) : (
@@ -82,7 +82,7 @@ if (loading) {
          )}
         </div>
 
-      <div> 
+      <div className={styles.storylinecontainer}> 
          {game.storyline ? (
             game.storyline
          ) : (
@@ -90,20 +90,19 @@ if (loading) {
          )}
 
       </div>
-      <div>
          {game.summary ? (
-            game.summary
+          <div className={styles.summarycontainer}> {game.summary} </div>
+           
          ) : (
             <> </>
          )}
-      </div>
 
          {gameEbayData ? (
           gameEbayData.map((post) => (
-          <div key={post.itemId}> {post.title}
-              <div> {post.condition} </div>
-              <div> {post.price.currency} {' '} {post.price.value} </div>
-              <div>
+          <div className={styles.ebaycontainer} key={post.itemId}> {post.title}
+              <div className={styles.ebaycondition}> {post.condition} </div>
+              <div className={styles.ebayprice}> {post.price.currency} {' '} {post.price.value} </div>
+              <div className={styles.ebaylink}>
                 <a href={post.itemWebUrl}target="_blank" rel="noopener noreferrer">View on Ebay</a>
               </div>
              </div>
@@ -112,19 +111,19 @@ if (loading) {
          ) : <></>}
 
 
-      <div>
+      <div className={styles.recordscontainer}>
         {recordData? (
-         <div>
-          <div>
+         <div className={styles.recorditem}>
+          <h1>
             {recordData.recordName}
-          </div>
-          <div>
+          </h1>
+          <div className={styles.recordtime}>
             {recordData.timeConverted}
           </div>
-          <div> 
+          <div className={styles.recordvideocontainer}> 
             <YouTubeEmbed url={recordData.videoLink} title={recordData.recordName}/>
           </div>
-          <div>
+          <div className={styles.recordlink}>
             <a href={'recordData.runLink'}>{recordData.runLink}</a>
           </div>
          </div>
@@ -134,17 +133,17 @@ if (loading) {
         )}
 
         {recordDataAlt? (
-         <div>
-          <div>
+         <div className={styles.recorditem}>
+          <h1>
             {recordDataAlt.recordName}
-          </div>
-          <div>
+          </h1>
+          <div className={styles.recordtime}>
             {recordDataAlt.timeConverted}
           </div>
-          <div> 
+          <div className={styles.recordvideocontainer}> 
             <YouTubeEmbed url={recordDataAlt.videoLink} title={recordDataAlt.recordName}/>
           </div>
-          <div>
+          <div className={styles.recordlink}>
             <a href={'recordDataAlt.runLink'}>{recordDataAlt.runLink}</a>
           </div>
          </div>
@@ -155,7 +154,7 @@ if (loading) {
 
       </div>
 
-      <div className="screenshots">
+      <div className={styles.screenshotscontainer}>
         {screenshots.length > 0 ? (
           screenshots.map((ss) => (
             <img

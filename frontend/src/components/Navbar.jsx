@@ -24,8 +24,9 @@ export default function Navbar({ toggle, setToggle, setSearch, search, discover,
     navigate(-1);
   };
 
+
   return (
-    <nav className={styles.nav}>
+    <nav className={styles.navbar}>
       <div className={styles.navLeftContainer}>
         <div className={styles.toggleContainer}>
             <button onClick={() => handleToggle()}>

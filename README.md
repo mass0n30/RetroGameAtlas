@@ -40,8 +40,10 @@ Additional tasks
 TODO:
   ** I can worry about fixing CLS to be a good rating upon every render and fetch after trying to see if I can integrate ebay and speedrun wrc data, since I want to complete those for anything thoughts of actually publishing project publicly, considering design, MVP, mobile wrapping, ect. , tasks such as CLS can wait for now. 
 
+  - Adding star pattern as background, perhaps overly GIF, for background (scroll container width smaller and transluscent to keep background height 100% and static while scrolling, in active navbar while scrolling is 50% opacity)
 
   - Populate more Wii games, populate PSP titles and atari 2600 ?
+  - ! Double fetch? upon discover games by cover + screenshot
   - Loads slow upon discover games(randomize) with screenshots 
 
   - Get record type for Record Name on details page (level, Any%, ect)

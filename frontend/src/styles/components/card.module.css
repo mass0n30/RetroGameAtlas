@@ -50,6 +50,7 @@
 .card_button, .ss_card, .card  {
   border-radius: 10px;
   cursor: pointer;
+  margin: 0.1rem;
 }
 
 .ss_card_image {

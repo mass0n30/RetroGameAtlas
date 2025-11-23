@@ -5,6 +5,12 @@ nav {
   display: flex;
   align-items: center;       
   justify-content: space-between; 
+  position: sticky;
+  top: 0;
+  height: 5rem;
+  z-index: 100;
+  background-color: var(--color-surface-translucent);
+  backdrop-filter: blur(15px);
 }
 
 .navLeftContainer {
