@@ -6,7 +6,7 @@
 
 generator client {
   provider = "prisma-client-js"
-  output   = "../generated/prisma" 
+  output   = "../generated/prisma"
 }
 
 datasource db {
@@ -17,120 +17,115 @@ datasource db {
 model Session {
   id        String   @id
   sid       String   @unique
-  data      String   
+  data      String
   expiresAt DateTime
 }
 
 model User {
-  id      Int      @id @default(autoincrement())
-  email   String   @unique
-  is_admin Boolean @default(false)
-  fname    String
-  lname    String
-  alias    String
-  password String 
+  id          Int          @id @default(autoincrement())
+  email       String       @unique
+  is_admin    Boolean      @default(false)
+  fname       String
+  lname       String
+  alias       String
+  password    String
+  UserProfile UserProfile?
 }
 
 model UserProfile {
-  id        Int      @id @default(autoincrement())
-  userId    Int      @unique
-  
+  id     Int @id @default(autoincrement())
+  userId Int @unique
 
-  user      User     @relation(fields: [userId], references: [id])
-  savedGames Game[]   @relation("UserSavedGames", references: [id])
+  user       User   @relation(fields: [userId], references: [id])
+  savedGames Game[] @relation("UserSavedGames")
 }
 
- model Game {
-  id                  Int          @id @default(autoincrement())
-  igdbId              Int          @unique
-  name                String
-  slug                String       @unique
-  summary             String?      @db.Text
-  storyline           String?      @db.Text
-  firstReleaseDate    DateTime?
-  originalPlatform    String?         
-  coverUrl            String?
-  rating              Float?
-  aggregatedRating    Float?
-  totalRating         Float?
-  totalRatingCount    Int?
-  ageRatingId         Int?
-  developerId         Int?
-  url                 String?
+model Game {
+  id               Int       @id @default(autoincrement())
+  igdbId           Int       @unique
+  name             String
+  slug             String    @unique
+  summary          String?   @db.Text
+  storyline        String?   @db.Text
+  firstReleaseDate DateTime?
+  originalPlatform String?
+  coverUrl         String?
+  rating           Float?
+  aggregatedRating Float?
+  totalRating      Float?
+  totalRatingCount Int?
+  ageRatingId      Int?
+  developerId      Int?
+  url              String?
 
   // Relations
-  genres              Genre[]      @relation("GameGenres")
-  platforms           Platform[]   @relation("GamePlatforms")
-  covers              Cover[]      
-  screenshots         Screenshot[]
+  genres      Genre[]      @relation("GameGenres")
+  platforms   Platform[]   @relation("GamePlatforms")
+  covers      Cover[]
+  screenshots Screenshot[]
 
-  developer           Developers? @relation("GameDevelopers",  fields: [developerId], references: [id])
-  ageRating           GameRating?  @relation("GameRatingRelation", fields: [ageRatingId], references: [id])
-
+  developer    Developers?   @relation("GameDevelopers", fields: [developerId], references: [id])
+  ageRating    GameRating?   @relation("GameRatingRelation", fields: [ageRatingId], references: [id])
+  savedByUsers UserProfile[] @relation("UserSavedGames")
 }
 
 model GameRating {
-  id        Int      @id
-  rating    String
+  id          Int     @id
+  rating      String
   description String?
 
-  games     Game[]   @relation("GameRatingRelation")
+  games Game[] @relation("GameRatingRelation")
 }
 
-
 model Platform {
-  id            Int       @id 
-  name          String    @unique
-  releaseOrder  Int?      @unique
-  abbreviation  String?
-  generation    Int?
-  slug          String
-  platformLogo  Int?
+  id           Int     @id
+  name         String  @unique
+  releaseOrder Int?    @unique
+  abbreviation String?
+  generation   Int?
+  slug         String
+  platformLogo Int?
 
   games Game[] @relation("GamePlatforms")
 }
 
 model Developers {
-  id            Int   @id
-  name          String?
-  logoUrl       String?
-  country       String?
+  id      Int     @id
+  name    String?
+  logoUrl String?
+  country String?
 
-  games Game[]  @relation("GameDevelopers")
+  games Game[] @relation("GameDevelopers")
 }
 
 model Genre {
-  id    Int     @id @default(autoincrement())
-  igdbId              Int    @unique
-  name  String?
-  slug  String?
-  games Game[] @relation("GameGenres")
+  id     Int     @id @default(autoincrement())
+  igdbId Int     @unique
+  name   String?
+  slug   String?
+  games  Game[]  @relation("GameGenres")
 }
 
 model Cover {
-  id      Int    @id @default(autoincrement())
-  igdbId              Int    @unique
+  id      Int     @id @default(autoincrement())
+  igdbId  Int     @unique
   imageId String?
   url     String?
   height  Int?
   width   Int?
 
-  gameId  Int
-  game    Game   @relation(fields: [gameId], references: [id])
+  gameId Int
+  game   Game @relation(fields: [gameId], references: [id])
 }
 
 model Screenshot {
-  id      Int    @id @default(autoincrement())
-  igdbId              Int    @unique
+  id      Int     @id @default(autoincrement())
+  igdbId  Int     @unique
   imageId String?
   url     String?
   height  Int?
   width   Int?
 
-  gameId  Int
-  game    Game   @relation(fields: [gameId], references: [id])
+  gameId Int
+  game   Game @relation(fields: [gameId], references: [id])
 }
-
-
-
-

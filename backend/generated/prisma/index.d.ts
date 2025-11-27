@@ -24,6 +24,11 @@ export type Session = $Result.DefaultSelection<Prisma.$SessionPayload>
  */
 export type User = $Result.DefaultSelection<Prisma.$UserPayload>
 /**
+ * Model UserProfile
+ * 
+ */
+export type UserProfile = $Result.DefaultSelection<Prisma.$UserProfilePayload>
+/**
  * Model Game
  * 
  */
@@ -196,6 +201,16 @@ export class PrismaClient<
     * ```
     */
   get user(): Prisma.UserDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.userProfile`: Exposes CRUD operations for the **UserProfile** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more UserProfiles
+    * const userProfiles = await prisma.userProfile.findMany()
+    * ```
+    */
+  get userProfile(): Prisma.UserProfileDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.game`: Exposes CRUD operations for the **Game** model.
@@ -708,6 +723,7 @@ export namespace Prisma {
   export const ModelName: {
     Session: 'Session',
     User: 'User',
+    UserProfile: 'UserProfile',
     Game: 'Game',
     GameRating: 'GameRating',
     Platform: 'Platform',
@@ -733,7 +749,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "session" | "user" | "game" | "gameRating" | "platform" | "developers" | "genre" | "cover" | "screenshot"
+      modelProps: "session" | "user" | "userProfile" | "game" | "gameRating" | "platform" | "developers" | "genre" | "cover" | "screenshot"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -882,6 +898,80 @@ export namespace Prisma {
           count: {
             args: Prisma.UserCountArgs<ExtArgs>
             result: $Utils.Optional<UserCountAggregateOutputType> | number
+          }
+        }
+      }
+      UserProfile: {
+        payload: Prisma.$UserProfilePayload<ExtArgs>
+        fields: Prisma.UserProfileFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.UserProfileFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserProfilePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.UserProfileFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserProfilePayload>
+          }
+          findFirst: {
+            args: Prisma.UserProfileFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserProfilePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.UserProfileFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserProfilePayload>
+          }
+          findMany: {
+            args: Prisma.UserProfileFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserProfilePayload>[]
+          }
+          create: {
+            args: Prisma.UserProfileCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserProfilePayload>
+          }
+          createMany: {
+            args: Prisma.UserProfileCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.UserProfileCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserProfilePayload>[]
+          }
+          delete: {
+            args: Prisma.UserProfileDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserProfilePayload>
+          }
+          update: {
+            args: Prisma.UserProfileUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserProfilePayload>
+          }
+          deleteMany: {
+            args: Prisma.UserProfileDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.UserProfileUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.UserProfileUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserProfilePayload>[]
+          }
+          upsert: {
+            args: Prisma.UserProfileUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserProfilePayload>
+          }
+          aggregate: {
+            args: Prisma.UserProfileAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateUserProfile>
+          }
+          groupBy: {
+            args: Prisma.UserProfileGroupByArgs<ExtArgs>
+            result: $Utils.Optional<UserProfileGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.UserProfileCountArgs<ExtArgs>
+            result: $Utils.Optional<UserProfileCountAggregateOutputType> | number
           }
         }
       }
@@ -1501,6 +1591,7 @@ export namespace Prisma {
   export type GlobalOmitConfig = {
     session?: SessionOmit
     user?: UserOmit
+    userProfile?: UserProfileOmit
     game?: GameOmit
     gameRating?: GameRatingOmit
     platform?: PlatformOmit
@@ -1584,6 +1675,37 @@ export namespace Prisma {
 
 
   /**
+   * Count Type UserProfileCountOutputType
+   */
+
+  export type UserProfileCountOutputType = {
+    savedGames: number
+  }
+
+  export type UserProfileCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    savedGames?: boolean | UserProfileCountOutputTypeCountSavedGamesArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * UserProfileCountOutputType without action
+   */
+  export type UserProfileCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserProfileCountOutputType
+     */
+    select?: UserProfileCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * UserProfileCountOutputType without action
+   */
+  export type UserProfileCountOutputTypeCountSavedGamesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: GameWhereInput
+  }
+
+
+  /**
    * Count Type GameCountOutputType
    */
 
@@ -1592,6 +1714,7 @@ export namespace Prisma {
     platforms: number
     covers: number
     screenshots: number
+    savedByUsers: number
   }
 
   export type GameCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -1599,6 +1722,7 @@ export namespace Prisma {
     platforms?: boolean | GameCountOutputTypeCountPlatformsArgs
     covers?: boolean | GameCountOutputTypeCountCoversArgs
     screenshots?: boolean | GameCountOutputTypeCountScreenshotsArgs
+    savedByUsers?: boolean | GameCountOutputTypeCountSavedByUsersArgs
   }
 
   // Custom InputTypes
@@ -1638,6 +1762,13 @@ export namespace Prisma {
    */
   export type GameCountOutputTypeCountScreenshotsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ScreenshotWhereInput
+  }
+
+  /**
+   * GameCountOutputType without action
+   */
+  export type GameCountOutputTypeCountSavedByUsersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: UserProfileWhereInput
   }
 
 
@@ -2965,6 +3096,7 @@ export namespace Prisma {
     lname?: boolean
     alias?: boolean
     password?: boolean
+    UserProfile?: boolean | User$UserProfileArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -2998,10 +3130,17 @@ export namespace Prisma {
   }
 
   export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "is_admin" | "fname" | "lname" | "alias" | "password", ExtArgs["result"]["user"]>
+  export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    UserProfile?: boolean | User$UserProfileArgs<ExtArgs>
+  }
+  export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type UserIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
 
   export type $UserPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "User"
-    objects: {}
+    objects: {
+      UserProfile: Prisma.$UserProfilePayload<ExtArgs> | null
+    }
     scalars: $Extensions.GetPayloadResult<{
       id: number
       email: string
@@ -3404,6 +3543,7 @@ export namespace Prisma {
    */
   export interface Prisma__UserClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    UserProfile<T extends User$UserProfileArgs<ExtArgs> = {}>(args?: Subset<T, User$UserProfileArgs<ExtArgs>>): Prisma__UserProfileClient<$Result.GetResult<Prisma.$UserProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3457,6 +3597,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * Filter, which User to fetch.
      */
     where: UserWhereUniqueInput
@@ -3475,6 +3619,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * Filter, which User to fetch.
      */
     where: UserWhereUniqueInput
@@ -3492,6 +3640,10 @@ export namespace Prisma {
      * Omit specific fields from the User
      */
     omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
     /**
      * Filter, which User to fetch.
      */
@@ -3541,6 +3693,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * Filter, which User to fetch.
      */
     where?: UserWhereInput
@@ -3589,6 +3745,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * Filter, which Users to fetch.
      */
     where?: UserWhereInput
@@ -3631,6 +3791,10 @@ export namespace Prisma {
      * Omit specific fields from the User
      */
     omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
     /**
      * The data needed to create a User.
      */
@@ -3679,6 +3843,10 @@ export namespace Prisma {
      * Omit specific fields from the User
      */
     omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
     /**
      * The data needed to update a User.
      */
@@ -3746,6 +3914,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * The filter to search for the User to update in case it exists.
      */
     where: UserWhereUniqueInput
@@ -3772,6 +3944,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * Filter which User to delete.
      */
     where: UserWhereUniqueInput
@@ -3792,6 +3968,25 @@ export namespace Prisma {
   }
 
   /**
+   * User.UserProfile
+   */
+  export type User$UserProfileArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserProfile
+     */
+    select?: UserProfileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserProfile
+     */
+    omit?: UserProfileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserProfileInclude<ExtArgs> | null
+    where?: UserProfileWhereInput
+  }
+
+  /**
    * User without action
    */
   export type UserDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3803,6 +3998,1097 @@ export namespace Prisma {
      * Omit specific fields from the User
      */
     omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model UserProfile
+   */
+
+  export type AggregateUserProfile = {
+    _count: UserProfileCountAggregateOutputType | null
+    _avg: UserProfileAvgAggregateOutputType | null
+    _sum: UserProfileSumAggregateOutputType | null
+    _min: UserProfileMinAggregateOutputType | null
+    _max: UserProfileMaxAggregateOutputType | null
+  }
+
+  export type UserProfileAvgAggregateOutputType = {
+    id: number | null
+    userId: number | null
+  }
+
+  export type UserProfileSumAggregateOutputType = {
+    id: number | null
+    userId: number | null
+  }
+
+  export type UserProfileMinAggregateOutputType = {
+    id: number | null
+    userId: number | null
+  }
+
+  export type UserProfileMaxAggregateOutputType = {
+    id: number | null
+    userId: number | null
+  }
+
+  export type UserProfileCountAggregateOutputType = {
+    id: number
+    userId: number
+    _all: number
+  }
+
+
+  export type UserProfileAvgAggregateInputType = {
+    id?: true
+    userId?: true
+  }
+
+  export type UserProfileSumAggregateInputType = {
+    id?: true
+    userId?: true
+  }
+
+  export type UserProfileMinAggregateInputType = {
+    id?: true
+    userId?: true
+  }
+
+  export type UserProfileMaxAggregateInputType = {
+    id?: true
+    userId?: true
+  }
+
+  export type UserProfileCountAggregateInputType = {
+    id?: true
+    userId?: true
+    _all?: true
+  }
+
+  export type UserProfileAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which UserProfile to aggregate.
+     */
+    where?: UserProfileWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UserProfiles to fetch.
+     */
+    orderBy?: UserProfileOrderByWithRelationInput | UserProfileOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: UserProfileWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UserProfiles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UserProfiles.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned UserProfiles
+    **/
+    _count?: true | UserProfileCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: UserProfileAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: UserProfileSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: UserProfileMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: UserProfileMaxAggregateInputType
+  }
+
+  export type GetUserProfileAggregateType<T extends UserProfileAggregateArgs> = {
+        [P in keyof T & keyof AggregateUserProfile]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateUserProfile[P]>
+      : GetScalarType<T[P], AggregateUserProfile[P]>
+  }
+
+
+
+
+  export type UserProfileGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: UserProfileWhereInput
+    orderBy?: UserProfileOrderByWithAggregationInput | UserProfileOrderByWithAggregationInput[]
+    by: UserProfileScalarFieldEnum[] | UserProfileScalarFieldEnum
+    having?: UserProfileScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: UserProfileCountAggregateInputType | true
+    _avg?: UserProfileAvgAggregateInputType
+    _sum?: UserProfileSumAggregateInputType
+    _min?: UserProfileMinAggregateInputType
+    _max?: UserProfileMaxAggregateInputType
+  }
+
+  export type UserProfileGroupByOutputType = {
+    id: number
+    userId: number
+    _count: UserProfileCountAggregateOutputType | null
+    _avg: UserProfileAvgAggregateOutputType | null
+    _sum: UserProfileSumAggregateOutputType | null
+    _min: UserProfileMinAggregateOutputType | null
+    _max: UserProfileMaxAggregateOutputType | null
+  }
+
+  type GetUserProfileGroupByPayload<T extends UserProfileGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<UserProfileGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof UserProfileGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], UserProfileGroupByOutputType[P]>
+            : GetScalarType<T[P], UserProfileGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type UserProfileSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    savedGames?: boolean | UserProfile$savedGamesArgs<ExtArgs>
+    _count?: boolean | UserProfileCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["userProfile"]>
+
+  export type UserProfileSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["userProfile"]>
+
+  export type UserProfileSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["userProfile"]>
+
+  export type UserProfileSelectScalar = {
+    id?: boolean
+    userId?: boolean
+  }
+
+  export type UserProfileOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId", ExtArgs["result"]["userProfile"]>
+  export type UserProfileInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    savedGames?: boolean | UserProfile$savedGamesArgs<ExtArgs>
+    _count?: boolean | UserProfileCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type UserProfileIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type UserProfileIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $UserProfilePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "UserProfile"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+      savedGames: Prisma.$GamePayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      userId: number
+    }, ExtArgs["result"]["userProfile"]>
+    composites: {}
+  }
+
+  type UserProfileGetPayload<S extends boolean | null | undefined | UserProfileDefaultArgs> = $Result.GetResult<Prisma.$UserProfilePayload, S>
+
+  type UserProfileCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<UserProfileFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: UserProfileCountAggregateInputType | true
+    }
+
+  export interface UserProfileDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['UserProfile'], meta: { name: 'UserProfile' } }
+    /**
+     * Find zero or one UserProfile that matches the filter.
+     * @param {UserProfileFindUniqueArgs} args - Arguments to find a UserProfile
+     * @example
+     * // Get one UserProfile
+     * const userProfile = await prisma.userProfile.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends UserProfileFindUniqueArgs>(args: SelectSubset<T, UserProfileFindUniqueArgs<ExtArgs>>): Prisma__UserProfileClient<$Result.GetResult<Prisma.$UserProfilePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one UserProfile that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {UserProfileFindUniqueOrThrowArgs} args - Arguments to find a UserProfile
+     * @example
+     * // Get one UserProfile
+     * const userProfile = await prisma.userProfile.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends UserProfileFindUniqueOrThrowArgs>(args: SelectSubset<T, UserProfileFindUniqueOrThrowArgs<ExtArgs>>): Prisma__UserProfileClient<$Result.GetResult<Prisma.$UserProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first UserProfile that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserProfileFindFirstArgs} args - Arguments to find a UserProfile
+     * @example
+     * // Get one UserProfile
+     * const userProfile = await prisma.userProfile.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends UserProfileFindFirstArgs>(args?: SelectSubset<T, UserProfileFindFirstArgs<ExtArgs>>): Prisma__UserProfileClient<$Result.GetResult<Prisma.$UserProfilePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first UserProfile that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserProfileFindFirstOrThrowArgs} args - Arguments to find a UserProfile
+     * @example
+     * // Get one UserProfile
+     * const userProfile = await prisma.userProfile.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends UserProfileFindFirstOrThrowArgs>(args?: SelectSubset<T, UserProfileFindFirstOrThrowArgs<ExtArgs>>): Prisma__UserProfileClient<$Result.GetResult<Prisma.$UserProfilePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more UserProfiles that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserProfileFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all UserProfiles
+     * const userProfiles = await prisma.userProfile.findMany()
+     * 
+     * // Get first 10 UserProfiles
+     * const userProfiles = await prisma.userProfile.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const userProfileWithIdOnly = await prisma.userProfile.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends UserProfileFindManyArgs>(args?: SelectSubset<T, UserProfileFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserProfilePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a UserProfile.
+     * @param {UserProfileCreateArgs} args - Arguments to create a UserProfile.
+     * @example
+     * // Create one UserProfile
+     * const UserProfile = await prisma.userProfile.create({
+     *   data: {
+     *     // ... data to create a UserProfile
+     *   }
+     * })
+     * 
+     */
+    create<T extends UserProfileCreateArgs>(args: SelectSubset<T, UserProfileCreateArgs<ExtArgs>>): Prisma__UserProfileClient<$Result.GetResult<Prisma.$UserProfilePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many UserProfiles.
+     * @param {UserProfileCreateManyArgs} args - Arguments to create many UserProfiles.
+     * @example
+     * // Create many UserProfiles
+     * const userProfile = await prisma.userProfile.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends UserProfileCreateManyArgs>(args?: SelectSubset<T, UserProfileCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many UserProfiles and returns the data saved in the database.
+     * @param {UserProfileCreateManyAndReturnArgs} args - Arguments to create many UserProfiles.
+     * @example
+     * // Create many UserProfiles
+     * const userProfile = await prisma.userProfile.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many UserProfiles and only return the `id`
+     * const userProfileWithIdOnly = await prisma.userProfile.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends UserProfileCreateManyAndReturnArgs>(args?: SelectSubset<T, UserProfileCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserProfilePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a UserProfile.
+     * @param {UserProfileDeleteArgs} args - Arguments to delete one UserProfile.
+     * @example
+     * // Delete one UserProfile
+     * const UserProfile = await prisma.userProfile.delete({
+     *   where: {
+     *     // ... filter to delete one UserProfile
+     *   }
+     * })
+     * 
+     */
+    delete<T extends UserProfileDeleteArgs>(args: SelectSubset<T, UserProfileDeleteArgs<ExtArgs>>): Prisma__UserProfileClient<$Result.GetResult<Prisma.$UserProfilePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one UserProfile.
+     * @param {UserProfileUpdateArgs} args - Arguments to update one UserProfile.
+     * @example
+     * // Update one UserProfile
+     * const userProfile = await prisma.userProfile.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends UserProfileUpdateArgs>(args: SelectSubset<T, UserProfileUpdateArgs<ExtArgs>>): Prisma__UserProfileClient<$Result.GetResult<Prisma.$UserProfilePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more UserProfiles.
+     * @param {UserProfileDeleteManyArgs} args - Arguments to filter UserProfiles to delete.
+     * @example
+     * // Delete a few UserProfiles
+     * const { count } = await prisma.userProfile.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends UserProfileDeleteManyArgs>(args?: SelectSubset<T, UserProfileDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more UserProfiles.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserProfileUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many UserProfiles
+     * const userProfile = await prisma.userProfile.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends UserProfileUpdateManyArgs>(args: SelectSubset<T, UserProfileUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more UserProfiles and returns the data updated in the database.
+     * @param {UserProfileUpdateManyAndReturnArgs} args - Arguments to update many UserProfiles.
+     * @example
+     * // Update many UserProfiles
+     * const userProfile = await prisma.userProfile.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more UserProfiles and only return the `id`
+     * const userProfileWithIdOnly = await prisma.userProfile.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends UserProfileUpdateManyAndReturnArgs>(args: SelectSubset<T, UserProfileUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserProfilePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one UserProfile.
+     * @param {UserProfileUpsertArgs} args - Arguments to update or create a UserProfile.
+     * @example
+     * // Update or create a UserProfile
+     * const userProfile = await prisma.userProfile.upsert({
+     *   create: {
+     *     // ... data to create a UserProfile
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the UserProfile we want to update
+     *   }
+     * })
+     */
+    upsert<T extends UserProfileUpsertArgs>(args: SelectSubset<T, UserProfileUpsertArgs<ExtArgs>>): Prisma__UserProfileClient<$Result.GetResult<Prisma.$UserProfilePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of UserProfiles.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserProfileCountArgs} args - Arguments to filter UserProfiles to count.
+     * @example
+     * // Count the number of UserProfiles
+     * const count = await prisma.userProfile.count({
+     *   where: {
+     *     // ... the filter for the UserProfiles we want to count
+     *   }
+     * })
+    **/
+    count<T extends UserProfileCountArgs>(
+      args?: Subset<T, UserProfileCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], UserProfileCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a UserProfile.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserProfileAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends UserProfileAggregateArgs>(args: Subset<T, UserProfileAggregateArgs>): Prisma.PrismaPromise<GetUserProfileAggregateType<T>>
+
+    /**
+     * Group by UserProfile.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserProfileGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends UserProfileGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: UserProfileGroupByArgs['orderBy'] }
+        : { orderBy?: UserProfileGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, UserProfileGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetUserProfileGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the UserProfile model
+   */
+  readonly fields: UserProfileFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for UserProfile.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__UserProfileClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    savedGames<T extends UserProfile$savedGamesArgs<ExtArgs> = {}>(args?: Subset<T, UserProfile$savedGamesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GamePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the UserProfile model
+   */
+  interface UserProfileFieldRefs {
+    readonly id: FieldRef<"UserProfile", 'Int'>
+    readonly userId: FieldRef<"UserProfile", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * UserProfile findUnique
+   */
+  export type UserProfileFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserProfile
+     */
+    select?: UserProfileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserProfile
+     */
+    omit?: UserProfileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserProfileInclude<ExtArgs> | null
+    /**
+     * Filter, which UserProfile to fetch.
+     */
+    where: UserProfileWhereUniqueInput
+  }
+
+  /**
+   * UserProfile findUniqueOrThrow
+   */
+  export type UserProfileFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserProfile
+     */
+    select?: UserProfileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserProfile
+     */
+    omit?: UserProfileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserProfileInclude<ExtArgs> | null
+    /**
+     * Filter, which UserProfile to fetch.
+     */
+    where: UserProfileWhereUniqueInput
+  }
+
+  /**
+   * UserProfile findFirst
+   */
+  export type UserProfileFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserProfile
+     */
+    select?: UserProfileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserProfile
+     */
+    omit?: UserProfileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserProfileInclude<ExtArgs> | null
+    /**
+     * Filter, which UserProfile to fetch.
+     */
+    where?: UserProfileWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UserProfiles to fetch.
+     */
+    orderBy?: UserProfileOrderByWithRelationInput | UserProfileOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for UserProfiles.
+     */
+    cursor?: UserProfileWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UserProfiles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UserProfiles.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of UserProfiles.
+     */
+    distinct?: UserProfileScalarFieldEnum | UserProfileScalarFieldEnum[]
+  }
+
+  /**
+   * UserProfile findFirstOrThrow
+   */
+  export type UserProfileFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserProfile
+     */
+    select?: UserProfileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserProfile
+     */
+    omit?: UserProfileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserProfileInclude<ExtArgs> | null
+    /**
+     * Filter, which UserProfile to fetch.
+     */
+    where?: UserProfileWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UserProfiles to fetch.
+     */
+    orderBy?: UserProfileOrderByWithRelationInput | UserProfileOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for UserProfiles.
+     */
+    cursor?: UserProfileWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UserProfiles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UserProfiles.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of UserProfiles.
+     */
+    distinct?: UserProfileScalarFieldEnum | UserProfileScalarFieldEnum[]
+  }
+
+  /**
+   * UserProfile findMany
+   */
+  export type UserProfileFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserProfile
+     */
+    select?: UserProfileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserProfile
+     */
+    omit?: UserProfileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserProfileInclude<ExtArgs> | null
+    /**
+     * Filter, which UserProfiles to fetch.
+     */
+    where?: UserProfileWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UserProfiles to fetch.
+     */
+    orderBy?: UserProfileOrderByWithRelationInput | UserProfileOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing UserProfiles.
+     */
+    cursor?: UserProfileWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UserProfiles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UserProfiles.
+     */
+    skip?: number
+    distinct?: UserProfileScalarFieldEnum | UserProfileScalarFieldEnum[]
+  }
+
+  /**
+   * UserProfile create
+   */
+  export type UserProfileCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserProfile
+     */
+    select?: UserProfileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserProfile
+     */
+    omit?: UserProfileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserProfileInclude<ExtArgs> | null
+    /**
+     * The data needed to create a UserProfile.
+     */
+    data: XOR<UserProfileCreateInput, UserProfileUncheckedCreateInput>
+  }
+
+  /**
+   * UserProfile createMany
+   */
+  export type UserProfileCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many UserProfiles.
+     */
+    data: UserProfileCreateManyInput | UserProfileCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * UserProfile createManyAndReturn
+   */
+  export type UserProfileCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserProfile
+     */
+    select?: UserProfileSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserProfile
+     */
+    omit?: UserProfileOmit<ExtArgs> | null
+    /**
+     * The data used to create many UserProfiles.
+     */
+    data: UserProfileCreateManyInput | UserProfileCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserProfileIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * UserProfile update
+   */
+  export type UserProfileUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserProfile
+     */
+    select?: UserProfileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserProfile
+     */
+    omit?: UserProfileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserProfileInclude<ExtArgs> | null
+    /**
+     * The data needed to update a UserProfile.
+     */
+    data: XOR<UserProfileUpdateInput, UserProfileUncheckedUpdateInput>
+    /**
+     * Choose, which UserProfile to update.
+     */
+    where: UserProfileWhereUniqueInput
+  }
+
+  /**
+   * UserProfile updateMany
+   */
+  export type UserProfileUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update UserProfiles.
+     */
+    data: XOR<UserProfileUpdateManyMutationInput, UserProfileUncheckedUpdateManyInput>
+    /**
+     * Filter which UserProfiles to update
+     */
+    where?: UserProfileWhereInput
+    /**
+     * Limit how many UserProfiles to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * UserProfile updateManyAndReturn
+   */
+  export type UserProfileUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserProfile
+     */
+    select?: UserProfileSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserProfile
+     */
+    omit?: UserProfileOmit<ExtArgs> | null
+    /**
+     * The data used to update UserProfiles.
+     */
+    data: XOR<UserProfileUpdateManyMutationInput, UserProfileUncheckedUpdateManyInput>
+    /**
+     * Filter which UserProfiles to update
+     */
+    where?: UserProfileWhereInput
+    /**
+     * Limit how many UserProfiles to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserProfileIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * UserProfile upsert
+   */
+  export type UserProfileUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserProfile
+     */
+    select?: UserProfileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserProfile
+     */
+    omit?: UserProfileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserProfileInclude<ExtArgs> | null
+    /**
+     * The filter to search for the UserProfile to update in case it exists.
+     */
+    where: UserProfileWhereUniqueInput
+    /**
+     * In case the UserProfile found by the `where` argument doesn't exist, create a new UserProfile with this data.
+     */
+    create: XOR<UserProfileCreateInput, UserProfileUncheckedCreateInput>
+    /**
+     * In case the UserProfile was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<UserProfileUpdateInput, UserProfileUncheckedUpdateInput>
+  }
+
+  /**
+   * UserProfile delete
+   */
+  export type UserProfileDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserProfile
+     */
+    select?: UserProfileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserProfile
+     */
+    omit?: UserProfileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserProfileInclude<ExtArgs> | null
+    /**
+     * Filter which UserProfile to delete.
+     */
+    where: UserProfileWhereUniqueInput
+  }
+
+  /**
+   * UserProfile deleteMany
+   */
+  export type UserProfileDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which UserProfiles to delete
+     */
+    where?: UserProfileWhereInput
+    /**
+     * Limit how many UserProfiles to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * UserProfile.savedGames
+   */
+  export type UserProfile$savedGamesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Game
+     */
+    select?: GameSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Game
+     */
+    omit?: GameOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GameInclude<ExtArgs> | null
+    where?: GameWhereInput
+    orderBy?: GameOrderByWithRelationInput | GameOrderByWithRelationInput[]
+    cursor?: GameWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: GameScalarFieldEnum | GameScalarFieldEnum[]
+  }
+
+  /**
+   * UserProfile without action
+   */
+  export type UserProfileDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserProfile
+     */
+    select?: UserProfileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserProfile
+     */
+    omit?: UserProfileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserProfileInclude<ExtArgs> | null
   }
 
 
@@ -4126,6 +5412,7 @@ export namespace Prisma {
     screenshots?: boolean | Game$screenshotsArgs<ExtArgs>
     developer?: boolean | Game$developerArgs<ExtArgs>
     ageRating?: boolean | Game$ageRatingArgs<ExtArgs>
+    savedByUsers?: boolean | Game$savedByUsersArgs<ExtArgs>
     _count?: boolean | GameCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["game"]>
 
@@ -4198,6 +5485,7 @@ export namespace Prisma {
     screenshots?: boolean | Game$screenshotsArgs<ExtArgs>
     developer?: boolean | Game$developerArgs<ExtArgs>
     ageRating?: boolean | Game$ageRatingArgs<ExtArgs>
+    savedByUsers?: boolean | Game$savedByUsersArgs<ExtArgs>
     _count?: boolean | GameCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type GameIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -4218,6 +5506,7 @@ export namespace Prisma {
       screenshots: Prisma.$ScreenshotPayload<ExtArgs>[]
       developer: Prisma.$DevelopersPayload<ExtArgs> | null
       ageRating: Prisma.$GameRatingPayload<ExtArgs> | null
+      savedByUsers: Prisma.$UserProfilePayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -4636,6 +5925,7 @@ export namespace Prisma {
     screenshots<T extends Game$screenshotsArgs<ExtArgs> = {}>(args?: Subset<T, Game$screenshotsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ScreenshotPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     developer<T extends Game$developerArgs<ExtArgs> = {}>(args?: Subset<T, Game$developerArgs<ExtArgs>>): Prisma__DevelopersClient<$Result.GetResult<Prisma.$DevelopersPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     ageRating<T extends Game$ageRatingArgs<ExtArgs> = {}>(args?: Subset<T, Game$ageRatingArgs<ExtArgs>>): Prisma__GameRatingClient<$Result.GetResult<Prisma.$GameRatingPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    savedByUsers<T extends Game$savedByUsersArgs<ExtArgs> = {}>(args?: Subset<T, Game$savedByUsersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserProfilePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -5208,6 +6498,30 @@ export namespace Prisma {
      */
     include?: GameRatingInclude<ExtArgs> | null
     where?: GameRatingWhereInput
+  }
+
+  /**
+   * Game.savedByUsers
+   */
+  export type Game$savedByUsersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserProfile
+     */
+    select?: UserProfileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserProfile
+     */
+    omit?: UserProfileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserProfileInclude<ExtArgs> | null
+    where?: UserProfileWhereInput
+    orderBy?: UserProfileOrderByWithRelationInput | UserProfileOrderByWithRelationInput[]
+    cursor?: UserProfileWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: UserProfileScalarFieldEnum | UserProfileScalarFieldEnum[]
   }
 
   /**
@@ -11940,6 +13254,14 @@ export namespace Prisma {
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
 
 
+  export const UserProfileScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId'
+  };
+
+  export type UserProfileScalarFieldEnum = (typeof UserProfileScalarFieldEnum)[keyof typeof UserProfileScalarFieldEnum]
+
+
   export const GameScalarFieldEnum: {
     id: 'id',
     igdbId: 'igdbId',
@@ -12183,6 +13505,7 @@ export namespace Prisma {
     lname?: StringFilter<"User"> | string
     alias?: StringFilter<"User"> | string
     password?: StringFilter<"User"> | string
+    UserProfile?: XOR<UserProfileNullableScalarRelationFilter, UserProfileWhereInput> | null
   }
 
   export type UserOrderByWithRelationInput = {
@@ -12193,6 +13516,7 @@ export namespace Prisma {
     lname?: SortOrder
     alias?: SortOrder
     password?: SortOrder
+    UserProfile?: UserProfileOrderByWithRelationInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -12206,6 +13530,7 @@ export namespace Prisma {
     lname?: StringFilter<"User"> | string
     alias?: StringFilter<"User"> | string
     password?: StringFilter<"User"> | string
+    UserProfile?: XOR<UserProfileNullableScalarRelationFilter, UserProfileWhereInput> | null
   }, "id" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -12236,6 +13561,51 @@ export namespace Prisma {
     password?: StringWithAggregatesFilter<"User"> | string
   }
 
+  export type UserProfileWhereInput = {
+    AND?: UserProfileWhereInput | UserProfileWhereInput[]
+    OR?: UserProfileWhereInput[]
+    NOT?: UserProfileWhereInput | UserProfileWhereInput[]
+    id?: IntFilter<"UserProfile"> | number
+    userId?: IntFilter<"UserProfile"> | number
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    savedGames?: GameListRelationFilter
+  }
+
+  export type UserProfileOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    user?: UserOrderByWithRelationInput
+    savedGames?: GameOrderByRelationAggregateInput
+  }
+
+  export type UserProfileWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    userId?: number
+    AND?: UserProfileWhereInput | UserProfileWhereInput[]
+    OR?: UserProfileWhereInput[]
+    NOT?: UserProfileWhereInput | UserProfileWhereInput[]
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    savedGames?: GameListRelationFilter
+  }, "id" | "userId">
+
+  export type UserProfileOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    _count?: UserProfileCountOrderByAggregateInput
+    _avg?: UserProfileAvgOrderByAggregateInput
+    _max?: UserProfileMaxOrderByAggregateInput
+    _min?: UserProfileMinOrderByAggregateInput
+    _sum?: UserProfileSumOrderByAggregateInput
+  }
+
+  export type UserProfileScalarWhereWithAggregatesInput = {
+    AND?: UserProfileScalarWhereWithAggregatesInput | UserProfileScalarWhereWithAggregatesInput[]
+    OR?: UserProfileScalarWhereWithAggregatesInput[]
+    NOT?: UserProfileScalarWhereWithAggregatesInput | UserProfileScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"UserProfile"> | number
+    userId?: IntWithAggregatesFilter<"UserProfile"> | number
+  }
+
   export type GameWhereInput = {
     AND?: GameWhereInput | GameWhereInput[]
     OR?: GameWhereInput[]
@@ -12262,6 +13632,7 @@ export namespace Prisma {
     screenshots?: ScreenshotListRelationFilter
     developer?: XOR<DevelopersNullableScalarRelationFilter, DevelopersWhereInput> | null
     ageRating?: XOR<GameRatingNullableScalarRelationFilter, GameRatingWhereInput> | null
+    savedByUsers?: UserProfileListRelationFilter
   }
 
   export type GameOrderByWithRelationInput = {
@@ -12287,6 +13658,7 @@ export namespace Prisma {
     screenshots?: ScreenshotOrderByRelationAggregateInput
     developer?: DevelopersOrderByWithRelationInput
     ageRating?: GameRatingOrderByWithRelationInput
+    savedByUsers?: UserProfileOrderByRelationAggregateInput
   }
 
   export type GameWhereUniqueInput = Prisma.AtLeast<{
@@ -12315,6 +13687,7 @@ export namespace Prisma {
     screenshots?: ScreenshotListRelationFilter
     developer?: XOR<DevelopersNullableScalarRelationFilter, DevelopersWhereInput> | null
     ageRating?: XOR<GameRatingNullableScalarRelationFilter, GameRatingWhereInput> | null
+    savedByUsers?: UserProfileListRelationFilter
   }, "id" | "igdbId" | "slug">
 
   export type GameOrderByWithAggregationInput = {
@@ -12771,6 +14144,7 @@ export namespace Prisma {
     lname: string
     alias: string
     password: string
+    UserProfile?: UserProfileCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -12781,6 +14155,7 @@ export namespace Prisma {
     lname: string
     alias: string
     password: string
+    UserProfile?: UserProfileUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -12790,6 +14165,7 @@ export namespace Prisma {
     lname?: StringFieldUpdateOperationsInput | string
     alias?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
+    UserProfile?: UserProfileUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -12800,6 +14176,7 @@ export namespace Prisma {
     lname?: StringFieldUpdateOperationsInput | string
     alias?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
+    UserProfile?: UserProfileUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -12831,6 +14208,42 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
   }
 
+  export type UserProfileCreateInput = {
+    user: UserCreateNestedOneWithoutUserProfileInput
+    savedGames?: GameCreateNestedManyWithoutSavedByUsersInput
+  }
+
+  export type UserProfileUncheckedCreateInput = {
+    id?: number
+    userId: number
+    savedGames?: GameUncheckedCreateNestedManyWithoutSavedByUsersInput
+  }
+
+  export type UserProfileUpdateInput = {
+    user?: UserUpdateOneRequiredWithoutUserProfileNestedInput
+    savedGames?: GameUpdateManyWithoutSavedByUsersNestedInput
+  }
+
+  export type UserProfileUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    savedGames?: GameUncheckedUpdateManyWithoutSavedByUsersNestedInput
+  }
+
+  export type UserProfileCreateManyInput = {
+    id?: number
+    userId: number
+  }
+
+  export type UserProfileUpdateManyMutationInput = {
+
+  }
+
+  export type UserProfileUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+  }
+
   export type GameCreateInput = {
     igdbId: number
     name: string
@@ -12851,6 +14264,7 @@ export namespace Prisma {
     screenshots?: ScreenshotCreateNestedManyWithoutGameInput
     developer?: DevelopersCreateNestedOneWithoutGamesInput
     ageRating?: GameRatingCreateNestedOneWithoutGamesInput
+    savedByUsers?: UserProfileCreateNestedManyWithoutSavedGamesInput
   }
 
   export type GameUncheckedCreateInput = {
@@ -12874,6 +14288,7 @@ export namespace Prisma {
     platforms?: PlatformUncheckedCreateNestedManyWithoutGamesInput
     covers?: CoverUncheckedCreateNestedManyWithoutGameInput
     screenshots?: ScreenshotUncheckedCreateNestedManyWithoutGameInput
+    savedByUsers?: UserProfileUncheckedCreateNestedManyWithoutSavedGamesInput
   }
 
   export type GameUpdateInput = {
@@ -12896,6 +14311,7 @@ export namespace Prisma {
     screenshots?: ScreenshotUpdateManyWithoutGameNestedInput
     developer?: DevelopersUpdateOneWithoutGamesNestedInput
     ageRating?: GameRatingUpdateOneWithoutGamesNestedInput
+    savedByUsers?: UserProfileUpdateManyWithoutSavedGamesNestedInput
   }
 
   export type GameUncheckedUpdateInput = {
@@ -12919,6 +14335,7 @@ export namespace Prisma {
     platforms?: PlatformUncheckedUpdateManyWithoutGamesNestedInput
     covers?: CoverUncheckedUpdateManyWithoutGameNestedInput
     screenshots?: ScreenshotUncheckedUpdateManyWithoutGameNestedInput
+    savedByUsers?: UserProfileUncheckedUpdateManyWithoutSavedGamesNestedInput
   }
 
   export type GameCreateManyInput = {
@@ -13425,6 +14842,11 @@ export namespace Prisma {
     not?: NestedBoolFilter<$PrismaModel> | boolean
   }
 
+  export type UserProfileNullableScalarRelationFilter = {
+    is?: UserProfileWhereInput | null
+    isNot?: UserProfileWhereInput | null
+  }
+
   export type UserCountOrderByAggregateInput = {
     id?: SortOrder
     email?: SortOrder
@@ -13485,6 +14907,46 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedBoolFilter<$PrismaModel>
     _max?: NestedBoolFilter<$PrismaModel>
+  }
+
+  export type UserScalarRelationFilter = {
+    is?: UserWhereInput
+    isNot?: UserWhereInput
+  }
+
+  export type GameListRelationFilter = {
+    every?: GameWhereInput
+    some?: GameWhereInput
+    none?: GameWhereInput
+  }
+
+  export type GameOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type UserProfileCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+  }
+
+  export type UserProfileAvgOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+  }
+
+  export type UserProfileMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+  }
+
+  export type UserProfileMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+  }
+
+  export type UserProfileSumOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
   }
 
   export type StringNullableFilter<$PrismaModel = never> = {
@@ -13569,6 +15031,12 @@ export namespace Prisma {
     isNot?: GameRatingWhereInput | null
   }
 
+  export type UserProfileListRelationFilter = {
+    every?: UserProfileWhereInput
+    some?: UserProfileWhereInput
+    none?: UserProfileWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -13587,6 +15055,10 @@ export namespace Prisma {
   }
 
   export type ScreenshotOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type UserProfileOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -13731,16 +15203,6 @@ export namespace Prisma {
     _sum?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedIntNullableFilter<$PrismaModel>
     _max?: NestedIntNullableFilter<$PrismaModel>
-  }
-
-  export type GameListRelationFilter = {
-    every?: GameWhereInput
-    some?: GameWhereInput
-    none?: GameWhereInput
-  }
-
-  export type GameOrderByRelationAggregateInput = {
-    _count?: SortOrder
   }
 
   export type GameRatingCountOrderByAggregateInput = {
@@ -13978,8 +15440,30 @@ export namespace Prisma {
     set?: Date | string
   }
 
+  export type UserProfileCreateNestedOneWithoutUserInput = {
+    create?: XOR<UserProfileCreateWithoutUserInput, UserProfileUncheckedCreateWithoutUserInput>
+    connectOrCreate?: UserProfileCreateOrConnectWithoutUserInput
+    connect?: UserProfileWhereUniqueInput
+  }
+
+  export type UserProfileUncheckedCreateNestedOneWithoutUserInput = {
+    create?: XOR<UserProfileCreateWithoutUserInput, UserProfileUncheckedCreateWithoutUserInput>
+    connectOrCreate?: UserProfileCreateOrConnectWithoutUserInput
+    connect?: UserProfileWhereUniqueInput
+  }
+
   export type BoolFieldUpdateOperationsInput = {
     set?: boolean
+  }
+
+  export type UserProfileUpdateOneWithoutUserNestedInput = {
+    create?: XOR<UserProfileCreateWithoutUserInput, UserProfileUncheckedCreateWithoutUserInput>
+    connectOrCreate?: UserProfileCreateOrConnectWithoutUserInput
+    upsert?: UserProfileUpsertWithoutUserInput
+    disconnect?: UserProfileWhereInput | boolean
+    delete?: UserProfileWhereInput | boolean
+    connect?: UserProfileWhereUniqueInput
+    update?: XOR<XOR<UserProfileUpdateToOneWithWhereWithoutUserInput, UserProfileUpdateWithoutUserInput>, UserProfileUncheckedUpdateWithoutUserInput>
   }
 
   export type IntFieldUpdateOperationsInput = {
@@ -13988,6 +15472,68 @@ export namespace Prisma {
     decrement?: number
     multiply?: number
     divide?: number
+  }
+
+  export type UserProfileUncheckedUpdateOneWithoutUserNestedInput = {
+    create?: XOR<UserProfileCreateWithoutUserInput, UserProfileUncheckedCreateWithoutUserInput>
+    connectOrCreate?: UserProfileCreateOrConnectWithoutUserInput
+    upsert?: UserProfileUpsertWithoutUserInput
+    disconnect?: UserProfileWhereInput | boolean
+    delete?: UserProfileWhereInput | boolean
+    connect?: UserProfileWhereUniqueInput
+    update?: XOR<XOR<UserProfileUpdateToOneWithWhereWithoutUserInput, UserProfileUpdateWithoutUserInput>, UserProfileUncheckedUpdateWithoutUserInput>
+  }
+
+  export type UserCreateNestedOneWithoutUserProfileInput = {
+    create?: XOR<UserCreateWithoutUserProfileInput, UserUncheckedCreateWithoutUserProfileInput>
+    connectOrCreate?: UserCreateOrConnectWithoutUserProfileInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type GameCreateNestedManyWithoutSavedByUsersInput = {
+    create?: XOR<GameCreateWithoutSavedByUsersInput, GameUncheckedCreateWithoutSavedByUsersInput> | GameCreateWithoutSavedByUsersInput[] | GameUncheckedCreateWithoutSavedByUsersInput[]
+    connectOrCreate?: GameCreateOrConnectWithoutSavedByUsersInput | GameCreateOrConnectWithoutSavedByUsersInput[]
+    connect?: GameWhereUniqueInput | GameWhereUniqueInput[]
+  }
+
+  export type GameUncheckedCreateNestedManyWithoutSavedByUsersInput = {
+    create?: XOR<GameCreateWithoutSavedByUsersInput, GameUncheckedCreateWithoutSavedByUsersInput> | GameCreateWithoutSavedByUsersInput[] | GameUncheckedCreateWithoutSavedByUsersInput[]
+    connectOrCreate?: GameCreateOrConnectWithoutSavedByUsersInput | GameCreateOrConnectWithoutSavedByUsersInput[]
+    connect?: GameWhereUniqueInput | GameWhereUniqueInput[]
+  }
+
+  export type UserUpdateOneRequiredWithoutUserProfileNestedInput = {
+    create?: XOR<UserCreateWithoutUserProfileInput, UserUncheckedCreateWithoutUserProfileInput>
+    connectOrCreate?: UserCreateOrConnectWithoutUserProfileInput
+    upsert?: UserUpsertWithoutUserProfileInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutUserProfileInput, UserUpdateWithoutUserProfileInput>, UserUncheckedUpdateWithoutUserProfileInput>
+  }
+
+  export type GameUpdateManyWithoutSavedByUsersNestedInput = {
+    create?: XOR<GameCreateWithoutSavedByUsersInput, GameUncheckedCreateWithoutSavedByUsersInput> | GameCreateWithoutSavedByUsersInput[] | GameUncheckedCreateWithoutSavedByUsersInput[]
+    connectOrCreate?: GameCreateOrConnectWithoutSavedByUsersInput | GameCreateOrConnectWithoutSavedByUsersInput[]
+    upsert?: GameUpsertWithWhereUniqueWithoutSavedByUsersInput | GameUpsertWithWhereUniqueWithoutSavedByUsersInput[]
+    set?: GameWhereUniqueInput | GameWhereUniqueInput[]
+    disconnect?: GameWhereUniqueInput | GameWhereUniqueInput[]
+    delete?: GameWhereUniqueInput | GameWhereUniqueInput[]
+    connect?: GameWhereUniqueInput | GameWhereUniqueInput[]
+    update?: GameUpdateWithWhereUniqueWithoutSavedByUsersInput | GameUpdateWithWhereUniqueWithoutSavedByUsersInput[]
+    updateMany?: GameUpdateManyWithWhereWithoutSavedByUsersInput | GameUpdateManyWithWhereWithoutSavedByUsersInput[]
+    deleteMany?: GameScalarWhereInput | GameScalarWhereInput[]
+  }
+
+  export type GameUncheckedUpdateManyWithoutSavedByUsersNestedInput = {
+    create?: XOR<GameCreateWithoutSavedByUsersInput, GameUncheckedCreateWithoutSavedByUsersInput> | GameCreateWithoutSavedByUsersInput[] | GameUncheckedCreateWithoutSavedByUsersInput[]
+    connectOrCreate?: GameCreateOrConnectWithoutSavedByUsersInput | GameCreateOrConnectWithoutSavedByUsersInput[]
+    upsert?: GameUpsertWithWhereUniqueWithoutSavedByUsersInput | GameUpsertWithWhereUniqueWithoutSavedByUsersInput[]
+    set?: GameWhereUniqueInput | GameWhereUniqueInput[]
+    disconnect?: GameWhereUniqueInput | GameWhereUniqueInput[]
+    delete?: GameWhereUniqueInput | GameWhereUniqueInput[]
+    connect?: GameWhereUniqueInput | GameWhereUniqueInput[]
+    update?: GameUpdateWithWhereUniqueWithoutSavedByUsersInput | GameUpdateWithWhereUniqueWithoutSavedByUsersInput[]
+    updateMany?: GameUpdateManyWithWhereWithoutSavedByUsersInput | GameUpdateManyWithWhereWithoutSavedByUsersInput[]
+    deleteMany?: GameScalarWhereInput | GameScalarWhereInput[]
   }
 
   export type GenreCreateNestedManyWithoutGamesInput = {
@@ -14028,6 +15574,12 @@ export namespace Prisma {
     connect?: GameRatingWhereUniqueInput
   }
 
+  export type UserProfileCreateNestedManyWithoutSavedGamesInput = {
+    create?: XOR<UserProfileCreateWithoutSavedGamesInput, UserProfileUncheckedCreateWithoutSavedGamesInput> | UserProfileCreateWithoutSavedGamesInput[] | UserProfileUncheckedCreateWithoutSavedGamesInput[]
+    connectOrCreate?: UserProfileCreateOrConnectWithoutSavedGamesInput | UserProfileCreateOrConnectWithoutSavedGamesInput[]
+    connect?: UserProfileWhereUniqueInput | UserProfileWhereUniqueInput[]
+  }
+
   export type GenreUncheckedCreateNestedManyWithoutGamesInput = {
     create?: XOR<GenreCreateWithoutGamesInput, GenreUncheckedCreateWithoutGamesInput> | GenreCreateWithoutGamesInput[] | GenreUncheckedCreateWithoutGamesInput[]
     connectOrCreate?: GenreCreateOrConnectWithoutGamesInput | GenreCreateOrConnectWithoutGamesInput[]
@@ -14052,6 +15604,12 @@ export namespace Prisma {
     connectOrCreate?: ScreenshotCreateOrConnectWithoutGameInput | ScreenshotCreateOrConnectWithoutGameInput[]
     createMany?: ScreenshotCreateManyGameInputEnvelope
     connect?: ScreenshotWhereUniqueInput | ScreenshotWhereUniqueInput[]
+  }
+
+  export type UserProfileUncheckedCreateNestedManyWithoutSavedGamesInput = {
+    create?: XOR<UserProfileCreateWithoutSavedGamesInput, UserProfileUncheckedCreateWithoutSavedGamesInput> | UserProfileCreateWithoutSavedGamesInput[] | UserProfileUncheckedCreateWithoutSavedGamesInput[]
+    connectOrCreate?: UserProfileCreateOrConnectWithoutSavedGamesInput | UserProfileCreateOrConnectWithoutSavedGamesInput[]
+    connect?: UserProfileWhereUniqueInput | UserProfileWhereUniqueInput[]
   }
 
   export type NullableStringFieldUpdateOperationsInput = {
@@ -14152,6 +15710,19 @@ export namespace Prisma {
     update?: XOR<XOR<GameRatingUpdateToOneWithWhereWithoutGamesInput, GameRatingUpdateWithoutGamesInput>, GameRatingUncheckedUpdateWithoutGamesInput>
   }
 
+  export type UserProfileUpdateManyWithoutSavedGamesNestedInput = {
+    create?: XOR<UserProfileCreateWithoutSavedGamesInput, UserProfileUncheckedCreateWithoutSavedGamesInput> | UserProfileCreateWithoutSavedGamesInput[] | UserProfileUncheckedCreateWithoutSavedGamesInput[]
+    connectOrCreate?: UserProfileCreateOrConnectWithoutSavedGamesInput | UserProfileCreateOrConnectWithoutSavedGamesInput[]
+    upsert?: UserProfileUpsertWithWhereUniqueWithoutSavedGamesInput | UserProfileUpsertWithWhereUniqueWithoutSavedGamesInput[]
+    set?: UserProfileWhereUniqueInput | UserProfileWhereUniqueInput[]
+    disconnect?: UserProfileWhereUniqueInput | UserProfileWhereUniqueInput[]
+    delete?: UserProfileWhereUniqueInput | UserProfileWhereUniqueInput[]
+    connect?: UserProfileWhereUniqueInput | UserProfileWhereUniqueInput[]
+    update?: UserProfileUpdateWithWhereUniqueWithoutSavedGamesInput | UserProfileUpdateWithWhereUniqueWithoutSavedGamesInput[]
+    updateMany?: UserProfileUpdateManyWithWhereWithoutSavedGamesInput | UserProfileUpdateManyWithWhereWithoutSavedGamesInput[]
+    deleteMany?: UserProfileScalarWhereInput | UserProfileScalarWhereInput[]
+  }
+
   export type GenreUncheckedUpdateManyWithoutGamesNestedInput = {
     create?: XOR<GenreCreateWithoutGamesInput, GenreUncheckedCreateWithoutGamesInput> | GenreCreateWithoutGamesInput[] | GenreUncheckedCreateWithoutGamesInput[]
     connectOrCreate?: GenreCreateOrConnectWithoutGamesInput | GenreCreateOrConnectWithoutGamesInput[]
@@ -14204,6 +15775,19 @@ export namespace Prisma {
     update?: ScreenshotUpdateWithWhereUniqueWithoutGameInput | ScreenshotUpdateWithWhereUniqueWithoutGameInput[]
     updateMany?: ScreenshotUpdateManyWithWhereWithoutGameInput | ScreenshotUpdateManyWithWhereWithoutGameInput[]
     deleteMany?: ScreenshotScalarWhereInput | ScreenshotScalarWhereInput[]
+  }
+
+  export type UserProfileUncheckedUpdateManyWithoutSavedGamesNestedInput = {
+    create?: XOR<UserProfileCreateWithoutSavedGamesInput, UserProfileUncheckedCreateWithoutSavedGamesInput> | UserProfileCreateWithoutSavedGamesInput[] | UserProfileUncheckedCreateWithoutSavedGamesInput[]
+    connectOrCreate?: UserProfileCreateOrConnectWithoutSavedGamesInput | UserProfileCreateOrConnectWithoutSavedGamesInput[]
+    upsert?: UserProfileUpsertWithWhereUniqueWithoutSavedGamesInput | UserProfileUpsertWithWhereUniqueWithoutSavedGamesInput[]
+    set?: UserProfileWhereUniqueInput | UserProfileWhereUniqueInput[]
+    disconnect?: UserProfileWhereUniqueInput | UserProfileWhereUniqueInput[]
+    delete?: UserProfileWhereUniqueInput | UserProfileWhereUniqueInput[]
+    connect?: UserProfileWhereUniqueInput | UserProfileWhereUniqueInput[]
+    update?: UserProfileUpdateWithWhereUniqueWithoutSavedGamesInput | UserProfileUpdateWithWhereUniqueWithoutSavedGamesInput[]
+    updateMany?: UserProfileUpdateManyWithWhereWithoutSavedGamesInput | UserProfileUpdateManyWithWhereWithoutSavedGamesInput[]
+    deleteMany?: UserProfileScalarWhereInput | UserProfileScalarWhereInput[]
   }
 
   export type GameCreateNestedManyWithoutAgeRatingInput = {
@@ -14611,6 +16195,182 @@ export namespace Prisma {
     _max?: NestedIntNullableFilter<$PrismaModel>
   }
 
+  export type UserProfileCreateWithoutUserInput = {
+    savedGames?: GameCreateNestedManyWithoutSavedByUsersInput
+  }
+
+  export type UserProfileUncheckedCreateWithoutUserInput = {
+    id?: number
+    savedGames?: GameUncheckedCreateNestedManyWithoutSavedByUsersInput
+  }
+
+  export type UserProfileCreateOrConnectWithoutUserInput = {
+    where: UserProfileWhereUniqueInput
+    create: XOR<UserProfileCreateWithoutUserInput, UserProfileUncheckedCreateWithoutUserInput>
+  }
+
+  export type UserProfileUpsertWithoutUserInput = {
+    update: XOR<UserProfileUpdateWithoutUserInput, UserProfileUncheckedUpdateWithoutUserInput>
+    create: XOR<UserProfileCreateWithoutUserInput, UserProfileUncheckedCreateWithoutUserInput>
+    where?: UserProfileWhereInput
+  }
+
+  export type UserProfileUpdateToOneWithWhereWithoutUserInput = {
+    where?: UserProfileWhereInput
+    data: XOR<UserProfileUpdateWithoutUserInput, UserProfileUncheckedUpdateWithoutUserInput>
+  }
+
+  export type UserProfileUpdateWithoutUserInput = {
+    savedGames?: GameUpdateManyWithoutSavedByUsersNestedInput
+  }
+
+  export type UserProfileUncheckedUpdateWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    savedGames?: GameUncheckedUpdateManyWithoutSavedByUsersNestedInput
+  }
+
+  export type UserCreateWithoutUserProfileInput = {
+    email: string
+    is_admin?: boolean
+    fname: string
+    lname: string
+    alias: string
+    password: string
+  }
+
+  export type UserUncheckedCreateWithoutUserProfileInput = {
+    id?: number
+    email: string
+    is_admin?: boolean
+    fname: string
+    lname: string
+    alias: string
+    password: string
+  }
+
+  export type UserCreateOrConnectWithoutUserProfileInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutUserProfileInput, UserUncheckedCreateWithoutUserProfileInput>
+  }
+
+  export type GameCreateWithoutSavedByUsersInput = {
+    igdbId: number
+    name: string
+    slug: string
+    summary?: string | null
+    storyline?: string | null
+    firstReleaseDate?: Date | string | null
+    originalPlatform?: string | null
+    coverUrl?: string | null
+    rating?: number | null
+    aggregatedRating?: number | null
+    totalRating?: number | null
+    totalRatingCount?: number | null
+    url?: string | null
+    genres?: GenreCreateNestedManyWithoutGamesInput
+    platforms?: PlatformCreateNestedManyWithoutGamesInput
+    covers?: CoverCreateNestedManyWithoutGameInput
+    screenshots?: ScreenshotCreateNestedManyWithoutGameInput
+    developer?: DevelopersCreateNestedOneWithoutGamesInput
+    ageRating?: GameRatingCreateNestedOneWithoutGamesInput
+  }
+
+  export type GameUncheckedCreateWithoutSavedByUsersInput = {
+    id?: number
+    igdbId: number
+    name: string
+    slug: string
+    summary?: string | null
+    storyline?: string | null
+    firstReleaseDate?: Date | string | null
+    originalPlatform?: string | null
+    coverUrl?: string | null
+    rating?: number | null
+    aggregatedRating?: number | null
+    totalRating?: number | null
+    totalRatingCount?: number | null
+    ageRatingId?: number | null
+    developerId?: number | null
+    url?: string | null
+    genres?: GenreUncheckedCreateNestedManyWithoutGamesInput
+    platforms?: PlatformUncheckedCreateNestedManyWithoutGamesInput
+    covers?: CoverUncheckedCreateNestedManyWithoutGameInput
+    screenshots?: ScreenshotUncheckedCreateNestedManyWithoutGameInput
+  }
+
+  export type GameCreateOrConnectWithoutSavedByUsersInput = {
+    where: GameWhereUniqueInput
+    create: XOR<GameCreateWithoutSavedByUsersInput, GameUncheckedCreateWithoutSavedByUsersInput>
+  }
+
+  export type UserUpsertWithoutUserProfileInput = {
+    update: XOR<UserUpdateWithoutUserProfileInput, UserUncheckedUpdateWithoutUserProfileInput>
+    create: XOR<UserCreateWithoutUserProfileInput, UserUncheckedCreateWithoutUserProfileInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutUserProfileInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutUserProfileInput, UserUncheckedUpdateWithoutUserProfileInput>
+  }
+
+  export type UserUpdateWithoutUserProfileInput = {
+    email?: StringFieldUpdateOperationsInput | string
+    is_admin?: BoolFieldUpdateOperationsInput | boolean
+    fname?: StringFieldUpdateOperationsInput | string
+    lname?: StringFieldUpdateOperationsInput | string
+    alias?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type UserUncheckedUpdateWithoutUserProfileInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    email?: StringFieldUpdateOperationsInput | string
+    is_admin?: BoolFieldUpdateOperationsInput | boolean
+    fname?: StringFieldUpdateOperationsInput | string
+    lname?: StringFieldUpdateOperationsInput | string
+    alias?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type GameUpsertWithWhereUniqueWithoutSavedByUsersInput = {
+    where: GameWhereUniqueInput
+    update: XOR<GameUpdateWithoutSavedByUsersInput, GameUncheckedUpdateWithoutSavedByUsersInput>
+    create: XOR<GameCreateWithoutSavedByUsersInput, GameUncheckedCreateWithoutSavedByUsersInput>
+  }
+
+  export type GameUpdateWithWhereUniqueWithoutSavedByUsersInput = {
+    where: GameWhereUniqueInput
+    data: XOR<GameUpdateWithoutSavedByUsersInput, GameUncheckedUpdateWithoutSavedByUsersInput>
+  }
+
+  export type GameUpdateManyWithWhereWithoutSavedByUsersInput = {
+    where: GameScalarWhereInput
+    data: XOR<GameUpdateManyMutationInput, GameUncheckedUpdateManyWithoutSavedByUsersInput>
+  }
+
+  export type GameScalarWhereInput = {
+    AND?: GameScalarWhereInput | GameScalarWhereInput[]
+    OR?: GameScalarWhereInput[]
+    NOT?: GameScalarWhereInput | GameScalarWhereInput[]
+    id?: IntFilter<"Game"> | number
+    igdbId?: IntFilter<"Game"> | number
+    name?: StringFilter<"Game"> | string
+    slug?: StringFilter<"Game"> | string
+    summary?: StringNullableFilter<"Game"> | string | null
+    storyline?: StringNullableFilter<"Game"> | string | null
+    firstReleaseDate?: DateTimeNullableFilter<"Game"> | Date | string | null
+    originalPlatform?: StringNullableFilter<"Game"> | string | null
+    coverUrl?: StringNullableFilter<"Game"> | string | null
+    rating?: FloatNullableFilter<"Game"> | number | null
+    aggregatedRating?: FloatNullableFilter<"Game"> | number | null
+    totalRating?: FloatNullableFilter<"Game"> | number | null
+    totalRatingCount?: IntNullableFilter<"Game"> | number | null
+    ageRatingId?: IntNullableFilter<"Game"> | number | null
+    developerId?: IntNullableFilter<"Game"> | number | null
+    url?: StringNullableFilter<"Game"> | string | null
+  }
+
   export type GenreCreateWithoutGamesInput = {
     igdbId: number
     name?: string | null
@@ -14742,6 +16502,20 @@ export namespace Prisma {
   export type GameRatingCreateOrConnectWithoutGamesInput = {
     where: GameRatingWhereUniqueInput
     create: XOR<GameRatingCreateWithoutGamesInput, GameRatingUncheckedCreateWithoutGamesInput>
+  }
+
+  export type UserProfileCreateWithoutSavedGamesInput = {
+    user: UserCreateNestedOneWithoutUserProfileInput
+  }
+
+  export type UserProfileUncheckedCreateWithoutSavedGamesInput = {
+    id?: number
+    userId: number
+  }
+
+  export type UserProfileCreateOrConnectWithoutSavedGamesInput = {
+    where: UserProfileWhereUniqueInput
+    create: XOR<UserProfileCreateWithoutSavedGamesInput, UserProfileUncheckedCreateWithoutSavedGamesInput>
   }
 
   export type GenreUpsertWithWhereUniqueWithoutGamesInput = {
@@ -14905,6 +16679,30 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
+  export type UserProfileUpsertWithWhereUniqueWithoutSavedGamesInput = {
+    where: UserProfileWhereUniqueInput
+    update: XOR<UserProfileUpdateWithoutSavedGamesInput, UserProfileUncheckedUpdateWithoutSavedGamesInput>
+    create: XOR<UserProfileCreateWithoutSavedGamesInput, UserProfileUncheckedCreateWithoutSavedGamesInput>
+  }
+
+  export type UserProfileUpdateWithWhereUniqueWithoutSavedGamesInput = {
+    where: UserProfileWhereUniqueInput
+    data: XOR<UserProfileUpdateWithoutSavedGamesInput, UserProfileUncheckedUpdateWithoutSavedGamesInput>
+  }
+
+  export type UserProfileUpdateManyWithWhereWithoutSavedGamesInput = {
+    where: UserProfileScalarWhereInput
+    data: XOR<UserProfileUpdateManyMutationInput, UserProfileUncheckedUpdateManyWithoutSavedGamesInput>
+  }
+
+  export type UserProfileScalarWhereInput = {
+    AND?: UserProfileScalarWhereInput | UserProfileScalarWhereInput[]
+    OR?: UserProfileScalarWhereInput[]
+    NOT?: UserProfileScalarWhereInput | UserProfileScalarWhereInput[]
+    id?: IntFilter<"UserProfile"> | number
+    userId?: IntFilter<"UserProfile"> | number
+  }
+
   export type GameCreateWithoutAgeRatingInput = {
     igdbId: number
     name: string
@@ -14924,6 +16722,7 @@ export namespace Prisma {
     covers?: CoverCreateNestedManyWithoutGameInput
     screenshots?: ScreenshotCreateNestedManyWithoutGameInput
     developer?: DevelopersCreateNestedOneWithoutGamesInput
+    savedByUsers?: UserProfileCreateNestedManyWithoutSavedGamesInput
   }
 
   export type GameUncheckedCreateWithoutAgeRatingInput = {
@@ -14946,6 +16745,7 @@ export namespace Prisma {
     platforms?: PlatformUncheckedCreateNestedManyWithoutGamesInput
     covers?: CoverUncheckedCreateNestedManyWithoutGameInput
     screenshots?: ScreenshotUncheckedCreateNestedManyWithoutGameInput
+    savedByUsers?: UserProfileUncheckedCreateNestedManyWithoutSavedGamesInput
   }
 
   export type GameCreateOrConnectWithoutAgeRatingInput = {
@@ -14974,28 +16774,6 @@ export namespace Prisma {
     data: XOR<GameUpdateManyMutationInput, GameUncheckedUpdateManyWithoutAgeRatingInput>
   }
 
-  export type GameScalarWhereInput = {
-    AND?: GameScalarWhereInput | GameScalarWhereInput[]
-    OR?: GameScalarWhereInput[]
-    NOT?: GameScalarWhereInput | GameScalarWhereInput[]
-    id?: IntFilter<"Game"> | number
-    igdbId?: IntFilter<"Game"> | number
-    name?: StringFilter<"Game"> | string
-    slug?: StringFilter<"Game"> | string
-    summary?: StringNullableFilter<"Game"> | string | null
-    storyline?: StringNullableFilter<"Game"> | string | null
-    firstReleaseDate?: DateTimeNullableFilter<"Game"> | Date | string | null
-    originalPlatform?: StringNullableFilter<"Game"> | string | null
-    coverUrl?: StringNullableFilter<"Game"> | string | null
-    rating?: FloatNullableFilter<"Game"> | number | null
-    aggregatedRating?: FloatNullableFilter<"Game"> | number | null
-    totalRating?: FloatNullableFilter<"Game"> | number | null
-    totalRatingCount?: IntNullableFilter<"Game"> | number | null
-    ageRatingId?: IntNullableFilter<"Game"> | number | null
-    developerId?: IntNullableFilter<"Game"> | number | null
-    url?: StringNullableFilter<"Game"> | string | null
-  }
-
   export type GameCreateWithoutPlatformsInput = {
     igdbId: number
     name: string
@@ -15015,6 +16793,7 @@ export namespace Prisma {
     screenshots?: ScreenshotCreateNestedManyWithoutGameInput
     developer?: DevelopersCreateNestedOneWithoutGamesInput
     ageRating?: GameRatingCreateNestedOneWithoutGamesInput
+    savedByUsers?: UserProfileCreateNestedManyWithoutSavedGamesInput
   }
 
   export type GameUncheckedCreateWithoutPlatformsInput = {
@@ -15037,6 +16816,7 @@ export namespace Prisma {
     genres?: GenreUncheckedCreateNestedManyWithoutGamesInput
     covers?: CoverUncheckedCreateNestedManyWithoutGameInput
     screenshots?: ScreenshotUncheckedCreateNestedManyWithoutGameInput
+    savedByUsers?: UserProfileUncheckedCreateNestedManyWithoutSavedGamesInput
   }
 
   export type GameCreateOrConnectWithoutPlatformsInput = {
@@ -15079,6 +16859,7 @@ export namespace Prisma {
     covers?: CoverCreateNestedManyWithoutGameInput
     screenshots?: ScreenshotCreateNestedManyWithoutGameInput
     ageRating?: GameRatingCreateNestedOneWithoutGamesInput
+    savedByUsers?: UserProfileCreateNestedManyWithoutSavedGamesInput
   }
 
   export type GameUncheckedCreateWithoutDeveloperInput = {
@@ -15101,6 +16882,7 @@ export namespace Prisma {
     platforms?: PlatformUncheckedCreateNestedManyWithoutGamesInput
     covers?: CoverUncheckedCreateNestedManyWithoutGameInput
     screenshots?: ScreenshotUncheckedCreateNestedManyWithoutGameInput
+    savedByUsers?: UserProfileUncheckedCreateNestedManyWithoutSavedGamesInput
   }
 
   export type GameCreateOrConnectWithoutDeveloperInput = {
@@ -15148,6 +16930,7 @@ export namespace Prisma {
     screenshots?: ScreenshotCreateNestedManyWithoutGameInput
     developer?: DevelopersCreateNestedOneWithoutGamesInput
     ageRating?: GameRatingCreateNestedOneWithoutGamesInput
+    savedByUsers?: UserProfileCreateNestedManyWithoutSavedGamesInput
   }
 
   export type GameUncheckedCreateWithoutGenresInput = {
@@ -15170,6 +16953,7 @@ export namespace Prisma {
     platforms?: PlatformUncheckedCreateNestedManyWithoutGamesInput
     covers?: CoverUncheckedCreateNestedManyWithoutGameInput
     screenshots?: ScreenshotUncheckedCreateNestedManyWithoutGameInput
+    savedByUsers?: UserProfileUncheckedCreateNestedManyWithoutSavedGamesInput
   }
 
   export type GameCreateOrConnectWithoutGenresInput = {
@@ -15212,6 +16996,7 @@ export namespace Prisma {
     screenshots?: ScreenshotCreateNestedManyWithoutGameInput
     developer?: DevelopersCreateNestedOneWithoutGamesInput
     ageRating?: GameRatingCreateNestedOneWithoutGamesInput
+    savedByUsers?: UserProfileCreateNestedManyWithoutSavedGamesInput
   }
 
   export type GameUncheckedCreateWithoutCoversInput = {
@@ -15234,6 +17019,7 @@ export namespace Prisma {
     genres?: GenreUncheckedCreateNestedManyWithoutGamesInput
     platforms?: PlatformUncheckedCreateNestedManyWithoutGamesInput
     screenshots?: ScreenshotUncheckedCreateNestedManyWithoutGameInput
+    savedByUsers?: UserProfileUncheckedCreateNestedManyWithoutSavedGamesInput
   }
 
   export type GameCreateOrConnectWithoutCoversInput = {
@@ -15271,6 +17057,7 @@ export namespace Prisma {
     screenshots?: ScreenshotUpdateManyWithoutGameNestedInput
     developer?: DevelopersUpdateOneWithoutGamesNestedInput
     ageRating?: GameRatingUpdateOneWithoutGamesNestedInput
+    savedByUsers?: UserProfileUpdateManyWithoutSavedGamesNestedInput
   }
 
   export type GameUncheckedUpdateWithoutCoversInput = {
@@ -15293,6 +17080,7 @@ export namespace Prisma {
     genres?: GenreUncheckedUpdateManyWithoutGamesNestedInput
     platforms?: PlatformUncheckedUpdateManyWithoutGamesNestedInput
     screenshots?: ScreenshotUncheckedUpdateManyWithoutGameNestedInput
+    savedByUsers?: UserProfileUncheckedUpdateManyWithoutSavedGamesNestedInput
   }
 
   export type GameCreateWithoutScreenshotsInput = {
@@ -15314,6 +17102,7 @@ export namespace Prisma {
     covers?: CoverCreateNestedManyWithoutGameInput
     developer?: DevelopersCreateNestedOneWithoutGamesInput
     ageRating?: GameRatingCreateNestedOneWithoutGamesInput
+    savedByUsers?: UserProfileCreateNestedManyWithoutSavedGamesInput
   }
 
   export type GameUncheckedCreateWithoutScreenshotsInput = {
@@ -15336,6 +17125,7 @@ export namespace Prisma {
     genres?: GenreUncheckedCreateNestedManyWithoutGamesInput
     platforms?: PlatformUncheckedCreateNestedManyWithoutGamesInput
     covers?: CoverUncheckedCreateNestedManyWithoutGameInput
+    savedByUsers?: UserProfileUncheckedCreateNestedManyWithoutSavedGamesInput
   }
 
   export type GameCreateOrConnectWithoutScreenshotsInput = {
@@ -15373,6 +17163,7 @@ export namespace Prisma {
     covers?: CoverUpdateManyWithoutGameNestedInput
     developer?: DevelopersUpdateOneWithoutGamesNestedInput
     ageRating?: GameRatingUpdateOneWithoutGamesNestedInput
+    savedByUsers?: UserProfileUpdateManyWithoutSavedGamesNestedInput
   }
 
   export type GameUncheckedUpdateWithoutScreenshotsInput = {
@@ -15395,6 +17186,71 @@ export namespace Prisma {
     genres?: GenreUncheckedUpdateManyWithoutGamesNestedInput
     platforms?: PlatformUncheckedUpdateManyWithoutGamesNestedInput
     covers?: CoverUncheckedUpdateManyWithoutGameNestedInput
+    savedByUsers?: UserProfileUncheckedUpdateManyWithoutSavedGamesNestedInput
+  }
+
+  export type GameUpdateWithoutSavedByUsersInput = {
+    igdbId?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    summary?: NullableStringFieldUpdateOperationsInput | string | null
+    storyline?: NullableStringFieldUpdateOperationsInput | string | null
+    firstReleaseDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    originalPlatform?: NullableStringFieldUpdateOperationsInput | string | null
+    coverUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    rating?: NullableFloatFieldUpdateOperationsInput | number | null
+    aggregatedRating?: NullableFloatFieldUpdateOperationsInput | number | null
+    totalRating?: NullableFloatFieldUpdateOperationsInput | number | null
+    totalRatingCount?: NullableIntFieldUpdateOperationsInput | number | null
+    url?: NullableStringFieldUpdateOperationsInput | string | null
+    genres?: GenreUpdateManyWithoutGamesNestedInput
+    platforms?: PlatformUpdateManyWithoutGamesNestedInput
+    covers?: CoverUpdateManyWithoutGameNestedInput
+    screenshots?: ScreenshotUpdateManyWithoutGameNestedInput
+    developer?: DevelopersUpdateOneWithoutGamesNestedInput
+    ageRating?: GameRatingUpdateOneWithoutGamesNestedInput
+  }
+
+  export type GameUncheckedUpdateWithoutSavedByUsersInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    igdbId?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    summary?: NullableStringFieldUpdateOperationsInput | string | null
+    storyline?: NullableStringFieldUpdateOperationsInput | string | null
+    firstReleaseDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    originalPlatform?: NullableStringFieldUpdateOperationsInput | string | null
+    coverUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    rating?: NullableFloatFieldUpdateOperationsInput | number | null
+    aggregatedRating?: NullableFloatFieldUpdateOperationsInput | number | null
+    totalRating?: NullableFloatFieldUpdateOperationsInput | number | null
+    totalRatingCount?: NullableIntFieldUpdateOperationsInput | number | null
+    ageRatingId?: NullableIntFieldUpdateOperationsInput | number | null
+    developerId?: NullableIntFieldUpdateOperationsInput | number | null
+    url?: NullableStringFieldUpdateOperationsInput | string | null
+    genres?: GenreUncheckedUpdateManyWithoutGamesNestedInput
+    platforms?: PlatformUncheckedUpdateManyWithoutGamesNestedInput
+    covers?: CoverUncheckedUpdateManyWithoutGameNestedInput
+    screenshots?: ScreenshotUncheckedUpdateManyWithoutGameNestedInput
+  }
+
+  export type GameUncheckedUpdateManyWithoutSavedByUsersInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    igdbId?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    summary?: NullableStringFieldUpdateOperationsInput | string | null
+    storyline?: NullableStringFieldUpdateOperationsInput | string | null
+    firstReleaseDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    originalPlatform?: NullableStringFieldUpdateOperationsInput | string | null
+    coverUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    rating?: NullableFloatFieldUpdateOperationsInput | number | null
+    aggregatedRating?: NullableFloatFieldUpdateOperationsInput | number | null
+    totalRating?: NullableFloatFieldUpdateOperationsInput | number | null
+    totalRatingCount?: NullableIntFieldUpdateOperationsInput | number | null
+    ageRatingId?: NullableIntFieldUpdateOperationsInput | number | null
+    developerId?: NullableIntFieldUpdateOperationsInput | number | null
+    url?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type CoverCreateManyGameInput = {
@@ -15517,6 +17373,20 @@ export namespace Prisma {
     width?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
+  export type UserProfileUpdateWithoutSavedGamesInput = {
+    user?: UserUpdateOneRequiredWithoutUserProfileNestedInput
+  }
+
+  export type UserProfileUncheckedUpdateWithoutSavedGamesInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type UserProfileUncheckedUpdateManyWithoutSavedGamesInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+  }
+
   export type GameCreateManyAgeRatingInput = {
     id?: number
     igdbId: number
@@ -15554,6 +17424,7 @@ export namespace Prisma {
     covers?: CoverUpdateManyWithoutGameNestedInput
     screenshots?: ScreenshotUpdateManyWithoutGameNestedInput
     developer?: DevelopersUpdateOneWithoutGamesNestedInput
+    savedByUsers?: UserProfileUpdateManyWithoutSavedGamesNestedInput
   }
 
   export type GameUncheckedUpdateWithoutAgeRatingInput = {
@@ -15576,6 +17447,7 @@ export namespace Prisma {
     platforms?: PlatformUncheckedUpdateManyWithoutGamesNestedInput
     covers?: CoverUncheckedUpdateManyWithoutGameNestedInput
     screenshots?: ScreenshotUncheckedUpdateManyWithoutGameNestedInput
+    savedByUsers?: UserProfileUncheckedUpdateManyWithoutSavedGamesNestedInput
   }
 
   export type GameUncheckedUpdateManyWithoutAgeRatingInput = {
@@ -15615,6 +17487,7 @@ export namespace Prisma {
     screenshots?: ScreenshotUpdateManyWithoutGameNestedInput
     developer?: DevelopersUpdateOneWithoutGamesNestedInput
     ageRating?: GameRatingUpdateOneWithoutGamesNestedInput
+    savedByUsers?: UserProfileUpdateManyWithoutSavedGamesNestedInput
   }
 
   export type GameUncheckedUpdateWithoutPlatformsInput = {
@@ -15637,6 +17510,7 @@ export namespace Prisma {
     genres?: GenreUncheckedUpdateManyWithoutGamesNestedInput
     covers?: CoverUncheckedUpdateManyWithoutGameNestedInput
     screenshots?: ScreenshotUncheckedUpdateManyWithoutGameNestedInput
+    savedByUsers?: UserProfileUncheckedUpdateManyWithoutSavedGamesNestedInput
   }
 
   export type GameUncheckedUpdateManyWithoutPlatformsInput = {
@@ -15695,6 +17569,7 @@ export namespace Prisma {
     covers?: CoverUpdateManyWithoutGameNestedInput
     screenshots?: ScreenshotUpdateManyWithoutGameNestedInput
     ageRating?: GameRatingUpdateOneWithoutGamesNestedInput
+    savedByUsers?: UserProfileUpdateManyWithoutSavedGamesNestedInput
   }
 
   export type GameUncheckedUpdateWithoutDeveloperInput = {
@@ -15717,6 +17592,7 @@ export namespace Prisma {
     platforms?: PlatformUncheckedUpdateManyWithoutGamesNestedInput
     covers?: CoverUncheckedUpdateManyWithoutGameNestedInput
     screenshots?: ScreenshotUncheckedUpdateManyWithoutGameNestedInput
+    savedByUsers?: UserProfileUncheckedUpdateManyWithoutSavedGamesNestedInput
   }
 
   export type GameUncheckedUpdateManyWithoutDeveloperInput = {
@@ -15756,6 +17632,7 @@ export namespace Prisma {
     screenshots?: ScreenshotUpdateManyWithoutGameNestedInput
     developer?: DevelopersUpdateOneWithoutGamesNestedInput
     ageRating?: GameRatingUpdateOneWithoutGamesNestedInput
+    savedByUsers?: UserProfileUpdateManyWithoutSavedGamesNestedInput
   }
 
   export type GameUncheckedUpdateWithoutGenresInput = {
@@ -15778,6 +17655,7 @@ export namespace Prisma {
     platforms?: PlatformUncheckedUpdateManyWithoutGamesNestedInput
     covers?: CoverUncheckedUpdateManyWithoutGameNestedInput
     screenshots?: ScreenshotUncheckedUpdateManyWithoutGameNestedInput
+    savedByUsers?: UserProfileUncheckedUpdateManyWithoutSavedGamesNestedInput
   }
 
   export type GameUncheckedUpdateManyWithoutGenresInput = {

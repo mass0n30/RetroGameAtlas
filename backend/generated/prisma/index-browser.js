@@ -137,6 +137,11 @@ exports.Prisma.UserScalarFieldEnum = {
   password: 'password'
 };
 
+exports.Prisma.UserProfileScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId'
+};
+
 exports.Prisma.GameScalarFieldEnum = {
   id: 'id',
   igdbId: 'igdbId',
@@ -225,6 +230,7 @@ exports.Prisma.NullsOrder = {
 exports.Prisma.ModelName = {
   Session: 'Session',
   User: 'User',
+  UserProfile: 'UserProfile',
   Game: 'Game',
   GameRating: 'GameRating',
   Platform: 'Platform',

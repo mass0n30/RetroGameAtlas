@@ -61,17 +61,19 @@ export default function SideBar({ categoryData, orderData, orderDirection, setOr
   }
 
   return (
-    <div id={styles.sidebarcontainer}>
-      <div id={styles.clearfilterscontainer}>
+    <div className={styles.sidebarcontainer}>
+      <div className={styles.clearfilterscontainer}>
         <Button onClick={() => resetFilters(setPlatform, setDeveloper, setGenre, setYear, setOrder, setSearch, undefined, setMount, setOpen)}>Clear Filters</Button>
       </div>
       <div className={styles.categoriescontainer}>
-        <Tree aria-label="Categories"
+        <Tree aria-label="Categories" className={styles.tree}
           >
           {categoryData.map((section) => (
             <TreeItem key={section.category} id={section.category} className={styles.treeItem} textValue={section.category}>
               <TreeItemContent className={styles.categoryheader}>
-               <div className={styles.categoryheadertxt}> {section.category}</div>
+               <div className={styles.categoryheadertxt}> 
+                <strong>{section.category}</strong> 
+               </div>
               </TreeItemContent>
 
               {section.array.map((item) => ( 
@@ -89,30 +91,34 @@ export default function SideBar({ categoryData, orderData, orderDirection, setOr
         <YearDropdown className={styles.yearSelect} selectedYear={maxyear} compYear={minyear} setSelectedYear={setYear} arg={"max"}/>
       </div>
       <div className={styles.orderfiltercontainer}>
-        <div id='orderbydata'>
+        <div className={styles.orderbydata}>
           <Button onClick={() => handleToggleOrder("Release Date")}>
-            Order by Release Date {orderData === "Release Date" ? (orderDirection === true ? "↓" : "↑") : ""}
+            Release Date {orderData === "Release Date" ? (orderDirection === true ? "↓" : "↑") : ""}
           </Button>
         </div>
-        <div id='orderbyrating'>
+        <div className={styles.orderbyrating}>
           <Button onClick={() => handleToggleOrder("Rating")}>
-            Order by Rating {orderData === "Rating" ? (orderDirection === true ? "↓" : "↑") : ""}
+            Rating {orderData === "Rating" ? (orderDirection === true ? "↓" : "↑") : ""}
           </Button>
         </div> 
-        <div id='orderbypopularity'>
+        <div className={styles.orderbypopularity}>
           <Button onClick={() => handleToggleOrder("Popularity")}>
-            Order by Popularity {orderData === "Popularity" ? (orderDirection === true ? "asc" : "desc") : ""}
+            Popularity {orderData === "Popularity" ? (orderDirection === true ? "↓" : "↑") : ""}
           </Button>
         </div>
 
       </div>
-        <div id={styles.discovermodecontainer}>
-          <Button onClick={() => handleDiscoverGames()} style={discover ? { backgroundColor: '#6200ffff', color: '#ffffffff' } : {backgroundColor: '#ffffffff'}}>
-            {discover ? "Show All Games" : "Discover Games"}
-          </Button>
+        <div className={styles.discovermodecontainer}>
+          <div className={styles.discovergamesbtn}>
+            <Button onClick={() => handleDiscoverGames()} style={discover ? { backgroundColor: '#6200ffff', color: '#ffffffff' } : {backgroundColor: '#ffffffff'}}>
+              {discover ? "Show All Games" : "Discover Games"}
+            </Button>
+          </div>
+          <div className={styles.discovermodebtn}>
             <Button onClick={handleDiscoverMode}>
               {screenshotMode ? "Discover By Cover Art" : "Discover By Screenshot"}
             </Button>
+          </div>
         </div>
     </div>
   );

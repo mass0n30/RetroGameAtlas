@@ -25,7 +25,7 @@
 }
 
 /* container selectors for flex and grid*/
-* {border: solid rgba(0, 81, 255, 0) 1px;}
+* {border: solid rgba(0, 81, 255, 0.616) 1px;}
 
 html, body, nav, #root, main, section, .infinite-scroll-component__outerdiv, .infinite-scroll-component {
     margin: 0;

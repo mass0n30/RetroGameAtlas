@@ -7,6 +7,8 @@ Responsive Images, for better loading times, using smaller images
 from IGDB with t_medium, or t_thumb, ect
 https://developer.mozilla.org/en-US/docs/Web/HTML/Guides/Responsive_images  (srcset tag**)
 
+Icons: https://lucide.dev/icons/ 
+
 Ebay Game Props:
  data.itemSummaries.  
   - Condition
@@ -36,12 +38,18 @@ Additional tasks
   - screenshot image object fit discovering by screenshot (most are 1080x720) (screenshot thumbs replaced for big for mapping them on discovery route)
   - Add no cover holder for no cover art so cells aren't offset
   - ***Look at the Metrics under peformance where culmative shift is poor, ect (image dimensions)
+  - Adding star pattern as background, perhaps overly GIF, for background (scroll container width smaller and transluscent to keep background height 100% and static while scrolling, in active navbar while scrolling is 50% opacity)
 
 TODO:
   ** I can worry about fixing CLS to be a good rating upon every render and fetch after trying to see if I can integrate ebay and speedrun wrc data, since I want to complete those for anything thoughts of actually publishing project publicly, considering design, MVP, mobile wrapping, ect. , tasks such as CLS can wait for now. 
 
-  - Adding star pattern as background, perhaps overly GIF, for background (scroll container width smaller and transluscent to keep background height 100% and static while scrolling, in active navbar while scrolling is 50% opacity)
+  - ***ADD admin Delete and Edit features so I can clean up database along with development
 
+  - put ebay listings as 'related listings (good amount has not exact title)
+  - paper has game details layout
+  - let categories flex container flex 3 over rest of containers to give category rows the most room upon flexing... (flexing makes sidebar height full??)
+  - slight space side bar between scroll wheel and rows
+  - add user dislike options for inaccuracy feedback (filter by most votes to replace for more accuracy by admin, user can report inaccurate speedrun data, video data, game data, ect)
   - Populate more Wii games, populate PSP titles and atari 2600 ?
   - ! Double fetch? upon discover games by cover + screenshot
   - Loads slow upon discover games(randomize) with screenshots 

@@ -22,13 +22,22 @@ model Session {
 }
 
 model User {
-  id       Int     @id @default(autoincrement())
-  email    String  @unique
-  is_admin Boolean @default(false)
-  fname    String
-  lname    String
-  alias    String
-  password String
+  id          Int          @id @default(autoincrement())
+  email       String       @unique
+  is_admin    Boolean      @default(false)
+  fname       String
+  lname       String
+  alias       String
+  password    String
+  UserProfile UserProfile?
+}
+
+model UserProfile {
+  id     Int @id @default(autoincrement())
+  userId Int @unique
+
+  user       User   @relation(fields: [userId], references: [id])
+  savedGames Game[] @relation("UserSavedGames")
 }
 
 model Game {
@@ -55,8 +64,9 @@ model Game {
   covers      Cover[]
   screenshots Screenshot[]
 
-  developer Developers? @relation("GameDevelopers", fields: [developerId], references: [id])
-  ageRating GameRating? @relation("GameRatingRelation", fields: [ageRatingId], references: [id])
+  developer    Developers?   @relation("GameDevelopers", fields: [developerId], references: [id])
+  ageRating    GameRating?   @relation("GameRatingRelation", fields: [ageRatingId], references: [id])
+  savedByUsers UserProfile[] @relation("UserSavedGames")
 }
 
 model GameRating {
