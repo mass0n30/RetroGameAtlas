@@ -5,8 +5,6 @@ aside {
   top: 5rem;
   width: 40rem;
   height:  calc(100vh - 5rem);
-  background-color: var(--color-surface-translucent);
-  backdrop-filter: blur(15px);
 }
 
 .sidebarcontainer {
@@ -41,16 +39,20 @@ aside {
   font-size: 1.2rem;
 }
 
-.clearfilterscontainer {
-  padding: 1rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-bottom: 1px solid var(--color-border);
+.clearfilterscontainer button {
+  background-color: var(--color-background);
+  color: var(--color-text); 
+  opacity: 80%;
+}
+
+.clearfilterscontainer button:hover {
+  opacity: 100%;
+  background-color: var(--color-secondary);
 }
 
 
 .orderfiltercontainer {
+  gap: 0.5rem;
   padding: 1rem;
   flex: 2;
   display: flex;
@@ -60,15 +62,52 @@ aside {
 }
 
 .orderbydata, .orderbyrating, .orderbypopularity,
-.discovermodebtn, .discovergamesbtn, .discovergamesbtn, .discovermodebtn {
+.discovermodebtn, .discovergamesbtn {
   flex: 1;
   display: flex;
   align-items: flex-start;
 }
 
-.orderbydata, .orderbyrating, .orderbypopularity {
+.orderbydata, .orderbyrating, .orderbypopularity, .clearfilterscontainer {
   width: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
+.ordertxt {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.ordertxt div {
+  flex: 1;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.discovermodetxt, .discovergamestxt {
+  width: 80%;
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.orderbydata button, .orderbyrating button, .orderbypopularity button, .clearfilterscontainer button , .discovermodebtn button, .discovergamesbtn button {
+  width: 100%;
+  font-size: 1rem;
+  font-weight: 700;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.25s, color 0.25s;
+  background-color: var(--color-background);
+  color: var(--color-text);
+} 
 
 
 .react-aria-Tree {
@@ -104,7 +143,11 @@ aside {
   border-bottom: 2px solid var(--color-primary);
   text-align: left;
   width: 80%;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
+
 
 #categorybtn {
   width: 100%;
@@ -127,7 +170,7 @@ aside {
   display: flex;
   justify-content: center;
   gap: 1rem;
-  padding: 1rem;
+  padding: 0.5rem;
   background-color: var(--color-surface);
   border: 1px solid #2a2d3a;
   align-items: center;
@@ -165,10 +208,23 @@ aside {
 }
 
 .discovermodebtn, .discovergamesbtn {
-  margin-top: 1rem;
-  flex: 1;
+  width: 80%;
+  margin: 0.2rem;
+  font-size: 1rem;
+  font-weight: 700;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.25s, color 0.25s;
+  color: var(--color-text);
 }
 
+.discovergamesbtn button, .discovermodebtn button, .clearfilterscontainer button {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+} 
 
 
 

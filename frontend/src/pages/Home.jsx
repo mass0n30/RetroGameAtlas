@@ -133,7 +133,7 @@ function Home() {
       style={{
         transform: toggle ? 'translateX(0)' : 'translateX(-100%)',
         width: toggle ? 'var(--sidebar-width)' : '0',
-        transition: 'all 0.3s ease',
+        transition: 'all 0.4s ease',
         overflow: 'hidden',
         }} >
         <SideBar

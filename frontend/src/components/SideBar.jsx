@@ -4,6 +4,8 @@ import styles from '../styles/components/sidebar.module.css';
 import { resetFilters } from '../helpers';
 import { useEffect } from 'react';
 import  SectionTreeItem  from './SectionTreeItem';
+import {Star, CalendarDays, ArrowUpWideNarrow, ArrowDownWideNarrow, Joystick, LibraryBig, Handshake, Loader , Flame, Pointer, Heart, HeartMinus, HeartPlus, Sparkles, Dices, Gift, BookImage, Image} from 'lucide-react';
+
 
  // eslint-disable-next-line react/prop-types
 export default function SideBar({ categoryData, orderData, orderDirection, setOrder, setPlatform, setGenre, setYear, setDeveloper, platform, genre, developer, minyear, maxyear, setSearch, discover, setDiscover, screenshotMode, setScreenshotMode, SetLoading, open, setOpen, setMount}) {
@@ -61,17 +63,48 @@ export default function SideBar({ categoryData, orderData, orderDirection, setOr
   }
 
   return (
-    <div className={styles.sidebarcontainer}>
-      <div className={styles.clearfilterscontainer}>
-        <Button onClick={() => resetFilters(setPlatform, setDeveloper, setGenre, setYear, setOrder, setSearch, undefined, setMount, setOpen)}>Clear Filters</Button>
+    <div className={[styles.sidebarcontainer, 'glass'].join(' ')}>
+      <div className={styles.discovermodecontainer}>
+        <div className={styles.discovergamesbtn}>
+          <Button onClick={() => handleDiscoverGames()} style={discover && { backgroundColor: '#6200ffff', color: '#ffffffff' }}>
+            {discover ?
+              <div className={styles.discovergamestxt}> 
+              <div>Discovering Games</div>
+              <Sparkles style={{ marginLeft: '0.5rem' }} />
+              </div> : 
+              <div className={styles.discovergamestxt}>
+              <div>Discover Games</div>
+              <Dices style={{ marginLeft: '0.5rem' }} />
+              </div>}
+          </Button>
+        </div>
+        <div className={styles.discovermodebtn}>
+          <Button onClick={handleDiscoverMode}>
+            {screenshotMode ?
+            <div className={styles.discovermodetxt}>
+              <div>Screenshot Mode</div>
+              <Image style={{ marginLeft: '0.5rem' }} />
+            </div> 
+                : 
+              <div className={styles.discovermodetxt}>
+                <div>Cover Art Mode</div>
+                <BookImage style={{ marginLeft: '0.5rem' }} />
+              </div>}
+          </Button>
+        </div>
       </div>
+
       <div className={styles.categoriescontainer}>
         <Tree aria-label="Categories" className={styles.tree}
           >
           {categoryData.map((section) => (
             <TreeItem key={section.category} id={section.category} className={styles.treeItem} textValue={section.category}>
+          
               <TreeItemContent className={styles.categoryheader}>
                <div className={styles.categoryheadertxt}> 
+                { section.category == "Consoles" && <Joystick size={32} color="#E8F1F2" />}
+                { section.category == "Genres" && <LibraryBig size={32} color="#E8F1F2" /> }
+                { section.category == "Developers" && <Handshake size={32} color="#E8F1F2" /> }
                 <strong>{section.category}</strong> 
                </div>
               </TreeItemContent>
@@ -91,35 +124,38 @@ export default function SideBar({ categoryData, orderData, orderDirection, setOr
         <YearDropdown className={styles.yearSelect} selectedYear={maxyear} compYear={minyear} setSelectedYear={setYear} arg={"max"}/>
       </div>
       <div className={styles.orderfiltercontainer}>
-        <div className={styles.orderbydata}>
-          <Button onClick={() => handleToggleOrder("Release Date")}>
-            Release Date {orderData === "Release Date" ? (orderDirection === true ? "↓" : "↑") : ""}
-          </Button>
-        </div>
         <div className={styles.orderbyrating}>
           <Button onClick={() => handleToggleOrder("Rating")}>
-            Rating {orderData === "Rating" ? (orderDirection === true ? "↓" : "↑") : ""}
+            <div className={styles.ordertxt}>
+              <Star size={32} color="#E8F1F2" />
+              <div>Rating</div>
+              {orderData === "Rating" ? (orderDirection === true ?<ArrowDownWideNarrow size={24} color="#E8F1F2" /> : <ArrowUpWideNarrow size={24} color="#E8F1F2" />) : ""}
+            </div>
           </Button>
         </div> 
         <div className={styles.orderbypopularity}>
           <Button onClick={() => handleToggleOrder("Popularity")}>
-            Popularity {orderData === "Popularity" ? (orderDirection === true ? "↓" : "↑") : ""}
+           <div className={styles.ordertxt}>
+              <Flame size={32} color="#E8F1F2" />
+              <div>Popularity</div>
+              {orderData === "Popularity" ? (orderDirection === true ? <ArrowDownWideNarrow size={24} color="#E8F1F2" /> : <ArrowUpWideNarrow size={24} color="#E8F1F2" />) : ""}
+            </div> 
           </Button>
         </div>
-
-      </div>
-        <div className={styles.discovermodecontainer}>
-          <div className={styles.discovergamesbtn}>
-            <Button onClick={() => handleDiscoverGames()} style={discover ? { backgroundColor: '#6200ffff', color: '#ffffffff' } : {backgroundColor: '#ffffffff'}}>
-              {discover ? "Show All Games" : "Discover Games"}
-            </Button>
-          </div>
-          <div className={styles.discovermodebtn}>
-            <Button onClick={handleDiscoverMode}>
-              {screenshotMode ? "Discover By Cover Art" : "Discover By Screenshot"}
-            </Button>
-          </div>
+        <div className={styles.orderbydata}>
+          <Button onClick={() => handleToggleOrder("Release Date")}>
+            <div className={styles.ordertxt}>
+              <CalendarDays size={32} color="#E8F1F2" />
+              <div>Release Date</div> 
+              {orderData === "Release Date" ? (orderDirection === true ? <ArrowDownWideNarrow size={24} color="#E8F1F2" /> : <ArrowUpWideNarrow size={24} color="#E8F1F2" />) : ""}
+            </div>
+          </Button>
         </div>
+        <div className={styles.clearfilterscontainer}>
+          <Button onClick={() => resetFilters(setPlatform, setDeveloper, setGenre, setYear, setOrder, setSearch, undefined, setMount, setOpen)}>Clear Filters</Button>
+        </div>
+      </div>
+
     </div>
   );
 }

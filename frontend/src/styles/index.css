@@ -25,7 +25,7 @@
 }
 
 /* container selectors for flex and grid*/
-* {border: solid rgba(0, 81, 255, 0.616) 1px;}
+* {border: dashed var(--color-primary-glow) 0px;}
 
 html, body, nav, #root, main, section, .infinite-scroll-component__outerdiv, .infinite-scroll-component {
     margin: 0;
@@ -34,7 +34,6 @@ html, body, nav, #root, main, section, .infinite-scroll-component__outerdiv, .in
 }
 
 body {
-  background-color: black;
   margin: 0;
   display: flex;
   min-width: 320px;
@@ -42,6 +41,7 @@ body {
   cursor: default;
   background: url('/starfield.jpg') center center fixed;
   background-size: cover;
+  cursor: url('/icons/custompointervar.svg'), auto;
 }
 
 
@@ -88,9 +88,14 @@ main {
   animation: spin 1s linear infinite;
 }
 
+.glass {
+  background: var(--color-background-translucent);
+  backdrop-filter: blur(4px);
+}
+
 /* scrollbar styling */
 ::-webkit-scrollbar {
-  width: 15px;
+  width: 10px;
 }
 
 ::-webkit-scrollbar-track {

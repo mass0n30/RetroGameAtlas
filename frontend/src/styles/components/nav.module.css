@@ -38,22 +38,29 @@ nav {
   border-radius: 2rem;
   padding: 0.4rem 0.8rem;
   transition: all 0.25s ease-in-out;
+  transition: background-color 0.4s ease-in-out;
 }
 
 .searchBarContainer:focus-within {
-  border-color: rgba(255, 255, 255, 0.4);
-  background-color: rgba(255, 255, 255, 0.938);
+  border-color: var(--color-primary);
+  background-color: var(--color-surface);
 }
 
 .searchBarContainer input {
   flex: 1;
   background: transparent;
   border: none;
-  color: rgb(96, 97, 182);
+  color: var(--color-text);
   font-size: 1.1rem;
-  font-weight: 500;
+  font-weight: 700;
   outline: none;
   padding: 0.4rem 0.6rem;
+  cursor: url('/icons/text-cursor.svg'), auto;
+}
+
+.searchBarContainer input:focus,
+.searchBarContainer input:hover {
+  cursor: url('/icons/text-cursor.svg'), auto;
 }
 
 .searchButton {
