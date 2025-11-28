@@ -36,7 +36,7 @@
   animation: fadeInUp 0.6s ease-out forwards;
 }
 
-.card_loader_container {
+.card_loader_container, .cardss_loader_container {
   background-color: var(--color-surface);
 }
 
@@ -62,7 +62,8 @@
   animation: fadeInUp 0.6s ease-out forwards;
 }
 
-.card_button {
+
+.card_button, .cardss_button {
   background: none;
   padding: 0;
   margin: 0;
@@ -71,17 +72,32 @@
     box-shadow 0.25s ease,
 }
 
-.card_button:hover {
+.card_button {
+  max-width: 264px;
+  max-height: 374px ;
+}
+
+.cardss_button {
+  max-width: 400px;
+  max-height: 267px;
+}
+
+.card_button:hover, .cardss_button:hover {
   border-color: var(--color-primary-glow);
   box-shadow: 0 0 12px var(--color-primary-glow);
   transform: translateY(-2px);
 }
 
 
-.card_button, .ss_card, .card  {
+.card_button, .cardss_button, .ss_card, .card {
   border-radius: 10px;
   cursor: pointer;
   margin: 0.1rem;
+}
+
+.card_loader_container, .card_loader, .cardss_loader, .cardss_loader_container {
+  border-radius: 10px;
+  margin: 0.3rem;
 }
 
 .ss_card_image {
@@ -101,12 +117,17 @@
   }
 }
 
-@keyframes fadeOut {
+@keyframes fadeOutDown {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
   to {
     opacity: 0;
     transform: translateY(20px);
   }
 }
+
 
 
 .card_cover_container {

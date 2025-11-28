@@ -1,5 +1,5 @@
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useId } from 'react';
 import { useOutletContext, useLocation } from "react-router-dom";
 import InfiniteScroll from "react-infinite-scroll-component";
 import GameCard from '../components/GameCard';
@@ -20,6 +20,7 @@ function HomePage() {
   const [hasMore, setHasMore] = useState(true);
   const [index, setIndex] = useState(0);
   
+  const stableId = useId();
 
   // fetch more logic for Infinite Scroll
   // Loader logic or Load more ?????
@@ -64,11 +65,11 @@ function HomePage() {
       { screenshotMode ? (
     
       games.map((game, index) => (
-        <GameCardSS style={mount ? { animationDelay: `${index * 0.24}s` }: {}} key={game.id} index={index} randomScreenshot={game.randomScreenshot.url} mount={mount}
+        <GameCardSS style={mount ? { animationDelay: `${index * 0.24}s` }: {}} key={`${stableId}-${index}`} index={index} randomScreenshot={game.randomScreenshot.url} mount={mount}
         gameId={game.id} setGameId={setGameId} coverUrl={game.coverUrl} loading={loading} screenshots={game.screenshots} length={game.screenshots.length}/>
     ))) : (
       games.map((game, index) => (
-        <GameCard key={game.id} index={index} mount={mount}
+        <GameCard key={`${stableId}-${index}`} index={index} mount={mount}
         gameId={game.id} setGameId={setGameId} coverUrl={game.coverUrl} loading={loading}/>
       ))
     )}

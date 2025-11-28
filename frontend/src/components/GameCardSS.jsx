@@ -33,7 +33,7 @@ function GameCardSS(props) {
       </div>
     ) : (
     length && length != 0 ? (
-      <button onClick={() => handleNavigate()} className={styles.card_button} style={mount ? { animationDelay: `${index * 0.24}s` }: {}}>
+      <button onClick={() => handleNavigate()} className={styles.cardss_button} style={mount ? { animationDelay: `${index * 0.24}s` }: {}}>
         <div className={styles.ss_card} style={mount ? { animationDelay: `${index * 0.24}s` }: {}}>
           <img
           className={styles.ss_card_image}
