@@ -9,6 +9,8 @@ https://developer.mozilla.org/en-US/docs/Web/HTML/Guides/Responsive_images  (src
 
 Icons: https://lucide.dev/icons/ 
 
+CLS: I improved my Culmative Layout Shift by reserving space in DOM with loader cards for cover art and screenshot images in GameCard.jsx
+
 Ebay Game Props:
  data.itemSummaries.  
   - Condition
