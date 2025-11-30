@@ -69,12 +69,12 @@ function HomePage() {
         gameId={game.id} setGameId={setGameId} coverUrl={game.coverUrl} loading={loading} screenshots={game.screenshots} length={game.screenshots.length}/>
     ))) : (
       games.map((game, index) => (
-        <GameCard key={`${stableId}-${index}`} index={index} mount={mount}
+        <GameCard style={mount ? { animationDelay: `${index * 0.24}s` }: {}} key={`${stableId}-${index}`} index={index} mount={mount}
         gameId={game.id} setGameId={setGameId} coverUrl={game.coverUrl} loading={loading}/>
       ))
     )}
       </section>
-      {!hasMore && <p>No More Results</p>}
+      {!hasMore && <p className='endResult'>No More Results</p>}
     </InfiniteScroll>
   )
 }

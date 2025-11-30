@@ -1,37 +1,113 @@
 
 /* following BEM */
 
-.card_image, .card_loader {
+.card_button, .cardss_button {
+  background: none;
+  padding: 0;
+  border-radius: 10px;
+  transition: 
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+}
+
+.card_button, .cardss_button {
+  margin: 0.1rem;
+  display: block;
+}
+
+.card_button:hover, .cardss_button:hover {
+  border-color: var(--color-primary-glow);
+  box-shadow: 0 0 12px var(--color-primary-glow);
+  transform: translateY(-2px);
+}
+
+
+ .ss_card, .card {
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+.card_image {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
   aspect-ratio: 264 / 374;
+  border-radius: 10px;
 }
 
-.card_loader {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 264px;
-  height: 374px;
-}
-
-.cardss_loader {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 400px;
-  height: 267px;
-}
-
-
-.card, .card_loader_container {
-  aspect-ratio: 264 / 374;
+.card_loader_container {
   max-width: 264px;
+  max-height: 374px;
+  width: 100%;
+  height: auto;
+  box-sizing: border-box;
   overflow: hidden;
   box-shadow: 0 2px 8px rgba(0,0,0,0.3);
   opacity: 0;
+  aspect-ratio: 264 / 374;
+  box-sizing: border-box;
+  margin: 0.1rem;
+  background-color: var(--color-surface);
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3); 
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.ss_card_image {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  aspect-ratio: 400/ 267;
+}
+
+.card_loader {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.cardss_loader_container {
+  aspect-ratio: 400 / 267;
+  max-width: 400px;
+  max-width: 267px;
+  width: 100%;
+  height: auto;
+  box-sizing: border-box;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  opacity: 0;
+  margin: 0.1rem;
+  background-color: var(--color-surface);
+  border-radius: 10px;
+  transform: translateY(20px);
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+
+.cardss_loader {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+
+.card {
+  aspect-ratio: 264 / 374;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  opacity: 0;
+  margin: 0;
   transform: translateY(20px);
   animation: fadeInUp 0.6s ease-out forwards;
 }
@@ -47,66 +123,10 @@
   overflow: hidden;
   box-shadow: 0 2px 8px rgba(0,0,0,0.3);
   opacity: 0;
-  transform: translateY(20px);
-  animation: fadeInUp 0.6s ease-out forwards;
-  width: 100%;
-}
-
-.cardss_loader_container {
-  aspect-ratio: 400 / 267;
-  max-width: 400px;
-  overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-  opacity: 0;
-  transform: translateY(20px);
-  animation: fadeInUp 0.6s ease-out forwards;
-}
-
-
-.card_button, .cardss_button {
-  background: none;
-  padding: 0;
   margin: 0;
-  transition: 
-    border-color 0.25s ease,
-    box-shadow 0.25s ease,
-}
-
-.card_button {
-  max-width: 264px;
-  max-height: 374px ;
-}
-
-.cardss_button {
-  max-width: 400px;
-  max-height: 267px;
-}
-
-.card_button:hover, .cardss_button:hover {
-  border-color: var(--color-primary-glow);
-  box-shadow: 0 0 12px var(--color-primary-glow);
-  transform: translateY(-2px);
-}
-
-
-.card_button, .cardss_button, .ss_card, .card {
-  border-radius: 10px;
-  cursor: pointer;
-  margin: 0.1rem;
-}
-
-.card_loader_container, .card_loader, .cardss_loader, .cardss_loader_container {
-  border-radius: 10px;
-  margin: 0.3rem;
-}
-
-.ss_card_image {
+  transform: translateY(20px);
+  animation: fadeInUp 0.6s ease-out forwards;
   width: 100%;
-  max-width: 400px;
-  height: auto;
-  display: block;
-  object-fit: cover;
-  aspect-ratio: 400/ 267;
 }
 
 
@@ -115,29 +135,4 @@
     opacity: 1;
     transform: translateY(0);
   }
-}
-
-@keyframes fadeOutDown {
-  from {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  to {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-}
-
-
-
-.card_cover_container {
-
-}
-
-.card_image {
-
-}
-
-.card_image--big {
-
 }

@@ -127,7 +127,7 @@ export default function SideBar({ categoryData, orderData, orderDirection, setOr
         <div className={styles.orderbyrating}>
           <Button onClick={() => handleToggleOrder("Rating")}>
             <div className={styles.ordertxt}>
-              <Star size={32} color="#E8F1F2" />
+              {orderData === "Rating" ? <Star size={32} color="#ffee03ff" fill='#ffee03ff'/> : <Star size={32} color="#E8F1F2" />}
               <div>Rating</div>
               {orderData === "Rating" ? (orderDirection === true ?<ArrowDownWideNarrow size={24} color="#E8F1F2" /> : <ArrowUpWideNarrow size={24} color="#E8F1F2" />) : ""}
             </div>
@@ -136,7 +136,7 @@ export default function SideBar({ categoryData, orderData, orderDirection, setOr
         <div className={styles.orderbypopularity}>
           <Button onClick={() => handleToggleOrder("Popularity")}>
            <div className={styles.ordertxt}>
-              <Flame size={32} color="#E8F1F2" />
+              {orderData === "Popularity" ? <Flame size={32} color="#F03A47" fill='#F03A47'/> : <Flame size={32} color="#E8F1F2" />}
               <div>Popularity</div>
               {orderData === "Popularity" ? (orderDirection === true ? <ArrowDownWideNarrow size={24} color="#E8F1F2" /> : <ArrowUpWideNarrow size={24} color="#E8F1F2" />) : ""}
             </div> 
@@ -145,7 +145,7 @@ export default function SideBar({ categoryData, orderData, orderDirection, setOr
         <div className={styles.orderbydata}>
           <Button onClick={() => handleToggleOrder("Release Date")}>
             <div className={styles.ordertxt}>
-              <CalendarDays size={32} color="#E8F1F2" />
+              {orderData === "Release Date" ? <CalendarDays size={32} color="#03A9F4" fill='#03a8f4b4'/> : <CalendarDays size={32} color="#E8F1F2" />}
               <div>Release Date</div> 
               {orderData === "Release Date" ? (orderDirection === true ? <ArrowDownWideNarrow size={24} color="#E8F1F2" /> : <ArrowUpWideNarrow size={24} color="#E8F1F2" />) : ""}
             </div>

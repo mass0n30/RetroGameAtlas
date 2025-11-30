@@ -34,49 +34,52 @@ Ebay Game Props:
   - adding additional filter logic for order by
   - clear search value upon category change (not sure 100% working?)
   - discover games selection route (filter logic still applying?)
-Additional tasks
   - screenshot image object fit discovering by screenshot (most are 1080x720) (screenshot thumbs replaced for big for mapping them on discovery route)
   - Add no cover holder for no cover art so cells aren't offset
   - ***Look at the Metrics under peformance where culmative shift is poor, ect (image dimensions)
   - Adding star pattern as background, perhaps overly GIF, for background (scroll container width smaller and transluscent to keep background height 100% and static while scrolling, in active navbar while scrolling is 50% opacity)
+  - adding custom loader
+  - maybe put in Twitch data for World record speed runs?
+  - maybe integrate ebay API for price data and ebay listing links
+  - fix duplicate game card keys (preventing DOM errors)
+
 
 TODO:
-  ** I can worry about fixing CLS to be a good rating upon every render and fetch after trying to see if I can integrate ebay and speedrun wrc data, since I want to complete those for anything thoughts of actually publishing project publicly, considering design, MVP, mobile wrapping, ect. , tasks such as CLS can wait for now. 
+  ** I can worry about fixing CLS to be a good rating upon every render and fetch after trying to see if I can integrate ebay and speedrun wrc data, since I want to complete those before any thoughts of actually publishing this project publicly, considering design, MVP, mobile wrapping, ect. , tasks such as CLS can wait for now. 
 
-  - ***ADD admin Delete and Edit features so I can clean up database along with development
+  - ***!!!!!!!!!!!!!!!!!!!ADD admin Delete and Edit features so I can clean up database while in development
 
-  - put ebay listings as 'related listings (good amount has not exact title)
-  - paper has game details layout
+  - fix game card loader animation delay iterations
+      - upon navigating back from game details, have no loader cards for seamless navigation
+  - put ebay listings as 'related listings (good amount does not have exact title listings, more so related listings, perhaps I can improve this looking back through ebay api docs)
+  - game name tags on image covers/screenshots? (lots of japanese/foreign titles in images)
+  - finish up sidebar cateogories container (flexing category containers nicely upon selection *reference resume project)
   - let categories flex container flex 3 over rest of containers to give category rows the most room upon flexing... (flexing makes sidebar height full??)
-  - slight space side bar between scroll wheel and rows
+  - fix slight space side bar between scroll wheel and rows
+  - shooting star background gif? (make page feel more dynamic)
   - add user dislike options for inaccuracy feedback (filter by most votes to replace for more accuracy by admin, user can report inaccurate speedrun data, video data, game data, ect)
+  - design Game Details page (layout on paper sketch considering flex on mobile)
+      - Game Details page Screenshots in a carosel?
+      - maybe add some related games section in Game Details (this may not be too difficult, inital Grab Same Titles if same developer, fallback grab games in same genre and console?)
   - Populate more Wii games, populate PSP titles and atari 2600 ?
   - ! Double fetch? upon discover games by cover + screenshot
   - Loads slow upon discover games(randomize) with screenshots 
 
-  - Get record type for Record Name on details page (level, Any%, ect)
+  - Improve getting Record Type on details page (level, Any%, ect)?
   - Either mesh duplicate gamedata or delete duplicates (platform or regional releases 
   causing duplicates??)
   - Re look into design principles for UI and consider mobile React wrapper? before further design changes
 
-  - market game value from PriceCharting API (adding a extra API will add an additional fetch to game details, further slowing down load, need work around or fast loading)
+  - market game value from PriceCharting API (adding a extra API will add an additional fetch to game details, further slowing down load, need work around or fast loading, *OR get a median price from ebay purchased listings?)
   - adding MVP features, user features 
   - adding additional user features(completed games list, watch list)?
-  - adding custom loader
   - maybe add tag group components in main body, for better user exp?
   - maybe replace my custom Form with more cohesive Form Component Library
-  - maybe populate more games for a modern section, excluding pc games. 
-  Could toggle for Retro or Modern games - but I may want to keep it retro and limit my games to consoles
-  - maybe integrate ebay API for price data and ebay listing links
-  - maybe put in Twitch data for World record speed runs?
-  (!Games Are loading in duplicate!)
-  - Maybe integrating Ebay's Buy API for affiliate buying on Game Details pages, listing to buy next to embedded videos. 
-  - Screenshots in a carosel?
-
   
 Production tasks
   - adding user accessibility (keyboard shortucts)
   - handling errors on client side form API (redirect on 401 error code to login)
+  - Maybe integrating Ebay's Buy API for affiliate buying on Game Details pages, listing to buy next to embedded videos. 
 
 Ebay: 
   - Category ID subject to change for ebay price data?: https://developer.ebay.com/api-docs/buy/browse/resources/item_summary/methods/search#uri.filter 

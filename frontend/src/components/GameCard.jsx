@@ -28,14 +28,14 @@ function GameCard(props) {
    return (
     <>
     { loading ? (
-      <div className={styles.card_loader_container} style={mount ? { animationDelay: `${index * 0.07}s` }: {}}>
-        <div className={styles.card_loader} width="264" height="374">
+      <button className={styles.card_loader_container} style={mount ? { animationDelay: `${index * 0.24}s` }: {}} disabled>
+        <div className={styles.card_loader}  >
             <Loader size={48} className="spinner"color={'#1a2b29ad'}  />
          </div>
-        </div>
+        </button>
     ) : (
-      <button onClick={(() => handleNavigate())} className={styles.card_button}>
-         <div className={styles.card} style={mount ? { animationDelay: `${index * 0.07}s` }: {}} >
+      <button onClick={(() => handleNavigate())} className={styles.card_button} style={mount ? { animationDelay: `${index * 0.24}s` }: {}}>
+         <div className={styles.card}  >
             <img className={styles.card_image} src={coverUrl} width="264" height="374"></img>
          </div>
       </button>
