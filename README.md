@@ -44,15 +44,17 @@ Ebay Game Props:
   - maybe put in Twitch data for World record speed runs?
   - maybe integrate ebay API for price data and ebay listing links
   - fix duplicate game card keys (preventing DOM errors)
+  - fix CLS
+  - fix game card loader animation delay iterations
+    - upon navigating back from game details, have no loader cards for seamless navigation
 
 
 TODO:
-  ** I can worry about fixing CLS to be a good rating upon every render and fetch after trying to see if I can integrate ebay and speedrun wrc data, since I want to complete those before any thoughts of actually publishing this project publicly, considering design, MVP, mobile wrapping, ect. , tasks such as CLS can wait for now. 
+
 
   - ***!!!!!!!!!!!!!!!!!!!ADD admin Delete and Edit features so I can clean up database while in development
 
-  - fix game card loader animation delay iterations
-      - upon navigating back from game details, have no loader cards for seamless navigation
+
   - put ebay listings as 'related listings (good amount does not have exact title listings, more so related listings, perhaps I can improve this looking back through ebay api docs)
   - game name tags on image covers/screenshots? (lots of japanese/foreign titles in images)
   - finish up sidebar cateogories container (flexing category containers nicely upon selection *reference resume project)

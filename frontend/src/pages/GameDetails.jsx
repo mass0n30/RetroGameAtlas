@@ -17,6 +17,9 @@ const [recordDataAlt, setRecordDataAlt] = useState(null);
 const [gameEbayData, setGameEbayData] = useState(null);
 const [screenshots, setScreenshots] = useState([]);
 
+const {user} = useOutletContext();
+
+console.log('User:', user);
 
 useEffect(() => {
     window.scrollTo(0, 0);
@@ -48,6 +51,17 @@ useEffect(() => {
   }
   fetchDetails();
 }, [gameId]);
+
+const handleDeleteGame = async () => {
+  try {
+    const response = await axios.delete(`http://localhost:5000/home/details/${gameId}`);
+    if (response.status === 200) {
+      alert('Game deleted successfully');
+    }
+  } catch (error) {
+    console.error('Error deleting game:', error);
+  }
+}
 
 if (loading) {
   return (
@@ -168,6 +182,13 @@ if (loading) {
           <p>No screenshots available.</p>
         )}
       </div>
+      { user.admin ? (
+        <div className={styles.admindeletecontainer}>
+          <button className={styles.deletebutton} onClick={async () => handleDeleteGame()}>Delete Game</button>
+        </div>
+      ) : (
+        <></>
+      )}
     </div>
     </>
    );

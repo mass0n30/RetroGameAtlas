@@ -11,6 +11,12 @@ gameDetailsRouter.get('/:gameid', async (req, res, next) => {
   })
 });
 
+ const { deleteGameById } = require('../controllers/dataController/deleteController.js');
+
+gameDetailsRouter.delete('/:gameid', async (req, res, next) => {
+  await deleteGameById(req, res, next);
+});
+
 
 
 

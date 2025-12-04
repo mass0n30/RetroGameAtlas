@@ -13,7 +13,7 @@ import CustomSpinner from '../components/Spinner';
 
 
 function HomePage() {
-  const {query, loading, limit, setGameId, games, orderData, orderDirection, discover, setDiscover, screenshotMode, setScreenshotMode, open, setOpen,
+  const {user, query, loading, limit, setGameId, games, orderData, orderDirection, discover, setDiscover, screenshotMode, setScreenshotMode, open, setOpen,
   setGames, setCategoryData, search, setSearch, genre, platform, developer, minyear, maxyear, mount, setMount} = useOutletContext();
 
   // InfiniteScroll state var
@@ -65,12 +65,12 @@ function HomePage() {
       { screenshotMode ? (
     
       games.map((game, index) => (
-        <GameCardSS style={mount ? { animationDelay: `${index * 0.24}s` }: {}} key={`${stableId}-${index}`} index={index} randomScreenshot={game.randomScreenshot.url} mount={mount}
-        gameId={game.id} setGameId={setGameId} coverUrl={game.coverUrl} loading={loading} screenshots={game.screenshots} length={game.screenshots.length}/>
+        <GameCardSS style={mount ? { animationDelay: `${index * 0.24}s` }: {}} key={`${stableId}-${index}`} index={index} randomScreenshot={game.randomScreenshot.url} mount={mount} setMount={setMount}
+        gameId={game.id} setGameId={setGameId} coverUrl={game.coverUrl} loading={loading} screenshots={game.screenshots} length={game.screenshots.length} user={user}/>
     ))) : (
       games.map((game, index) => (
-        <GameCard style={mount ? { animationDelay: `${index * 0.24}s` }: {}} key={`${stableId}-${index}`} index={index} mount={mount}
-        gameId={game.id} setGameId={setGameId} coverUrl={game.coverUrl} loading={loading}/>
+        <GameCard style={mount ? { animationDelay: `${index * 0.24}s` }: {}} key={`${stableId}-${index}`} index={index} mount={mount} setMount={setMount}
+        gameId={game.id} setGameId={setGameId} coverUrl={game.coverUrl} loading={loading} user={user}/>
       ))
     )}
       </section>

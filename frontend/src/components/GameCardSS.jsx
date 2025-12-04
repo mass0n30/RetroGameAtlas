@@ -7,7 +7,7 @@ function GameCardSS(props) {
 
     const [loading, setLoading] = useState(true);
    // eslint-disable-next-line react/prop-types
-   const {gameId, randomScreenshot, length, index, mount} = props;
+   const {gameId, randomScreenshot, length, index, mount, setMount} = props;
 
    useEffect(() => {
     const timer = setTimeout(() => {
@@ -21,12 +21,13 @@ function GameCardSS(props) {
 
    const handleNavigate = () => {
       navigate(`/home/details/${gameId}` );
+      setMount(false);
    }
 
    return (
     <>
     { length && length != 0 ? ( 
-    <div className={styles.cardss_loader_container} style={mount ? { animationDelay: `${index * 0.24}s` }: {}}>
+    <div className={styles.cardss_loader_container} style={mount ? { animationDelay: `${index * 0.12}s` }: {}}>
       { loading ? (
           <div className={styles.cardss_loader}>
               <Loader size={48} className="spinner"color={'#1a2b29ad'}  />

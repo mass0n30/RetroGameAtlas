@@ -36,7 +36,7 @@ model UserProfile {
   id     Int @id @default(autoincrement())
   userId Int @unique
 
-  user       User   @relation(fields: [userId], references: [id])
+  user       User   @relation(fields: [userId], references: [id], onDelete: Cascade)
   savedGames Game[] @relation("UserSavedGames")
 }
 
@@ -65,7 +65,7 @@ model Game {
   screenshots Screenshot[]
 
   developer    Developers?   @relation("GameDevelopers", fields: [developerId], references: [id])
-  ageRating    GameRating?   @relation("GameRatingRelation", fields: [ageRatingId], references: [id])
+  ageRating    GameRating?   @relation("GameRatingRelation", fields: [ageRatingId], references: [id], onDelete: Cascade)
   savedByUsers UserProfile[] @relation("UserSavedGames")
 }
 
@@ -115,7 +115,7 @@ model Cover {
   width   Int?
 
   gameId Int
-  game   Game @relation(fields: [gameId], references: [id])
+  game   Game @relation(fields: [gameId], references: [id], onDelete: Cascade)
 }
 
 model Screenshot {
@@ -127,5 +127,5 @@ model Screenshot {
   width   Int?
 
   gameId Int
-  game   Game @relation(fields: [gameId], references: [id])
+  game   Game @relation(fields: [gameId], references: [id], onDelete: Cascade)
 }
