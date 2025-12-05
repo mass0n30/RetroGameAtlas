@@ -1,6 +1,11 @@
 // update controller 
 const { prisma } = require("../../db/prismaClient.js");
 
+async function updateUserSavedGames(req, res, next) {
+
+  console.log(req);
+};
+
 
 async function handleUpdateGamePlatforms(game, platformData) {
 
@@ -60,4 +65,4 @@ async function handleUpdateGameDeveloper(gameDeveloperId, game) {
   }
 };
 
-module.exports = { handleUpdateGamePlatforms, handleUpdateGameAgeRating, handleUpdateGameDeveloper};
+module.exports = { updateUserSavedGames, handleUpdateGamePlatforms, handleUpdateGameAgeRating, handleUpdateGameDeveloper};

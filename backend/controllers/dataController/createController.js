@@ -14,7 +14,7 @@ async function handleCreateUser(req, res, next) {
   try {
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
     console.log(hashedPassword);
-    await prisma.user.create({
+    const user = await prisma.user.create({
       data: {
         email: req.body.username,
         fname: req.body.firstname,
@@ -22,6 +22,12 @@ async function handleCreateUser(req, res, next) {
         alias: req.body.alias,
         password: hashedPassword,
       }
+   });
+
+   await prisma.userProfile.create({
+    data: {
+      userId: user.id
+    }
    });
   return res.status(201).json({ message: "Account Created Successfully" });
   } catch (error) {

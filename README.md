@@ -58,6 +58,7 @@ TODO:
   - put ebay listings as 'related listings (good amount does not have exact title listings, more so related listings, perhaps I can improve this looking back through ebay api docs)
   - game name tags on image covers/screenshots? (lots of japanese/foreign titles in images)
   - finish up sidebar cateogories container (flexing category containers nicely upon selection *reference resume project)
+  - could add Alert and profile settings drop menu tailwind components
   - let categories flex container flex 3 over rest of containers to give category rows the most room upon flexing... (flexing makes sidebar height full??)
   - fix slight space side bar between scroll wheel and rows
   - shooting star background gif? (make page feel more dynamic)

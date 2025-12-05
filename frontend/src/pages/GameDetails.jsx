@@ -5,6 +5,7 @@ import axios from "axios";
 import normalizeGameData from '../helpers';
 import CustomSpinner from '../components/Spinner';
 import YouTubeEmbed from '../components/Youtube';
+import {Heart} from 'lucide-react';
 
 
 function GameDetails() {
@@ -16,6 +17,7 @@ const [recordData, setRecordData] = useState(null);
 const [recordDataAlt, setRecordDataAlt] = useState(null);
 const [gameEbayData, setGameEbayData] = useState(null);
 const [screenshots, setScreenshots] = useState([]);
+const [saved, setSaved] = useState(false);
 
 const {user} = useOutletContext();
 
@@ -33,6 +35,10 @@ useEffect(() => {
 
     return () => clearTimeout(timer,); 
   } ,[loading, setLoading]);
+
+  useEffect(() => {
+
+  }, [saved])
 
 
 useEffect(() => {
@@ -63,6 +69,18 @@ const handleDeleteGame = async () => {
   }
 }
 
+const handleSaveGame = async () => {
+  try {
+    const response = await axios.put(`http://localhost:5000/home/details/${gameId}`);
+    if (response.status === 200) {
+      alert('saved successfully');
+    }
+  } catch (error) {
+    console.error('Error:', error);
+  }
+  saved ? setSaved(false) : setSaved(true);
+}
+
 if (loading) {
   return (
     <div style={{ display: "flex", flex: 1, alignItems: "center", justifyContent: "center", marginTop: "2rem" }}>
@@ -75,6 +93,11 @@ if (loading) {
   return (
    <>
     <div className={styles.detailscontainer}>
+      <div className={styles.savecontainer}>
+        <button onClick={async () => handleSaveGame()}>
+          <Heart color={saved ? "red" : "white"}/>
+        </button>
+      </div>
       <div>{game.name}</div>
       <div>Developer:</div> {game.developer.name ? (
             game.developer.name

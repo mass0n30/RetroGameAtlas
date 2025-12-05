@@ -1,6 +1,25 @@
 // viewController
 const {prisma} = require("../db/prismaClient.js");
 
+async function getUserProfile(req, res, next, userId) {
+
+  try {
+    const profile = await prisma.userProfile.findUnique({
+      where: {
+        userId:userId
+      }
+    });
+
+    if (!profile) {
+      return null;
+    }
+
+    return profile;
+  } catch (error) {
+    next(error)
+  }
+}
+
 async function getAllCategoryData(req, res, next) {
 
   try {
@@ -328,4 +347,4 @@ async function handleGetGameDetails(req, res, next) {
 
 
 
-module.exports = {handleGetGames, handleGetGameDetails, getAllCategoryData};
+module.exports = {getUserProfile,handleGetGames, handleGetGameDetails, getAllCategoryData};

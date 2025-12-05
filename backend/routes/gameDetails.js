@@ -12,9 +12,14 @@ gameDetailsRouter.get('/:gameid', async (req, res, next) => {
 });
 
  const { deleteGameById } = require('../controllers/dataController/deleteController.js');
+ const {updateUserSavedGames} = require('../controllers/dataController/updateController.js');
 
 gameDetailsRouter.delete('/:gameid', async (req, res, next) => {
   await deleteGameById(req, res, next);
+});
+
+gameDetailsRouter.put('/:gameid', async (req, res, next) => {
+  await updateUserSavedGames(req, res, next);
 });
 
 
