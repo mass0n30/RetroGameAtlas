@@ -19,7 +19,8 @@ const [gameEbayData, setGameEbayData] = useState(null);
 const [screenshots, setScreenshots] = useState([]);
 const [saved, setSaved] = useState(false);
 
-const {user} = useOutletContext();
+const {user, userProfile, SetUserProfile} = useOutletContext();
+const token = localStorage.getItem('usertoken');
 
 console.log('User:', user);
 
@@ -58,27 +59,44 @@ useEffect(() => {
   fetchDetails();
 }, [gameId]);
 
+const handleSaveGame = async () => {
+  try {
+    const response = await fetch(`http://localhost:5000/home/details/${gameId}`, {
+      method: 'PUT',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(gameDetails)
+    });
+    if (response.status === 200) {
+      alert('Updating user games success');
+    } 
+
+    // updating client side userProfile save state games
+    const result = await response.json();
+    if (result) {
+        SetUserProfile(result.updatedProfile)
+    }
+    saved ? setSaved(false) : setSaved(true);
+
+  } catch (error) {
+    console.error('Error updating user games', error);
+  }
+
+}
+
+// Admin Route
 const handleDeleteGame = async () => {
   try {
     const response = await axios.delete(`http://localhost:5000/home/details/${gameId}`);
     if (response.status === 200) {
-      alert('Game deleted successfully');
+      alert('deleted successfully');
     }
-  } catch (error) {
-    console.error('Error deleting game:', error);
-  }
-}
 
-const handleSaveGame = async () => {
-  try {
-    const response = await axios.put(`http://localhost:5000/home/details/${gameId}`);
-    if (response.status === 200) {
-      alert('saved successfully');
-    }
   } catch (error) {
     console.error('Error:', error);
   }
-  saved ? setSaved(false) : setSaved(true);
 }
 
 if (loading) {
@@ -94,7 +112,7 @@ if (loading) {
    <>
     <div className={styles.detailscontainer}>
       <div className={styles.savecontainer}>
-        <button onClick={async () => handleSaveGame()}>
+        <button onClick={handleSaveGame}>
           <Heart color={saved ? "red" : "white"}/>
         </button>
       </div>

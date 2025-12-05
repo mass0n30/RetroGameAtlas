@@ -13,6 +13,7 @@ function Home() {
 
   // initial mount state data
   const [user, SetUser] = useState(null);
+  const [userProfile, SetUserProfile] = useState(null);
   const [categoryData, setCategoryData] = useState();
   const [open, setOpen] = useState(new Set());
 
@@ -73,6 +74,7 @@ function Home() {
         
         SetUser(result.user); // (only non sensitive user data from backend)
         setCategoryData(result.categoryData);
+        SetUserProfile(result.userProfile);
         // reset boolean fetch after updated posts fetch
       } catch (error) {
         setError(error);
@@ -162,7 +164,7 @@ function Home() {
         />
       </aside>
       <Outlet context={{query, limit, loading, success, SetLoading, SetSuccess, discover, setDiscover, screenshotMode, setScreenshotMode, mount, setMount, open, setOpen, 
-        user, gameId, setGameId, games, setCategoryData, orderData: order.data, orderDirection: order.order, setOrder, setGames, search, setSearch, genre, platform, developer, minyear: year.min, maxyear: year.max, setYear }} />
+        user, userProfile, SetUserProfile, gameId, setGameId, games, setCategoryData, orderData: order.data, orderDirection: order.order, setOrder, setGames, search, setSearch, genre, platform, developer, minyear: year.min, maxyear: year.max, setYear }} />
     </main>
     </>
   )

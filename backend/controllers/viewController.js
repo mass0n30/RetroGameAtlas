@@ -7,6 +7,9 @@ async function getUserProfile(req, res, next, userId) {
     const profile = await prisma.userProfile.findUnique({
       where: {
         userId:userId
+      },
+      select: {
+        savedGames: true,
       }
     });
 
@@ -313,8 +316,6 @@ async function handleGetGameDetails(req, res, next) {
         ageRating: true,
       },
     });
-
-    console.log(gameDetails, 'fetched game details from db');
 
     const normalizedScreenshots = gameDetails.screenshots.map(ss => ({
       id: ss.id,

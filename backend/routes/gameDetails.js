@@ -1,5 +1,6 @@
 const { Router } = require("express");
 const gameDetailsRouter = Router();
+const passport = require('passport');
 const {handleGetGameDetails} = require('../controllers/viewController');
 
 gameDetailsRouter.get('/:gameid', async (req, res, next) => {
@@ -18,8 +19,12 @@ gameDetailsRouter.delete('/:gameid', async (req, res, next) => {
   await deleteGameById(req, res, next);
 });
 
-gameDetailsRouter.put('/:gameid', async (req, res, next) => {
-  await updateUserSavedGames(req, res, next);
+gameDetailsRouter.put('/:gameid', passport.authenticate('jwt', {session:false} ),  async (req, res, next) => {
+  const updatedProfile = await updateUserSavedGames(req, res, next);
+
+  res.json({
+    updatedProfile: updatedProfile
+  })
 });
 
 

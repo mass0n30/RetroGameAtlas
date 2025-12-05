@@ -3,7 +3,39 @@ const { prisma } = require("../../db/prismaClient.js");
 
 async function updateUserSavedGames(req, res, next) {
 
-  console.log(req);
+  const gameId = parseInt(req.params.gameid);
+  const gameigdbID = (req.body.igdbId);
+
+  // checking users saved games first
+  const userProfile = await prisma.userProfile.findUnique({
+    where: { userId: req.user.id },
+    include: { savedGames: true }, 
+  });
+
+  const isSaved = userProfile.savedGames.some(game => game.igdbId === gameigdbID);
+
+  if (isSaved) {
+    const updatedUserProfile = await prisma.userProfile.update({
+      where: {userId: req.user.id},
+      data: {
+        savedGames: {
+          disconnect: {igdbId: gameigdbID}
+        }
+      }
+    });
+    return updatedUserProfile;
+
+  } else {
+    const updatedUserProfile = await prisma.userProfile.update({
+      where: {userId: req.user.id},
+      data: {
+        savedGames: {
+          connect: {igdbId: gameigdbID}
+        }
+      }
+    });
+    return updatedUserProfile;
+  }
 };
 
 

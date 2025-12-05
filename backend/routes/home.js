@@ -22,8 +22,8 @@ homeRouter.get('/', passport.authenticate('jwt', { session: false }), async (req
       first: req.user.fname,
       last: req.user.lname,
       admin: req.user.is_admin,
-      userprofile: userProfile
     },
+   userProfile: userProfile,
    categoryData: categoryData
   });
 });
