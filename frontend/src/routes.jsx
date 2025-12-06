@@ -5,6 +5,7 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import HomePage from "./pages/HomePage";
 import GameDetails from "./pages/GameDetails";
+import HomeSaved from "./pages/HomeSaved";
 
 const routes = [
   {
@@ -36,6 +37,10 @@ const routes = [
           {
             path: "details/:gameId",
             element: <GameDetails/>
+          },
+          {
+            path: "saved",
+            element: <HomeSaved/>
           }
         ]
       },

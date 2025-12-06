@@ -1,9 +1,18 @@
 import { Menu } from '@base-ui-components/react/menu';
 import styles from '../styles/components/menu.module.css';
+import { useNavigate, Outlet, useOutletContext } from 'react-router-dom';
 
-export default function NavMenu(handleNavigate) {
+// eslint-disable-next-line react/prop-types
+export default function NavMenu({setMount}) {
 
-  
+  const navigate = useNavigate();
+
+  //setting mount to keep loader cards upon nav back?
+  function handleNavigate() {
+    navigate('/home/saved');
+    setMount(false);
+  }
+
   return (
     <Menu.Root>
       <Menu.Trigger className={styles.Button}>

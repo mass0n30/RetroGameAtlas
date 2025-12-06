@@ -6,6 +6,7 @@ const passport = require('passport');
 require('../config/passport');
 const {gamesRouter} = require('./games');
 const {gameDetailsRouter} = require('./gameDetails');
+const {savedGamesRouter} = require('./savedGames');
 const { getAllCategoryData, getUserProfile } = require("../controllers/viewController.js");
 
 
@@ -31,6 +32,8 @@ homeRouter.get('/', passport.authenticate('jwt', { session: false }), async (req
 homeRouter.use('/games', gamesRouter);
 
 homeRouter.use('/details', gameDetailsRouter);
+
+homeRouter.use('/saved', savedGamesRouter);
 
 
 

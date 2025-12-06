@@ -110,20 +110,7 @@ function Home() {
 
   }, [ query, genre, platform, year.min, year.max, developer, setGames, order.data, order.order, discover, screenshotMode ]);
 
-  const handleGetSaved = () => {
-    axios.get('https://localhost:5000/home/saved', {
-      headers: {
-        'Authorization': `Bearer ${token}`,
-        'Content-Type': 'application/json', 
-      }
-    })
-    .then(response => {
-      console.log(response.data);
-    })
-    .catch(error => {
-      console.error('Error fetching data:', error);
-    });
-  }
+
 
 
   if (error) {
@@ -144,7 +131,17 @@ function Home() {
 
     return (
     <>
-    <Navbar toggle={toggle} setToggle={setToggle} search={search} setSearch={setSearch} discover={discover} setDiscover={setDiscover} resetFilters={resetFilters} setOpen={setOpen} setMount={setMount}/>
+      <Navbar
+        toggle={toggle}
+        setToggle={setToggle}
+        search={search}
+        setSearch={setSearch}
+        discover={discover}
+        setDiscover={setDiscover}
+        open={open}
+        setOpen={setOpen}
+        setMount={setMount}
+      />
     <main>
     <aside
       style={{

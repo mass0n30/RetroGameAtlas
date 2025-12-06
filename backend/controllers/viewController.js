@@ -23,6 +23,8 @@ async function getUserProfile(req, res, next, userId) {
   }
 }
 
+
+
 async function getAllCategoryData(req, res, next) {
 
   try {

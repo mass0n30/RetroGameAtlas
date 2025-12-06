@@ -1,5 +1,12 @@
 Project Details
 
+What I practiced for this project:
+  Frontend:
+    - Keeping endpoints clean, fewest amount of URL params, for easier navigation and mounting for saving states.
+    - Making CLS performance good, using loader div containers to preload DOM space.
+  Backend:
+    - Following REST, letting HTTP verbs and param make the route clear of function.
+
 Built using twitch IGDB API: https://www.igdb.com/api 
 Speedrun API: https://github.com/speedruncomorg/api/blob/master/version1/README.md 
 

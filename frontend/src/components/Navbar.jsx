@@ -7,7 +7,7 @@ import NavMenu from './Menu';
 
 
 // eslint-disable-next-line react/prop-types
-export default function Navbar({ toggle, setToggle, setSearch, search, discover, setDiscover, resetFilters, open, setOpen, setMount}) {
+export default function Navbar({ toggle, setToggle, setSearch, search, discover, setDiscover, open, setOpen, setMount}) {
 
   const handleToggle = () => {
     toggle ? setToggle(false) : setToggle(true);
