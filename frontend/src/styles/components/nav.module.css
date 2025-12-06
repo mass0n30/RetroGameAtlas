@@ -24,8 +24,14 @@ nav {
 
 }
 
+.linklogo:hover, .linklogo {
+  text-decoration: none;
+}
+
 .logoContainer {
-  
+  font-size: 1.2rem;
+  font-weight: 700;
+  text-decoration: none;
 }
 
 .searchBarContainer {
@@ -89,6 +95,8 @@ nav {
 .searchButton:hover img {
   opacity: 1;
 }
+
+
 
 /* Tablet */
 @media (min-width: 361px) and (max-width: 1000px) {

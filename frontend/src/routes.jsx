@@ -1,6 +1,6 @@
 import App from "./App"; 
 import Home from "./pages/Home"; 
-import ErrorPage from "./components/ErrorPage";
+import ErrorPage from "./pages/ErrorPage";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import HomePage from "./pages/HomePage";

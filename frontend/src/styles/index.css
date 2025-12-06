@@ -10,7 +10,7 @@
 
 /* absolute global styling */
 :root {
-  --sidebar-width: 25rem;
+  --sidebar-width: 15rem;
 
   font-family: var(--font-family);
   font-size: var(--text-base);
@@ -25,7 +25,7 @@
 }
 
 /* container selectors for flex and grid*/
-* {border: dashed var(--color-primary-glow) 0px;}
+* {border: dashed var(--color-primary-glow) 1px;}
 
 html, body, nav, #root, main, section, .infinite-scroll-component__outerdiv, .infinite-scroll-component {
     margin: 0;

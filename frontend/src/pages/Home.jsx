@@ -134,8 +134,9 @@ function Home() {
     <aside
       style={{
         transform: toggle ? 'translateX(0)' : 'translateX(-100%)',
-        width: toggle ? 'var(--sidebar-width)' : '0',
-        transition: 'all 0.4s ease',
+        width: toggle ? '20em' : '0em',
+        opacity: toggle ? '100%': '0%',
+        transition: 'all 0.3s ease-in-out',
         overflow: 'hidden',
         }} >
         <SideBar

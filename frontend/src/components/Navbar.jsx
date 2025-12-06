@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import styles from '../styles/components/nav.module.css';
 import { useDebounce } from '../helpers';
 import { Link, useNavigate } from 'react-router-dom';
+import NavMenu from './Menu';
 
 
 
@@ -36,9 +37,9 @@ export default function Navbar({ toggle, setToggle, setSearch, search, discover,
               />
             </button>
           </div>
-        <Link to={'/home'}>
+        <Link to={'/home'} className={styles.linklogo}>
           <div className={styles.logoContainer}>
-            Retro Games Placeholder
+            RetroGameAtlas
           </div>
         </Link>
 
@@ -64,6 +65,9 @@ export default function Navbar({ toggle, setToggle, setSearch, search, discover,
           <img src="/icons/search.png" alt="search" />
         </button>
       </form>
+        <div className={styles.profile}>
+            <NavMenu></NavMenu>
+        </div>
     </nav>
   );
 }

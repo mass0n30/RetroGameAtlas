@@ -6,6 +6,7 @@ import normalizeGameData from '../helpers';
 import CustomSpinner from '../components/Spinner';
 import YouTubeEmbed from '../components/Youtube';
 import {Heart} from 'lucide-react';
+import SocialsShare from '../components/ShareSocials';
 
 
 function GameDetails() {
@@ -18,11 +19,11 @@ const [recordDataAlt, setRecordDataAlt] = useState(null);
 const [gameEbayData, setGameEbayData] = useState(null);
 const [screenshots, setScreenshots] = useState([]);
 const [saved, setSaved] = useState(false);
+const [currentIndex, setCurrentIndex] = useState(0);
+
 
 const {user, userProfile, SetUserProfile} = useOutletContext();
 const token = localStorage.getItem('usertoken');
-
-console.log('User:', user);
 
 useEffect(() => {
     window.scrollTo(0, 0);
@@ -110,127 +111,179 @@ if (loading) {
   const game = normalizeGameData(gameDetails);
   return (
    <>
-    <div className={styles.detailscontainer}>
+   <div className={styles.outercontainer}>
+      <div className={styles.detailscontainer}>
       <div className={styles.savecontainer}>
-        <button onClick={handleSaveGame}>
-          <Heart color={saved ? "red" : "white"}/>
+        <button onClick={async () => handleSaveGame()} className={styles.likeBtn}>
+          <Heart fill={saved ? "red" : "white"} size={32}/>
         </button>
       </div>
-      <div>{game.name}</div>
-      <div>Developer:</div> {game.developer.name ? (
-            game.developer.name
-      ) : (
-         <p>Unknown Developer</p>
-      )}
-
-      <div>Play On:</div> {game.originalPlatform ? (
-            game.originalPlatform
-      ) : (
-         <p>Unknown</p>
-      )}
-
         <div className={styles.covercontainer}>
-         {game.cover ? (
-            <img src={game.cover} className="cover" />
-         ) : (
-            <p>No Cover Art</p>
-         )}
-        </div>
+          <div className={styles.imgcontianer}>
+            {game.cover ? (<img src={game.cover} className={styles.cover} />) : ( <></> )}
+          </div>
 
-      <div className={styles.storylinecontainer}> 
-         {game.storyline ? (
-            game.storyline
-         ) : (
-            <> </>
-         )}
+          <div>
+            {gameDetails?.originalPlatform ? (
+              gameDetails.originalPlatform
+            ) : (<></> )}
+          </div>
 
-      </div>
-         {game.summary ? (
-          <div className={styles.summarycontainer}> {game.summary} </div>
-           
-         ) : (
-            <> </>
-         )}
-
-         {gameEbayData ? (
-          gameEbayData.map((post) => (
-          <div className={styles.ebaycontainer} key={post.itemId}> {post.title}
-              <div className={styles.ebaycondition}> {post.condition} </div>
-              <div className={styles.ebayprice}> {post.price.currency} {' '} {post.price.value} </div>
-              <div className={styles.ebaylink}>
-                <a href={post.itemWebUrl}target="_blank" rel="noopener noreferrer">View on Ebay</a>
+          
+          {
+            gameDetails?.developer?.logoUrl ? (
+              <div>
+                <img src={gameDetails.developer.logoUrl} />
               </div>
-             </div>
+            ) : (
+              <></>
             )
-          )
-         ) : <></>}
+          }
+            <div>
+              {gameDetails?.developer?.name ? (
+                gameDetails.developer.name
+              ) : (
+                <></> 
+              )
+            }
+          </div>
+          <SocialsShare/>
+        </div> 
+        <div className={styles.datacontainer}>
+          <div className={styles.screenshotscontainer}>
+            {screenshots.length > 0 ? (
+              <div className={styles.carousel}>
+                <button
+                  className={styles.arrow}
+                  onClick={() =>
+                    setCurrentIndex((prev) =>
+                      prev === 0 ? screenshots.length - 1 : prev - 1
+                    )
+                  }
+                >
+                  ‹
+                </button>
 
+                <img
+                  src={`https:${screenshots[currentIndex].url}`}
+                  alt={`${game.name} screenshot`}
+                  className={styles.screenshot}
+                />
 
-      <div className={styles.recordscontainer}>
-        {recordData? (
-         <div className={styles.recorditem}>
-          <h1>
-            {recordData.recordName}
-          </h1>
-          <div className={styles.recordtime}>
-            {recordData.timeConverted}
+                <button
+                  className={styles.arrow}
+                  onClick={() =>
+                    setCurrentIndex((prev) =>
+                      prev === screenshots.length - 1 ? 0 : prev + 1
+                    )
+                  }
+                >
+                  ›
+                </button>
+              </div>
+            ) : (
+              <p>No screenshots available.</p>
+            )}
           </div>
-          <div className={styles.recordvideocontainer}> 
-            <YouTubeEmbed url={recordData.videoLink} title={recordData.recordName}/>
-          </div>
-          <div className={styles.recordlink}>
-            <a href={'recordData.runLink'}>{recordData.runLink}</a>
-          </div>
-         </div>
- 
-        ) : (
-          <></>
-        )}
+              
+          <div>
 
-        {recordDataAlt? (
-         <div className={styles.recorditem}>
-          <h1>
-            {recordDataAlt.recordName}
-          </h1>
-          <div className={styles.recordtime}>
-            {recordDataAlt.timeConverted}
+            {game.summary ? (
+              <div className={styles.summarycontainer}> {game.summary} </div>
+              
+            ) : (
+                <> </>
+            )}
           </div>
-          <div className={styles.recordvideocontainer}> 
-            <YouTubeEmbed url={recordDataAlt.videoLink} title={recordDataAlt.recordName}/>
-          </div>
-          <div className={styles.recordlink}>
-            <a href={'recordDataAlt.runLink'}>{recordDataAlt.runLink}</a>
-          </div>
-         </div>
- 
-        ) : (
-          <></>
-        )}
-
-      </div>
-
-      <div className={styles.screenshotscontainer}>
-        {screenshots.length > 0 ? (
-          screenshots.map((ss) => (
-            <img
-              key={ss.id}
-              src={`https:${ss.url}`} 
-              alt={`${game.name} screenshot`}
-              className="screenshot"
-            />
-          ))
-        ) : (
-          <p>No screenshots available.</p>
-        )}
-      </div>
-      { user.admin ? (
-        <div className={styles.admindeletecontainer}>
-          <button className={styles.deletebutton} onClick={async () => handleDeleteGame()}>Delete Game</button>
         </div>
-      ) : (
-        <></>
-      )}
-    </div>
+      </div>
+
+
+        <div className={styles.storylinecontainer}> 
+          {game.storyline ? (
+              game.storyline
+          ) : (
+              <> </>
+          )}
+
+        </div>
+
+        {gameEbayData ? (
+          <div className={styles.ebaycontainer}>
+            {gameEbayData.map((post) => (
+              <div className={styles.ebayinnercontainer} key={post.itemId}>
+                {post.title}
+                <div className={styles.ebaycondition}>{post.condition}</div>
+                <div className={styles.ebayprice}>
+                  {post.price.currency} {post.price.value}
+                </div>
+                <div className={styles.ebaylink}>
+                  <a
+                    href={post.itemWebUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    View on Ebay
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <></>
+        )}
+
+        <div className={styles.recordscontainer}>
+          {recordData? (
+          <div className={styles.recorditem}>
+            <h1>
+              {recordData.recordName}
+            </h1>
+            <div className={styles.recordtime}>
+              {recordData.timeConverted}
+            </div>
+            <div className={styles.recordvideocontainer}> 
+              <YouTubeEmbed url={recordData.videoLink} title={recordData.recordName}/>
+            </div>
+            <div className={styles.recordlink}>
+              <a href={'recordData.runLink'}>{recordData.runLink}</a>
+            </div>
+          </div>
+  
+          ) : (
+            <></>
+          )}
+
+          {recordDataAlt? (
+          <div className={styles.recorditem}>
+            <h1>
+              {recordDataAlt.recordName}
+            </h1>
+            <div className={styles.recordtime}>
+              {recordDataAlt.timeConverted}
+            </div>
+            <div className={styles.recordvideocontainer}> 
+              <YouTubeEmbed url={recordDataAlt.videoLink} title={recordDataAlt.recordName}/>
+            </div>
+            <div className={styles.recordlink}>
+              <a href={'recordDataAlt.runLink'}>{recordDataAlt.runLink}</a>
+            </div>
+          </div>
+  
+          ) : (
+            <></>
+          )}
+
+        </div>
+
+        { user.admin ? (
+          <div className={styles.admindeletecontainer}>
+            <button className={styles.deletebutton} onClick={async () => handleDeleteGame()}>Delete Game</button>
+          </div>
+        ) : (
+          <></>
+        )}
+      </div>
     </>
    );
   }

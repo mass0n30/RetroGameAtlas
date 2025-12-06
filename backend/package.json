@@ -34,7 +34,8 @@
     "passport": "^0.7.0",
     "passport-jwt": "^4.0.1",
     "passport-local": "^1.0.0",
-    "pg": "^8.16.3"
+    "pg": "^8.16.3",
+    "react-share": "^5.2.2"
   },
   "devDependencies": {
     "nodemon": "^3.1.11",

@@ -10,6 +10,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@base-ui-components/react": "^1.0.0-rc.0",
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@headlessui/react": "^2.2.9",
+    "@heroicons/react": "^2.2.0",
+    "@mui/material": "^7.3.6",
     "axios": "^1.12.2",
     "lucide-react": "^0.555.0",
     "normalize.css": "^8.0.1",
@@ -18,6 +24,7 @@
     "react-dom": "^18.3.1",
     "react-infinite-scroll-component": "^6.1.0",
     "react-router-dom": "^7.9.2",
+    "react-share": "^5.2.2",
     "react-spinner-toolkit": "^1.0.31"
   },
   "devDependencies": {
@@ -28,12 +35,15 @@
     "@types/react": "^18.3.18",
     "@types/react-dom": "^18.3.5",
     "@vitejs/plugin-react": "^4.3.4",
+    "autoprefixer": "^10.4.22",
     "eslint": "^9.17.0",
     "eslint-plugin-react": "^7.37.2",
     "eslint-plugin-react-hooks": "^5.0.0",
     "eslint-plugin-react-refresh": "^0.4.16",
     "globals": "^15.14.0",
     "jsdom": "^26.0.0",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^4.1.17",
     "vite": "^6.0.5",
     "vitest": "^3.0.4"
   }

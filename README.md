@@ -47,17 +47,16 @@ Ebay Game Props:
   - fix CLS
   - fix game card loader animation delay iterations
     - upon navigating back from game details, have no loader cards for seamless navigation
-
+- Add a share feature on Game details page? Sharing to socials or email.
+- add admin delete games
+  - finish up sidebar cateogories container (flexing category containers nicely upon selection *reference resume project)
 
 TODO:
-
-
-  - ***!!!!!!!!!!!!!!!!!!!ADD admin Delete and Edit features so I can clean up database while in development
-
-
+  - Add a navigate back -1 arrow icon on GameDetails page (shouldn't scroll to top mounting on home)
+  - Add animation and sound? to heart selection
   - put ebay listings as 'related listings (good amount does not have exact title listings, more so related listings, perhaps I can improve this looking back through ebay api docs)
   - game name tags on image covers/screenshots? (lots of japanese/foreign titles in images)
-  - finish up sidebar cateogories container (flexing category containers nicely upon selection *reference resume project)
+
   - could add Alert and profile settings drop menu tailwind components
   - let categories flex container flex 3 over rest of containers to give category rows the most room upon flexing... (flexing makes sidebar height full??)
   - fix slight space side bar between scroll wheel and rows
