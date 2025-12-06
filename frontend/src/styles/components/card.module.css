@@ -1,5 +1,7 @@
 
 /* following BEM */
+@import '../base/variables.css';
+
 
 .card_button, .cardss_button {
   background: none;

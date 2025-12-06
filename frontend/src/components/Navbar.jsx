@@ -44,30 +44,36 @@ export default function Navbar({ toggle, setToggle, setSearch, search, discover,
         </Link>
 
       </div>
-      <form
-        className={styles.searchBarContainer}
-        onSubmit={(e) => {
-          e.preventDefault();
-          handleSearch(search);
-        }}>
-        <input 
-          id='searchInput'
-          type="text" 
-          placeholder="Search games..." 
-          value={search} 
-          onChange={(e) => {
-            setSearch(e.target.value);
-            handleSearchChange();
-          }} 
-          className={styles.searchInput}
-        />
-        <button className={styles.searchButton} type="submit">
-          <img src="/icons/search.png" alt="search" />
-        </button>
-      </form>
+      <div className={styles.navMiddleContainer}>
+        <form
+          className={styles.searchBarContainer}
+          onSubmit={(e) => {
+            e.preventDefault();
+            handleSearch(search);
+          }}>
+          <input 
+            id='searchInput'
+            type="text" 
+            placeholder="Search games..." 
+            value={search} 
+            onChange={(e) => {
+              setSearch(e.target.value);
+              handleSearchChange();
+            }} 
+            className={styles.searchInput}
+          />
+          <button className={styles.searchButton} type="submit">
+            <img src="/icons/search.png" alt="search" />
+          </button>
+        </form>
+      </div>
+
+      <div className={styles.navRightContainer}>
         <div className={styles.profile}>
-            <NavMenu></NavMenu>
+            <NavMenu setMount={setMount}></NavMenu>
         </div>
+      </div>
+
     </nav>
   );
 }

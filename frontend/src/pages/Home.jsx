@@ -81,7 +81,7 @@ function Home() {
       } 
     };
     fetchUser();
-  }, [token]);  // token dependency?
+  }, [token]); 
 
   // making URL for any games query
   const params = new URLSearchParams();
@@ -109,6 +109,21 @@ function Home() {
       window.scrollTo({top: 0, behavior: 'smooth'});
 
   }, [ query, genre, platform, year.min, year.max, developer, setGames, order.data, order.order, discover, screenshotMode ]);
+
+  const handleGetSaved = () => {
+    axios.get('https://localhost:5000/home/saved', {
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json', 
+      }
+    })
+    .then(response => {
+      console.log(response.data);
+    })
+    .catch(error => {
+      console.error('Error fetching data:', error);
+    });
+  }
 
 
   if (error) {

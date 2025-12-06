@@ -18,7 +18,7 @@ function GameCard(props) {
     return () => clearTimeout(timer); 
   } ,[loading, setLoading]);
 
-   // maybe replace <button> with React Button for more custom options?
+   //setting mount to keep loader cards upon nav back
    const navigate = useNavigate();
 
    const handleNavigate = () => {
