@@ -30,6 +30,7 @@ function GameCard(props) {
 
 
     <>
+     { coverUrl ? ( 
       <div className={styles.card_loader_container} style={mount ? { animationDelay: `${index * 0.12}s` }: {}} disabled>
       { loading ? (
          <div className={styles.card_loader}  >
@@ -43,6 +44,9 @@ function GameCard(props) {
          </button>
       )}
       </div>
+    ) : (
+      <></>
+    )}
    </>
    );
 }

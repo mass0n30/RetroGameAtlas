@@ -1,4 +1,4 @@
-import { Loader , Flame, Pointer, Heart, HeartMinus, HeartPlus, Sparkles, Dices, Twitch, Gift, BookImage, Image} from 'lucide-react';
+import { ArrowBigLeftDash, ArrowBigRightDash,Loader , Flame, Pointer, Heart, HeartMinus, HeartPlus, Sparkles, Dices, Twitch, Gift, BookImage, Image} from 'lucide-react';
 
 const App = () => {
   return (

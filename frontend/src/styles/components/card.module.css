@@ -58,7 +58,7 @@
 
 .ss_card_image {
   width: 100%;
-  max-width: 400px;
+  max-width: 500px;
   height: auto;
   display: block;
   object-fit: cover;

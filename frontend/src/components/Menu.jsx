@@ -13,6 +13,11 @@ export default function NavMenu({setMount}) {
     setMount(false);
   }
 
+  function handleLogOut() {
+    localStorage.removeItem("token");
+    navigate("/");
+  };
+
   return (
     <Menu.Root>
       <Menu.Trigger className={styles.Button}>
@@ -26,7 +31,7 @@ export default function NavMenu({setMount}) {
             <Menu.Separator className={styles.Separator} />
             <Menu.Item className={styles.Item}>Settings</Menu.Item>
             <Menu.Separator className={styles.Separator} />
-            <Menu.Item className={styles.Item}>Log Out</Menu.Item>
+            <Menu.Item className={styles.Item} onClick={() => handleLogOut()}>Log Out</Menu.Item>
           </Menu.Popup>
         </Menu.Positioner>
       </Menu.Portal>

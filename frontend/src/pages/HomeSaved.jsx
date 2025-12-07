@@ -44,17 +44,11 @@ function HomeSaved() {
     return (
       <>
         <section>
-        { screenshotMode ? (
-      
-        games.map((game, index) => (
-          <GameCardSS style={mount ? { animationDelay: `${index * 0.24}s` }: {}} key={`${stableId}-${index}`} index={index} randomScreenshot={game.randomScreenshot.url} mount={mount} setMount={setMount}
-          gameId={game.id} setGameId={setGameId} coverUrl={game.coverUrl} loading={loading} screenshots={game.screenshots} length={game.screenshots.length} user={user}/>
-      ))) : (
-        games.map((game, index) => (
-          <GameCard style={mount ? { animationDelay: `${index * 0.24}s` }: {}} key={`${stableId}-${index}`} index={index} mount={mount} setMount={setMount}
-          gameId={game.id} setGameId={setGameId} coverUrl={game.coverUrl} loading={loading} user={user}/>
-        ))
-      )}
+          { games.map((game, index) => (
+            <GameCard style={mount ? { animationDelay: `${index * 0.24}s` }: {}} key={`${stableId}-${index}`} index={index} mount={mount} setMount={setMount}
+            gameId={game.id} setGameId={setGameId} coverUrl={game.coverUrl} loading={loading} user={user}/>
+          ))
+        };
       </section>
       
       </>

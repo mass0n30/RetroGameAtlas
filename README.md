@@ -59,10 +59,15 @@ Ebay Game Props:
   - finish up sidebar cateogories container (flexing category containers nicely upon selection *reference resume project)
 
 TODO:
+  - Make a component for alert messages (like for saved games if no saved games, or no game results upon search, ect.)
+  - Make a alert component for alerts (saved to games, ect)
+  - Embed ebay listing onto details page?
   - Add a navigate back -1 arrow icon on GameDetails page (shouldn't scroll to top mounting on home)
   - Add animation and sound? to heart selection
   - put ebay listings as 'related listings (good amount does not have exact title listings, more so related listings, perhaps I can improve this looking back through ebay api docs)
   - game name tags on image covers/screenshots? (lots of japanese/foreign titles in images)
+
+  - for related data (runs and ebay listings), numbered series title's causes related data (runs and ebay) to list other games in a collection: http://localhost:5173/home/details/10192 
 
   - could add Alert and profile settings drop menu tailwind components
   - let categories flex container flex 3 over rest of containers to give category rows the most room upon flexing... (flexing makes sidebar height full??)
@@ -77,15 +82,18 @@ TODO:
   - Loads slow upon discover games(randomize) with screenshots 
 
   - Improve getting Record Type on details page (level, Any%, ect)?
+  - Typography improvements, especially on gameDetails page (font for paragraphs, headers, etc)
   - Either mesh duplicate gamedata or delete duplicates (platform or regional releases 
   causing duplicates??)
   - Re look into design principles for UI and consider mobile React wrapper? before further design changes
-
+  - consider a new more populated star background (elements and game cards cover it mostly, so not a distraction)
   - market game value from PriceCharting API (adding a extra API will add an additional fetch to game details, further slowing down load, need work around or fast loading, *OR get a median price from ebay purchased listings?)
   - adding MVP features, user features 
   - adding additional user features(completed games list, watch list)?
   - maybe add tag group components in main body, for better user exp?
   - maybe replace my custom Form with more cohesive Form Component Library
+
+  *Big feauture idea: Index loads in on landing page, it is user sorta dashboard greeting user, showing most recent comments from users on any given game page, and a selection to begin finding games, continuing where they left off or going to saved games. (a bit grandiose, but perhaps a bit of a commenting system and engagement for users). 
   
 Production tasks
   - adding user accessibility (keyboard shortucts)

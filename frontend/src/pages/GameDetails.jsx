@@ -5,7 +5,7 @@ import axios from "axios";
 import normalizeGameData from '../helpers';
 import CustomSpinner from '../components/Spinner';
 import YouTubeEmbed from '../components/Youtube';
-import {Heart} from 'lucide-react';
+import {Heart, ArrowBigLeftDash, ArrowBigRightDash} from 'lucide-react';
 import SocialsShare from '../components/ShareSocials';
 
 
@@ -52,6 +52,13 @@ useEffect(() => {
       res.data.game.worldRecordAlt ? setRecordDataAlt(res.data.game.worldRecordAlt) : null;
       res.data.game.gameEbayData ? setGameEbayData(res.data.game.gameEbayData) : null;
       res.data.game.normalizedScreenshots ? setScreenshots(res.data.game.normalizedScreenshots) : null;
+
+      // color fav heart if in savedGames
+      userProfile?.savedGames?.forEach((game) => {
+        if (res.data.game.gameDetails.igdbId == game.igdbId) {
+          setSaved(true);
+        }
+      });
 
     } catch (err) {
       console.error(err);
@@ -113,12 +120,13 @@ if (loading) {
    <>
    <div className={styles.outercontainer}>
       <div className={styles.detailscontainer}>
-      <div className={styles.savecontainer}>
-        <button onClick={async () => handleSaveGame()} className={styles.likeBtn}>
-          <Heart fill={saved ? "red" : "white"} size={32}/>
-        </button>
-      </div>
+
         <div className={styles.covercontainer}>
+          <div className={styles.savecontainer}>
+            <button onClick={async () => handleSaveGame()} className={styles.likeBtn}>
+              <Heart fill={saved ? "red" : "white"} size={32}/>
+            </button>
+          </div>
           <div className={styles.imgcontianer}>
             {game.cover ? (<img src={game.cover} className={styles.cover} />) : ( <></> )}
           </div>
@@ -154,31 +162,33 @@ if (loading) {
             {screenshots.length > 0 ? (
               <div className={styles.carousel}>
                 <button
-                  className={styles.arrow}
+                  className={styles.arrowL}
                   onClick={() =>
                     setCurrentIndex((prev) =>
                       prev === 0 ? screenshots.length - 1 : prev - 1
                     )
                   }
                 >
-                  ‹
+                <ArrowBigLeftDash size={32} color="#E8F1F2" />
                 </button>
-
-                <img
-                  src={`https:${screenshots[currentIndex].url}`}
-                  alt={`${game.name} screenshot`}
-                  className={styles.screenshot}
-                />
+                <div className={styles.screenshotcarouselcontainer}> 
+                  <img
+                    src={`https:${screenshots[currentIndex].url}`}
+                    alt={`${game.name} screenshot`}
+                    className={styles.screenshot}
+                  />
+                </div>
 
                 <button
-                  className={styles.arrow}
+                  className={styles.arrowR}
                   onClick={() =>
                     setCurrentIndex((prev) =>
                       prev === screenshots.length - 1 ? 0 : prev + 1
                     )
                   }
                 >
-                  ›
+                <ArrowBigRightDash size={32} color="#E8F1F2" />
+
                 </button>
               </div>
             ) : (
