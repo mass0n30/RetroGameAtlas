@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import styles from '../styles/components/nav.module.css';
 import { useDebounce } from '../helpers';
 import { Link, useNavigate } from 'react-router-dom';
-import NavMenu from './Menu';
+import NavMenu from './reactMUI/Menu';
 
 
 
@@ -22,7 +22,7 @@ export default function Navbar({ toggle, setToggle, setSearch, search, discover,
 
   const handleSearch = (value) => {
     setSearch(value);
-    navigate(-1);
+    navigate('/home');
   };
 
 

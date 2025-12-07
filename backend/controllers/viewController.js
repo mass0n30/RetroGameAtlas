@@ -327,6 +327,7 @@ async function handleGetGameDetails(req, res, next) {
       height: ss.height,
     }));
 
+
     const originalConsoleObj = await prisma.platform.findUnique({
       where: {
         name: gameDetails.originalPlatform

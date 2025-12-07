@@ -20,8 +20,9 @@ async function updateUserSavedGames(req, res, next) {
       data: {
         savedGames: {
           disconnect: {igdbId: gameigdbID}
-        }
-      }
+        },
+      },
+      include: {savedGames: true}
     });
     return updatedUserProfile;
 
@@ -31,8 +32,9 @@ async function updateUserSavedGames(req, res, next) {
       data: {
         savedGames: {
           connect: {igdbId: gameigdbID}
-        }
-      }
+        },
+      },
+      include: {savedGames:true}
     });
     return updatedUserProfile;
   }

@@ -57,6 +57,8 @@ Ebay Game Props:
 - Add a share feature on Game details page? Sharing to socials or email.
 - add admin delete games
   - finish up sidebar cateogories container (flexing category containers nicely upon selection *reference resume project)
+    - let categories flex container flex 3 over rest of containers to give category rows the most room upon flexing... (flexing makes sidebar height full??)
+  - Game Details page Screenshots in a carosel?
 
 TODO:
   - Make a component for alert messages (like for saved games if no saved games, or no game results upon search, ect.)
@@ -69,24 +71,17 @@ TODO:
 
   - for related data (runs and ebay listings), numbered series title's causes related data (runs and ebay) to list other games in a collection: http://localhost:5173/home/details/10192 
 
-  - could add Alert and profile settings drop menu tailwind components
-  - let categories flex container flex 3 over rest of containers to give category rows the most room upon flexing... (flexing makes sidebar height full??)
+
   - fix slight space side bar between scroll wheel and rows
-  - shooting star background gif? (make page feel more dynamic)
   - add user dislike options for inaccuracy feedback (filter by most votes to replace for more accuracy by admin, user can report inaccurate speedrun data, video data, game data, ect)
   - design Game Details page (layout on paper sketch considering flex on mobile)
-      - Game Details page Screenshots in a carosel?
       - maybe add some related games section in Game Details (this may not be too difficult, inital Grab Same Titles if same developer, fallback grab games in same genre and console?)
   - Populate more Wii games, populate PSP titles and atari 2600 ?
-  - ! Double fetch? upon discover games by cover + screenshot
-  - Loads slow upon discover games(randomize) with screenshots 
 
   - Improve getting Record Type on details page (level, Any%, ect)?
-  - Typography improvements, especially on gameDetails page (font for paragraphs, headers, etc)
-  - Either mesh duplicate gamedata or delete duplicates (platform or regional releases 
-  causing duplicates??)
+  - Typography improvements, especially on gameDetails page (font for paragraphs, headers, giving icons more stroke width over text labels? etc)
+
   - Re look into design principles for UI and consider mobile React wrapper? before further design changes
-  - consider a new more populated star background (elements and game cards cover it mostly, so not a distraction)
   - market game value from PriceCharting API (adding a extra API will add an additional fetch to game details, further slowing down load, need work around or fast loading, *OR get a median price from ebay purchased listings?)
   - adding MVP features, user features 
   - adding additional user features(completed games list, watch list)?

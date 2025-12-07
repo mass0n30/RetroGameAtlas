@@ -1,5 +1,5 @@
 import { Menu } from '@base-ui-components/react/menu';
-import styles from '../styles/components/menu.module.css';
+import styles from '../../styles/components/menu.module.css';
 import { useNavigate, Outlet, useOutletContext } from 'react-router-dom';
 
 // eslint-disable-next-line react/prop-types

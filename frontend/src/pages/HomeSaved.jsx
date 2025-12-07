@@ -33,7 +33,7 @@ function HomeSaved() {
     });
   })
 
-    if (loading  || games.length == 0) {
+    if (loading && games.length == 0) {
       return (
         <div style={{ display: "flex", flex: 1, alignItems: "center", justifyContent: "center", marginTop: "2rem" }}>
           <CustomSpinner/>

@@ -7,7 +7,8 @@ import CustomSpinner from '../components/Spinner';
 import YouTubeEmbed from '../components/Youtube';
 import {Heart, ArrowBigLeftDash, ArrowBigRightDash} from 'lucide-react';
 import SocialsShare from '../components/ShareSocials';
-
+import SnackBarAlert from '../components/reactMUI/Alerts';
+import GameDetailsSkeleton from '../components/Skeleton';
 
 function GameDetails() {
 
@@ -19,6 +20,7 @@ const [recordDataAlt, setRecordDataAlt] = useState(null);
 const [gameEbayData, setGameEbayData] = useState(null);
 const [screenshots, setScreenshots] = useState([]);
 const [saved, setSaved] = useState(false);
+const [alert, setAlert] = useState(false);
 const [currentIndex, setCurrentIndex] = useState(0);
 
 
@@ -33,7 +35,7 @@ useEffect(() => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 6000);
+    }, 5000);
 
     return () => clearTimeout(timer,); 
   } ,[loading, setLoading]);
@@ -78,15 +80,19 @@ const handleSaveGame = async () => {
       body: JSON.stringify(gameDetails)
     });
     if (response.status === 200) {
-      alert('Updating user games success');
+      saved ? setSaved(false) : setSaved(true);
+      setAlert(true);
     } 
 
     // updating client side userProfile save state games
     const result = await response.json();
     if (result) {
-        SetUserProfile(result.updatedProfile)
+      SetUserProfile(result.updatedProfile)
     }
-    saved ? setSaved(false) : setSaved(true);
+
+    return (() => {
+      setAlert(false);
+    });
 
   } catch (error) {
     console.error('Error updating user games', error);
@@ -109,9 +115,13 @@ const handleDeleteGame = async () => {
 
 if (loading) {
   return (
-    <div style={{ display: "flex", flex: 1, alignItems: "center", justifyContent: "center", marginTop: "2rem" }}>
+    <>
+    <div className={styles.loaders}>
       <CustomSpinner/>
     </div>
+      <GameDetailsSkeleton/>
+    </>
+
   )
 }
   if (gameDetails) {
@@ -119,43 +129,54 @@ if (loading) {
   return (
    <>
    <div className={styles.outercontainer}>
+        <SnackBarAlert open={alert} setOpen={setAlert} status={saved} msg={saved ? 'Saved to Games' : 'Removed from Games'}/>
+        <div className={styles.savecontainer}>
+          <button onClick={async () => handleSaveGame()} className={styles.likeBtn}>
+            <Heart fill={saved ? "red" : "white"} size={50}/>
+          </button>
+        </div>
       <div className={styles.detailscontainer}>
 
         <div className={styles.covercontainer}>
-          <div className={styles.savecontainer}>
-            <button onClick={async () => handleSaveGame()} className={styles.likeBtn}>
-              <Heart fill={saved ? "red" : "white"} size={32}/>
-            </button>
+          <div className={styles.uppercovercontainer}>
+            <div className={styles.imgcontainer}>
+              {game.cover ? (
+                <img src={game.cover} className={styles.cover}
+                />) : ( <></> )}
+            </div>
           </div>
-          <div className={styles.imgcontianer}>
-            {game.cover ? (<img src={game.cover} className={styles.cover} />) : ( <></> )}
-          </div>
-
-          <div>
-            {gameDetails?.originalPlatform ? (
-              gameDetails.originalPlatform
-            ) : (<></> )}
-          </div>
-
-          
-          {
-            gameDetails?.developer?.logoUrl ? (
+          <div className={styles.lowercovercontainer}>
+            <div className={styles.platformcontainer}>
               <div>
-                <img src={gameDetails.developer.logoUrl} />
+                {gameDetails?.originalPlatform ? (
+                  gameDetails.originalPlatform
+                ) : (<></> )}
               </div>
-            ) : (
-              <></>
-            )
-          }
-            <div>
-              {gameDetails?.developer?.name ? (
-                gameDetails.developer.name
+            </div>
+
+            {
+              gameDetails?.developer?.logoUrl ? (
+                <div className={styles.developerlogo}>
+                  <img src={gameDetails.developer.logoUrl} />
+                </div>
               ) : (
-                <></> 
+                <></>
               )
             }
+              <div className={styles.developername}>
+                {gameDetails?.developer?.name ? (
+                  gameDetails.developer.name
+                ) : (
+                  <></> 
+                )
+              }
+            </div>
+            <div className={styles.socialshares}>
+              <SocialsShare/>
+            </div>
+
           </div>
-          <SocialsShare/>
+
         </div> 
         <div className={styles.datacontainer}>
           <div className={styles.screenshotscontainer}>
@@ -195,29 +216,27 @@ if (loading) {
               <p>No screenshots available.</p>
             )}
           </div>
-              
-          <div>
-
-            {game.summary ? (
-              <div className={styles.summarycontainer}> {game.summary} </div>
-              
+          {game.summary ? (
+            <div className={styles.summarycontainer}> 
+              <p>
+                { game.summary} 
+              </p>
+            </div> 
             ) : (
                 <> </>
             )}
+            </div>
           </div>
-        </div>
-      </div>
-
-
+      {game.storyline ? (
         <div className={styles.storylinecontainer}> 
-          {game.storyline ? (
-              game.storyline
-          ) : (
-              <> </>
-          )}
-
+          <h4>Storyline</h4>
+          <p>
+            {game.storyline}
+          </p>
         </div>
-
+      ) : (
+          <> </>
+      )}
         {gameEbayData ? (
           <div className={styles.ebaycontainer}>
             {gameEbayData.map((post) => (
