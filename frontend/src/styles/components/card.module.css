@@ -58,7 +58,8 @@
 
 .ss_card_image {
   width: 100%;
-  max-width: 500px;
+  max-width: 440px;
+  max-height: 294px;
   height: auto;
   display: block;
   object-fit: cover;
@@ -77,8 +78,8 @@
 
 .cardss_loader_container {
   aspect-ratio: 400 / 267;
-  max-width: 400px;
-  max-height: 267px;
+  max-width: 440px;
+  max-height: 294px;
   width: 100%;
   height: auto;
   box-sizing: border-box;

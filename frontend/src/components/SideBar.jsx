@@ -66,7 +66,7 @@ export default function SideBar({ categoryData, orderData, orderDirection, setOr
     <div className={[styles.sidebarcontainer, 'glass'].join(' ')}>
       <div className={styles.discovermodecontainer}>
         <div className={styles.discovergamesbtn}>
-          <Button onClick={() => handleDiscoverGames()} style={discover && { backgroundColor: '#6200ffff', color: '#ffffffff' }}>
+          <Button onClick={() => handleDiscoverGames()} style={discover && { backgroundColor: 'var(--purple-accent)', color: '#ffffffff' }}>
             {discover ?
               <div className={styles.discovergamestxt}> 
               <div>Discovering Games</div>
@@ -79,7 +79,7 @@ export default function SideBar({ categoryData, orderData, orderDirection, setOr
           </Button>
         </div>
         <div className={styles.discovermodebtn}>
-          <Button onClick={handleDiscoverMode}>
+          <Button onClick={handleDiscoverMode}  style={screenshotMode && { backgroundColor: 'var(--orange-fire)', color: '#ffffffff' }}>
             {screenshotMode ?
             <div className={styles.discovermodetxt}>
               <div>Screenshot Mode</div>

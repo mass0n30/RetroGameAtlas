@@ -9,15 +9,68 @@ nav {
   top: 0;
   height: 5rem;
   z-index: 100;
-  background-color: var(--color-surface-translucent);
+  background-color: rgba(24, 24, 24, 0.623);
   backdrop-filter: blur(15px);
 }
 
-.navRightContainer {
-  flex: 1;
+.btn {
+  color: var(--color-border);
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  background-color: var(--color-background);
+  border-color: var(--color-background-light);
+  border: 3px solid var(--color-background-light);
+  height: 2.5rem;
+  color: var(--color-text);
+  padding: 1rem;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  outline: 0;
+  margin: 0;
+  opacity: 70%;
+}
+
+.btn:hover, .toggleBtn:hover {
+  opacity: 100%;
+}
+
+.btnX:hover {
+  color: var(--color-secondary-light);
+}
+
+.btnH:hover {
+  color: var(--orange-fire);
+}
+
+.toggleBtn {
+  background-color: var(--color-background);
+  border-color: var(--color-background-light);
+  border: 3px solid var(--color-background-light);
+  height: 2.5rem;
+  color: var(--color-text);
+  padding: 1rem;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  outline: 0;
+  margin: 0;
+  opacity: 70%;
+}
+
+.btn:hover {
+  color: var(--color-primary-hover);
+}
+
+.navRightContainer {
+  flex: 2;
+  display: flex;
+  justify-content: space-evenly;
+  max-height: 60%;
 }
 
 .navMiddleContainer {
@@ -25,20 +78,26 @@ nav {
 }
 
 .navLeftContainer {
-  flex: 2;
+  flex: 3;
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-evenly;
+  max-height: 60%;
 }
 
-
+.navmenucontainer {
+  display: flex;
+  align-items: center;
+}
 
 .toggleContainer {
-
+  border-color: var(--color-background-light);
 }
 
 .linklogo:hover, .linklogo {
   text-decoration: none;
+  display: flex;
+  align-items: center;
 }
 
 .logoContainer {
@@ -47,12 +106,17 @@ nav {
   text-decoration: none;
 }
 
+.homeContainer {
+  display: flex;
+  align-items: center;
+}
+
 .searchBarContainer {
-  width: 80%;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  border: 3px solid var(--color-border);
+  border: 3px solid var(--color-background-light);
   border-radius: 2rem;
   padding: 0.2rem 0.4rem;
   transition: all 0.25s ease-in-out;

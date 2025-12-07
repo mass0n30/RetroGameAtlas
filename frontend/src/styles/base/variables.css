@@ -5,19 +5,25 @@
 /* ----------------- Colors ----------------- */
 :root {
   --color-background: #0d0f17;
+  --color-background-light: #191c25;
   --color-surface: #1a2b29ad;
   --color-surface-translucent: #1a2b2900;
+  --color-surface-translucent-alt: #1a2b298e;
 
   --color-text: #e5e7eb;
   --color-white-alt: #E8F1F2;
   --color-text-active: #a7e9ff; /* sidebar category selected text */
+
+  --purple-accent: #602cff;;
+  --orange-fire: #fd7310; /* accent orange */
 
   --color-primary: #3b82f6;             /* main neon */
   --color-primary-hover: rgb(96, 165, 250);       /* softer neon */
   --color-primary-glow: #00aaff;        /* bright glow */
   --color-primary-glow-translucent: #00aaffa8;   /* dark glow */
   --color-primary-glow-lite: #5ee7ff;   /* micro glow */
-  --color-secondary: #F03A47;          /* accent red */
+  --color-secondary: #F03A47; 
+  --color-secondary-light: #f03a4683;       /* accent red */
   --color-text-link:#646cff;
   --color-text-link-hover: #535bf2;
   --color-text-muted: #6b7280;     /* Secondary / muted text */

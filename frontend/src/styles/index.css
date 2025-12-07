@@ -54,6 +54,7 @@ body {
   text-align: center;
   display: flex;
   flex-direction: column;
+   box-shadow: inset 0px 50px 150px rgba(0, 0, 0, 0.8);
 }
 
 

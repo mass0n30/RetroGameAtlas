@@ -122,6 +122,9 @@ aside {
   color: var(--color-text);
 } 
 
+.orderbydata button:hover, .orderbyrating button:hover, .orderbypopularity button:hover, .discovermodebtn button:hover, .discovergamesbtn button:hover  {
+  background-color: var(--color-background-light);
+}
 
 .react-aria-Tree {
   flex: 1;
@@ -133,7 +136,6 @@ aside {
 
 .react-aria-Button {
   width: 100%;
-
 }
 
 .react-aria-treeItem {
@@ -146,6 +148,10 @@ aside {
 
 }
 
+.treeItem:hover {
+  background-color: var(--color-background);
+  cursor: pointer;
+}
 
 .categoryheader {
   display: flex;
@@ -177,6 +183,10 @@ aside {
   transition: background-color 0.25s, color 0.25s;
   background-color: var(--color-background);
   color: var(--color-text);
+}
+
+#categorybtn:hover {
+  background-color: var(--color-background-light);
 }
 
 

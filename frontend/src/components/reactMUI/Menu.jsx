@@ -1,7 +1,7 @@
 import { Menu } from '@base-ui-components/react/menu';
 import styles from '../../styles/components/menu.module.css';
 import { useNavigate, Outlet, useOutletContext } from 'react-router-dom';
-
+import { Ellipsis } from 'lucide-react';
 // eslint-disable-next-line react/prop-types
 export default function NavMenu({setMount}) {
 
@@ -21,7 +21,7 @@ export default function NavMenu({setMount}) {
   return (
     <Menu.Root>
       <Menu.Trigger className={styles.Button}>
-        Options 
+        <Ellipsis/>
       </Menu.Trigger>
       <Menu.Portal>
         <Menu.Positioner className={styles.Positioner} sideOffset={10}>

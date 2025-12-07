@@ -3,6 +3,8 @@ import styles from '../styles/components/nav.module.css';
 import { useDebounce } from '../helpers';
 import { Link, useNavigate } from 'react-router-dom';
 import NavMenu from './reactMUI/Menu';
+import  {House} from 'lucide-react';
+import { ArrowLeft, Ellipsis, X, PanelsTopLeft } from 'lucide-react';
 
 
 
@@ -25,23 +27,34 @@ export default function Navbar({ toggle, setToggle, setSearch, search, discover,
     navigate('/home');
   };
 
+  const handleNavHome = () => {
+    navigate('/home');
+  };
+
+  const handleNavBack = () => {
+    navigate(-1);
+  };
+
 
   return (
     <nav className={styles.navbar}>
       <div className={styles.navLeftContainer}>
-        <div className={styles.toggleContainer}>
-            <button onClick={() => handleToggle()}>
-              <img
-                src={toggle ? '/icons/close.png' : '/icons/menu.png'}
-                alt="toggle sidebar"
-              />
-            </button>
-          </div>
-        <Link to={'/home'} className={styles.linklogo}>
+          <button className={styles.toggleBtn} onClick={() => handleToggle()}>
+            { toggle ? (
+              <X className={styles.btnX}/>
+            ) : (
+              <PanelsTopLeft size={30}/>
+            )}
+          </button>
+        <div className={styles.navContainer}>
+          <button className={styles.btn} onClick={() => handleNavBack()}>
+              <ArrowLeft size={30}/>
+          </button>
+
+        </div>
           <div className={styles.logoContainer}>
             RetroGameAtlas
           </div>
-        </Link>
 
       </div>
       <div className={styles.navMiddleContainer}>
@@ -69,9 +82,12 @@ export default function Navbar({ toggle, setToggle, setSearch, search, discover,
       </div>
 
       <div className={styles.navRightContainer}>
-        <div className={styles.profile}>
+          <button className={styles.btn} onClick={() => handleNavHome()}>
+            <House size={30} className={styles.btnH}/>
+          </button>
+          <div className={styles.navmenucontainer}>
             <NavMenu setMount={setMount}></NavMenu>
-        </div>
+          </div>
       </div>
 
     </nav>

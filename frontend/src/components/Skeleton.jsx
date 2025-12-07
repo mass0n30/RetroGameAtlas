@@ -5,7 +5,7 @@ const skeletonHighlight = "#1a1e2a"; // slightly lighter still for wave
 function GameDetailsSkeleton() {
   return (
       <>
-      <div className={styles.outercontainer}>
+      <div className={styles.outercontaineralt}>
         <div className={styles.savecontainer}>
 
         </div>

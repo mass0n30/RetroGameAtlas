@@ -72,6 +72,8 @@ TODO:
   - for related data (runs and ebay listings), numbered series title's causes related data (runs and ebay) to list other games in a collection: http://localhost:5173/home/details/10192 
 
 
+  - Get rating scores, and rating count on game cards for Rating? Put in Game Details as well. 
+  - adding details like an icon next to 'no more results' at bottom of fetches, ect. (broken controller icon on error page, ect)
   - fix slight space side bar between scroll wheel and rows
   - add user dislike options for inaccuracy feedback (filter by most votes to replace for more accuracy by admin, user can report inaccurate speedrun data, video data, game data, ect)
   - design Game Details page (layout on paper sketch considering flex on mobile)
