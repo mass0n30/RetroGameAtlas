@@ -1,5 +1,6 @@
 require('dotenv').config();
 const express = require('express');
+const path = require('path');
 const expressSession = require("express-session");
 const { PrismaSessionStore } = require('@quixo3/prisma-session-store');
 const { PrismaClient } = require('./generated/prisma/client');
@@ -14,6 +15,8 @@ const {signupRouter} = require('./routes/signup');
 const {homeRouter} = require('./routes/home');
 
 const app = express();
+
+app.use(express.static(path.join(__dirname, 'public')));
 
 
 app.use(cors());

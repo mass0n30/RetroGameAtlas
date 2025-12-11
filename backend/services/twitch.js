@@ -45,10 +45,10 @@ async function requestOptions() {
 
 async function populateAllGames(req, res, next) {
   
-  let year = 2006;
-  let page = 2;
+  let year = 1978;
+  let page = 1;
 
-  while (year < 2007) {
+  while (year < 2013) {
     const results = await getGamesByYear(req, res, next, year, page);
 
     if (results) {
@@ -341,19 +341,24 @@ async function mapGameData(game, platformData) {
 
   const options = await requestOptions();
 
-  const gameCover = await getCover(game, options);
+  const [
+    gameCover,
+    gameScreenshots,
+    gameGenre,
+    gameAgeRating,
+    gameDeveloper
+  ] = await Promise.all([
+    getCover(game, options),
+    getScreenshots(game, options),
+    getGenre(game, options),
+    getAgeRatingCategory(game, options),
+    getDeveloper(game, options)
+  ]);
 
-  if (gameCover && gameCover.image_id !== undefined) {
-     gameCoverUrl = `https://images.igdb.com/igdb/image/upload/t_cover_big/${gameCover.image_id}.jpg`;
-  } else {
-    gameCoverUrl = null; // or can put a placeholder image
-  }
+  const gameCoverUrl = gameCover?.image_id
+    ? `https://images.igdb.com/igdb/image/upload/t_cover_big/${gameCover.image_id}.jpg`
+    : null;
 
-  // get data from POST requests using game data
-  const gameScreenshots = await getScreenshots(game, options);
-  const gameGenre = await getGenre(game, options);
-  const gameAgeRating = await getAgeRatingCategory(game, options);
-  const gameDeveloper = await getDeveloper(game, options);
   
  // mapping game obj
   const gameData = {

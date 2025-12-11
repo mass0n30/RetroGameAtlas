@@ -2,21 +2,26 @@
 const { prisma } = require('./prismaClient');
 
 const platforms = [
-  { id: 32, name: "Sega Saturn", releaseOrder: 6, abbreviation: "Saturn", generation: 5, slug: "saturn", platformLogo: 49 },
-  { id: 8, name: "PlayStation 2", releaseOrder: 10, abbreviation: "PS2", generation: 6, slug: "ps2", platformLogo: 254 },
-  { id: 23, name: "Dreamcast", releaseOrder: 9,  abbreviation: "DC", generation: 6, slug: "dc", platformLogo: 270 },
-  { id: 24, name: "Game Boy Advance", releaseOrder: 12, abbreviation: "GBA", generation: 6, slug: "gba", platformLogo: 256 },
-  { id: 11, name: "Xbox", releaseOrder: 13, abbreviation: "XBOX", generation: 6, slug: "xbox", platformLogo: 266 },
-  { id: 20, name: "Nintendo DS", releaseOrder: 14, abbreviation: "NDS", generation: 7, slug: "nds", platformLogo: 245 },
-  { id: 22, name: "Game Boy Color", releaseOrder: 8, abbreviation: "GBC", generation: 5, slug: "gbc", platformLogo: 273 },
-  { id: 18, name: "Nintendo Entertainment System", releaseOrder: 1,  abbreviation: "NES", generation: 3, slug: "nes", platformLogo: 816 },
-  { id: 21, name: "Nintendo GameCube", releaseOrder: 11, abbreviation: "NGC", generation: 6, slug: "ngc", platformLogo: 262 },
-  { id: 33, name: "Game Boy", releaseOrder: 3,  abbreviation: "Game Boy", generation: 4, slug: "gb", platformLogo: 274 },
-  { id: 7, name: "PlayStation", releaseOrder: 5, abbreviation:"PS1", generation: 5, slug: "ps", platformLogo: 803 },
-  { id: 29, name: "Sega Mega Drive/Genesis", releaseOrder:2 ,abbreviation: "Genesis/MegaDrive", generation: 4, slug: "genesis-slash-megadrive", platformLogo: null },
-  { id: 4, name: "Nintendo 64", releaseOrder: 7, abbreviation: "N64", generation: 5, slug: "n64", platformLogo: 260 },
-  { id: 19, name: "Super Nintendo Entertainment System", releaseOrder: 4, abbreviation: "SNES", generation: 4, slug: "snes", platformLogo: 106 },
-  { id: 5, name: "Wii", releaseOrder:15, abbreviation: "Wii", generation: 7, slug: "wii", platformLogo: 326 }
+  { id: 59, name: "Atari 2600",                        releaseOrder: 0,  abbreviation: "A2600",   generation: 2, slug: "atari-2600",      platformLogo: "/consoles/atari2600.png" },
+  { id: 18, name: "Nintendo Entertainment System",     releaseOrder: 1,  abbreviation: "NES",     generation: 3, slug: "nes",             platformLogo: "/consoles/nes.png" },
+  { id: 29, name: "Sega Mega Drive/Genesis",           releaseOrder: 2,  abbreviation: "MD/Gen",  generation: 4, slug: "genesis",         platformLogo: "/consoles/genesis.png" },
+  { id: 33, name: "Game Boy",                          releaseOrder: 3,  abbreviation: "GB",      generation: 4, slug: "gb",              platformLogo: "/consoles/gb.png" },
+  { id: 19, name: "Super Nintendo Entertainment System", releaseOrder: 4, abbreviation: "SNES",    generation: 4, slug: "snes",            platformLogo: "/consoles/snes.png" },
+  { id: 7,  name: "PlayStation",                       releaseOrder: 5,  abbreviation: "PS1",     generation: 5, slug: "ps",              platformLogo: "/consoles/ps1.png" },
+  { id: 32, name: "Sega Saturn",                       releaseOrder: 6,  abbreviation: "Saturn",  generation: 5, slug: "saturn",          platformLogo: "/consoles/saturn.png" },
+  { id: 4,  name: "Nintendo 64",                       releaseOrder: 7,  abbreviation: "N64",     generation: 5, slug: "n64",             platformLogo: "/consoles/n64.png" },
+  { id: 22, name: "Game Boy Color",                    releaseOrder: 8,  abbreviation: "GBC",     generation: 5, slug: "gbc",             platformLogo: "/consoles/gbc.png" },
+  { id: 23, name: "Dreamcast",                         releaseOrder: 9,  abbreviation: "DC",      generation: 6, slug: "dc",              platformLogo: "/consoles/dreamcast.png" },
+  { id: 8,  name: "PlayStation 2",                     releaseOrder: 10, abbreviation: "PS2",     generation: 6, slug: "ps2",             platformLogo: "/consoles/ps2.png" },
+  { id: 21, name: "GameCube",                          releaseOrder: 11, abbreviation: "GC",      generation: 6, slug: "gamecube",        platformLogo: "/consoles/gamecube.png" },
+  { id: 24, name: "Game Boy Advance",                  releaseOrder: 12, abbreviation: "GBA",     generation: 6, slug: "gba",             platformLogo: "/consoles/gba.png" },
+  { id: 11, name: "Xbox",                              releaseOrder: 13, abbreviation: "Xbox",    generation: 6, slug: "xbox",            platformLogo: "/consoles/xbox.png" },
+  { id: 20, name: "Nintendo DS",                       releaseOrder: 14, abbreviation: "DS",      generation: 7, slug: "nds",             platformLogo: "/consoles/nds.png" },
+  { id: 38, name: "PlayStation Portable",              releaseOrder: 15, abbreviation: "PSP",     generation: 7, slug: "psp",             platformLogo: "/consoles/psp.png" },
+  { id: 12, name: "Xbox 360",                          releaseOrder: 16, abbreviation: "360",     generation: 7, slug: "xbox360",         platformLogo: "/consoles/xbox360.png" },
+  { id: 5,  name: "Wii",                               releaseOrder: 17, abbreviation: "Wii",     generation: 7, slug: "wii",             platformLogo: "/consoles/wii.png" },
+  { id: 9,  name: "PlayStation 3",                     releaseOrder: 18, abbreviation: "PS3",     generation: 7, slug: "ps3",             platformLogo: "/consoles/ps3.png" },
+  { id: 37, name: "Nintendo 3DS",                      releaseOrder: 19, abbreviation: "3DS",     generation: 8, slug: "3ds",             platformLogo: "/consoles/3ds.png" },
 ];
 
 const ratings = [
@@ -38,6 +43,22 @@ const developers = [
   { id: 818, name: "Atlus", country: "Japan" ,logoUrl:'https://images.igdb.com/igdb/image/upload/t_logo_med/ckfhnwwfvnp7xmait71m.jpg'},
   { id: 401, name: "Naughty Dog", country: "USA" ,logoUrl:'https://images.igdb.com/igdb/image/upload/t_logo_med/cl52c.jpg'},
   { id: 620, name: "Bungie", country: "USA" ,logoUrl: 'https://images.igdb.com/igdb/image/upload/t_logo_med/cl4lm.jpg'},
+
+
+  { id: 1474, name: "SNK", country: "Japan", logoUrl: 'https://images.igdb.com/igdb/image/upload/t_logo_med/cl8bu.jpg' },             
+  { id: 248, name: "Bandai Namco Entertainment", country: "Japan", logoUrl: 'https://images.igdb.com/igdb/image/upload/t_logo_med/cl7dx.jpg' }, 
+  { id: 184, name: "id Software", country: "USA", logoUrl: '  https://images.igdb.com/igdb/image/upload/t_logo_med/bzknbyeus9prunspvomm.jpg' },
+  { id: 51, name: "Blizzard Entertainment", country: "USA", logoUrl: '  https://images.igdb.com/igdb/image/upload/t_logo_med/cl4mm.jpg' },
+  { id: 10, name: "LucasArts", country: "USA", logoUrl: 'https://images.igdb.com/igdb/image/upload/t_logo_med/ktmvlzpc7quw9rjui0qq.jpg' },
+  { id: 56, name: "Valve", country: "USA", logoUrl: '  https://images.igdb.com/igdb/image/upload/t_logo_med/cl2he.jpg' },
+  { id: 126, name: "Bethesda Game Studios", country: "USA", logoUrl: 'https://images.igdb.com/igdb/image/upload/t_logo_med/zoq5fmhbkbvs2qkb76kj.jpg' },
+  { id: 104, name: "Ubisoft Entertainment", country: "France", logoUrl: 'https://images.igdb.com/igdb/image/upload/t_logo_med/cl4xr.jpg' }, 
+  { id: 8, name: "2K Games", country: "USA", logoUrl: 'https://images.igdb.com/igdb/image/upload/t_logo_med/cl51z.jpg' },
+  { id: 29, name: "Rockstar Games", country: "USA", logoUrl:'https://images.igdb.com/igdb/image/upload/t_logo_med/cl8g0.jpg' },
+  { id: 1012, name: "FromSoftware", country: "Japan", logoUrl:'https://images.igdb.com/igdb/image/upload/t_logo_med/irwmnrvf0hny5wr0ap0d.jpg' },
+  { id: 17463, name: "Epic Games", country: "USA", logoUrl: 'https://images.igdb.com/igdb/image/upload/t_logo_med/cl2ho.jpg' },
+  { id: 834, name: "Insomniac Games", country: "USA", logoUrl: 'https://images.igdb.com/igdb/image/upload/t_logo_med/cl3w6.jpg' },
+  { id: 2, name: "BioWare", country: "Canada", logoUrl: '  https://images.igdb.com/igdb/image/upload/t_logo_med/cl4vp.jpg' },
 ]
 
 

@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
   output   = "../generated/prisma"
@@ -33,60 +27,54 @@ model User {
 }
 
 model UserProfile {
-  id     Int @id @default(autoincrement())
-  userId Int @unique
-
+  id         Int    @id @default(autoincrement())
+  userId     Int    @unique
   user       User   @relation(fields: [userId], references: [id], onDelete: Cascade)
   savedGames Game[] @relation("UserSavedGames")
 }
 
 model Game {
-  id               Int       @id @default(autoincrement())
-  igdbId           Int       @unique
+  id               Int           @id @default(autoincrement())
   name             String
-  slug             String    @unique
-  summary          String?   @db.Text
-  storyline        String?   @db.Text
+  slug             String        @unique
+  summary          String?
+  storyline        String?
   firstReleaseDate DateTime?
-  originalPlatform String?
   coverUrl         String?
   rating           Float?
   aggregatedRating Float?
   totalRating      Float?
   totalRatingCount Int?
+  url              String?
+  igdbId           Int           @unique
+  originalPlatform String?
   ageRatingId      Int?
   developerId      Int?
-  url              String?
-
-  // Relations
-  genres      Genre[]      @relation("GameGenres")
-  platforms   Platform[]   @relation("GamePlatforms")
-  covers      Cover[]
-  screenshots Screenshot[]
-
-  developer    Developers?   @relation("GameDevelopers", fields: [developerId], references: [id])
-  ageRating    GameRating?   @relation("GameRatingRelation", fields: [ageRatingId], references: [id], onDelete: Cascade)
-  savedByUsers UserProfile[] @relation("UserSavedGames")
+  covers           Cover[]
+  ageRating        GameRating?   @relation("GameRatingRelation", fields: [ageRatingId], references: [id], onDelete: Cascade)
+  developer        Developers?   @relation("GameDevelopers", fields: [developerId], references: [id])
+  screenshots      Screenshot[]
+  genres           Genre[]       @relation("GameGenres")
+  platforms        Platform[]    @relation("GamePlatforms")
+  savedByUsers     UserProfile[] @relation("UserSavedGames")
 }
 
 model GameRating {
   id          Int     @id
   rating      String
   description String?
-
-  games Game[] @relation("GameRatingRelation")
+  games       Game[]  @relation("GameRatingRelation")
 }
 
 model Platform {
   id           Int     @id
   name         String  @unique
-  releaseOrder Int?    @unique
   abbreviation String?
   generation   Int?
   slug         String
-  platformLogo Int?
-
-  games Game[] @relation("GamePlatforms")
+  platformLogo String?
+  releaseOrder Int?    @unique
+  games        Game[]  @relation("GamePlatforms")
 }
 
 model Developers {
@@ -94,38 +82,35 @@ model Developers {
   name    String?
   logoUrl String?
   country String?
-
-  games Game[] @relation("GameDevelopers")
+  games   Game[]  @relation("GameDevelopers")
 }
 
 model Genre {
   id     Int     @id @default(autoincrement())
-  igdbId Int     @unique
   name   String?
   slug   String?
+  igdbId Int     @unique
   games  Game[]  @relation("GameGenres")
 }
 
 model Cover {
   id      Int     @id @default(autoincrement())
-  igdbId  Int     @unique
   imageId String?
   url     String?
+  igdbId  Int     @unique
+  gameId  Int
   height  Int?
   width   Int?
-
-  gameId Int
-  game   Game @relation(fields: [gameId], references: [id], onDelete: Cascade)
+  game    Game    @relation(fields: [gameId], references: [id], onDelete: Cascade)
 }
 
 model Screenshot {
   id      Int     @id @default(autoincrement())
-  igdbId  Int     @unique
   imageId String?
   url     String?
+  gameId  Int
   height  Int?
   width   Int?
-
-  gameId Int
-  game   Game @relation(fields: [gameId], references: [id], onDelete: Cascade)
+  igdbId  Int     @unique
+  game    Game    @relation(fields: [gameId], references: [id], onDelete: Cascade)
 }

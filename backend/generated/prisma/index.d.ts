@@ -1710,18 +1710,18 @@ export namespace Prisma {
    */
 
   export type GameCountOutputType = {
-    genres: number
-    platforms: number
     covers: number
     screenshots: number
+    genres: number
+    platforms: number
     savedByUsers: number
   }
 
   export type GameCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    genres?: boolean | GameCountOutputTypeCountGenresArgs
-    platforms?: boolean | GameCountOutputTypeCountPlatformsArgs
     covers?: boolean | GameCountOutputTypeCountCoversArgs
     screenshots?: boolean | GameCountOutputTypeCountScreenshotsArgs
+    genres?: boolean | GameCountOutputTypeCountGenresArgs
+    platforms?: boolean | GameCountOutputTypeCountPlatformsArgs
     savedByUsers?: boolean | GameCountOutputTypeCountSavedByUsersArgs
   }
 
@@ -1739,20 +1739,6 @@ export namespace Prisma {
   /**
    * GameCountOutputType without action
    */
-  export type GameCountOutputTypeCountGenresArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: GenreWhereInput
-  }
-
-  /**
-   * GameCountOutputType without action
-   */
-  export type GameCountOutputTypeCountPlatformsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: PlatformWhereInput
-  }
-
-  /**
-   * GameCountOutputType without action
-   */
   export type GameCountOutputTypeCountCoversArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: CoverWhereInput
   }
@@ -1762,6 +1748,20 @@ export namespace Prisma {
    */
   export type GameCountOutputTypeCountScreenshotsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ScreenshotWhereInput
+  }
+
+  /**
+   * GameCountOutputType without action
+   */
+  export type GameCountOutputTypeCountGenresArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: GenreWhereInput
+  }
+
+  /**
+   * GameCountOutputType without action
+   */
+  export type GameCountOutputTypeCountPlatformsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PlatformWhereInput
   }
 
   /**
@@ -5106,162 +5106,162 @@ export namespace Prisma {
 
   export type GameAvgAggregateOutputType = {
     id: number | null
-    igdbId: number | null
     rating: number | null
     aggregatedRating: number | null
     totalRating: number | null
     totalRatingCount: number | null
+    igdbId: number | null
     ageRatingId: number | null
     developerId: number | null
   }
 
   export type GameSumAggregateOutputType = {
     id: number | null
-    igdbId: number | null
     rating: number | null
     aggregatedRating: number | null
     totalRating: number | null
     totalRatingCount: number | null
+    igdbId: number | null
     ageRatingId: number | null
     developerId: number | null
   }
 
   export type GameMinAggregateOutputType = {
     id: number | null
-    igdbId: number | null
     name: string | null
     slug: string | null
     summary: string | null
     storyline: string | null
     firstReleaseDate: Date | null
-    originalPlatform: string | null
     coverUrl: string | null
     rating: number | null
     aggregatedRating: number | null
     totalRating: number | null
     totalRatingCount: number | null
+    url: string | null
+    igdbId: number | null
+    originalPlatform: string | null
     ageRatingId: number | null
     developerId: number | null
-    url: string | null
   }
 
   export type GameMaxAggregateOutputType = {
     id: number | null
-    igdbId: number | null
     name: string | null
     slug: string | null
     summary: string | null
     storyline: string | null
     firstReleaseDate: Date | null
-    originalPlatform: string | null
     coverUrl: string | null
     rating: number | null
     aggregatedRating: number | null
     totalRating: number | null
     totalRatingCount: number | null
+    url: string | null
+    igdbId: number | null
+    originalPlatform: string | null
     ageRatingId: number | null
     developerId: number | null
-    url: string | null
   }
 
   export type GameCountAggregateOutputType = {
     id: number
-    igdbId: number
     name: number
     slug: number
     summary: number
     storyline: number
     firstReleaseDate: number
-    originalPlatform: number
     coverUrl: number
     rating: number
     aggregatedRating: number
     totalRating: number
     totalRatingCount: number
+    url: number
+    igdbId: number
+    originalPlatform: number
     ageRatingId: number
     developerId: number
-    url: number
     _all: number
   }
 
 
   export type GameAvgAggregateInputType = {
     id?: true
-    igdbId?: true
     rating?: true
     aggregatedRating?: true
     totalRating?: true
     totalRatingCount?: true
+    igdbId?: true
     ageRatingId?: true
     developerId?: true
   }
 
   export type GameSumAggregateInputType = {
     id?: true
-    igdbId?: true
     rating?: true
     aggregatedRating?: true
     totalRating?: true
     totalRatingCount?: true
+    igdbId?: true
     ageRatingId?: true
     developerId?: true
   }
 
   export type GameMinAggregateInputType = {
     id?: true
-    igdbId?: true
     name?: true
     slug?: true
     summary?: true
     storyline?: true
     firstReleaseDate?: true
-    originalPlatform?: true
     coverUrl?: true
     rating?: true
     aggregatedRating?: true
     totalRating?: true
     totalRatingCount?: true
+    url?: true
+    igdbId?: true
+    originalPlatform?: true
     ageRatingId?: true
     developerId?: true
-    url?: true
   }
 
   export type GameMaxAggregateInputType = {
     id?: true
-    igdbId?: true
     name?: true
     slug?: true
     summary?: true
     storyline?: true
     firstReleaseDate?: true
-    originalPlatform?: true
     coverUrl?: true
     rating?: true
     aggregatedRating?: true
     totalRating?: true
     totalRatingCount?: true
+    url?: true
+    igdbId?: true
+    originalPlatform?: true
     ageRatingId?: true
     developerId?: true
-    url?: true
   }
 
   export type GameCountAggregateInputType = {
     id?: true
-    igdbId?: true
     name?: true
     slug?: true
     summary?: true
     storyline?: true
     firstReleaseDate?: true
-    originalPlatform?: true
     coverUrl?: true
     rating?: true
     aggregatedRating?: true
     totalRating?: true
     totalRatingCount?: true
+    url?: true
+    igdbId?: true
+    originalPlatform?: true
     ageRatingId?: true
     developerId?: true
-    url?: true
     _all?: true
   }
 
@@ -5353,21 +5353,21 @@ export namespace Prisma {
 
   export type GameGroupByOutputType = {
     id: number
-    igdbId: number
     name: string
     slug: string
     summary: string | null
     storyline: string | null
     firstReleaseDate: Date | null
-    originalPlatform: string | null
     coverUrl: string | null
     rating: number | null
     aggregatedRating: number | null
     totalRating: number | null
     totalRatingCount: number | null
+    url: string | null
+    igdbId: number
+    originalPlatform: string | null
     ageRatingId: number | null
     developerId: number | null
-    url: string | null
     _count: GameCountAggregateOutputType | null
     _avg: GameAvgAggregateOutputType | null
     _sum: GameSumAggregateOutputType | null
@@ -5391,140 +5391,140 @@ export namespace Prisma {
 
   export type GameSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    igdbId?: boolean
     name?: boolean
     slug?: boolean
     summary?: boolean
     storyline?: boolean
     firstReleaseDate?: boolean
-    originalPlatform?: boolean
     coverUrl?: boolean
     rating?: boolean
     aggregatedRating?: boolean
     totalRating?: boolean
     totalRatingCount?: boolean
+    url?: boolean
+    igdbId?: boolean
+    originalPlatform?: boolean
     ageRatingId?: boolean
     developerId?: boolean
-    url?: boolean
+    covers?: boolean | Game$coversArgs<ExtArgs>
+    ageRating?: boolean | Game$ageRatingArgs<ExtArgs>
+    developer?: boolean | Game$developerArgs<ExtArgs>
+    screenshots?: boolean | Game$screenshotsArgs<ExtArgs>
     genres?: boolean | Game$genresArgs<ExtArgs>
     platforms?: boolean | Game$platformsArgs<ExtArgs>
-    covers?: boolean | Game$coversArgs<ExtArgs>
-    screenshots?: boolean | Game$screenshotsArgs<ExtArgs>
-    developer?: boolean | Game$developerArgs<ExtArgs>
-    ageRating?: boolean | Game$ageRatingArgs<ExtArgs>
     savedByUsers?: boolean | Game$savedByUsersArgs<ExtArgs>
     _count?: boolean | GameCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["game"]>
 
   export type GameSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    igdbId?: boolean
     name?: boolean
     slug?: boolean
     summary?: boolean
     storyline?: boolean
     firstReleaseDate?: boolean
-    originalPlatform?: boolean
     coverUrl?: boolean
     rating?: boolean
     aggregatedRating?: boolean
     totalRating?: boolean
     totalRatingCount?: boolean
+    url?: boolean
+    igdbId?: boolean
+    originalPlatform?: boolean
     ageRatingId?: boolean
     developerId?: boolean
-    url?: boolean
-    developer?: boolean | Game$developerArgs<ExtArgs>
     ageRating?: boolean | Game$ageRatingArgs<ExtArgs>
+    developer?: boolean | Game$developerArgs<ExtArgs>
   }, ExtArgs["result"]["game"]>
 
   export type GameSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    igdbId?: boolean
     name?: boolean
     slug?: boolean
     summary?: boolean
     storyline?: boolean
     firstReleaseDate?: boolean
-    originalPlatform?: boolean
     coverUrl?: boolean
     rating?: boolean
     aggregatedRating?: boolean
     totalRating?: boolean
     totalRatingCount?: boolean
+    url?: boolean
+    igdbId?: boolean
+    originalPlatform?: boolean
     ageRatingId?: boolean
     developerId?: boolean
-    url?: boolean
-    developer?: boolean | Game$developerArgs<ExtArgs>
     ageRating?: boolean | Game$ageRatingArgs<ExtArgs>
+    developer?: boolean | Game$developerArgs<ExtArgs>
   }, ExtArgs["result"]["game"]>
 
   export type GameSelectScalar = {
     id?: boolean
-    igdbId?: boolean
     name?: boolean
     slug?: boolean
     summary?: boolean
     storyline?: boolean
     firstReleaseDate?: boolean
-    originalPlatform?: boolean
     coverUrl?: boolean
     rating?: boolean
     aggregatedRating?: boolean
     totalRating?: boolean
     totalRatingCount?: boolean
+    url?: boolean
+    igdbId?: boolean
+    originalPlatform?: boolean
     ageRatingId?: boolean
     developerId?: boolean
-    url?: boolean
   }
 
-  export type GameOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "igdbId" | "name" | "slug" | "summary" | "storyline" | "firstReleaseDate" | "originalPlatform" | "coverUrl" | "rating" | "aggregatedRating" | "totalRating" | "totalRatingCount" | "ageRatingId" | "developerId" | "url", ExtArgs["result"]["game"]>
+  export type GameOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "slug" | "summary" | "storyline" | "firstReleaseDate" | "coverUrl" | "rating" | "aggregatedRating" | "totalRating" | "totalRatingCount" | "url" | "igdbId" | "originalPlatform" | "ageRatingId" | "developerId", ExtArgs["result"]["game"]>
   export type GameInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    covers?: boolean | Game$coversArgs<ExtArgs>
+    ageRating?: boolean | Game$ageRatingArgs<ExtArgs>
+    developer?: boolean | Game$developerArgs<ExtArgs>
+    screenshots?: boolean | Game$screenshotsArgs<ExtArgs>
     genres?: boolean | Game$genresArgs<ExtArgs>
     platforms?: boolean | Game$platformsArgs<ExtArgs>
-    covers?: boolean | Game$coversArgs<ExtArgs>
-    screenshots?: boolean | Game$screenshotsArgs<ExtArgs>
-    developer?: boolean | Game$developerArgs<ExtArgs>
-    ageRating?: boolean | Game$ageRatingArgs<ExtArgs>
     savedByUsers?: boolean | Game$savedByUsersArgs<ExtArgs>
     _count?: boolean | GameCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type GameIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    developer?: boolean | Game$developerArgs<ExtArgs>
     ageRating?: boolean | Game$ageRatingArgs<ExtArgs>
+    developer?: boolean | Game$developerArgs<ExtArgs>
   }
   export type GameIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    developer?: boolean | Game$developerArgs<ExtArgs>
     ageRating?: boolean | Game$ageRatingArgs<ExtArgs>
+    developer?: boolean | Game$developerArgs<ExtArgs>
   }
 
   export type $GamePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Game"
     objects: {
+      covers: Prisma.$CoverPayload<ExtArgs>[]
+      ageRating: Prisma.$GameRatingPayload<ExtArgs> | null
+      developer: Prisma.$DevelopersPayload<ExtArgs> | null
+      screenshots: Prisma.$ScreenshotPayload<ExtArgs>[]
       genres: Prisma.$GenrePayload<ExtArgs>[]
       platforms: Prisma.$PlatformPayload<ExtArgs>[]
-      covers: Prisma.$CoverPayload<ExtArgs>[]
-      screenshots: Prisma.$ScreenshotPayload<ExtArgs>[]
-      developer: Prisma.$DevelopersPayload<ExtArgs> | null
-      ageRating: Prisma.$GameRatingPayload<ExtArgs> | null
       savedByUsers: Prisma.$UserProfilePayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
-      igdbId: number
       name: string
       slug: string
       summary: string | null
       storyline: string | null
       firstReleaseDate: Date | null
-      originalPlatform: string | null
       coverUrl: string | null
       rating: number | null
       aggregatedRating: number | null
       totalRating: number | null
       totalRatingCount: number | null
+      url: string | null
+      igdbId: number
+      originalPlatform: string | null
       ageRatingId: number | null
       developerId: number | null
-      url: string | null
     }, ExtArgs["result"]["game"]>
     composites: {}
   }
@@ -5919,12 +5919,12 @@ export namespace Prisma {
    */
   export interface Prisma__GameClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    covers<T extends Game$coversArgs<ExtArgs> = {}>(args?: Subset<T, Game$coversArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CoverPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    ageRating<T extends Game$ageRatingArgs<ExtArgs> = {}>(args?: Subset<T, Game$ageRatingArgs<ExtArgs>>): Prisma__GameRatingClient<$Result.GetResult<Prisma.$GameRatingPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    developer<T extends Game$developerArgs<ExtArgs> = {}>(args?: Subset<T, Game$developerArgs<ExtArgs>>): Prisma__DevelopersClient<$Result.GetResult<Prisma.$DevelopersPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    screenshots<T extends Game$screenshotsArgs<ExtArgs> = {}>(args?: Subset<T, Game$screenshotsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ScreenshotPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     genres<T extends Game$genresArgs<ExtArgs> = {}>(args?: Subset<T, Game$genresArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GenrePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     platforms<T extends Game$platformsArgs<ExtArgs> = {}>(args?: Subset<T, Game$platformsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PlatformPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    covers<T extends Game$coversArgs<ExtArgs> = {}>(args?: Subset<T, Game$coversArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CoverPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    screenshots<T extends Game$screenshotsArgs<ExtArgs> = {}>(args?: Subset<T, Game$screenshotsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ScreenshotPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    developer<T extends Game$developerArgs<ExtArgs> = {}>(args?: Subset<T, Game$developerArgs<ExtArgs>>): Prisma__DevelopersClient<$Result.GetResult<Prisma.$DevelopersPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-    ageRating<T extends Game$ageRatingArgs<ExtArgs> = {}>(args?: Subset<T, Game$ageRatingArgs<ExtArgs>>): Prisma__GameRatingClient<$Result.GetResult<Prisma.$GameRatingPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     savedByUsers<T extends Game$savedByUsersArgs<ExtArgs> = {}>(args?: Subset<T, Game$savedByUsersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserProfilePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -5956,21 +5956,21 @@ export namespace Prisma {
    */
   interface GameFieldRefs {
     readonly id: FieldRef<"Game", 'Int'>
-    readonly igdbId: FieldRef<"Game", 'Int'>
     readonly name: FieldRef<"Game", 'String'>
     readonly slug: FieldRef<"Game", 'String'>
     readonly summary: FieldRef<"Game", 'String'>
     readonly storyline: FieldRef<"Game", 'String'>
     readonly firstReleaseDate: FieldRef<"Game", 'DateTime'>
-    readonly originalPlatform: FieldRef<"Game", 'String'>
     readonly coverUrl: FieldRef<"Game", 'String'>
     readonly rating: FieldRef<"Game", 'Float'>
     readonly aggregatedRating: FieldRef<"Game", 'Float'>
     readonly totalRating: FieldRef<"Game", 'Float'>
     readonly totalRatingCount: FieldRef<"Game", 'Int'>
+    readonly url: FieldRef<"Game", 'String'>
+    readonly igdbId: FieldRef<"Game", 'Int'>
+    readonly originalPlatform: FieldRef<"Game", 'String'>
     readonly ageRatingId: FieldRef<"Game", 'Int'>
     readonly developerId: FieldRef<"Game", 'Int'>
-    readonly url: FieldRef<"Game", 'String'>
   }
     
 
@@ -6367,6 +6367,92 @@ export namespace Prisma {
   }
 
   /**
+   * Game.covers
+   */
+  export type Game$coversArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Cover
+     */
+    select?: CoverSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Cover
+     */
+    omit?: CoverOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CoverInclude<ExtArgs> | null
+    where?: CoverWhereInput
+    orderBy?: CoverOrderByWithRelationInput | CoverOrderByWithRelationInput[]
+    cursor?: CoverWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: CoverScalarFieldEnum | CoverScalarFieldEnum[]
+  }
+
+  /**
+   * Game.ageRating
+   */
+  export type Game$ageRatingArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GameRating
+     */
+    select?: GameRatingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GameRating
+     */
+    omit?: GameRatingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GameRatingInclude<ExtArgs> | null
+    where?: GameRatingWhereInput
+  }
+
+  /**
+   * Game.developer
+   */
+  export type Game$developerArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Developers
+     */
+    select?: DevelopersSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Developers
+     */
+    omit?: DevelopersOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DevelopersInclude<ExtArgs> | null
+    where?: DevelopersWhereInput
+  }
+
+  /**
+   * Game.screenshots
+   */
+  export type Game$screenshotsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Screenshot
+     */
+    select?: ScreenshotSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Screenshot
+     */
+    omit?: ScreenshotOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ScreenshotInclude<ExtArgs> | null
+    where?: ScreenshotWhereInput
+    orderBy?: ScreenshotOrderByWithRelationInput | ScreenshotOrderByWithRelationInput[]
+    cursor?: ScreenshotWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ScreenshotScalarFieldEnum | ScreenshotScalarFieldEnum[]
+  }
+
+  /**
    * Game.genres
    */
   export type Game$genresArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -6412,92 +6498,6 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: PlatformScalarFieldEnum | PlatformScalarFieldEnum[]
-  }
-
-  /**
-   * Game.covers
-   */
-  export type Game$coversArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Cover
-     */
-    select?: CoverSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Cover
-     */
-    omit?: CoverOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CoverInclude<ExtArgs> | null
-    where?: CoverWhereInput
-    orderBy?: CoverOrderByWithRelationInput | CoverOrderByWithRelationInput[]
-    cursor?: CoverWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: CoverScalarFieldEnum | CoverScalarFieldEnum[]
-  }
-
-  /**
-   * Game.screenshots
-   */
-  export type Game$screenshotsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Screenshot
-     */
-    select?: ScreenshotSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Screenshot
-     */
-    omit?: ScreenshotOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ScreenshotInclude<ExtArgs> | null
-    where?: ScreenshotWhereInput
-    orderBy?: ScreenshotOrderByWithRelationInput | ScreenshotOrderByWithRelationInput[]
-    cursor?: ScreenshotWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: ScreenshotScalarFieldEnum | ScreenshotScalarFieldEnum[]
-  }
-
-  /**
-   * Game.developer
-   */
-  export type Game$developerArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Developers
-     */
-    select?: DevelopersSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Developers
-     */
-    omit?: DevelopersOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: DevelopersInclude<ExtArgs> | null
-    where?: DevelopersWhereInput
-  }
-
-  /**
-   * Game.ageRating
-   */
-  export type Game$ageRatingArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the GameRating
-     */
-    select?: GameRatingSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the GameRating
-     */
-    omit?: GameRatingOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: GameRatingInclude<ExtArgs> | null
-    where?: GameRatingWhereInput
   }
 
   /**
@@ -7635,92 +7635,88 @@ export namespace Prisma {
 
   export type PlatformAvgAggregateOutputType = {
     id: number | null
-    releaseOrder: number | null
     generation: number | null
-    platformLogo: number | null
+    releaseOrder: number | null
   }
 
   export type PlatformSumAggregateOutputType = {
     id: number | null
-    releaseOrder: number | null
     generation: number | null
-    platformLogo: number | null
+    releaseOrder: number | null
   }
 
   export type PlatformMinAggregateOutputType = {
     id: number | null
     name: string | null
-    releaseOrder: number | null
     abbreviation: string | null
     generation: number | null
     slug: string | null
-    platformLogo: number | null
+    platformLogo: string | null
+    releaseOrder: number | null
   }
 
   export type PlatformMaxAggregateOutputType = {
     id: number | null
     name: string | null
-    releaseOrder: number | null
     abbreviation: string | null
     generation: number | null
     slug: string | null
-    platformLogo: number | null
+    platformLogo: string | null
+    releaseOrder: number | null
   }
 
   export type PlatformCountAggregateOutputType = {
     id: number
     name: number
-    releaseOrder: number
     abbreviation: number
     generation: number
     slug: number
     platformLogo: number
+    releaseOrder: number
     _all: number
   }
 
 
   export type PlatformAvgAggregateInputType = {
     id?: true
-    releaseOrder?: true
     generation?: true
-    platformLogo?: true
+    releaseOrder?: true
   }
 
   export type PlatformSumAggregateInputType = {
     id?: true
-    releaseOrder?: true
     generation?: true
-    platformLogo?: true
+    releaseOrder?: true
   }
 
   export type PlatformMinAggregateInputType = {
     id?: true
     name?: true
-    releaseOrder?: true
     abbreviation?: true
     generation?: true
     slug?: true
     platformLogo?: true
+    releaseOrder?: true
   }
 
   export type PlatformMaxAggregateInputType = {
     id?: true
     name?: true
-    releaseOrder?: true
     abbreviation?: true
     generation?: true
     slug?: true
     platformLogo?: true
+    releaseOrder?: true
   }
 
   export type PlatformCountAggregateInputType = {
     id?: true
     name?: true
-    releaseOrder?: true
     abbreviation?: true
     generation?: true
     slug?: true
     platformLogo?: true
+    releaseOrder?: true
     _all?: true
   }
 
@@ -7813,11 +7809,11 @@ export namespace Prisma {
   export type PlatformGroupByOutputType = {
     id: number
     name: string
-    releaseOrder: number | null
     abbreviation: string | null
     generation: number | null
     slug: string
-    platformLogo: number | null
+    platformLogo: string | null
+    releaseOrder: number | null
     _count: PlatformCountAggregateOutputType | null
     _avg: PlatformAvgAggregateOutputType | null
     _sum: PlatformSumAggregateOutputType | null
@@ -7842,11 +7838,11 @@ export namespace Prisma {
   export type PlatformSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
-    releaseOrder?: boolean
     abbreviation?: boolean
     generation?: boolean
     slug?: boolean
     platformLogo?: boolean
+    releaseOrder?: boolean
     games?: boolean | Platform$gamesArgs<ExtArgs>
     _count?: boolean | PlatformCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["platform"]>
@@ -7854,34 +7850,34 @@ export namespace Prisma {
   export type PlatformSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
-    releaseOrder?: boolean
     abbreviation?: boolean
     generation?: boolean
     slug?: boolean
     platformLogo?: boolean
+    releaseOrder?: boolean
   }, ExtArgs["result"]["platform"]>
 
   export type PlatformSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
-    releaseOrder?: boolean
     abbreviation?: boolean
     generation?: boolean
     slug?: boolean
     platformLogo?: boolean
+    releaseOrder?: boolean
   }, ExtArgs["result"]["platform"]>
 
   export type PlatformSelectScalar = {
     id?: boolean
     name?: boolean
-    releaseOrder?: boolean
     abbreviation?: boolean
     generation?: boolean
     slug?: boolean
     platformLogo?: boolean
+    releaseOrder?: boolean
   }
 
-  export type PlatformOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "releaseOrder" | "abbreviation" | "generation" | "slug" | "platformLogo", ExtArgs["result"]["platform"]>
+  export type PlatformOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "abbreviation" | "generation" | "slug" | "platformLogo" | "releaseOrder", ExtArgs["result"]["platform"]>
   export type PlatformInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     games?: boolean | Platform$gamesArgs<ExtArgs>
     _count?: boolean | PlatformCountOutputTypeDefaultArgs<ExtArgs>
@@ -7897,11 +7893,11 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: number
       name: string
-      releaseOrder: number | null
       abbreviation: string | null
       generation: number | null
       slug: string
-      platformLogo: number | null
+      platformLogo: string | null
+      releaseOrder: number | null
     }, ExtArgs["result"]["platform"]>
     composites: {}
   }
@@ -8328,11 +8324,11 @@ export namespace Prisma {
   interface PlatformFieldRefs {
     readonly id: FieldRef<"Platform", 'Int'>
     readonly name: FieldRef<"Platform", 'String'>
-    readonly releaseOrder: FieldRef<"Platform", 'Int'>
     readonly abbreviation: FieldRef<"Platform", 'String'>
     readonly generation: FieldRef<"Platform", 'Int'>
     readonly slug: FieldRef<"Platform", 'String'>
-    readonly platformLogo: FieldRef<"Platform", 'Int'>
+    readonly platformLogo: FieldRef<"Platform", 'String'>
+    readonly releaseOrder: FieldRef<"Platform", 'Int'>
   }
     
 
@@ -9878,23 +9874,23 @@ export namespace Prisma {
 
   export type GenreMinAggregateOutputType = {
     id: number | null
-    igdbId: number | null
     name: string | null
     slug: string | null
+    igdbId: number | null
   }
 
   export type GenreMaxAggregateOutputType = {
     id: number | null
-    igdbId: number | null
     name: string | null
     slug: string | null
+    igdbId: number | null
   }
 
   export type GenreCountAggregateOutputType = {
     id: number
-    igdbId: number
     name: number
     slug: number
+    igdbId: number
     _all: number
   }
 
@@ -9911,23 +9907,23 @@ export namespace Prisma {
 
   export type GenreMinAggregateInputType = {
     id?: true
-    igdbId?: true
     name?: true
     slug?: true
+    igdbId?: true
   }
 
   export type GenreMaxAggregateInputType = {
     id?: true
-    igdbId?: true
     name?: true
     slug?: true
+    igdbId?: true
   }
 
   export type GenreCountAggregateInputType = {
     id?: true
-    igdbId?: true
     name?: true
     slug?: true
+    igdbId?: true
     _all?: true
   }
 
@@ -10019,9 +10015,9 @@ export namespace Prisma {
 
   export type GenreGroupByOutputType = {
     id: number
-    igdbId: number
     name: string | null
     slug: string | null
+    igdbId: number
     _count: GenreCountAggregateOutputType | null
     _avg: GenreAvgAggregateOutputType | null
     _sum: GenreSumAggregateOutputType | null
@@ -10045,35 +10041,35 @@ export namespace Prisma {
 
   export type GenreSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    igdbId?: boolean
     name?: boolean
     slug?: boolean
+    igdbId?: boolean
     games?: boolean | Genre$gamesArgs<ExtArgs>
     _count?: boolean | GenreCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["genre"]>
 
   export type GenreSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    igdbId?: boolean
     name?: boolean
     slug?: boolean
+    igdbId?: boolean
   }, ExtArgs["result"]["genre"]>
 
   export type GenreSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    igdbId?: boolean
     name?: boolean
     slug?: boolean
+    igdbId?: boolean
   }, ExtArgs["result"]["genre"]>
 
   export type GenreSelectScalar = {
     id?: boolean
-    igdbId?: boolean
     name?: boolean
     slug?: boolean
+    igdbId?: boolean
   }
 
-  export type GenreOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "igdbId" | "name" | "slug", ExtArgs["result"]["genre"]>
+  export type GenreOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "slug" | "igdbId", ExtArgs["result"]["genre"]>
   export type GenreInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     games?: boolean | Genre$gamesArgs<ExtArgs>
     _count?: boolean | GenreCountOutputTypeDefaultArgs<ExtArgs>
@@ -10088,9 +10084,9 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
-      igdbId: number
       name: string | null
       slug: string | null
+      igdbId: number
     }, ExtArgs["result"]["genre"]>
     composites: {}
   }
@@ -10516,9 +10512,9 @@ export namespace Prisma {
    */
   interface GenreFieldRefs {
     readonly id: FieldRef<"Genre", 'Int'>
-    readonly igdbId: FieldRef<"Genre", 'Int'>
     readonly name: FieldRef<"Genre", 'String'>
     readonly slug: FieldRef<"Genre", 'String'>
+    readonly igdbId: FieldRef<"Genre", 'Int'>
   }
     
 
@@ -10964,47 +10960,47 @@ export namespace Prisma {
   export type CoverAvgAggregateOutputType = {
     id: number | null
     igdbId: number | null
+    gameId: number | null
     height: number | null
     width: number | null
-    gameId: number | null
   }
 
   export type CoverSumAggregateOutputType = {
     id: number | null
     igdbId: number | null
+    gameId: number | null
     height: number | null
     width: number | null
-    gameId: number | null
   }
 
   export type CoverMinAggregateOutputType = {
     id: number | null
-    igdbId: number | null
     imageId: string | null
     url: string | null
+    igdbId: number | null
+    gameId: number | null
     height: number | null
     width: number | null
-    gameId: number | null
   }
 
   export type CoverMaxAggregateOutputType = {
     id: number | null
-    igdbId: number | null
     imageId: string | null
     url: string | null
+    igdbId: number | null
+    gameId: number | null
     height: number | null
     width: number | null
-    gameId: number | null
   }
 
   export type CoverCountAggregateOutputType = {
     id: number
-    igdbId: number
     imageId: number
     url: number
+    igdbId: number
+    gameId: number
     height: number
     width: number
-    gameId: number
     _all: number
   }
 
@@ -11012,47 +11008,47 @@ export namespace Prisma {
   export type CoverAvgAggregateInputType = {
     id?: true
     igdbId?: true
+    gameId?: true
     height?: true
     width?: true
-    gameId?: true
   }
 
   export type CoverSumAggregateInputType = {
     id?: true
     igdbId?: true
+    gameId?: true
     height?: true
     width?: true
-    gameId?: true
   }
 
   export type CoverMinAggregateInputType = {
     id?: true
-    igdbId?: true
     imageId?: true
     url?: true
+    igdbId?: true
+    gameId?: true
     height?: true
     width?: true
-    gameId?: true
   }
 
   export type CoverMaxAggregateInputType = {
     id?: true
-    igdbId?: true
     imageId?: true
     url?: true
+    igdbId?: true
+    gameId?: true
     height?: true
     width?: true
-    gameId?: true
   }
 
   export type CoverCountAggregateInputType = {
     id?: true
-    igdbId?: true
     imageId?: true
     url?: true
+    igdbId?: true
+    gameId?: true
     height?: true
     width?: true
-    gameId?: true
     _all?: true
   }
 
@@ -11144,12 +11140,12 @@ export namespace Prisma {
 
   export type CoverGroupByOutputType = {
     id: number
-    igdbId: number
     imageId: string | null
     url: string | null
+    igdbId: number
+    gameId: number
     height: number | null
     width: number | null
-    gameId: number
     _count: CoverCountAggregateOutputType | null
     _avg: CoverAvgAggregateOutputType | null
     _sum: CoverSumAggregateOutputType | null
@@ -11173,48 +11169,48 @@ export namespace Prisma {
 
   export type CoverSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    igdbId?: boolean
     imageId?: boolean
     url?: boolean
+    igdbId?: boolean
+    gameId?: boolean
     height?: boolean
     width?: boolean
-    gameId?: boolean
     game?: boolean | GameDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["cover"]>
 
   export type CoverSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    igdbId?: boolean
     imageId?: boolean
     url?: boolean
+    igdbId?: boolean
+    gameId?: boolean
     height?: boolean
     width?: boolean
-    gameId?: boolean
     game?: boolean | GameDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["cover"]>
 
   export type CoverSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    igdbId?: boolean
     imageId?: boolean
     url?: boolean
+    igdbId?: boolean
+    gameId?: boolean
     height?: boolean
     width?: boolean
-    gameId?: boolean
     game?: boolean | GameDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["cover"]>
 
   export type CoverSelectScalar = {
     id?: boolean
-    igdbId?: boolean
     imageId?: boolean
     url?: boolean
+    igdbId?: boolean
+    gameId?: boolean
     height?: boolean
     width?: boolean
-    gameId?: boolean
   }
 
-  export type CoverOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "igdbId" | "imageId" | "url" | "height" | "width" | "gameId", ExtArgs["result"]["cover"]>
+  export type CoverOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "imageId" | "url" | "igdbId" | "gameId" | "height" | "width", ExtArgs["result"]["cover"]>
   export type CoverInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     game?: boolean | GameDefaultArgs<ExtArgs>
   }
@@ -11232,12 +11228,12 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
-      igdbId: number
       imageId: string | null
       url: string | null
+      igdbId: number
+      gameId: number
       height: number | null
       width: number | null
-      gameId: number
     }, ExtArgs["result"]["cover"]>
     composites: {}
   }
@@ -11663,12 +11659,12 @@ export namespace Prisma {
    */
   interface CoverFieldRefs {
     readonly id: FieldRef<"Cover", 'Int'>
-    readonly igdbId: FieldRef<"Cover", 'Int'>
     readonly imageId: FieldRef<"Cover", 'String'>
     readonly url: FieldRef<"Cover", 'String'>
+    readonly igdbId: FieldRef<"Cover", 'Int'>
+    readonly gameId: FieldRef<"Cover", 'Int'>
     readonly height: FieldRef<"Cover", 'Int'>
     readonly width: FieldRef<"Cover", 'Int'>
-    readonly gameId: FieldRef<"Cover", 'Int'>
   }
     
 
@@ -12097,96 +12093,96 @@ export namespace Prisma {
 
   export type ScreenshotAvgAggregateOutputType = {
     id: number | null
-    igdbId: number | null
+    gameId: number | null
     height: number | null
     width: number | null
-    gameId: number | null
+    igdbId: number | null
   }
 
   export type ScreenshotSumAggregateOutputType = {
     id: number | null
-    igdbId: number | null
+    gameId: number | null
     height: number | null
     width: number | null
-    gameId: number | null
+    igdbId: number | null
   }
 
   export type ScreenshotMinAggregateOutputType = {
     id: number | null
-    igdbId: number | null
     imageId: string | null
     url: string | null
+    gameId: number | null
     height: number | null
     width: number | null
-    gameId: number | null
+    igdbId: number | null
   }
 
   export type ScreenshotMaxAggregateOutputType = {
     id: number | null
-    igdbId: number | null
     imageId: string | null
     url: string | null
+    gameId: number | null
     height: number | null
     width: number | null
-    gameId: number | null
+    igdbId: number | null
   }
 
   export type ScreenshotCountAggregateOutputType = {
     id: number
-    igdbId: number
     imageId: number
     url: number
+    gameId: number
     height: number
     width: number
-    gameId: number
+    igdbId: number
     _all: number
   }
 
 
   export type ScreenshotAvgAggregateInputType = {
     id?: true
-    igdbId?: true
+    gameId?: true
     height?: true
     width?: true
-    gameId?: true
+    igdbId?: true
   }
 
   export type ScreenshotSumAggregateInputType = {
     id?: true
-    igdbId?: true
+    gameId?: true
     height?: true
     width?: true
-    gameId?: true
+    igdbId?: true
   }
 
   export type ScreenshotMinAggregateInputType = {
     id?: true
-    igdbId?: true
     imageId?: true
     url?: true
+    gameId?: true
     height?: true
     width?: true
-    gameId?: true
+    igdbId?: true
   }
 
   export type ScreenshotMaxAggregateInputType = {
     id?: true
-    igdbId?: true
     imageId?: true
     url?: true
+    gameId?: true
     height?: true
     width?: true
-    gameId?: true
+    igdbId?: true
   }
 
   export type ScreenshotCountAggregateInputType = {
     id?: true
-    igdbId?: true
     imageId?: true
     url?: true
+    gameId?: true
     height?: true
     width?: true
-    gameId?: true
+    igdbId?: true
     _all?: true
   }
 
@@ -12278,12 +12274,12 @@ export namespace Prisma {
 
   export type ScreenshotGroupByOutputType = {
     id: number
-    igdbId: number
     imageId: string | null
     url: string | null
+    gameId: number
     height: number | null
     width: number | null
-    gameId: number
+    igdbId: number
     _count: ScreenshotCountAggregateOutputType | null
     _avg: ScreenshotAvgAggregateOutputType | null
     _sum: ScreenshotSumAggregateOutputType | null
@@ -12307,48 +12303,48 @@ export namespace Prisma {
 
   export type ScreenshotSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    igdbId?: boolean
     imageId?: boolean
     url?: boolean
+    gameId?: boolean
     height?: boolean
     width?: boolean
-    gameId?: boolean
+    igdbId?: boolean
     game?: boolean | GameDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["screenshot"]>
 
   export type ScreenshotSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    igdbId?: boolean
     imageId?: boolean
     url?: boolean
+    gameId?: boolean
     height?: boolean
     width?: boolean
-    gameId?: boolean
+    igdbId?: boolean
     game?: boolean | GameDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["screenshot"]>
 
   export type ScreenshotSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    igdbId?: boolean
     imageId?: boolean
     url?: boolean
+    gameId?: boolean
     height?: boolean
     width?: boolean
-    gameId?: boolean
+    igdbId?: boolean
     game?: boolean | GameDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["screenshot"]>
 
   export type ScreenshotSelectScalar = {
     id?: boolean
-    igdbId?: boolean
     imageId?: boolean
     url?: boolean
+    gameId?: boolean
     height?: boolean
     width?: boolean
-    gameId?: boolean
+    igdbId?: boolean
   }
 
-  export type ScreenshotOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "igdbId" | "imageId" | "url" | "height" | "width" | "gameId", ExtArgs["result"]["screenshot"]>
+  export type ScreenshotOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "imageId" | "url" | "gameId" | "height" | "width" | "igdbId", ExtArgs["result"]["screenshot"]>
   export type ScreenshotInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     game?: boolean | GameDefaultArgs<ExtArgs>
   }
@@ -12366,12 +12362,12 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
-      igdbId: number
       imageId: string | null
       url: string | null
+      gameId: number
       height: number | null
       width: number | null
-      gameId: number
+      igdbId: number
     }, ExtArgs["result"]["screenshot"]>
     composites: {}
   }
@@ -12797,12 +12793,12 @@ export namespace Prisma {
    */
   interface ScreenshotFieldRefs {
     readonly id: FieldRef<"Screenshot", 'Int'>
-    readonly igdbId: FieldRef<"Screenshot", 'Int'>
     readonly imageId: FieldRef<"Screenshot", 'String'>
     readonly url: FieldRef<"Screenshot", 'String'>
+    readonly gameId: FieldRef<"Screenshot", 'Int'>
     readonly height: FieldRef<"Screenshot", 'Int'>
     readonly width: FieldRef<"Screenshot", 'Int'>
-    readonly gameId: FieldRef<"Screenshot", 'Int'>
+    readonly igdbId: FieldRef<"Screenshot", 'Int'>
   }
     
 
@@ -13264,21 +13260,21 @@ export namespace Prisma {
 
   export const GameScalarFieldEnum: {
     id: 'id',
-    igdbId: 'igdbId',
     name: 'name',
     slug: 'slug',
     summary: 'summary',
     storyline: 'storyline',
     firstReleaseDate: 'firstReleaseDate',
-    originalPlatform: 'originalPlatform',
     coverUrl: 'coverUrl',
     rating: 'rating',
     aggregatedRating: 'aggregatedRating',
     totalRating: 'totalRating',
     totalRatingCount: 'totalRatingCount',
+    url: 'url',
+    igdbId: 'igdbId',
+    originalPlatform: 'originalPlatform',
     ageRatingId: 'ageRatingId',
-    developerId: 'developerId',
-    url: 'url'
+    developerId: 'developerId'
   };
 
   export type GameScalarFieldEnum = (typeof GameScalarFieldEnum)[keyof typeof GameScalarFieldEnum]
@@ -13296,11 +13292,11 @@ export namespace Prisma {
   export const PlatformScalarFieldEnum: {
     id: 'id',
     name: 'name',
-    releaseOrder: 'releaseOrder',
     abbreviation: 'abbreviation',
     generation: 'generation',
     slug: 'slug',
-    platformLogo: 'platformLogo'
+    platformLogo: 'platformLogo',
+    releaseOrder: 'releaseOrder'
   };
 
   export type PlatformScalarFieldEnum = (typeof PlatformScalarFieldEnum)[keyof typeof PlatformScalarFieldEnum]
@@ -13318,9 +13314,9 @@ export namespace Prisma {
 
   export const GenreScalarFieldEnum: {
     id: 'id',
-    igdbId: 'igdbId',
     name: 'name',
-    slug: 'slug'
+    slug: 'slug',
+    igdbId: 'igdbId'
   };
 
   export type GenreScalarFieldEnum = (typeof GenreScalarFieldEnum)[keyof typeof GenreScalarFieldEnum]
@@ -13328,12 +13324,12 @@ export namespace Prisma {
 
   export const CoverScalarFieldEnum: {
     id: 'id',
-    igdbId: 'igdbId',
     imageId: 'imageId',
     url: 'url',
+    igdbId: 'igdbId',
+    gameId: 'gameId',
     height: 'height',
-    width: 'width',
-    gameId: 'gameId'
+    width: 'width'
   };
 
   export type CoverScalarFieldEnum = (typeof CoverScalarFieldEnum)[keyof typeof CoverScalarFieldEnum]
@@ -13341,12 +13337,12 @@ export namespace Prisma {
 
   export const ScreenshotScalarFieldEnum: {
     id: 'id',
-    igdbId: 'igdbId',
     imageId: 'imageId',
     url: 'url',
+    gameId: 'gameId',
     height: 'height',
     width: 'width',
-    gameId: 'gameId'
+    igdbId: 'igdbId'
   };
 
   export type ScreenshotScalarFieldEnum = (typeof ScreenshotScalarFieldEnum)[keyof typeof ScreenshotScalarFieldEnum]
@@ -13611,60 +13607,60 @@ export namespace Prisma {
     OR?: GameWhereInput[]
     NOT?: GameWhereInput | GameWhereInput[]
     id?: IntFilter<"Game"> | number
-    igdbId?: IntFilter<"Game"> | number
     name?: StringFilter<"Game"> | string
     slug?: StringFilter<"Game"> | string
     summary?: StringNullableFilter<"Game"> | string | null
     storyline?: StringNullableFilter<"Game"> | string | null
     firstReleaseDate?: DateTimeNullableFilter<"Game"> | Date | string | null
-    originalPlatform?: StringNullableFilter<"Game"> | string | null
     coverUrl?: StringNullableFilter<"Game"> | string | null
     rating?: FloatNullableFilter<"Game"> | number | null
     aggregatedRating?: FloatNullableFilter<"Game"> | number | null
     totalRating?: FloatNullableFilter<"Game"> | number | null
     totalRatingCount?: IntNullableFilter<"Game"> | number | null
+    url?: StringNullableFilter<"Game"> | string | null
+    igdbId?: IntFilter<"Game"> | number
+    originalPlatform?: StringNullableFilter<"Game"> | string | null
     ageRatingId?: IntNullableFilter<"Game"> | number | null
     developerId?: IntNullableFilter<"Game"> | number | null
-    url?: StringNullableFilter<"Game"> | string | null
+    covers?: CoverListRelationFilter
+    ageRating?: XOR<GameRatingNullableScalarRelationFilter, GameRatingWhereInput> | null
+    developer?: XOR<DevelopersNullableScalarRelationFilter, DevelopersWhereInput> | null
+    screenshots?: ScreenshotListRelationFilter
     genres?: GenreListRelationFilter
     platforms?: PlatformListRelationFilter
-    covers?: CoverListRelationFilter
-    screenshots?: ScreenshotListRelationFilter
-    developer?: XOR<DevelopersNullableScalarRelationFilter, DevelopersWhereInput> | null
-    ageRating?: XOR<GameRatingNullableScalarRelationFilter, GameRatingWhereInput> | null
     savedByUsers?: UserProfileListRelationFilter
   }
 
   export type GameOrderByWithRelationInput = {
     id?: SortOrder
-    igdbId?: SortOrder
     name?: SortOrder
     slug?: SortOrder
     summary?: SortOrderInput | SortOrder
     storyline?: SortOrderInput | SortOrder
     firstReleaseDate?: SortOrderInput | SortOrder
-    originalPlatform?: SortOrderInput | SortOrder
     coverUrl?: SortOrderInput | SortOrder
     rating?: SortOrderInput | SortOrder
     aggregatedRating?: SortOrderInput | SortOrder
     totalRating?: SortOrderInput | SortOrder
     totalRatingCount?: SortOrderInput | SortOrder
+    url?: SortOrderInput | SortOrder
+    igdbId?: SortOrder
+    originalPlatform?: SortOrderInput | SortOrder
     ageRatingId?: SortOrderInput | SortOrder
     developerId?: SortOrderInput | SortOrder
-    url?: SortOrderInput | SortOrder
+    covers?: CoverOrderByRelationAggregateInput
+    ageRating?: GameRatingOrderByWithRelationInput
+    developer?: DevelopersOrderByWithRelationInput
+    screenshots?: ScreenshotOrderByRelationAggregateInput
     genres?: GenreOrderByRelationAggregateInput
     platforms?: PlatformOrderByRelationAggregateInput
-    covers?: CoverOrderByRelationAggregateInput
-    screenshots?: ScreenshotOrderByRelationAggregateInput
-    developer?: DevelopersOrderByWithRelationInput
-    ageRating?: GameRatingOrderByWithRelationInput
     savedByUsers?: UserProfileOrderByRelationAggregateInput
   }
 
   export type GameWhereUniqueInput = Prisma.AtLeast<{
     id?: number
-    igdbId?: number
     slug?: string
+    igdbId?: number
     AND?: GameWhereInput | GameWhereInput[]
     OR?: GameWhereInput[]
     NOT?: GameWhereInput | GameWhereInput[]
@@ -13672,41 +13668,41 @@ export namespace Prisma {
     summary?: StringNullableFilter<"Game"> | string | null
     storyline?: StringNullableFilter<"Game"> | string | null
     firstReleaseDate?: DateTimeNullableFilter<"Game"> | Date | string | null
-    originalPlatform?: StringNullableFilter<"Game"> | string | null
     coverUrl?: StringNullableFilter<"Game"> | string | null
     rating?: FloatNullableFilter<"Game"> | number | null
     aggregatedRating?: FloatNullableFilter<"Game"> | number | null
     totalRating?: FloatNullableFilter<"Game"> | number | null
     totalRatingCount?: IntNullableFilter<"Game"> | number | null
+    url?: StringNullableFilter<"Game"> | string | null
+    originalPlatform?: StringNullableFilter<"Game"> | string | null
     ageRatingId?: IntNullableFilter<"Game"> | number | null
     developerId?: IntNullableFilter<"Game"> | number | null
-    url?: StringNullableFilter<"Game"> | string | null
+    covers?: CoverListRelationFilter
+    ageRating?: XOR<GameRatingNullableScalarRelationFilter, GameRatingWhereInput> | null
+    developer?: XOR<DevelopersNullableScalarRelationFilter, DevelopersWhereInput> | null
+    screenshots?: ScreenshotListRelationFilter
     genres?: GenreListRelationFilter
     platforms?: PlatformListRelationFilter
-    covers?: CoverListRelationFilter
-    screenshots?: ScreenshotListRelationFilter
-    developer?: XOR<DevelopersNullableScalarRelationFilter, DevelopersWhereInput> | null
-    ageRating?: XOR<GameRatingNullableScalarRelationFilter, GameRatingWhereInput> | null
     savedByUsers?: UserProfileListRelationFilter
-  }, "id" | "igdbId" | "slug">
+  }, "id" | "slug" | "igdbId">
 
   export type GameOrderByWithAggregationInput = {
     id?: SortOrder
-    igdbId?: SortOrder
     name?: SortOrder
     slug?: SortOrder
     summary?: SortOrderInput | SortOrder
     storyline?: SortOrderInput | SortOrder
     firstReleaseDate?: SortOrderInput | SortOrder
-    originalPlatform?: SortOrderInput | SortOrder
     coverUrl?: SortOrderInput | SortOrder
     rating?: SortOrderInput | SortOrder
     aggregatedRating?: SortOrderInput | SortOrder
     totalRating?: SortOrderInput | SortOrder
     totalRatingCount?: SortOrderInput | SortOrder
+    url?: SortOrderInput | SortOrder
+    igdbId?: SortOrder
+    originalPlatform?: SortOrderInput | SortOrder
     ageRatingId?: SortOrderInput | SortOrder
     developerId?: SortOrderInput | SortOrder
-    url?: SortOrderInput | SortOrder
     _count?: GameCountOrderByAggregateInput
     _avg?: GameAvgOrderByAggregateInput
     _max?: GameMaxOrderByAggregateInput
@@ -13719,21 +13715,21 @@ export namespace Prisma {
     OR?: GameScalarWhereWithAggregatesInput[]
     NOT?: GameScalarWhereWithAggregatesInput | GameScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"Game"> | number
-    igdbId?: IntWithAggregatesFilter<"Game"> | number
     name?: StringWithAggregatesFilter<"Game"> | string
     slug?: StringWithAggregatesFilter<"Game"> | string
     summary?: StringNullableWithAggregatesFilter<"Game"> | string | null
     storyline?: StringNullableWithAggregatesFilter<"Game"> | string | null
     firstReleaseDate?: DateTimeNullableWithAggregatesFilter<"Game"> | Date | string | null
-    originalPlatform?: StringNullableWithAggregatesFilter<"Game"> | string | null
     coverUrl?: StringNullableWithAggregatesFilter<"Game"> | string | null
     rating?: FloatNullableWithAggregatesFilter<"Game"> | number | null
     aggregatedRating?: FloatNullableWithAggregatesFilter<"Game"> | number | null
     totalRating?: FloatNullableWithAggregatesFilter<"Game"> | number | null
     totalRatingCount?: IntNullableWithAggregatesFilter<"Game"> | number | null
+    url?: StringNullableWithAggregatesFilter<"Game"> | string | null
+    igdbId?: IntWithAggregatesFilter<"Game"> | number
+    originalPlatform?: StringNullableWithAggregatesFilter<"Game"> | string | null
     ageRatingId?: IntNullableWithAggregatesFilter<"Game"> | number | null
     developerId?: IntNullableWithAggregatesFilter<"Game"> | number | null
-    url?: StringNullableWithAggregatesFilter<"Game"> | string | null
   }
 
   export type GameRatingWhereInput = {
@@ -13789,22 +13785,22 @@ export namespace Prisma {
     NOT?: PlatformWhereInput | PlatformWhereInput[]
     id?: IntFilter<"Platform"> | number
     name?: StringFilter<"Platform"> | string
-    releaseOrder?: IntNullableFilter<"Platform"> | number | null
     abbreviation?: StringNullableFilter<"Platform"> | string | null
     generation?: IntNullableFilter<"Platform"> | number | null
     slug?: StringFilter<"Platform"> | string
-    platformLogo?: IntNullableFilter<"Platform"> | number | null
+    platformLogo?: StringNullableFilter<"Platform"> | string | null
+    releaseOrder?: IntNullableFilter<"Platform"> | number | null
     games?: GameListRelationFilter
   }
 
   export type PlatformOrderByWithRelationInput = {
     id?: SortOrder
     name?: SortOrder
-    releaseOrder?: SortOrderInput | SortOrder
     abbreviation?: SortOrderInput | SortOrder
     generation?: SortOrderInput | SortOrder
     slug?: SortOrder
     platformLogo?: SortOrderInput | SortOrder
+    releaseOrder?: SortOrderInput | SortOrder
     games?: GameOrderByRelationAggregateInput
   }
 
@@ -13818,18 +13814,18 @@ export namespace Prisma {
     abbreviation?: StringNullableFilter<"Platform"> | string | null
     generation?: IntNullableFilter<"Platform"> | number | null
     slug?: StringFilter<"Platform"> | string
-    platformLogo?: IntNullableFilter<"Platform"> | number | null
+    platformLogo?: StringNullableFilter<"Platform"> | string | null
     games?: GameListRelationFilter
   }, "id" | "name" | "releaseOrder">
 
   export type PlatformOrderByWithAggregationInput = {
     id?: SortOrder
     name?: SortOrder
-    releaseOrder?: SortOrderInput | SortOrder
     abbreviation?: SortOrderInput | SortOrder
     generation?: SortOrderInput | SortOrder
     slug?: SortOrder
     platformLogo?: SortOrderInput | SortOrder
+    releaseOrder?: SortOrderInput | SortOrder
     _count?: PlatformCountOrderByAggregateInput
     _avg?: PlatformAvgOrderByAggregateInput
     _max?: PlatformMaxOrderByAggregateInput
@@ -13843,11 +13839,11 @@ export namespace Prisma {
     NOT?: PlatformScalarWhereWithAggregatesInput | PlatformScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"Platform"> | number
     name?: StringWithAggregatesFilter<"Platform"> | string
-    releaseOrder?: IntNullableWithAggregatesFilter<"Platform"> | number | null
     abbreviation?: StringNullableWithAggregatesFilter<"Platform"> | string | null
     generation?: IntNullableWithAggregatesFilter<"Platform"> | number | null
     slug?: StringWithAggregatesFilter<"Platform"> | string
-    platformLogo?: IntNullableWithAggregatesFilter<"Platform"> | number | null
+    platformLogo?: StringNullableWithAggregatesFilter<"Platform"> | string | null
+    releaseOrder?: IntNullableWithAggregatesFilter<"Platform"> | number | null
   }
 
   export type DevelopersWhereInput = {
@@ -13907,17 +13903,17 @@ export namespace Prisma {
     OR?: GenreWhereInput[]
     NOT?: GenreWhereInput | GenreWhereInput[]
     id?: IntFilter<"Genre"> | number
-    igdbId?: IntFilter<"Genre"> | number
     name?: StringNullableFilter<"Genre"> | string | null
     slug?: StringNullableFilter<"Genre"> | string | null
+    igdbId?: IntFilter<"Genre"> | number
     games?: GameListRelationFilter
   }
 
   export type GenreOrderByWithRelationInput = {
     id?: SortOrder
-    igdbId?: SortOrder
     name?: SortOrderInput | SortOrder
     slug?: SortOrderInput | SortOrder
+    igdbId?: SortOrder
     games?: GameOrderByRelationAggregateInput
   }
 
@@ -13934,9 +13930,9 @@ export namespace Prisma {
 
   export type GenreOrderByWithAggregationInput = {
     id?: SortOrder
-    igdbId?: SortOrder
     name?: SortOrderInput | SortOrder
     slug?: SortOrderInput | SortOrder
+    igdbId?: SortOrder
     _count?: GenreCountOrderByAggregateInput
     _avg?: GenreAvgOrderByAggregateInput
     _max?: GenreMaxOrderByAggregateInput
@@ -13949,9 +13945,9 @@ export namespace Prisma {
     OR?: GenreScalarWhereWithAggregatesInput[]
     NOT?: GenreScalarWhereWithAggregatesInput | GenreScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"Genre"> | number
-    igdbId?: IntWithAggregatesFilter<"Genre"> | number
     name?: StringNullableWithAggregatesFilter<"Genre"> | string | null
     slug?: StringNullableWithAggregatesFilter<"Genre"> | string | null
+    igdbId?: IntWithAggregatesFilter<"Genre"> | number
   }
 
   export type CoverWhereInput = {
@@ -13959,23 +13955,23 @@ export namespace Prisma {
     OR?: CoverWhereInput[]
     NOT?: CoverWhereInput | CoverWhereInput[]
     id?: IntFilter<"Cover"> | number
-    igdbId?: IntFilter<"Cover"> | number
     imageId?: StringNullableFilter<"Cover"> | string | null
     url?: StringNullableFilter<"Cover"> | string | null
+    igdbId?: IntFilter<"Cover"> | number
+    gameId?: IntFilter<"Cover"> | number
     height?: IntNullableFilter<"Cover"> | number | null
     width?: IntNullableFilter<"Cover"> | number | null
-    gameId?: IntFilter<"Cover"> | number
     game?: XOR<GameScalarRelationFilter, GameWhereInput>
   }
 
   export type CoverOrderByWithRelationInput = {
     id?: SortOrder
-    igdbId?: SortOrder
     imageId?: SortOrderInput | SortOrder
     url?: SortOrderInput | SortOrder
+    igdbId?: SortOrder
+    gameId?: SortOrder
     height?: SortOrderInput | SortOrder
     width?: SortOrderInput | SortOrder
-    gameId?: SortOrder
     game?: GameOrderByWithRelationInput
   }
 
@@ -13987,20 +13983,20 @@ export namespace Prisma {
     NOT?: CoverWhereInput | CoverWhereInput[]
     imageId?: StringNullableFilter<"Cover"> | string | null
     url?: StringNullableFilter<"Cover"> | string | null
+    gameId?: IntFilter<"Cover"> | number
     height?: IntNullableFilter<"Cover"> | number | null
     width?: IntNullableFilter<"Cover"> | number | null
-    gameId?: IntFilter<"Cover"> | number
     game?: XOR<GameScalarRelationFilter, GameWhereInput>
   }, "id" | "igdbId">
 
   export type CoverOrderByWithAggregationInput = {
     id?: SortOrder
-    igdbId?: SortOrder
     imageId?: SortOrderInput | SortOrder
     url?: SortOrderInput | SortOrder
+    igdbId?: SortOrder
+    gameId?: SortOrder
     height?: SortOrderInput | SortOrder
     width?: SortOrderInput | SortOrder
-    gameId?: SortOrder
     _count?: CoverCountOrderByAggregateInput
     _avg?: CoverAvgOrderByAggregateInput
     _max?: CoverMaxOrderByAggregateInput
@@ -14013,12 +14009,12 @@ export namespace Prisma {
     OR?: CoverScalarWhereWithAggregatesInput[]
     NOT?: CoverScalarWhereWithAggregatesInput | CoverScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"Cover"> | number
-    igdbId?: IntWithAggregatesFilter<"Cover"> | number
     imageId?: StringNullableWithAggregatesFilter<"Cover"> | string | null
     url?: StringNullableWithAggregatesFilter<"Cover"> | string | null
+    igdbId?: IntWithAggregatesFilter<"Cover"> | number
+    gameId?: IntWithAggregatesFilter<"Cover"> | number
     height?: IntNullableWithAggregatesFilter<"Cover"> | number | null
     width?: IntNullableWithAggregatesFilter<"Cover"> | number | null
-    gameId?: IntWithAggregatesFilter<"Cover"> | number
   }
 
   export type ScreenshotWhereInput = {
@@ -14026,23 +14022,23 @@ export namespace Prisma {
     OR?: ScreenshotWhereInput[]
     NOT?: ScreenshotWhereInput | ScreenshotWhereInput[]
     id?: IntFilter<"Screenshot"> | number
-    igdbId?: IntFilter<"Screenshot"> | number
     imageId?: StringNullableFilter<"Screenshot"> | string | null
     url?: StringNullableFilter<"Screenshot"> | string | null
+    gameId?: IntFilter<"Screenshot"> | number
     height?: IntNullableFilter<"Screenshot"> | number | null
     width?: IntNullableFilter<"Screenshot"> | number | null
-    gameId?: IntFilter<"Screenshot"> | number
+    igdbId?: IntFilter<"Screenshot"> | number
     game?: XOR<GameScalarRelationFilter, GameWhereInput>
   }
 
   export type ScreenshotOrderByWithRelationInput = {
     id?: SortOrder
-    igdbId?: SortOrder
     imageId?: SortOrderInput | SortOrder
     url?: SortOrderInput | SortOrder
+    gameId?: SortOrder
     height?: SortOrderInput | SortOrder
     width?: SortOrderInput | SortOrder
-    gameId?: SortOrder
+    igdbId?: SortOrder
     game?: GameOrderByWithRelationInput
   }
 
@@ -14054,20 +14050,20 @@ export namespace Prisma {
     NOT?: ScreenshotWhereInput | ScreenshotWhereInput[]
     imageId?: StringNullableFilter<"Screenshot"> | string | null
     url?: StringNullableFilter<"Screenshot"> | string | null
+    gameId?: IntFilter<"Screenshot"> | number
     height?: IntNullableFilter<"Screenshot"> | number | null
     width?: IntNullableFilter<"Screenshot"> | number | null
-    gameId?: IntFilter<"Screenshot"> | number
     game?: XOR<GameScalarRelationFilter, GameWhereInput>
   }, "id" | "igdbId">
 
   export type ScreenshotOrderByWithAggregationInput = {
     id?: SortOrder
-    igdbId?: SortOrder
     imageId?: SortOrderInput | SortOrder
     url?: SortOrderInput | SortOrder
+    gameId?: SortOrder
     height?: SortOrderInput | SortOrder
     width?: SortOrderInput | SortOrder
-    gameId?: SortOrder
+    igdbId?: SortOrder
     _count?: ScreenshotCountOrderByAggregateInput
     _avg?: ScreenshotAvgOrderByAggregateInput
     _max?: ScreenshotMaxOrderByAggregateInput
@@ -14080,12 +14076,12 @@ export namespace Prisma {
     OR?: ScreenshotScalarWhereWithAggregatesInput[]
     NOT?: ScreenshotScalarWhereWithAggregatesInput | ScreenshotScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"Screenshot"> | number
-    igdbId?: IntWithAggregatesFilter<"Screenshot"> | number
     imageId?: StringNullableWithAggregatesFilter<"Screenshot"> | string | null
     url?: StringNullableWithAggregatesFilter<"Screenshot"> | string | null
+    gameId?: IntWithAggregatesFilter<"Screenshot"> | number
     height?: IntNullableWithAggregatesFilter<"Screenshot"> | number | null
     width?: IntNullableWithAggregatesFilter<"Screenshot"> | number | null
-    gameId?: IntWithAggregatesFilter<"Screenshot"> | number
+    igdbId?: IntWithAggregatesFilter<"Screenshot"> | number
   }
 
   export type SessionCreateInput = {
@@ -14245,151 +14241,151 @@ export namespace Prisma {
   }
 
   export type GameCreateInput = {
-    igdbId: number
     name: string
     slug: string
     summary?: string | null
     storyline?: string | null
     firstReleaseDate?: Date | string | null
-    originalPlatform?: string | null
     coverUrl?: string | null
     rating?: number | null
     aggregatedRating?: number | null
     totalRating?: number | null
     totalRatingCount?: number | null
     url?: string | null
+    igdbId: number
+    originalPlatform?: string | null
+    covers?: CoverCreateNestedManyWithoutGameInput
+    ageRating?: GameRatingCreateNestedOneWithoutGamesInput
+    developer?: DevelopersCreateNestedOneWithoutGamesInput
+    screenshots?: ScreenshotCreateNestedManyWithoutGameInput
     genres?: GenreCreateNestedManyWithoutGamesInput
     platforms?: PlatformCreateNestedManyWithoutGamesInput
-    covers?: CoverCreateNestedManyWithoutGameInput
-    screenshots?: ScreenshotCreateNestedManyWithoutGameInput
-    developer?: DevelopersCreateNestedOneWithoutGamesInput
-    ageRating?: GameRatingCreateNestedOneWithoutGamesInput
     savedByUsers?: UserProfileCreateNestedManyWithoutSavedGamesInput
   }
 
   export type GameUncheckedCreateInput = {
     id?: number
-    igdbId: number
     name: string
     slug: string
     summary?: string | null
     storyline?: string | null
     firstReleaseDate?: Date | string | null
-    originalPlatform?: string | null
     coverUrl?: string | null
     rating?: number | null
     aggregatedRating?: number | null
     totalRating?: number | null
     totalRatingCount?: number | null
+    url?: string | null
+    igdbId: number
+    originalPlatform?: string | null
     ageRatingId?: number | null
     developerId?: number | null
-    url?: string | null
-    genres?: GenreUncheckedCreateNestedManyWithoutGamesInput
-    platforms?: PlatformUncheckedCreateNestedManyWithoutGamesInput
     covers?: CoverUncheckedCreateNestedManyWithoutGameInput
     screenshots?: ScreenshotUncheckedCreateNestedManyWithoutGameInput
+    genres?: GenreUncheckedCreateNestedManyWithoutGamesInput
+    platforms?: PlatformUncheckedCreateNestedManyWithoutGamesInput
     savedByUsers?: UserProfileUncheckedCreateNestedManyWithoutSavedGamesInput
   }
 
   export type GameUpdateInput = {
-    igdbId?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
     summary?: NullableStringFieldUpdateOperationsInput | string | null
     storyline?: NullableStringFieldUpdateOperationsInput | string | null
     firstReleaseDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    originalPlatform?: NullableStringFieldUpdateOperationsInput | string | null
     coverUrl?: NullableStringFieldUpdateOperationsInput | string | null
     rating?: NullableFloatFieldUpdateOperationsInput | number | null
     aggregatedRating?: NullableFloatFieldUpdateOperationsInput | number | null
     totalRating?: NullableFloatFieldUpdateOperationsInput | number | null
     totalRatingCount?: NullableIntFieldUpdateOperationsInput | number | null
     url?: NullableStringFieldUpdateOperationsInput | string | null
+    igdbId?: IntFieldUpdateOperationsInput | number
+    originalPlatform?: NullableStringFieldUpdateOperationsInput | string | null
+    covers?: CoverUpdateManyWithoutGameNestedInput
+    ageRating?: GameRatingUpdateOneWithoutGamesNestedInput
+    developer?: DevelopersUpdateOneWithoutGamesNestedInput
+    screenshots?: ScreenshotUpdateManyWithoutGameNestedInput
     genres?: GenreUpdateManyWithoutGamesNestedInput
     platforms?: PlatformUpdateManyWithoutGamesNestedInput
-    covers?: CoverUpdateManyWithoutGameNestedInput
-    screenshots?: ScreenshotUpdateManyWithoutGameNestedInput
-    developer?: DevelopersUpdateOneWithoutGamesNestedInput
-    ageRating?: GameRatingUpdateOneWithoutGamesNestedInput
     savedByUsers?: UserProfileUpdateManyWithoutSavedGamesNestedInput
   }
 
   export type GameUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
-    igdbId?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
     summary?: NullableStringFieldUpdateOperationsInput | string | null
     storyline?: NullableStringFieldUpdateOperationsInput | string | null
     firstReleaseDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    originalPlatform?: NullableStringFieldUpdateOperationsInput | string | null
     coverUrl?: NullableStringFieldUpdateOperationsInput | string | null
     rating?: NullableFloatFieldUpdateOperationsInput | number | null
     aggregatedRating?: NullableFloatFieldUpdateOperationsInput | number | null
     totalRating?: NullableFloatFieldUpdateOperationsInput | number | null
     totalRatingCount?: NullableIntFieldUpdateOperationsInput | number | null
+    url?: NullableStringFieldUpdateOperationsInput | string | null
+    igdbId?: IntFieldUpdateOperationsInput | number
+    originalPlatform?: NullableStringFieldUpdateOperationsInput | string | null
     ageRatingId?: NullableIntFieldUpdateOperationsInput | number | null
     developerId?: NullableIntFieldUpdateOperationsInput | number | null
-    url?: NullableStringFieldUpdateOperationsInput | string | null
-    genres?: GenreUncheckedUpdateManyWithoutGamesNestedInput
-    platforms?: PlatformUncheckedUpdateManyWithoutGamesNestedInput
     covers?: CoverUncheckedUpdateManyWithoutGameNestedInput
     screenshots?: ScreenshotUncheckedUpdateManyWithoutGameNestedInput
+    genres?: GenreUncheckedUpdateManyWithoutGamesNestedInput
+    platforms?: PlatformUncheckedUpdateManyWithoutGamesNestedInput
     savedByUsers?: UserProfileUncheckedUpdateManyWithoutSavedGamesNestedInput
   }
 
   export type GameCreateManyInput = {
     id?: number
-    igdbId: number
     name: string
     slug: string
     summary?: string | null
     storyline?: string | null
     firstReleaseDate?: Date | string | null
-    originalPlatform?: string | null
     coverUrl?: string | null
     rating?: number | null
     aggregatedRating?: number | null
     totalRating?: number | null
     totalRatingCount?: number | null
+    url?: string | null
+    igdbId: number
+    originalPlatform?: string | null
     ageRatingId?: number | null
     developerId?: number | null
-    url?: string | null
   }
 
   export type GameUpdateManyMutationInput = {
-    igdbId?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
     summary?: NullableStringFieldUpdateOperationsInput | string | null
     storyline?: NullableStringFieldUpdateOperationsInput | string | null
     firstReleaseDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    originalPlatform?: NullableStringFieldUpdateOperationsInput | string | null
     coverUrl?: NullableStringFieldUpdateOperationsInput | string | null
     rating?: NullableFloatFieldUpdateOperationsInput | number | null
     aggregatedRating?: NullableFloatFieldUpdateOperationsInput | number | null
     totalRating?: NullableFloatFieldUpdateOperationsInput | number | null
     totalRatingCount?: NullableIntFieldUpdateOperationsInput | number | null
     url?: NullableStringFieldUpdateOperationsInput | string | null
+    igdbId?: IntFieldUpdateOperationsInput | number
+    originalPlatform?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type GameUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
-    igdbId?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
     summary?: NullableStringFieldUpdateOperationsInput | string | null
     storyline?: NullableStringFieldUpdateOperationsInput | string | null
     firstReleaseDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    originalPlatform?: NullableStringFieldUpdateOperationsInput | string | null
     coverUrl?: NullableStringFieldUpdateOperationsInput | string | null
     rating?: NullableFloatFieldUpdateOperationsInput | number | null
     aggregatedRating?: NullableFloatFieldUpdateOperationsInput | number | null
     totalRating?: NullableFloatFieldUpdateOperationsInput | number | null
     totalRatingCount?: NullableIntFieldUpdateOperationsInput | number | null
+    url?: NullableStringFieldUpdateOperationsInput | string | null
+    igdbId?: IntFieldUpdateOperationsInput | number
+    originalPlatform?: NullableStringFieldUpdateOperationsInput | string | null
     ageRatingId?: NullableIntFieldUpdateOperationsInput | number | null
     developerId?: NullableIntFieldUpdateOperationsInput | number | null
-    url?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type GameRatingCreateInput = {
@@ -14441,75 +14437,75 @@ export namespace Prisma {
   export type PlatformCreateInput = {
     id: number
     name: string
-    releaseOrder?: number | null
     abbreviation?: string | null
     generation?: number | null
     slug: string
-    platformLogo?: number | null
+    platformLogo?: string | null
+    releaseOrder?: number | null
     games?: GameCreateNestedManyWithoutPlatformsInput
   }
 
   export type PlatformUncheckedCreateInput = {
     id: number
     name: string
-    releaseOrder?: number | null
     abbreviation?: string | null
     generation?: number | null
     slug: string
-    platformLogo?: number | null
+    platformLogo?: string | null
+    releaseOrder?: number | null
     games?: GameUncheckedCreateNestedManyWithoutPlatformsInput
   }
 
   export type PlatformUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
-    releaseOrder?: NullableIntFieldUpdateOperationsInput | number | null
     abbreviation?: NullableStringFieldUpdateOperationsInput | string | null
     generation?: NullableIntFieldUpdateOperationsInput | number | null
     slug?: StringFieldUpdateOperationsInput | string
-    platformLogo?: NullableIntFieldUpdateOperationsInput | number | null
+    platformLogo?: NullableStringFieldUpdateOperationsInput | string | null
+    releaseOrder?: NullableIntFieldUpdateOperationsInput | number | null
     games?: GameUpdateManyWithoutPlatformsNestedInput
   }
 
   export type PlatformUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
-    releaseOrder?: NullableIntFieldUpdateOperationsInput | number | null
     abbreviation?: NullableStringFieldUpdateOperationsInput | string | null
     generation?: NullableIntFieldUpdateOperationsInput | number | null
     slug?: StringFieldUpdateOperationsInput | string
-    platformLogo?: NullableIntFieldUpdateOperationsInput | number | null
+    platformLogo?: NullableStringFieldUpdateOperationsInput | string | null
+    releaseOrder?: NullableIntFieldUpdateOperationsInput | number | null
     games?: GameUncheckedUpdateManyWithoutPlatformsNestedInput
   }
 
   export type PlatformCreateManyInput = {
     id: number
     name: string
-    releaseOrder?: number | null
     abbreviation?: string | null
     generation?: number | null
     slug: string
-    platformLogo?: number | null
+    platformLogo?: string | null
+    releaseOrder?: number | null
   }
 
   export type PlatformUpdateManyMutationInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
-    releaseOrder?: NullableIntFieldUpdateOperationsInput | number | null
     abbreviation?: NullableStringFieldUpdateOperationsInput | string | null
     generation?: NullableIntFieldUpdateOperationsInput | number | null
     slug?: StringFieldUpdateOperationsInput | string
-    platformLogo?: NullableIntFieldUpdateOperationsInput | number | null
+    platformLogo?: NullableStringFieldUpdateOperationsInput | string | null
+    releaseOrder?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type PlatformUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
-    releaseOrder?: NullableIntFieldUpdateOperationsInput | number | null
     abbreviation?: NullableStringFieldUpdateOperationsInput | string | null
     generation?: NullableIntFieldUpdateOperationsInput | number | null
     slug?: StringFieldUpdateOperationsInput | string
-    platformLogo?: NullableIntFieldUpdateOperationsInput | number | null
+    platformLogo?: NullableStringFieldUpdateOperationsInput | string | null
+    releaseOrder?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type DevelopersCreateInput = {
@@ -14566,59 +14562,59 @@ export namespace Prisma {
   }
 
   export type GenreCreateInput = {
-    igdbId: number
     name?: string | null
     slug?: string | null
+    igdbId: number
     games?: GameCreateNestedManyWithoutGenresInput
   }
 
   export type GenreUncheckedCreateInput = {
     id?: number
-    igdbId: number
     name?: string | null
     slug?: string | null
+    igdbId: number
     games?: GameUncheckedCreateNestedManyWithoutGenresInput
   }
 
   export type GenreUpdateInput = {
-    igdbId?: IntFieldUpdateOperationsInput | number
     name?: NullableStringFieldUpdateOperationsInput | string | null
     slug?: NullableStringFieldUpdateOperationsInput | string | null
+    igdbId?: IntFieldUpdateOperationsInput | number
     games?: GameUpdateManyWithoutGenresNestedInput
   }
 
   export type GenreUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
-    igdbId?: IntFieldUpdateOperationsInput | number
     name?: NullableStringFieldUpdateOperationsInput | string | null
     slug?: NullableStringFieldUpdateOperationsInput | string | null
+    igdbId?: IntFieldUpdateOperationsInput | number
     games?: GameUncheckedUpdateManyWithoutGenresNestedInput
   }
 
   export type GenreCreateManyInput = {
     id?: number
-    igdbId: number
     name?: string | null
     slug?: string | null
+    igdbId: number
   }
 
   export type GenreUpdateManyMutationInput = {
-    igdbId?: IntFieldUpdateOperationsInput | number
     name?: NullableStringFieldUpdateOperationsInput | string | null
     slug?: NullableStringFieldUpdateOperationsInput | string | null
+    igdbId?: IntFieldUpdateOperationsInput | number
   }
 
   export type GenreUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
-    igdbId?: IntFieldUpdateOperationsInput | number
     name?: NullableStringFieldUpdateOperationsInput | string | null
     slug?: NullableStringFieldUpdateOperationsInput | string | null
+    igdbId?: IntFieldUpdateOperationsInput | number
   }
 
   export type CoverCreateInput = {
-    igdbId: number
     imageId?: string | null
     url?: string | null
+    igdbId: number
     height?: number | null
     width?: number | null
     game: GameCreateNestedOneWithoutCoversInput
@@ -14626,18 +14622,18 @@ export namespace Prisma {
 
   export type CoverUncheckedCreateInput = {
     id?: number
-    igdbId: number
     imageId?: string | null
     url?: string | null
+    igdbId: number
+    gameId: number
     height?: number | null
     width?: number | null
-    gameId: number
   }
 
   export type CoverUpdateInput = {
-    igdbId?: IntFieldUpdateOperationsInput | number
     imageId?: NullableStringFieldUpdateOperationsInput | string | null
     url?: NullableStringFieldUpdateOperationsInput | string | null
+    igdbId?: IntFieldUpdateOperationsInput | number
     height?: NullableIntFieldUpdateOperationsInput | number | null
     width?: NullableIntFieldUpdateOperationsInput | number | null
     game?: GameUpdateOneRequiredWithoutCoversNestedInput
@@ -14645,106 +14641,106 @@ export namespace Prisma {
 
   export type CoverUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
-    igdbId?: IntFieldUpdateOperationsInput | number
     imageId?: NullableStringFieldUpdateOperationsInput | string | null
     url?: NullableStringFieldUpdateOperationsInput | string | null
+    igdbId?: IntFieldUpdateOperationsInput | number
+    gameId?: IntFieldUpdateOperationsInput | number
     height?: NullableIntFieldUpdateOperationsInput | number | null
     width?: NullableIntFieldUpdateOperationsInput | number | null
-    gameId?: IntFieldUpdateOperationsInput | number
   }
 
   export type CoverCreateManyInput = {
     id?: number
-    igdbId: number
     imageId?: string | null
     url?: string | null
+    igdbId: number
+    gameId: number
     height?: number | null
     width?: number | null
-    gameId: number
   }
 
   export type CoverUpdateManyMutationInput = {
-    igdbId?: IntFieldUpdateOperationsInput | number
     imageId?: NullableStringFieldUpdateOperationsInput | string | null
     url?: NullableStringFieldUpdateOperationsInput | string | null
+    igdbId?: IntFieldUpdateOperationsInput | number
     height?: NullableIntFieldUpdateOperationsInput | number | null
     width?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type CoverUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
-    igdbId?: IntFieldUpdateOperationsInput | number
     imageId?: NullableStringFieldUpdateOperationsInput | string | null
     url?: NullableStringFieldUpdateOperationsInput | string | null
+    igdbId?: IntFieldUpdateOperationsInput | number
+    gameId?: IntFieldUpdateOperationsInput | number
     height?: NullableIntFieldUpdateOperationsInput | number | null
     width?: NullableIntFieldUpdateOperationsInput | number | null
-    gameId?: IntFieldUpdateOperationsInput | number
   }
 
   export type ScreenshotCreateInput = {
-    igdbId: number
     imageId?: string | null
     url?: string | null
     height?: number | null
     width?: number | null
+    igdbId: number
     game: GameCreateNestedOneWithoutScreenshotsInput
   }
 
   export type ScreenshotUncheckedCreateInput = {
     id?: number
-    igdbId: number
     imageId?: string | null
     url?: string | null
+    gameId: number
     height?: number | null
     width?: number | null
-    gameId: number
+    igdbId: number
   }
 
   export type ScreenshotUpdateInput = {
-    igdbId?: IntFieldUpdateOperationsInput | number
     imageId?: NullableStringFieldUpdateOperationsInput | string | null
     url?: NullableStringFieldUpdateOperationsInput | string | null
     height?: NullableIntFieldUpdateOperationsInput | number | null
     width?: NullableIntFieldUpdateOperationsInput | number | null
+    igdbId?: IntFieldUpdateOperationsInput | number
     game?: GameUpdateOneRequiredWithoutScreenshotsNestedInput
   }
 
   export type ScreenshotUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
-    igdbId?: IntFieldUpdateOperationsInput | number
     imageId?: NullableStringFieldUpdateOperationsInput | string | null
     url?: NullableStringFieldUpdateOperationsInput | string | null
+    gameId?: IntFieldUpdateOperationsInput | number
     height?: NullableIntFieldUpdateOperationsInput | number | null
     width?: NullableIntFieldUpdateOperationsInput | number | null
-    gameId?: IntFieldUpdateOperationsInput | number
+    igdbId?: IntFieldUpdateOperationsInput | number
   }
 
   export type ScreenshotCreateManyInput = {
     id?: number
-    igdbId: number
     imageId?: string | null
     url?: string | null
+    gameId: number
     height?: number | null
     width?: number | null
-    gameId: number
+    igdbId: number
   }
 
   export type ScreenshotUpdateManyMutationInput = {
-    igdbId?: IntFieldUpdateOperationsInput | number
     imageId?: NullableStringFieldUpdateOperationsInput | string | null
     url?: NullableStringFieldUpdateOperationsInput | string | null
     height?: NullableIntFieldUpdateOperationsInput | number | null
     width?: NullableIntFieldUpdateOperationsInput | number | null
+    igdbId?: IntFieldUpdateOperationsInput | number
   }
 
   export type ScreenshotUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
-    igdbId?: IntFieldUpdateOperationsInput | number
     imageId?: NullableStringFieldUpdateOperationsInput | string | null
     url?: NullableStringFieldUpdateOperationsInput | string | null
+    gameId?: IntFieldUpdateOperationsInput | number
     height?: NullableIntFieldUpdateOperationsInput | number | null
     width?: NullableIntFieldUpdateOperationsInput | number | null
-    gameId?: IntFieldUpdateOperationsInput | number
+    igdbId?: IntFieldUpdateOperationsInput | number
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -14997,6 +14993,28 @@ export namespace Prisma {
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
+  export type CoverListRelationFilter = {
+    every?: CoverWhereInput
+    some?: CoverWhereInput
+    none?: CoverWhereInput
+  }
+
+  export type GameRatingNullableScalarRelationFilter = {
+    is?: GameRatingWhereInput | null
+    isNot?: GameRatingWhereInput | null
+  }
+
+  export type DevelopersNullableScalarRelationFilter = {
+    is?: DevelopersWhereInput | null
+    isNot?: DevelopersWhereInput | null
+  }
+
+  export type ScreenshotListRelationFilter = {
+    every?: ScreenshotWhereInput
+    some?: ScreenshotWhereInput
+    none?: ScreenshotWhereInput
+  }
+
   export type GenreListRelationFilter = {
     every?: GenreWhereInput
     some?: GenreWhereInput
@@ -15007,28 +15025,6 @@ export namespace Prisma {
     every?: PlatformWhereInput
     some?: PlatformWhereInput
     none?: PlatformWhereInput
-  }
-
-  export type CoverListRelationFilter = {
-    every?: CoverWhereInput
-    some?: CoverWhereInput
-    none?: CoverWhereInput
-  }
-
-  export type ScreenshotListRelationFilter = {
-    every?: ScreenshotWhereInput
-    some?: ScreenshotWhereInput
-    none?: ScreenshotWhereInput
-  }
-
-  export type DevelopersNullableScalarRelationFilter = {
-    is?: DevelopersWhereInput | null
-    isNot?: DevelopersWhereInput | null
-  }
-
-  export type GameRatingNullableScalarRelationFilter = {
-    is?: GameRatingWhereInput | null
-    isNot?: GameRatingWhereInput | null
   }
 
   export type UserProfileListRelationFilter = {
@@ -15042,19 +15038,19 @@ export namespace Prisma {
     nulls?: NullsOrder
   }
 
-  export type GenreOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type PlatformOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
   export type CoverOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
   export type ScreenshotOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type GenreOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type PlatformOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -15064,79 +15060,79 @@ export namespace Prisma {
 
   export type GameCountOrderByAggregateInput = {
     id?: SortOrder
-    igdbId?: SortOrder
     name?: SortOrder
     slug?: SortOrder
     summary?: SortOrder
     storyline?: SortOrder
     firstReleaseDate?: SortOrder
-    originalPlatform?: SortOrder
     coverUrl?: SortOrder
     rating?: SortOrder
     aggregatedRating?: SortOrder
     totalRating?: SortOrder
     totalRatingCount?: SortOrder
+    url?: SortOrder
+    igdbId?: SortOrder
+    originalPlatform?: SortOrder
     ageRatingId?: SortOrder
     developerId?: SortOrder
-    url?: SortOrder
   }
 
   export type GameAvgOrderByAggregateInput = {
     id?: SortOrder
-    igdbId?: SortOrder
     rating?: SortOrder
     aggregatedRating?: SortOrder
     totalRating?: SortOrder
     totalRatingCount?: SortOrder
+    igdbId?: SortOrder
     ageRatingId?: SortOrder
     developerId?: SortOrder
   }
 
   export type GameMaxOrderByAggregateInput = {
     id?: SortOrder
-    igdbId?: SortOrder
     name?: SortOrder
     slug?: SortOrder
     summary?: SortOrder
     storyline?: SortOrder
     firstReleaseDate?: SortOrder
-    originalPlatform?: SortOrder
     coverUrl?: SortOrder
     rating?: SortOrder
     aggregatedRating?: SortOrder
     totalRating?: SortOrder
     totalRatingCount?: SortOrder
+    url?: SortOrder
+    igdbId?: SortOrder
+    originalPlatform?: SortOrder
     ageRatingId?: SortOrder
     developerId?: SortOrder
-    url?: SortOrder
   }
 
   export type GameMinOrderByAggregateInput = {
     id?: SortOrder
-    igdbId?: SortOrder
     name?: SortOrder
     slug?: SortOrder
     summary?: SortOrder
     storyline?: SortOrder
     firstReleaseDate?: SortOrder
-    originalPlatform?: SortOrder
     coverUrl?: SortOrder
     rating?: SortOrder
     aggregatedRating?: SortOrder
     totalRating?: SortOrder
     totalRatingCount?: SortOrder
+    url?: SortOrder
+    igdbId?: SortOrder
+    originalPlatform?: SortOrder
     ageRatingId?: SortOrder
     developerId?: SortOrder
-    url?: SortOrder
   }
 
   export type GameSumOrderByAggregateInput = {
     id?: SortOrder
-    igdbId?: SortOrder
     rating?: SortOrder
     aggregatedRating?: SortOrder
     totalRating?: SortOrder
     totalRatingCount?: SortOrder
+    igdbId?: SortOrder
     ageRatingId?: SortOrder
     developerId?: SortOrder
   }
@@ -15234,45 +15230,43 @@ export namespace Prisma {
   export type PlatformCountOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
-    releaseOrder?: SortOrder
     abbreviation?: SortOrder
     generation?: SortOrder
     slug?: SortOrder
     platformLogo?: SortOrder
+    releaseOrder?: SortOrder
   }
 
   export type PlatformAvgOrderByAggregateInput = {
     id?: SortOrder
-    releaseOrder?: SortOrder
     generation?: SortOrder
-    platformLogo?: SortOrder
+    releaseOrder?: SortOrder
   }
 
   export type PlatformMaxOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
-    releaseOrder?: SortOrder
     abbreviation?: SortOrder
     generation?: SortOrder
     slug?: SortOrder
     platformLogo?: SortOrder
+    releaseOrder?: SortOrder
   }
 
   export type PlatformMinOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
-    releaseOrder?: SortOrder
     abbreviation?: SortOrder
     generation?: SortOrder
     slug?: SortOrder
     platformLogo?: SortOrder
+    releaseOrder?: SortOrder
   }
 
   export type PlatformSumOrderByAggregateInput = {
     id?: SortOrder
-    releaseOrder?: SortOrder
     generation?: SortOrder
-    platformLogo?: SortOrder
+    releaseOrder?: SortOrder
   }
 
   export type DevelopersCountOrderByAggregateInput = {
@@ -15306,9 +15300,9 @@ export namespace Prisma {
 
   export type GenreCountOrderByAggregateInput = {
     id?: SortOrder
-    igdbId?: SortOrder
     name?: SortOrder
     slug?: SortOrder
+    igdbId?: SortOrder
   }
 
   export type GenreAvgOrderByAggregateInput = {
@@ -15318,16 +15312,16 @@ export namespace Prisma {
 
   export type GenreMaxOrderByAggregateInput = {
     id?: SortOrder
-    igdbId?: SortOrder
     name?: SortOrder
     slug?: SortOrder
+    igdbId?: SortOrder
   }
 
   export type GenreMinOrderByAggregateInput = {
     id?: SortOrder
-    igdbId?: SortOrder
     name?: SortOrder
     slug?: SortOrder
+    igdbId?: SortOrder
   }
 
   export type GenreSumOrderByAggregateInput = {
@@ -15342,94 +15336,94 @@ export namespace Prisma {
 
   export type CoverCountOrderByAggregateInput = {
     id?: SortOrder
-    igdbId?: SortOrder
     imageId?: SortOrder
     url?: SortOrder
+    igdbId?: SortOrder
+    gameId?: SortOrder
     height?: SortOrder
     width?: SortOrder
-    gameId?: SortOrder
   }
 
   export type CoverAvgOrderByAggregateInput = {
     id?: SortOrder
     igdbId?: SortOrder
+    gameId?: SortOrder
     height?: SortOrder
     width?: SortOrder
-    gameId?: SortOrder
   }
 
   export type CoverMaxOrderByAggregateInput = {
     id?: SortOrder
-    igdbId?: SortOrder
     imageId?: SortOrder
     url?: SortOrder
+    igdbId?: SortOrder
+    gameId?: SortOrder
     height?: SortOrder
     width?: SortOrder
-    gameId?: SortOrder
   }
 
   export type CoverMinOrderByAggregateInput = {
     id?: SortOrder
-    igdbId?: SortOrder
     imageId?: SortOrder
     url?: SortOrder
+    igdbId?: SortOrder
+    gameId?: SortOrder
     height?: SortOrder
     width?: SortOrder
-    gameId?: SortOrder
   }
 
   export type CoverSumOrderByAggregateInput = {
     id?: SortOrder
     igdbId?: SortOrder
+    gameId?: SortOrder
     height?: SortOrder
     width?: SortOrder
-    gameId?: SortOrder
   }
 
   export type ScreenshotCountOrderByAggregateInput = {
     id?: SortOrder
-    igdbId?: SortOrder
     imageId?: SortOrder
     url?: SortOrder
+    gameId?: SortOrder
     height?: SortOrder
     width?: SortOrder
-    gameId?: SortOrder
+    igdbId?: SortOrder
   }
 
   export type ScreenshotAvgOrderByAggregateInput = {
     id?: SortOrder
-    igdbId?: SortOrder
+    gameId?: SortOrder
     height?: SortOrder
     width?: SortOrder
-    gameId?: SortOrder
+    igdbId?: SortOrder
   }
 
   export type ScreenshotMaxOrderByAggregateInput = {
     id?: SortOrder
-    igdbId?: SortOrder
     imageId?: SortOrder
     url?: SortOrder
+    gameId?: SortOrder
     height?: SortOrder
     width?: SortOrder
-    gameId?: SortOrder
+    igdbId?: SortOrder
   }
 
   export type ScreenshotMinOrderByAggregateInput = {
     id?: SortOrder
-    igdbId?: SortOrder
     imageId?: SortOrder
     url?: SortOrder
+    gameId?: SortOrder
     height?: SortOrder
     width?: SortOrder
-    gameId?: SortOrder
+    igdbId?: SortOrder
   }
 
   export type ScreenshotSumOrderByAggregateInput = {
     id?: SortOrder
-    igdbId?: SortOrder
+    gameId?: SortOrder
     height?: SortOrder
     width?: SortOrder
-    gameId?: SortOrder
+    igdbId?: SortOrder
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -15536,6 +15530,32 @@ export namespace Prisma {
     deleteMany?: GameScalarWhereInput | GameScalarWhereInput[]
   }
 
+  export type CoverCreateNestedManyWithoutGameInput = {
+    create?: XOR<CoverCreateWithoutGameInput, CoverUncheckedCreateWithoutGameInput> | CoverCreateWithoutGameInput[] | CoverUncheckedCreateWithoutGameInput[]
+    connectOrCreate?: CoverCreateOrConnectWithoutGameInput | CoverCreateOrConnectWithoutGameInput[]
+    createMany?: CoverCreateManyGameInputEnvelope
+    connect?: CoverWhereUniqueInput | CoverWhereUniqueInput[]
+  }
+
+  export type GameRatingCreateNestedOneWithoutGamesInput = {
+    create?: XOR<GameRatingCreateWithoutGamesInput, GameRatingUncheckedCreateWithoutGamesInput>
+    connectOrCreate?: GameRatingCreateOrConnectWithoutGamesInput
+    connect?: GameRatingWhereUniqueInput
+  }
+
+  export type DevelopersCreateNestedOneWithoutGamesInput = {
+    create?: XOR<DevelopersCreateWithoutGamesInput, DevelopersUncheckedCreateWithoutGamesInput>
+    connectOrCreate?: DevelopersCreateOrConnectWithoutGamesInput
+    connect?: DevelopersWhereUniqueInput
+  }
+
+  export type ScreenshotCreateNestedManyWithoutGameInput = {
+    create?: XOR<ScreenshotCreateWithoutGameInput, ScreenshotUncheckedCreateWithoutGameInput> | ScreenshotCreateWithoutGameInput[] | ScreenshotUncheckedCreateWithoutGameInput[]
+    connectOrCreate?: ScreenshotCreateOrConnectWithoutGameInput | ScreenshotCreateOrConnectWithoutGameInput[]
+    createMany?: ScreenshotCreateManyGameInputEnvelope
+    connect?: ScreenshotWhereUniqueInput | ScreenshotWhereUniqueInput[]
+  }
+
   export type GenreCreateNestedManyWithoutGamesInput = {
     create?: XOR<GenreCreateWithoutGamesInput, GenreUncheckedCreateWithoutGamesInput> | GenreCreateWithoutGamesInput[] | GenreUncheckedCreateWithoutGamesInput[]
     connectOrCreate?: GenreCreateOrConnectWithoutGamesInput | GenreCreateOrConnectWithoutGamesInput[]
@@ -15548,48 +15568,10 @@ export namespace Prisma {
     connect?: PlatformWhereUniqueInput | PlatformWhereUniqueInput[]
   }
 
-  export type CoverCreateNestedManyWithoutGameInput = {
-    create?: XOR<CoverCreateWithoutGameInput, CoverUncheckedCreateWithoutGameInput> | CoverCreateWithoutGameInput[] | CoverUncheckedCreateWithoutGameInput[]
-    connectOrCreate?: CoverCreateOrConnectWithoutGameInput | CoverCreateOrConnectWithoutGameInput[]
-    createMany?: CoverCreateManyGameInputEnvelope
-    connect?: CoverWhereUniqueInput | CoverWhereUniqueInput[]
-  }
-
-  export type ScreenshotCreateNestedManyWithoutGameInput = {
-    create?: XOR<ScreenshotCreateWithoutGameInput, ScreenshotUncheckedCreateWithoutGameInput> | ScreenshotCreateWithoutGameInput[] | ScreenshotUncheckedCreateWithoutGameInput[]
-    connectOrCreate?: ScreenshotCreateOrConnectWithoutGameInput | ScreenshotCreateOrConnectWithoutGameInput[]
-    createMany?: ScreenshotCreateManyGameInputEnvelope
-    connect?: ScreenshotWhereUniqueInput | ScreenshotWhereUniqueInput[]
-  }
-
-  export type DevelopersCreateNestedOneWithoutGamesInput = {
-    create?: XOR<DevelopersCreateWithoutGamesInput, DevelopersUncheckedCreateWithoutGamesInput>
-    connectOrCreate?: DevelopersCreateOrConnectWithoutGamesInput
-    connect?: DevelopersWhereUniqueInput
-  }
-
-  export type GameRatingCreateNestedOneWithoutGamesInput = {
-    create?: XOR<GameRatingCreateWithoutGamesInput, GameRatingUncheckedCreateWithoutGamesInput>
-    connectOrCreate?: GameRatingCreateOrConnectWithoutGamesInput
-    connect?: GameRatingWhereUniqueInput
-  }
-
   export type UserProfileCreateNestedManyWithoutSavedGamesInput = {
     create?: XOR<UserProfileCreateWithoutSavedGamesInput, UserProfileUncheckedCreateWithoutSavedGamesInput> | UserProfileCreateWithoutSavedGamesInput[] | UserProfileUncheckedCreateWithoutSavedGamesInput[]
     connectOrCreate?: UserProfileCreateOrConnectWithoutSavedGamesInput | UserProfileCreateOrConnectWithoutSavedGamesInput[]
     connect?: UserProfileWhereUniqueInput | UserProfileWhereUniqueInput[]
-  }
-
-  export type GenreUncheckedCreateNestedManyWithoutGamesInput = {
-    create?: XOR<GenreCreateWithoutGamesInput, GenreUncheckedCreateWithoutGamesInput> | GenreCreateWithoutGamesInput[] | GenreUncheckedCreateWithoutGamesInput[]
-    connectOrCreate?: GenreCreateOrConnectWithoutGamesInput | GenreCreateOrConnectWithoutGamesInput[]
-    connect?: GenreWhereUniqueInput | GenreWhereUniqueInput[]
-  }
-
-  export type PlatformUncheckedCreateNestedManyWithoutGamesInput = {
-    create?: XOR<PlatformCreateWithoutGamesInput, PlatformUncheckedCreateWithoutGamesInput> | PlatformCreateWithoutGamesInput[] | PlatformUncheckedCreateWithoutGamesInput[]
-    connectOrCreate?: PlatformCreateOrConnectWithoutGamesInput | PlatformCreateOrConnectWithoutGamesInput[]
-    connect?: PlatformWhereUniqueInput | PlatformWhereUniqueInput[]
   }
 
   export type CoverUncheckedCreateNestedManyWithoutGameInput = {
@@ -15604,6 +15586,18 @@ export namespace Prisma {
     connectOrCreate?: ScreenshotCreateOrConnectWithoutGameInput | ScreenshotCreateOrConnectWithoutGameInput[]
     createMany?: ScreenshotCreateManyGameInputEnvelope
     connect?: ScreenshotWhereUniqueInput | ScreenshotWhereUniqueInput[]
+  }
+
+  export type GenreUncheckedCreateNestedManyWithoutGamesInput = {
+    create?: XOR<GenreCreateWithoutGamesInput, GenreUncheckedCreateWithoutGamesInput> | GenreCreateWithoutGamesInput[] | GenreUncheckedCreateWithoutGamesInput[]
+    connectOrCreate?: GenreCreateOrConnectWithoutGamesInput | GenreCreateOrConnectWithoutGamesInput[]
+    connect?: GenreWhereUniqueInput | GenreWhereUniqueInput[]
+  }
+
+  export type PlatformUncheckedCreateNestedManyWithoutGamesInput = {
+    create?: XOR<PlatformCreateWithoutGamesInput, PlatformUncheckedCreateWithoutGamesInput> | PlatformCreateWithoutGamesInput[] | PlatformUncheckedCreateWithoutGamesInput[]
+    connectOrCreate?: PlatformCreateOrConnectWithoutGamesInput | PlatformCreateOrConnectWithoutGamesInput[]
+    connect?: PlatformWhereUniqueInput | PlatformWhereUniqueInput[]
   }
 
   export type UserProfileUncheckedCreateNestedManyWithoutSavedGamesInput = {
@@ -15636,6 +15630,54 @@ export namespace Prisma {
     divide?: number
   }
 
+  export type CoverUpdateManyWithoutGameNestedInput = {
+    create?: XOR<CoverCreateWithoutGameInput, CoverUncheckedCreateWithoutGameInput> | CoverCreateWithoutGameInput[] | CoverUncheckedCreateWithoutGameInput[]
+    connectOrCreate?: CoverCreateOrConnectWithoutGameInput | CoverCreateOrConnectWithoutGameInput[]
+    upsert?: CoverUpsertWithWhereUniqueWithoutGameInput | CoverUpsertWithWhereUniqueWithoutGameInput[]
+    createMany?: CoverCreateManyGameInputEnvelope
+    set?: CoverWhereUniqueInput | CoverWhereUniqueInput[]
+    disconnect?: CoverWhereUniqueInput | CoverWhereUniqueInput[]
+    delete?: CoverWhereUniqueInput | CoverWhereUniqueInput[]
+    connect?: CoverWhereUniqueInput | CoverWhereUniqueInput[]
+    update?: CoverUpdateWithWhereUniqueWithoutGameInput | CoverUpdateWithWhereUniqueWithoutGameInput[]
+    updateMany?: CoverUpdateManyWithWhereWithoutGameInput | CoverUpdateManyWithWhereWithoutGameInput[]
+    deleteMany?: CoverScalarWhereInput | CoverScalarWhereInput[]
+  }
+
+  export type GameRatingUpdateOneWithoutGamesNestedInput = {
+    create?: XOR<GameRatingCreateWithoutGamesInput, GameRatingUncheckedCreateWithoutGamesInput>
+    connectOrCreate?: GameRatingCreateOrConnectWithoutGamesInput
+    upsert?: GameRatingUpsertWithoutGamesInput
+    disconnect?: GameRatingWhereInput | boolean
+    delete?: GameRatingWhereInput | boolean
+    connect?: GameRatingWhereUniqueInput
+    update?: XOR<XOR<GameRatingUpdateToOneWithWhereWithoutGamesInput, GameRatingUpdateWithoutGamesInput>, GameRatingUncheckedUpdateWithoutGamesInput>
+  }
+
+  export type DevelopersUpdateOneWithoutGamesNestedInput = {
+    create?: XOR<DevelopersCreateWithoutGamesInput, DevelopersUncheckedCreateWithoutGamesInput>
+    connectOrCreate?: DevelopersCreateOrConnectWithoutGamesInput
+    upsert?: DevelopersUpsertWithoutGamesInput
+    disconnect?: DevelopersWhereInput | boolean
+    delete?: DevelopersWhereInput | boolean
+    connect?: DevelopersWhereUniqueInput
+    update?: XOR<XOR<DevelopersUpdateToOneWithWhereWithoutGamesInput, DevelopersUpdateWithoutGamesInput>, DevelopersUncheckedUpdateWithoutGamesInput>
+  }
+
+  export type ScreenshotUpdateManyWithoutGameNestedInput = {
+    create?: XOR<ScreenshotCreateWithoutGameInput, ScreenshotUncheckedCreateWithoutGameInput> | ScreenshotCreateWithoutGameInput[] | ScreenshotUncheckedCreateWithoutGameInput[]
+    connectOrCreate?: ScreenshotCreateOrConnectWithoutGameInput | ScreenshotCreateOrConnectWithoutGameInput[]
+    upsert?: ScreenshotUpsertWithWhereUniqueWithoutGameInput | ScreenshotUpsertWithWhereUniqueWithoutGameInput[]
+    createMany?: ScreenshotCreateManyGameInputEnvelope
+    set?: ScreenshotWhereUniqueInput | ScreenshotWhereUniqueInput[]
+    disconnect?: ScreenshotWhereUniqueInput | ScreenshotWhereUniqueInput[]
+    delete?: ScreenshotWhereUniqueInput | ScreenshotWhereUniqueInput[]
+    connect?: ScreenshotWhereUniqueInput | ScreenshotWhereUniqueInput[]
+    update?: ScreenshotUpdateWithWhereUniqueWithoutGameInput | ScreenshotUpdateWithWhereUniqueWithoutGameInput[]
+    updateMany?: ScreenshotUpdateManyWithWhereWithoutGameInput | ScreenshotUpdateManyWithWhereWithoutGameInput[]
+    deleteMany?: ScreenshotScalarWhereInput | ScreenshotScalarWhereInput[]
+  }
+
   export type GenreUpdateManyWithoutGamesNestedInput = {
     create?: XOR<GenreCreateWithoutGamesInput, GenreUncheckedCreateWithoutGamesInput> | GenreCreateWithoutGamesInput[] | GenreUncheckedCreateWithoutGamesInput[]
     connectOrCreate?: GenreCreateOrConnectWithoutGamesInput | GenreCreateOrConnectWithoutGamesInput[]
@@ -15662,54 +15704,6 @@ export namespace Prisma {
     deleteMany?: PlatformScalarWhereInput | PlatformScalarWhereInput[]
   }
 
-  export type CoverUpdateManyWithoutGameNestedInput = {
-    create?: XOR<CoverCreateWithoutGameInput, CoverUncheckedCreateWithoutGameInput> | CoverCreateWithoutGameInput[] | CoverUncheckedCreateWithoutGameInput[]
-    connectOrCreate?: CoverCreateOrConnectWithoutGameInput | CoverCreateOrConnectWithoutGameInput[]
-    upsert?: CoverUpsertWithWhereUniqueWithoutGameInput | CoverUpsertWithWhereUniqueWithoutGameInput[]
-    createMany?: CoverCreateManyGameInputEnvelope
-    set?: CoverWhereUniqueInput | CoverWhereUniqueInput[]
-    disconnect?: CoverWhereUniqueInput | CoverWhereUniqueInput[]
-    delete?: CoverWhereUniqueInput | CoverWhereUniqueInput[]
-    connect?: CoverWhereUniqueInput | CoverWhereUniqueInput[]
-    update?: CoverUpdateWithWhereUniqueWithoutGameInput | CoverUpdateWithWhereUniqueWithoutGameInput[]
-    updateMany?: CoverUpdateManyWithWhereWithoutGameInput | CoverUpdateManyWithWhereWithoutGameInput[]
-    deleteMany?: CoverScalarWhereInput | CoverScalarWhereInput[]
-  }
-
-  export type ScreenshotUpdateManyWithoutGameNestedInput = {
-    create?: XOR<ScreenshotCreateWithoutGameInput, ScreenshotUncheckedCreateWithoutGameInput> | ScreenshotCreateWithoutGameInput[] | ScreenshotUncheckedCreateWithoutGameInput[]
-    connectOrCreate?: ScreenshotCreateOrConnectWithoutGameInput | ScreenshotCreateOrConnectWithoutGameInput[]
-    upsert?: ScreenshotUpsertWithWhereUniqueWithoutGameInput | ScreenshotUpsertWithWhereUniqueWithoutGameInput[]
-    createMany?: ScreenshotCreateManyGameInputEnvelope
-    set?: ScreenshotWhereUniqueInput | ScreenshotWhereUniqueInput[]
-    disconnect?: ScreenshotWhereUniqueInput | ScreenshotWhereUniqueInput[]
-    delete?: ScreenshotWhereUniqueInput | ScreenshotWhereUniqueInput[]
-    connect?: ScreenshotWhereUniqueInput | ScreenshotWhereUniqueInput[]
-    update?: ScreenshotUpdateWithWhereUniqueWithoutGameInput | ScreenshotUpdateWithWhereUniqueWithoutGameInput[]
-    updateMany?: ScreenshotUpdateManyWithWhereWithoutGameInput | ScreenshotUpdateManyWithWhereWithoutGameInput[]
-    deleteMany?: ScreenshotScalarWhereInput | ScreenshotScalarWhereInput[]
-  }
-
-  export type DevelopersUpdateOneWithoutGamesNestedInput = {
-    create?: XOR<DevelopersCreateWithoutGamesInput, DevelopersUncheckedCreateWithoutGamesInput>
-    connectOrCreate?: DevelopersCreateOrConnectWithoutGamesInput
-    upsert?: DevelopersUpsertWithoutGamesInput
-    disconnect?: DevelopersWhereInput | boolean
-    delete?: DevelopersWhereInput | boolean
-    connect?: DevelopersWhereUniqueInput
-    update?: XOR<XOR<DevelopersUpdateToOneWithWhereWithoutGamesInput, DevelopersUpdateWithoutGamesInput>, DevelopersUncheckedUpdateWithoutGamesInput>
-  }
-
-  export type GameRatingUpdateOneWithoutGamesNestedInput = {
-    create?: XOR<GameRatingCreateWithoutGamesInput, GameRatingUncheckedCreateWithoutGamesInput>
-    connectOrCreate?: GameRatingCreateOrConnectWithoutGamesInput
-    upsert?: GameRatingUpsertWithoutGamesInput
-    disconnect?: GameRatingWhereInput | boolean
-    delete?: GameRatingWhereInput | boolean
-    connect?: GameRatingWhereUniqueInput
-    update?: XOR<XOR<GameRatingUpdateToOneWithWhereWithoutGamesInput, GameRatingUpdateWithoutGamesInput>, GameRatingUncheckedUpdateWithoutGamesInput>
-  }
-
   export type UserProfileUpdateManyWithoutSavedGamesNestedInput = {
     create?: XOR<UserProfileCreateWithoutSavedGamesInput, UserProfileUncheckedCreateWithoutSavedGamesInput> | UserProfileCreateWithoutSavedGamesInput[] | UserProfileUncheckedCreateWithoutSavedGamesInput[]
     connectOrCreate?: UserProfileCreateOrConnectWithoutSavedGamesInput | UserProfileCreateOrConnectWithoutSavedGamesInput[]
@@ -15721,32 +15715,6 @@ export namespace Prisma {
     update?: UserProfileUpdateWithWhereUniqueWithoutSavedGamesInput | UserProfileUpdateWithWhereUniqueWithoutSavedGamesInput[]
     updateMany?: UserProfileUpdateManyWithWhereWithoutSavedGamesInput | UserProfileUpdateManyWithWhereWithoutSavedGamesInput[]
     deleteMany?: UserProfileScalarWhereInput | UserProfileScalarWhereInput[]
-  }
-
-  export type GenreUncheckedUpdateManyWithoutGamesNestedInput = {
-    create?: XOR<GenreCreateWithoutGamesInput, GenreUncheckedCreateWithoutGamesInput> | GenreCreateWithoutGamesInput[] | GenreUncheckedCreateWithoutGamesInput[]
-    connectOrCreate?: GenreCreateOrConnectWithoutGamesInput | GenreCreateOrConnectWithoutGamesInput[]
-    upsert?: GenreUpsertWithWhereUniqueWithoutGamesInput | GenreUpsertWithWhereUniqueWithoutGamesInput[]
-    set?: GenreWhereUniqueInput | GenreWhereUniqueInput[]
-    disconnect?: GenreWhereUniqueInput | GenreWhereUniqueInput[]
-    delete?: GenreWhereUniqueInput | GenreWhereUniqueInput[]
-    connect?: GenreWhereUniqueInput | GenreWhereUniqueInput[]
-    update?: GenreUpdateWithWhereUniqueWithoutGamesInput | GenreUpdateWithWhereUniqueWithoutGamesInput[]
-    updateMany?: GenreUpdateManyWithWhereWithoutGamesInput | GenreUpdateManyWithWhereWithoutGamesInput[]
-    deleteMany?: GenreScalarWhereInput | GenreScalarWhereInput[]
-  }
-
-  export type PlatformUncheckedUpdateManyWithoutGamesNestedInput = {
-    create?: XOR<PlatformCreateWithoutGamesInput, PlatformUncheckedCreateWithoutGamesInput> | PlatformCreateWithoutGamesInput[] | PlatformUncheckedCreateWithoutGamesInput[]
-    connectOrCreate?: PlatformCreateOrConnectWithoutGamesInput | PlatformCreateOrConnectWithoutGamesInput[]
-    upsert?: PlatformUpsertWithWhereUniqueWithoutGamesInput | PlatformUpsertWithWhereUniqueWithoutGamesInput[]
-    set?: PlatformWhereUniqueInput | PlatformWhereUniqueInput[]
-    disconnect?: PlatformWhereUniqueInput | PlatformWhereUniqueInput[]
-    delete?: PlatformWhereUniqueInput | PlatformWhereUniqueInput[]
-    connect?: PlatformWhereUniqueInput | PlatformWhereUniqueInput[]
-    update?: PlatformUpdateWithWhereUniqueWithoutGamesInput | PlatformUpdateWithWhereUniqueWithoutGamesInput[]
-    updateMany?: PlatformUpdateManyWithWhereWithoutGamesInput | PlatformUpdateManyWithWhereWithoutGamesInput[]
-    deleteMany?: PlatformScalarWhereInput | PlatformScalarWhereInput[]
   }
 
   export type CoverUncheckedUpdateManyWithoutGameNestedInput = {
@@ -15775,6 +15743,32 @@ export namespace Prisma {
     update?: ScreenshotUpdateWithWhereUniqueWithoutGameInput | ScreenshotUpdateWithWhereUniqueWithoutGameInput[]
     updateMany?: ScreenshotUpdateManyWithWhereWithoutGameInput | ScreenshotUpdateManyWithWhereWithoutGameInput[]
     deleteMany?: ScreenshotScalarWhereInput | ScreenshotScalarWhereInput[]
+  }
+
+  export type GenreUncheckedUpdateManyWithoutGamesNestedInput = {
+    create?: XOR<GenreCreateWithoutGamesInput, GenreUncheckedCreateWithoutGamesInput> | GenreCreateWithoutGamesInput[] | GenreUncheckedCreateWithoutGamesInput[]
+    connectOrCreate?: GenreCreateOrConnectWithoutGamesInput | GenreCreateOrConnectWithoutGamesInput[]
+    upsert?: GenreUpsertWithWhereUniqueWithoutGamesInput | GenreUpsertWithWhereUniqueWithoutGamesInput[]
+    set?: GenreWhereUniqueInput | GenreWhereUniqueInput[]
+    disconnect?: GenreWhereUniqueInput | GenreWhereUniqueInput[]
+    delete?: GenreWhereUniqueInput | GenreWhereUniqueInput[]
+    connect?: GenreWhereUniqueInput | GenreWhereUniqueInput[]
+    update?: GenreUpdateWithWhereUniqueWithoutGamesInput | GenreUpdateWithWhereUniqueWithoutGamesInput[]
+    updateMany?: GenreUpdateManyWithWhereWithoutGamesInput | GenreUpdateManyWithWhereWithoutGamesInput[]
+    deleteMany?: GenreScalarWhereInput | GenreScalarWhereInput[]
+  }
+
+  export type PlatformUncheckedUpdateManyWithoutGamesNestedInput = {
+    create?: XOR<PlatformCreateWithoutGamesInput, PlatformUncheckedCreateWithoutGamesInput> | PlatformCreateWithoutGamesInput[] | PlatformUncheckedCreateWithoutGamesInput[]
+    connectOrCreate?: PlatformCreateOrConnectWithoutGamesInput | PlatformCreateOrConnectWithoutGamesInput[]
+    upsert?: PlatformUpsertWithWhereUniqueWithoutGamesInput | PlatformUpsertWithWhereUniqueWithoutGamesInput[]
+    set?: PlatformWhereUniqueInput | PlatformWhereUniqueInput[]
+    disconnect?: PlatformWhereUniqueInput | PlatformWhereUniqueInput[]
+    delete?: PlatformWhereUniqueInput | PlatformWhereUniqueInput[]
+    connect?: PlatformWhereUniqueInput | PlatformWhereUniqueInput[]
+    update?: PlatformUpdateWithWhereUniqueWithoutGamesInput | PlatformUpdateWithWhereUniqueWithoutGamesInput[]
+    updateMany?: PlatformUpdateManyWithWhereWithoutGamesInput | PlatformUpdateManyWithWhereWithoutGamesInput[]
+    deleteMany?: PlatformScalarWhereInput | PlatformScalarWhereInput[]
   }
 
   export type UserProfileUncheckedUpdateManyWithoutSavedGamesNestedInput = {
@@ -16254,48 +16248,48 @@ export namespace Prisma {
   }
 
   export type GameCreateWithoutSavedByUsersInput = {
-    igdbId: number
     name: string
     slug: string
     summary?: string | null
     storyline?: string | null
     firstReleaseDate?: Date | string | null
-    originalPlatform?: string | null
     coverUrl?: string | null
     rating?: number | null
     aggregatedRating?: number | null
     totalRating?: number | null
     totalRatingCount?: number | null
     url?: string | null
+    igdbId: number
+    originalPlatform?: string | null
+    covers?: CoverCreateNestedManyWithoutGameInput
+    ageRating?: GameRatingCreateNestedOneWithoutGamesInput
+    developer?: DevelopersCreateNestedOneWithoutGamesInput
+    screenshots?: ScreenshotCreateNestedManyWithoutGameInput
     genres?: GenreCreateNestedManyWithoutGamesInput
     platforms?: PlatformCreateNestedManyWithoutGamesInput
-    covers?: CoverCreateNestedManyWithoutGameInput
-    screenshots?: ScreenshotCreateNestedManyWithoutGameInput
-    developer?: DevelopersCreateNestedOneWithoutGamesInput
-    ageRating?: GameRatingCreateNestedOneWithoutGamesInput
   }
 
   export type GameUncheckedCreateWithoutSavedByUsersInput = {
     id?: number
-    igdbId: number
     name: string
     slug: string
     summary?: string | null
     storyline?: string | null
     firstReleaseDate?: Date | string | null
-    originalPlatform?: string | null
     coverUrl?: string | null
     rating?: number | null
     aggregatedRating?: number | null
     totalRating?: number | null
     totalRatingCount?: number | null
+    url?: string | null
+    igdbId: number
+    originalPlatform?: string | null
     ageRatingId?: number | null
     developerId?: number | null
-    url?: string | null
-    genres?: GenreUncheckedCreateNestedManyWithoutGamesInput
-    platforms?: PlatformUncheckedCreateNestedManyWithoutGamesInput
     covers?: CoverUncheckedCreateNestedManyWithoutGameInput
     screenshots?: ScreenshotUncheckedCreateNestedManyWithoutGameInput
+    genres?: GenreUncheckedCreateNestedManyWithoutGamesInput
+    platforms?: PlatformUncheckedCreateNestedManyWithoutGamesInput
   }
 
   export type GameCreateOrConnectWithoutSavedByUsersInput = {
@@ -16354,79 +16348,36 @@ export namespace Prisma {
     OR?: GameScalarWhereInput[]
     NOT?: GameScalarWhereInput | GameScalarWhereInput[]
     id?: IntFilter<"Game"> | number
-    igdbId?: IntFilter<"Game"> | number
     name?: StringFilter<"Game"> | string
     slug?: StringFilter<"Game"> | string
     summary?: StringNullableFilter<"Game"> | string | null
     storyline?: StringNullableFilter<"Game"> | string | null
     firstReleaseDate?: DateTimeNullableFilter<"Game"> | Date | string | null
-    originalPlatform?: StringNullableFilter<"Game"> | string | null
     coverUrl?: StringNullableFilter<"Game"> | string | null
     rating?: FloatNullableFilter<"Game"> | number | null
     aggregatedRating?: FloatNullableFilter<"Game"> | number | null
     totalRating?: FloatNullableFilter<"Game"> | number | null
     totalRatingCount?: IntNullableFilter<"Game"> | number | null
+    url?: StringNullableFilter<"Game"> | string | null
+    igdbId?: IntFilter<"Game"> | number
+    originalPlatform?: StringNullableFilter<"Game"> | string | null
     ageRatingId?: IntNullableFilter<"Game"> | number | null
     developerId?: IntNullableFilter<"Game"> | number | null
-    url?: StringNullableFilter<"Game"> | string | null
-  }
-
-  export type GenreCreateWithoutGamesInput = {
-    igdbId: number
-    name?: string | null
-    slug?: string | null
-  }
-
-  export type GenreUncheckedCreateWithoutGamesInput = {
-    id?: number
-    igdbId: number
-    name?: string | null
-    slug?: string | null
-  }
-
-  export type GenreCreateOrConnectWithoutGamesInput = {
-    where: GenreWhereUniqueInput
-    create: XOR<GenreCreateWithoutGamesInput, GenreUncheckedCreateWithoutGamesInput>
-  }
-
-  export type PlatformCreateWithoutGamesInput = {
-    id: number
-    name: string
-    releaseOrder?: number | null
-    abbreviation?: string | null
-    generation?: number | null
-    slug: string
-    platformLogo?: number | null
-  }
-
-  export type PlatformUncheckedCreateWithoutGamesInput = {
-    id: number
-    name: string
-    releaseOrder?: number | null
-    abbreviation?: string | null
-    generation?: number | null
-    slug: string
-    platformLogo?: number | null
-  }
-
-  export type PlatformCreateOrConnectWithoutGamesInput = {
-    where: PlatformWhereUniqueInput
-    create: XOR<PlatformCreateWithoutGamesInput, PlatformUncheckedCreateWithoutGamesInput>
   }
 
   export type CoverCreateWithoutGameInput = {
-    igdbId: number
     imageId?: string | null
     url?: string | null
+    igdbId: number
     height?: number | null
     width?: number | null
   }
 
   export type CoverUncheckedCreateWithoutGameInput = {
     id?: number
-    igdbId: number
     imageId?: string | null
     url?: string | null
+    igdbId: number
     height?: number | null
     width?: number | null
   }
@@ -16441,31 +16392,21 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type ScreenshotCreateWithoutGameInput = {
-    igdbId: number
-    imageId?: string | null
-    url?: string | null
-    height?: number | null
-    width?: number | null
+  export type GameRatingCreateWithoutGamesInput = {
+    id: number
+    rating: string
+    description?: string | null
   }
 
-  export type ScreenshotUncheckedCreateWithoutGameInput = {
-    id?: number
-    igdbId: number
-    imageId?: string | null
-    url?: string | null
-    height?: number | null
-    width?: number | null
+  export type GameRatingUncheckedCreateWithoutGamesInput = {
+    id: number
+    rating: string
+    description?: string | null
   }
 
-  export type ScreenshotCreateOrConnectWithoutGameInput = {
-    where: ScreenshotWhereUniqueInput
-    create: XOR<ScreenshotCreateWithoutGameInput, ScreenshotUncheckedCreateWithoutGameInput>
-  }
-
-  export type ScreenshotCreateManyGameInputEnvelope = {
-    data: ScreenshotCreateManyGameInput | ScreenshotCreateManyGameInput[]
-    skipDuplicates?: boolean
+  export type GameRatingCreateOrConnectWithoutGamesInput = {
+    where: GameRatingWhereUniqueInput
+    create: XOR<GameRatingCreateWithoutGamesInput, GameRatingUncheckedCreateWithoutGamesInput>
   }
 
   export type DevelopersCreateWithoutGamesInput = {
@@ -16487,21 +16428,74 @@ export namespace Prisma {
     create: XOR<DevelopersCreateWithoutGamesInput, DevelopersUncheckedCreateWithoutGamesInput>
   }
 
-  export type GameRatingCreateWithoutGamesInput = {
-    id: number
-    rating: string
-    description?: string | null
+  export type ScreenshotCreateWithoutGameInput = {
+    imageId?: string | null
+    url?: string | null
+    height?: number | null
+    width?: number | null
+    igdbId: number
   }
 
-  export type GameRatingUncheckedCreateWithoutGamesInput = {
-    id: number
-    rating: string
-    description?: string | null
+  export type ScreenshotUncheckedCreateWithoutGameInput = {
+    id?: number
+    imageId?: string | null
+    url?: string | null
+    height?: number | null
+    width?: number | null
+    igdbId: number
   }
 
-  export type GameRatingCreateOrConnectWithoutGamesInput = {
-    where: GameRatingWhereUniqueInput
-    create: XOR<GameRatingCreateWithoutGamesInput, GameRatingUncheckedCreateWithoutGamesInput>
+  export type ScreenshotCreateOrConnectWithoutGameInput = {
+    where: ScreenshotWhereUniqueInput
+    create: XOR<ScreenshotCreateWithoutGameInput, ScreenshotUncheckedCreateWithoutGameInput>
+  }
+
+  export type ScreenshotCreateManyGameInputEnvelope = {
+    data: ScreenshotCreateManyGameInput | ScreenshotCreateManyGameInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type GenreCreateWithoutGamesInput = {
+    name?: string | null
+    slug?: string | null
+    igdbId: number
+  }
+
+  export type GenreUncheckedCreateWithoutGamesInput = {
+    id?: number
+    name?: string | null
+    slug?: string | null
+    igdbId: number
+  }
+
+  export type GenreCreateOrConnectWithoutGamesInput = {
+    where: GenreWhereUniqueInput
+    create: XOR<GenreCreateWithoutGamesInput, GenreUncheckedCreateWithoutGamesInput>
+  }
+
+  export type PlatformCreateWithoutGamesInput = {
+    id: number
+    name: string
+    abbreviation?: string | null
+    generation?: number | null
+    slug: string
+    platformLogo?: string | null
+    releaseOrder?: number | null
+  }
+
+  export type PlatformUncheckedCreateWithoutGamesInput = {
+    id: number
+    name: string
+    abbreviation?: string | null
+    generation?: number | null
+    slug: string
+    platformLogo?: string | null
+    releaseOrder?: number | null
+  }
+
+  export type PlatformCreateOrConnectWithoutGamesInput = {
+    where: PlatformWhereUniqueInput
+    create: XOR<PlatformCreateWithoutGamesInput, PlatformUncheckedCreateWithoutGamesInput>
   }
 
   export type UserProfileCreateWithoutSavedGamesInput = {
@@ -16516,61 +16510,6 @@ export namespace Prisma {
   export type UserProfileCreateOrConnectWithoutSavedGamesInput = {
     where: UserProfileWhereUniqueInput
     create: XOR<UserProfileCreateWithoutSavedGamesInput, UserProfileUncheckedCreateWithoutSavedGamesInput>
-  }
-
-  export type GenreUpsertWithWhereUniqueWithoutGamesInput = {
-    where: GenreWhereUniqueInput
-    update: XOR<GenreUpdateWithoutGamesInput, GenreUncheckedUpdateWithoutGamesInput>
-    create: XOR<GenreCreateWithoutGamesInput, GenreUncheckedCreateWithoutGamesInput>
-  }
-
-  export type GenreUpdateWithWhereUniqueWithoutGamesInput = {
-    where: GenreWhereUniqueInput
-    data: XOR<GenreUpdateWithoutGamesInput, GenreUncheckedUpdateWithoutGamesInput>
-  }
-
-  export type GenreUpdateManyWithWhereWithoutGamesInput = {
-    where: GenreScalarWhereInput
-    data: XOR<GenreUpdateManyMutationInput, GenreUncheckedUpdateManyWithoutGamesInput>
-  }
-
-  export type GenreScalarWhereInput = {
-    AND?: GenreScalarWhereInput | GenreScalarWhereInput[]
-    OR?: GenreScalarWhereInput[]
-    NOT?: GenreScalarWhereInput | GenreScalarWhereInput[]
-    id?: IntFilter<"Genre"> | number
-    igdbId?: IntFilter<"Genre"> | number
-    name?: StringNullableFilter<"Genre"> | string | null
-    slug?: StringNullableFilter<"Genre"> | string | null
-  }
-
-  export type PlatformUpsertWithWhereUniqueWithoutGamesInput = {
-    where: PlatformWhereUniqueInput
-    update: XOR<PlatformUpdateWithoutGamesInput, PlatformUncheckedUpdateWithoutGamesInput>
-    create: XOR<PlatformCreateWithoutGamesInput, PlatformUncheckedCreateWithoutGamesInput>
-  }
-
-  export type PlatformUpdateWithWhereUniqueWithoutGamesInput = {
-    where: PlatformWhereUniqueInput
-    data: XOR<PlatformUpdateWithoutGamesInput, PlatformUncheckedUpdateWithoutGamesInput>
-  }
-
-  export type PlatformUpdateManyWithWhereWithoutGamesInput = {
-    where: PlatformScalarWhereInput
-    data: XOR<PlatformUpdateManyMutationInput, PlatformUncheckedUpdateManyWithoutGamesInput>
-  }
-
-  export type PlatformScalarWhereInput = {
-    AND?: PlatformScalarWhereInput | PlatformScalarWhereInput[]
-    OR?: PlatformScalarWhereInput[]
-    NOT?: PlatformScalarWhereInput | PlatformScalarWhereInput[]
-    id?: IntFilter<"Platform"> | number
-    name?: StringFilter<"Platform"> | string
-    releaseOrder?: IntNullableFilter<"Platform"> | number | null
-    abbreviation?: StringNullableFilter<"Platform"> | string | null
-    generation?: IntNullableFilter<"Platform"> | number | null
-    slug?: StringFilter<"Platform"> | string
-    platformLogo?: IntNullableFilter<"Platform"> | number | null
   }
 
   export type CoverUpsertWithWhereUniqueWithoutGameInput = {
@@ -16594,41 +16533,35 @@ export namespace Prisma {
     OR?: CoverScalarWhereInput[]
     NOT?: CoverScalarWhereInput | CoverScalarWhereInput[]
     id?: IntFilter<"Cover"> | number
-    igdbId?: IntFilter<"Cover"> | number
     imageId?: StringNullableFilter<"Cover"> | string | null
     url?: StringNullableFilter<"Cover"> | string | null
+    igdbId?: IntFilter<"Cover"> | number
+    gameId?: IntFilter<"Cover"> | number
     height?: IntNullableFilter<"Cover"> | number | null
     width?: IntNullableFilter<"Cover"> | number | null
-    gameId?: IntFilter<"Cover"> | number
   }
 
-  export type ScreenshotUpsertWithWhereUniqueWithoutGameInput = {
-    where: ScreenshotWhereUniqueInput
-    update: XOR<ScreenshotUpdateWithoutGameInput, ScreenshotUncheckedUpdateWithoutGameInput>
-    create: XOR<ScreenshotCreateWithoutGameInput, ScreenshotUncheckedCreateWithoutGameInput>
+  export type GameRatingUpsertWithoutGamesInput = {
+    update: XOR<GameRatingUpdateWithoutGamesInput, GameRatingUncheckedUpdateWithoutGamesInput>
+    create: XOR<GameRatingCreateWithoutGamesInput, GameRatingUncheckedCreateWithoutGamesInput>
+    where?: GameRatingWhereInput
   }
 
-  export type ScreenshotUpdateWithWhereUniqueWithoutGameInput = {
-    where: ScreenshotWhereUniqueInput
-    data: XOR<ScreenshotUpdateWithoutGameInput, ScreenshotUncheckedUpdateWithoutGameInput>
+  export type GameRatingUpdateToOneWithWhereWithoutGamesInput = {
+    where?: GameRatingWhereInput
+    data: XOR<GameRatingUpdateWithoutGamesInput, GameRatingUncheckedUpdateWithoutGamesInput>
   }
 
-  export type ScreenshotUpdateManyWithWhereWithoutGameInput = {
-    where: ScreenshotScalarWhereInput
-    data: XOR<ScreenshotUpdateManyMutationInput, ScreenshotUncheckedUpdateManyWithoutGameInput>
+  export type GameRatingUpdateWithoutGamesInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    rating?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
-  export type ScreenshotScalarWhereInput = {
-    AND?: ScreenshotScalarWhereInput | ScreenshotScalarWhereInput[]
-    OR?: ScreenshotScalarWhereInput[]
-    NOT?: ScreenshotScalarWhereInput | ScreenshotScalarWhereInput[]
-    id?: IntFilter<"Screenshot"> | number
-    igdbId?: IntFilter<"Screenshot"> | number
-    imageId?: StringNullableFilter<"Screenshot"> | string | null
-    url?: StringNullableFilter<"Screenshot"> | string | null
-    height?: IntNullableFilter<"Screenshot"> | number | null
-    width?: IntNullableFilter<"Screenshot"> | number | null
-    gameId?: IntFilter<"Screenshot"> | number
+  export type GameRatingUncheckedUpdateWithoutGamesInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    rating?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type DevelopersUpsertWithoutGamesInput = {
@@ -16656,27 +16589,88 @@ export namespace Prisma {
     country?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
-  export type GameRatingUpsertWithoutGamesInput = {
-    update: XOR<GameRatingUpdateWithoutGamesInput, GameRatingUncheckedUpdateWithoutGamesInput>
-    create: XOR<GameRatingCreateWithoutGamesInput, GameRatingUncheckedCreateWithoutGamesInput>
-    where?: GameRatingWhereInput
+  export type ScreenshotUpsertWithWhereUniqueWithoutGameInput = {
+    where: ScreenshotWhereUniqueInput
+    update: XOR<ScreenshotUpdateWithoutGameInput, ScreenshotUncheckedUpdateWithoutGameInput>
+    create: XOR<ScreenshotCreateWithoutGameInput, ScreenshotUncheckedCreateWithoutGameInput>
   }
 
-  export type GameRatingUpdateToOneWithWhereWithoutGamesInput = {
-    where?: GameRatingWhereInput
-    data: XOR<GameRatingUpdateWithoutGamesInput, GameRatingUncheckedUpdateWithoutGamesInput>
+  export type ScreenshotUpdateWithWhereUniqueWithoutGameInput = {
+    where: ScreenshotWhereUniqueInput
+    data: XOR<ScreenshotUpdateWithoutGameInput, ScreenshotUncheckedUpdateWithoutGameInput>
   }
 
-  export type GameRatingUpdateWithoutGamesInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    rating?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
+  export type ScreenshotUpdateManyWithWhereWithoutGameInput = {
+    where: ScreenshotScalarWhereInput
+    data: XOR<ScreenshotUpdateManyMutationInput, ScreenshotUncheckedUpdateManyWithoutGameInput>
   }
 
-  export type GameRatingUncheckedUpdateWithoutGamesInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    rating?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
+  export type ScreenshotScalarWhereInput = {
+    AND?: ScreenshotScalarWhereInput | ScreenshotScalarWhereInput[]
+    OR?: ScreenshotScalarWhereInput[]
+    NOT?: ScreenshotScalarWhereInput | ScreenshotScalarWhereInput[]
+    id?: IntFilter<"Screenshot"> | number
+    imageId?: StringNullableFilter<"Screenshot"> | string | null
+    url?: StringNullableFilter<"Screenshot"> | string | null
+    gameId?: IntFilter<"Screenshot"> | number
+    height?: IntNullableFilter<"Screenshot"> | number | null
+    width?: IntNullableFilter<"Screenshot"> | number | null
+    igdbId?: IntFilter<"Screenshot"> | number
+  }
+
+  export type GenreUpsertWithWhereUniqueWithoutGamesInput = {
+    where: GenreWhereUniqueInput
+    update: XOR<GenreUpdateWithoutGamesInput, GenreUncheckedUpdateWithoutGamesInput>
+    create: XOR<GenreCreateWithoutGamesInput, GenreUncheckedCreateWithoutGamesInput>
+  }
+
+  export type GenreUpdateWithWhereUniqueWithoutGamesInput = {
+    where: GenreWhereUniqueInput
+    data: XOR<GenreUpdateWithoutGamesInput, GenreUncheckedUpdateWithoutGamesInput>
+  }
+
+  export type GenreUpdateManyWithWhereWithoutGamesInput = {
+    where: GenreScalarWhereInput
+    data: XOR<GenreUpdateManyMutationInput, GenreUncheckedUpdateManyWithoutGamesInput>
+  }
+
+  export type GenreScalarWhereInput = {
+    AND?: GenreScalarWhereInput | GenreScalarWhereInput[]
+    OR?: GenreScalarWhereInput[]
+    NOT?: GenreScalarWhereInput | GenreScalarWhereInput[]
+    id?: IntFilter<"Genre"> | number
+    name?: StringNullableFilter<"Genre"> | string | null
+    slug?: StringNullableFilter<"Genre"> | string | null
+    igdbId?: IntFilter<"Genre"> | number
+  }
+
+  export type PlatformUpsertWithWhereUniqueWithoutGamesInput = {
+    where: PlatformWhereUniqueInput
+    update: XOR<PlatformUpdateWithoutGamesInput, PlatformUncheckedUpdateWithoutGamesInput>
+    create: XOR<PlatformCreateWithoutGamesInput, PlatformUncheckedCreateWithoutGamesInput>
+  }
+
+  export type PlatformUpdateWithWhereUniqueWithoutGamesInput = {
+    where: PlatformWhereUniqueInput
+    data: XOR<PlatformUpdateWithoutGamesInput, PlatformUncheckedUpdateWithoutGamesInput>
+  }
+
+  export type PlatformUpdateManyWithWhereWithoutGamesInput = {
+    where: PlatformScalarWhereInput
+    data: XOR<PlatformUpdateManyMutationInput, PlatformUncheckedUpdateManyWithoutGamesInput>
+  }
+
+  export type PlatformScalarWhereInput = {
+    AND?: PlatformScalarWhereInput | PlatformScalarWhereInput[]
+    OR?: PlatformScalarWhereInput[]
+    NOT?: PlatformScalarWhereInput | PlatformScalarWhereInput[]
+    id?: IntFilter<"Platform"> | number
+    name?: StringFilter<"Platform"> | string
+    abbreviation?: StringNullableFilter<"Platform"> | string | null
+    generation?: IntNullableFilter<"Platform"> | number | null
+    slug?: StringFilter<"Platform"> | string
+    platformLogo?: StringNullableFilter<"Platform"> | string | null
+    releaseOrder?: IntNullableFilter<"Platform"> | number | null
   }
 
   export type UserProfileUpsertWithWhereUniqueWithoutSavedGamesInput = {
@@ -16704,47 +16698,47 @@ export namespace Prisma {
   }
 
   export type GameCreateWithoutAgeRatingInput = {
-    igdbId: number
     name: string
     slug: string
     summary?: string | null
     storyline?: string | null
     firstReleaseDate?: Date | string | null
-    originalPlatform?: string | null
     coverUrl?: string | null
     rating?: number | null
     aggregatedRating?: number | null
     totalRating?: number | null
     totalRatingCount?: number | null
     url?: string | null
+    igdbId: number
+    originalPlatform?: string | null
+    covers?: CoverCreateNestedManyWithoutGameInput
+    developer?: DevelopersCreateNestedOneWithoutGamesInput
+    screenshots?: ScreenshotCreateNestedManyWithoutGameInput
     genres?: GenreCreateNestedManyWithoutGamesInput
     platforms?: PlatformCreateNestedManyWithoutGamesInput
-    covers?: CoverCreateNestedManyWithoutGameInput
-    screenshots?: ScreenshotCreateNestedManyWithoutGameInput
-    developer?: DevelopersCreateNestedOneWithoutGamesInput
     savedByUsers?: UserProfileCreateNestedManyWithoutSavedGamesInput
   }
 
   export type GameUncheckedCreateWithoutAgeRatingInput = {
     id?: number
-    igdbId: number
     name: string
     slug: string
     summary?: string | null
     storyline?: string | null
     firstReleaseDate?: Date | string | null
-    originalPlatform?: string | null
     coverUrl?: string | null
     rating?: number | null
     aggregatedRating?: number | null
     totalRating?: number | null
     totalRatingCount?: number | null
-    developerId?: number | null
     url?: string | null
-    genres?: GenreUncheckedCreateNestedManyWithoutGamesInput
-    platforms?: PlatformUncheckedCreateNestedManyWithoutGamesInput
+    igdbId: number
+    originalPlatform?: string | null
+    developerId?: number | null
     covers?: CoverUncheckedCreateNestedManyWithoutGameInput
     screenshots?: ScreenshotUncheckedCreateNestedManyWithoutGameInput
+    genres?: GenreUncheckedCreateNestedManyWithoutGamesInput
+    platforms?: PlatformUncheckedCreateNestedManyWithoutGamesInput
     savedByUsers?: UserProfileUncheckedCreateNestedManyWithoutSavedGamesInput
   }
 
@@ -16775,47 +16769,47 @@ export namespace Prisma {
   }
 
   export type GameCreateWithoutPlatformsInput = {
-    igdbId: number
     name: string
     slug: string
     summary?: string | null
     storyline?: string | null
     firstReleaseDate?: Date | string | null
-    originalPlatform?: string | null
     coverUrl?: string | null
     rating?: number | null
     aggregatedRating?: number | null
     totalRating?: number | null
     totalRatingCount?: number | null
     url?: string | null
-    genres?: GenreCreateNestedManyWithoutGamesInput
+    igdbId: number
+    originalPlatform?: string | null
     covers?: CoverCreateNestedManyWithoutGameInput
-    screenshots?: ScreenshotCreateNestedManyWithoutGameInput
-    developer?: DevelopersCreateNestedOneWithoutGamesInput
     ageRating?: GameRatingCreateNestedOneWithoutGamesInput
+    developer?: DevelopersCreateNestedOneWithoutGamesInput
+    screenshots?: ScreenshotCreateNestedManyWithoutGameInput
+    genres?: GenreCreateNestedManyWithoutGamesInput
     savedByUsers?: UserProfileCreateNestedManyWithoutSavedGamesInput
   }
 
   export type GameUncheckedCreateWithoutPlatformsInput = {
     id?: number
-    igdbId: number
     name: string
     slug: string
     summary?: string | null
     storyline?: string | null
     firstReleaseDate?: Date | string | null
-    originalPlatform?: string | null
     coverUrl?: string | null
     rating?: number | null
     aggregatedRating?: number | null
     totalRating?: number | null
     totalRatingCount?: number | null
+    url?: string | null
+    igdbId: number
+    originalPlatform?: string | null
     ageRatingId?: number | null
     developerId?: number | null
-    url?: string | null
-    genres?: GenreUncheckedCreateNestedManyWithoutGamesInput
     covers?: CoverUncheckedCreateNestedManyWithoutGameInput
     screenshots?: ScreenshotUncheckedCreateNestedManyWithoutGameInput
+    genres?: GenreUncheckedCreateNestedManyWithoutGamesInput
     savedByUsers?: UserProfileUncheckedCreateNestedManyWithoutSavedGamesInput
   }
 
@@ -16841,47 +16835,47 @@ export namespace Prisma {
   }
 
   export type GameCreateWithoutDeveloperInput = {
-    igdbId: number
     name: string
     slug: string
     summary?: string | null
     storyline?: string | null
     firstReleaseDate?: Date | string | null
-    originalPlatform?: string | null
     coverUrl?: string | null
     rating?: number | null
     aggregatedRating?: number | null
     totalRating?: number | null
     totalRatingCount?: number | null
     url?: string | null
+    igdbId: number
+    originalPlatform?: string | null
+    covers?: CoverCreateNestedManyWithoutGameInput
+    ageRating?: GameRatingCreateNestedOneWithoutGamesInput
+    screenshots?: ScreenshotCreateNestedManyWithoutGameInput
     genres?: GenreCreateNestedManyWithoutGamesInput
     platforms?: PlatformCreateNestedManyWithoutGamesInput
-    covers?: CoverCreateNestedManyWithoutGameInput
-    screenshots?: ScreenshotCreateNestedManyWithoutGameInput
-    ageRating?: GameRatingCreateNestedOneWithoutGamesInput
     savedByUsers?: UserProfileCreateNestedManyWithoutSavedGamesInput
   }
 
   export type GameUncheckedCreateWithoutDeveloperInput = {
     id?: number
-    igdbId: number
     name: string
     slug: string
     summary?: string | null
     storyline?: string | null
     firstReleaseDate?: Date | string | null
-    originalPlatform?: string | null
     coverUrl?: string | null
     rating?: number | null
     aggregatedRating?: number | null
     totalRating?: number | null
     totalRatingCount?: number | null
-    ageRatingId?: number | null
     url?: string | null
-    genres?: GenreUncheckedCreateNestedManyWithoutGamesInput
-    platforms?: PlatformUncheckedCreateNestedManyWithoutGamesInput
+    igdbId: number
+    originalPlatform?: string | null
+    ageRatingId?: number | null
     covers?: CoverUncheckedCreateNestedManyWithoutGameInput
     screenshots?: ScreenshotUncheckedCreateNestedManyWithoutGameInput
+    genres?: GenreUncheckedCreateNestedManyWithoutGamesInput
+    platforms?: PlatformUncheckedCreateNestedManyWithoutGamesInput
     savedByUsers?: UserProfileUncheckedCreateNestedManyWithoutSavedGamesInput
   }
 
@@ -16912,47 +16906,47 @@ export namespace Prisma {
   }
 
   export type GameCreateWithoutGenresInput = {
-    igdbId: number
     name: string
     slug: string
     summary?: string | null
     storyline?: string | null
     firstReleaseDate?: Date | string | null
-    originalPlatform?: string | null
     coverUrl?: string | null
     rating?: number | null
     aggregatedRating?: number | null
     totalRating?: number | null
     totalRatingCount?: number | null
     url?: string | null
-    platforms?: PlatformCreateNestedManyWithoutGamesInput
+    igdbId: number
+    originalPlatform?: string | null
     covers?: CoverCreateNestedManyWithoutGameInput
-    screenshots?: ScreenshotCreateNestedManyWithoutGameInput
-    developer?: DevelopersCreateNestedOneWithoutGamesInput
     ageRating?: GameRatingCreateNestedOneWithoutGamesInput
+    developer?: DevelopersCreateNestedOneWithoutGamesInput
+    screenshots?: ScreenshotCreateNestedManyWithoutGameInput
+    platforms?: PlatformCreateNestedManyWithoutGamesInput
     savedByUsers?: UserProfileCreateNestedManyWithoutSavedGamesInput
   }
 
   export type GameUncheckedCreateWithoutGenresInput = {
     id?: number
-    igdbId: number
     name: string
     slug: string
     summary?: string | null
     storyline?: string | null
     firstReleaseDate?: Date | string | null
-    originalPlatform?: string | null
     coverUrl?: string | null
     rating?: number | null
     aggregatedRating?: number | null
     totalRating?: number | null
     totalRatingCount?: number | null
+    url?: string | null
+    igdbId: number
+    originalPlatform?: string | null
     ageRatingId?: number | null
     developerId?: number | null
-    url?: string | null
-    platforms?: PlatformUncheckedCreateNestedManyWithoutGamesInput
     covers?: CoverUncheckedCreateNestedManyWithoutGameInput
     screenshots?: ScreenshotUncheckedCreateNestedManyWithoutGameInput
+    platforms?: PlatformUncheckedCreateNestedManyWithoutGamesInput
     savedByUsers?: UserProfileUncheckedCreateNestedManyWithoutSavedGamesInput
   }
 
@@ -16978,47 +16972,47 @@ export namespace Prisma {
   }
 
   export type GameCreateWithoutCoversInput = {
-    igdbId: number
     name: string
     slug: string
     summary?: string | null
     storyline?: string | null
     firstReleaseDate?: Date | string | null
-    originalPlatform?: string | null
     coverUrl?: string | null
     rating?: number | null
     aggregatedRating?: number | null
     totalRating?: number | null
     totalRatingCount?: number | null
     url?: string | null
+    igdbId: number
+    originalPlatform?: string | null
+    ageRating?: GameRatingCreateNestedOneWithoutGamesInput
+    developer?: DevelopersCreateNestedOneWithoutGamesInput
+    screenshots?: ScreenshotCreateNestedManyWithoutGameInput
     genres?: GenreCreateNestedManyWithoutGamesInput
     platforms?: PlatformCreateNestedManyWithoutGamesInput
-    screenshots?: ScreenshotCreateNestedManyWithoutGameInput
-    developer?: DevelopersCreateNestedOneWithoutGamesInput
-    ageRating?: GameRatingCreateNestedOneWithoutGamesInput
     savedByUsers?: UserProfileCreateNestedManyWithoutSavedGamesInput
   }
 
   export type GameUncheckedCreateWithoutCoversInput = {
     id?: number
-    igdbId: number
     name: string
     slug: string
     summary?: string | null
     storyline?: string | null
     firstReleaseDate?: Date | string | null
-    originalPlatform?: string | null
     coverUrl?: string | null
     rating?: number | null
     aggregatedRating?: number | null
     totalRating?: number | null
     totalRatingCount?: number | null
+    url?: string | null
+    igdbId: number
+    originalPlatform?: string | null
     ageRatingId?: number | null
     developerId?: number | null
-    url?: string | null
+    screenshots?: ScreenshotUncheckedCreateNestedManyWithoutGameInput
     genres?: GenreUncheckedCreateNestedManyWithoutGamesInput
     platforms?: PlatformUncheckedCreateNestedManyWithoutGamesInput
-    screenshots?: ScreenshotUncheckedCreateNestedManyWithoutGameInput
     savedByUsers?: UserProfileUncheckedCreateNestedManyWithoutSavedGamesInput
   }
 
@@ -17039,92 +17033,92 @@ export namespace Prisma {
   }
 
   export type GameUpdateWithoutCoversInput = {
-    igdbId?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
     summary?: NullableStringFieldUpdateOperationsInput | string | null
     storyline?: NullableStringFieldUpdateOperationsInput | string | null
     firstReleaseDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    originalPlatform?: NullableStringFieldUpdateOperationsInput | string | null
     coverUrl?: NullableStringFieldUpdateOperationsInput | string | null
     rating?: NullableFloatFieldUpdateOperationsInput | number | null
     aggregatedRating?: NullableFloatFieldUpdateOperationsInput | number | null
     totalRating?: NullableFloatFieldUpdateOperationsInput | number | null
     totalRatingCount?: NullableIntFieldUpdateOperationsInput | number | null
     url?: NullableStringFieldUpdateOperationsInput | string | null
+    igdbId?: IntFieldUpdateOperationsInput | number
+    originalPlatform?: NullableStringFieldUpdateOperationsInput | string | null
+    ageRating?: GameRatingUpdateOneWithoutGamesNestedInput
+    developer?: DevelopersUpdateOneWithoutGamesNestedInput
+    screenshots?: ScreenshotUpdateManyWithoutGameNestedInput
     genres?: GenreUpdateManyWithoutGamesNestedInput
     platforms?: PlatformUpdateManyWithoutGamesNestedInput
-    screenshots?: ScreenshotUpdateManyWithoutGameNestedInput
-    developer?: DevelopersUpdateOneWithoutGamesNestedInput
-    ageRating?: GameRatingUpdateOneWithoutGamesNestedInput
     savedByUsers?: UserProfileUpdateManyWithoutSavedGamesNestedInput
   }
 
   export type GameUncheckedUpdateWithoutCoversInput = {
     id?: IntFieldUpdateOperationsInput | number
-    igdbId?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
     summary?: NullableStringFieldUpdateOperationsInput | string | null
     storyline?: NullableStringFieldUpdateOperationsInput | string | null
     firstReleaseDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    originalPlatform?: NullableStringFieldUpdateOperationsInput | string | null
     coverUrl?: NullableStringFieldUpdateOperationsInput | string | null
     rating?: NullableFloatFieldUpdateOperationsInput | number | null
     aggregatedRating?: NullableFloatFieldUpdateOperationsInput | number | null
     totalRating?: NullableFloatFieldUpdateOperationsInput | number | null
     totalRatingCount?: NullableIntFieldUpdateOperationsInput | number | null
+    url?: NullableStringFieldUpdateOperationsInput | string | null
+    igdbId?: IntFieldUpdateOperationsInput | number
+    originalPlatform?: NullableStringFieldUpdateOperationsInput | string | null
     ageRatingId?: NullableIntFieldUpdateOperationsInput | number | null
     developerId?: NullableIntFieldUpdateOperationsInput | number | null
-    url?: NullableStringFieldUpdateOperationsInput | string | null
+    screenshots?: ScreenshotUncheckedUpdateManyWithoutGameNestedInput
     genres?: GenreUncheckedUpdateManyWithoutGamesNestedInput
     platforms?: PlatformUncheckedUpdateManyWithoutGamesNestedInput
-    screenshots?: ScreenshotUncheckedUpdateManyWithoutGameNestedInput
     savedByUsers?: UserProfileUncheckedUpdateManyWithoutSavedGamesNestedInput
   }
 
   export type GameCreateWithoutScreenshotsInput = {
-    igdbId: number
     name: string
     slug: string
     summary?: string | null
     storyline?: string | null
     firstReleaseDate?: Date | string | null
-    originalPlatform?: string | null
     coverUrl?: string | null
     rating?: number | null
     aggregatedRating?: number | null
     totalRating?: number | null
     totalRatingCount?: number | null
     url?: string | null
+    igdbId: number
+    originalPlatform?: string | null
+    covers?: CoverCreateNestedManyWithoutGameInput
+    ageRating?: GameRatingCreateNestedOneWithoutGamesInput
+    developer?: DevelopersCreateNestedOneWithoutGamesInput
     genres?: GenreCreateNestedManyWithoutGamesInput
     platforms?: PlatformCreateNestedManyWithoutGamesInput
-    covers?: CoverCreateNestedManyWithoutGameInput
-    developer?: DevelopersCreateNestedOneWithoutGamesInput
-    ageRating?: GameRatingCreateNestedOneWithoutGamesInput
     savedByUsers?: UserProfileCreateNestedManyWithoutSavedGamesInput
   }
 
   export type GameUncheckedCreateWithoutScreenshotsInput = {
     id?: number
-    igdbId: number
     name: string
     slug: string
     summary?: string | null
     storyline?: string | null
     firstReleaseDate?: Date | string | null
-    originalPlatform?: string | null
     coverUrl?: string | null
     rating?: number | null
     aggregatedRating?: number | null
     totalRating?: number | null
     totalRatingCount?: number | null
+    url?: string | null
+    igdbId: number
+    originalPlatform?: string | null
     ageRatingId?: number | null
     developerId?: number | null
-    url?: string | null
+    covers?: CoverUncheckedCreateNestedManyWithoutGameInput
     genres?: GenreUncheckedCreateNestedManyWithoutGamesInput
     platforms?: PlatformUncheckedCreateNestedManyWithoutGamesInput
-    covers?: CoverUncheckedCreateNestedManyWithoutGameInput
     savedByUsers?: UserProfileUncheckedCreateNestedManyWithoutSavedGamesInput
   }
 
@@ -17145,232 +17139,232 @@ export namespace Prisma {
   }
 
   export type GameUpdateWithoutScreenshotsInput = {
-    igdbId?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
     summary?: NullableStringFieldUpdateOperationsInput | string | null
     storyline?: NullableStringFieldUpdateOperationsInput | string | null
     firstReleaseDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    originalPlatform?: NullableStringFieldUpdateOperationsInput | string | null
     coverUrl?: NullableStringFieldUpdateOperationsInput | string | null
     rating?: NullableFloatFieldUpdateOperationsInput | number | null
     aggregatedRating?: NullableFloatFieldUpdateOperationsInput | number | null
     totalRating?: NullableFloatFieldUpdateOperationsInput | number | null
     totalRatingCount?: NullableIntFieldUpdateOperationsInput | number | null
     url?: NullableStringFieldUpdateOperationsInput | string | null
+    igdbId?: IntFieldUpdateOperationsInput | number
+    originalPlatform?: NullableStringFieldUpdateOperationsInput | string | null
+    covers?: CoverUpdateManyWithoutGameNestedInput
+    ageRating?: GameRatingUpdateOneWithoutGamesNestedInput
+    developer?: DevelopersUpdateOneWithoutGamesNestedInput
     genres?: GenreUpdateManyWithoutGamesNestedInput
     platforms?: PlatformUpdateManyWithoutGamesNestedInput
-    covers?: CoverUpdateManyWithoutGameNestedInput
-    developer?: DevelopersUpdateOneWithoutGamesNestedInput
-    ageRating?: GameRatingUpdateOneWithoutGamesNestedInput
     savedByUsers?: UserProfileUpdateManyWithoutSavedGamesNestedInput
   }
 
   export type GameUncheckedUpdateWithoutScreenshotsInput = {
     id?: IntFieldUpdateOperationsInput | number
-    igdbId?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
     summary?: NullableStringFieldUpdateOperationsInput | string | null
     storyline?: NullableStringFieldUpdateOperationsInput | string | null
     firstReleaseDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    originalPlatform?: NullableStringFieldUpdateOperationsInput | string | null
     coverUrl?: NullableStringFieldUpdateOperationsInput | string | null
     rating?: NullableFloatFieldUpdateOperationsInput | number | null
     aggregatedRating?: NullableFloatFieldUpdateOperationsInput | number | null
     totalRating?: NullableFloatFieldUpdateOperationsInput | number | null
     totalRatingCount?: NullableIntFieldUpdateOperationsInput | number | null
+    url?: NullableStringFieldUpdateOperationsInput | string | null
+    igdbId?: IntFieldUpdateOperationsInput | number
+    originalPlatform?: NullableStringFieldUpdateOperationsInput | string | null
     ageRatingId?: NullableIntFieldUpdateOperationsInput | number | null
     developerId?: NullableIntFieldUpdateOperationsInput | number | null
-    url?: NullableStringFieldUpdateOperationsInput | string | null
+    covers?: CoverUncheckedUpdateManyWithoutGameNestedInput
     genres?: GenreUncheckedUpdateManyWithoutGamesNestedInput
     platforms?: PlatformUncheckedUpdateManyWithoutGamesNestedInput
-    covers?: CoverUncheckedUpdateManyWithoutGameNestedInput
     savedByUsers?: UserProfileUncheckedUpdateManyWithoutSavedGamesNestedInput
   }
 
   export type GameUpdateWithoutSavedByUsersInput = {
-    igdbId?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
     summary?: NullableStringFieldUpdateOperationsInput | string | null
     storyline?: NullableStringFieldUpdateOperationsInput | string | null
     firstReleaseDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    originalPlatform?: NullableStringFieldUpdateOperationsInput | string | null
     coverUrl?: NullableStringFieldUpdateOperationsInput | string | null
     rating?: NullableFloatFieldUpdateOperationsInput | number | null
     aggregatedRating?: NullableFloatFieldUpdateOperationsInput | number | null
     totalRating?: NullableFloatFieldUpdateOperationsInput | number | null
     totalRatingCount?: NullableIntFieldUpdateOperationsInput | number | null
     url?: NullableStringFieldUpdateOperationsInput | string | null
+    igdbId?: IntFieldUpdateOperationsInput | number
+    originalPlatform?: NullableStringFieldUpdateOperationsInput | string | null
+    covers?: CoverUpdateManyWithoutGameNestedInput
+    ageRating?: GameRatingUpdateOneWithoutGamesNestedInput
+    developer?: DevelopersUpdateOneWithoutGamesNestedInput
+    screenshots?: ScreenshotUpdateManyWithoutGameNestedInput
     genres?: GenreUpdateManyWithoutGamesNestedInput
     platforms?: PlatformUpdateManyWithoutGamesNestedInput
-    covers?: CoverUpdateManyWithoutGameNestedInput
-    screenshots?: ScreenshotUpdateManyWithoutGameNestedInput
-    developer?: DevelopersUpdateOneWithoutGamesNestedInput
-    ageRating?: GameRatingUpdateOneWithoutGamesNestedInput
   }
 
   export type GameUncheckedUpdateWithoutSavedByUsersInput = {
     id?: IntFieldUpdateOperationsInput | number
-    igdbId?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
     summary?: NullableStringFieldUpdateOperationsInput | string | null
     storyline?: NullableStringFieldUpdateOperationsInput | string | null
     firstReleaseDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    originalPlatform?: NullableStringFieldUpdateOperationsInput | string | null
     coverUrl?: NullableStringFieldUpdateOperationsInput | string | null
     rating?: NullableFloatFieldUpdateOperationsInput | number | null
     aggregatedRating?: NullableFloatFieldUpdateOperationsInput | number | null
     totalRating?: NullableFloatFieldUpdateOperationsInput | number | null
     totalRatingCount?: NullableIntFieldUpdateOperationsInput | number | null
+    url?: NullableStringFieldUpdateOperationsInput | string | null
+    igdbId?: IntFieldUpdateOperationsInput | number
+    originalPlatform?: NullableStringFieldUpdateOperationsInput | string | null
     ageRatingId?: NullableIntFieldUpdateOperationsInput | number | null
     developerId?: NullableIntFieldUpdateOperationsInput | number | null
-    url?: NullableStringFieldUpdateOperationsInput | string | null
-    genres?: GenreUncheckedUpdateManyWithoutGamesNestedInput
-    platforms?: PlatformUncheckedUpdateManyWithoutGamesNestedInput
     covers?: CoverUncheckedUpdateManyWithoutGameNestedInput
     screenshots?: ScreenshotUncheckedUpdateManyWithoutGameNestedInput
+    genres?: GenreUncheckedUpdateManyWithoutGamesNestedInput
+    platforms?: PlatformUncheckedUpdateManyWithoutGamesNestedInput
   }
 
   export type GameUncheckedUpdateManyWithoutSavedByUsersInput = {
     id?: IntFieldUpdateOperationsInput | number
-    igdbId?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
     summary?: NullableStringFieldUpdateOperationsInput | string | null
     storyline?: NullableStringFieldUpdateOperationsInput | string | null
     firstReleaseDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    originalPlatform?: NullableStringFieldUpdateOperationsInput | string | null
     coverUrl?: NullableStringFieldUpdateOperationsInput | string | null
     rating?: NullableFloatFieldUpdateOperationsInput | number | null
     aggregatedRating?: NullableFloatFieldUpdateOperationsInput | number | null
     totalRating?: NullableFloatFieldUpdateOperationsInput | number | null
     totalRatingCount?: NullableIntFieldUpdateOperationsInput | number | null
+    url?: NullableStringFieldUpdateOperationsInput | string | null
+    igdbId?: IntFieldUpdateOperationsInput | number
+    originalPlatform?: NullableStringFieldUpdateOperationsInput | string | null
     ageRatingId?: NullableIntFieldUpdateOperationsInput | number | null
     developerId?: NullableIntFieldUpdateOperationsInput | number | null
-    url?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type CoverCreateManyGameInput = {
     id?: number
-    igdbId: number
     imageId?: string | null
     url?: string | null
+    igdbId: number
     height?: number | null
     width?: number | null
   }
 
   export type ScreenshotCreateManyGameInput = {
     id?: number
-    igdbId: number
     imageId?: string | null
     url?: string | null
     height?: number | null
     width?: number | null
-  }
-
-  export type GenreUpdateWithoutGamesInput = {
-    igdbId?: IntFieldUpdateOperationsInput | number
-    name?: NullableStringFieldUpdateOperationsInput | string | null
-    slug?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
-  export type GenreUncheckedUpdateWithoutGamesInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    igdbId?: IntFieldUpdateOperationsInput | number
-    name?: NullableStringFieldUpdateOperationsInput | string | null
-    slug?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
-  export type GenreUncheckedUpdateManyWithoutGamesInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    igdbId?: IntFieldUpdateOperationsInput | number
-    name?: NullableStringFieldUpdateOperationsInput | string | null
-    slug?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
-  export type PlatformUpdateWithoutGamesInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    releaseOrder?: NullableIntFieldUpdateOperationsInput | number | null
-    abbreviation?: NullableStringFieldUpdateOperationsInput | string | null
-    generation?: NullableIntFieldUpdateOperationsInput | number | null
-    slug?: StringFieldUpdateOperationsInput | string
-    platformLogo?: NullableIntFieldUpdateOperationsInput | number | null
-  }
-
-  export type PlatformUncheckedUpdateWithoutGamesInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    releaseOrder?: NullableIntFieldUpdateOperationsInput | number | null
-    abbreviation?: NullableStringFieldUpdateOperationsInput | string | null
-    generation?: NullableIntFieldUpdateOperationsInput | number | null
-    slug?: StringFieldUpdateOperationsInput | string
-    platformLogo?: NullableIntFieldUpdateOperationsInput | number | null
-  }
-
-  export type PlatformUncheckedUpdateManyWithoutGamesInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    releaseOrder?: NullableIntFieldUpdateOperationsInput | number | null
-    abbreviation?: NullableStringFieldUpdateOperationsInput | string | null
-    generation?: NullableIntFieldUpdateOperationsInput | number | null
-    slug?: StringFieldUpdateOperationsInput | string
-    platformLogo?: NullableIntFieldUpdateOperationsInput | number | null
+    igdbId: number
   }
 
   export type CoverUpdateWithoutGameInput = {
-    igdbId?: IntFieldUpdateOperationsInput | number
     imageId?: NullableStringFieldUpdateOperationsInput | string | null
     url?: NullableStringFieldUpdateOperationsInput | string | null
+    igdbId?: IntFieldUpdateOperationsInput | number
     height?: NullableIntFieldUpdateOperationsInput | number | null
     width?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type CoverUncheckedUpdateWithoutGameInput = {
     id?: IntFieldUpdateOperationsInput | number
-    igdbId?: IntFieldUpdateOperationsInput | number
     imageId?: NullableStringFieldUpdateOperationsInput | string | null
     url?: NullableStringFieldUpdateOperationsInput | string | null
+    igdbId?: IntFieldUpdateOperationsInput | number
     height?: NullableIntFieldUpdateOperationsInput | number | null
     width?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type CoverUncheckedUpdateManyWithoutGameInput = {
     id?: IntFieldUpdateOperationsInput | number
-    igdbId?: IntFieldUpdateOperationsInput | number
     imageId?: NullableStringFieldUpdateOperationsInput | string | null
     url?: NullableStringFieldUpdateOperationsInput | string | null
+    igdbId?: IntFieldUpdateOperationsInput | number
     height?: NullableIntFieldUpdateOperationsInput | number | null
     width?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type ScreenshotUpdateWithoutGameInput = {
-    igdbId?: IntFieldUpdateOperationsInput | number
     imageId?: NullableStringFieldUpdateOperationsInput | string | null
     url?: NullableStringFieldUpdateOperationsInput | string | null
     height?: NullableIntFieldUpdateOperationsInput | number | null
     width?: NullableIntFieldUpdateOperationsInput | number | null
+    igdbId?: IntFieldUpdateOperationsInput | number
   }
 
   export type ScreenshotUncheckedUpdateWithoutGameInput = {
     id?: IntFieldUpdateOperationsInput | number
-    igdbId?: IntFieldUpdateOperationsInput | number
     imageId?: NullableStringFieldUpdateOperationsInput | string | null
     url?: NullableStringFieldUpdateOperationsInput | string | null
     height?: NullableIntFieldUpdateOperationsInput | number | null
     width?: NullableIntFieldUpdateOperationsInput | number | null
+    igdbId?: IntFieldUpdateOperationsInput | number
   }
 
   export type ScreenshotUncheckedUpdateManyWithoutGameInput = {
     id?: IntFieldUpdateOperationsInput | number
-    igdbId?: IntFieldUpdateOperationsInput | number
     imageId?: NullableStringFieldUpdateOperationsInput | string | null
     url?: NullableStringFieldUpdateOperationsInput | string | null
     height?: NullableIntFieldUpdateOperationsInput | number | null
     width?: NullableIntFieldUpdateOperationsInput | number | null
+    igdbId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type GenreUpdateWithoutGamesInput = {
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    slug?: NullableStringFieldUpdateOperationsInput | string | null
+    igdbId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type GenreUncheckedUpdateWithoutGamesInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    slug?: NullableStringFieldUpdateOperationsInput | string | null
+    igdbId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type GenreUncheckedUpdateManyWithoutGamesInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    slug?: NullableStringFieldUpdateOperationsInput | string | null
+    igdbId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type PlatformUpdateWithoutGamesInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    abbreviation?: NullableStringFieldUpdateOperationsInput | string | null
+    generation?: NullableIntFieldUpdateOperationsInput | number | null
+    slug?: StringFieldUpdateOperationsInput | string
+    platformLogo?: NullableStringFieldUpdateOperationsInput | string | null
+    releaseOrder?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type PlatformUncheckedUpdateWithoutGamesInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    abbreviation?: NullableStringFieldUpdateOperationsInput | string | null
+    generation?: NullableIntFieldUpdateOperationsInput | number | null
+    slug?: StringFieldUpdateOperationsInput | string
+    platformLogo?: NullableStringFieldUpdateOperationsInput | string | null
+    releaseOrder?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type PlatformUncheckedUpdateManyWithoutGamesInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    abbreviation?: NullableStringFieldUpdateOperationsInput | string | null
+    generation?: NullableIntFieldUpdateOperationsInput | number | null
+    slug?: StringFieldUpdateOperationsInput | string
+    platformLogo?: NullableStringFieldUpdateOperationsInput | string | null
+    releaseOrder?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type UserProfileUpdateWithoutSavedGamesInput = {
@@ -17389,292 +17383,292 @@ export namespace Prisma {
 
   export type GameCreateManyAgeRatingInput = {
     id?: number
-    igdbId: number
     name: string
     slug: string
     summary?: string | null
     storyline?: string | null
     firstReleaseDate?: Date | string | null
-    originalPlatform?: string | null
     coverUrl?: string | null
     rating?: number | null
     aggregatedRating?: number | null
     totalRating?: number | null
     totalRatingCount?: number | null
-    developerId?: number | null
     url?: string | null
+    igdbId: number
+    originalPlatform?: string | null
+    developerId?: number | null
   }
 
   export type GameUpdateWithoutAgeRatingInput = {
-    igdbId?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
     summary?: NullableStringFieldUpdateOperationsInput | string | null
     storyline?: NullableStringFieldUpdateOperationsInput | string | null
     firstReleaseDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    originalPlatform?: NullableStringFieldUpdateOperationsInput | string | null
     coverUrl?: NullableStringFieldUpdateOperationsInput | string | null
     rating?: NullableFloatFieldUpdateOperationsInput | number | null
     aggregatedRating?: NullableFloatFieldUpdateOperationsInput | number | null
     totalRating?: NullableFloatFieldUpdateOperationsInput | number | null
     totalRatingCount?: NullableIntFieldUpdateOperationsInput | number | null
     url?: NullableStringFieldUpdateOperationsInput | string | null
+    igdbId?: IntFieldUpdateOperationsInput | number
+    originalPlatform?: NullableStringFieldUpdateOperationsInput | string | null
+    covers?: CoverUpdateManyWithoutGameNestedInput
+    developer?: DevelopersUpdateOneWithoutGamesNestedInput
+    screenshots?: ScreenshotUpdateManyWithoutGameNestedInput
     genres?: GenreUpdateManyWithoutGamesNestedInput
     platforms?: PlatformUpdateManyWithoutGamesNestedInput
-    covers?: CoverUpdateManyWithoutGameNestedInput
-    screenshots?: ScreenshotUpdateManyWithoutGameNestedInput
-    developer?: DevelopersUpdateOneWithoutGamesNestedInput
     savedByUsers?: UserProfileUpdateManyWithoutSavedGamesNestedInput
   }
 
   export type GameUncheckedUpdateWithoutAgeRatingInput = {
     id?: IntFieldUpdateOperationsInput | number
-    igdbId?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
     summary?: NullableStringFieldUpdateOperationsInput | string | null
     storyline?: NullableStringFieldUpdateOperationsInput | string | null
     firstReleaseDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    originalPlatform?: NullableStringFieldUpdateOperationsInput | string | null
     coverUrl?: NullableStringFieldUpdateOperationsInput | string | null
     rating?: NullableFloatFieldUpdateOperationsInput | number | null
     aggregatedRating?: NullableFloatFieldUpdateOperationsInput | number | null
     totalRating?: NullableFloatFieldUpdateOperationsInput | number | null
     totalRatingCount?: NullableIntFieldUpdateOperationsInput | number | null
-    developerId?: NullableIntFieldUpdateOperationsInput | number | null
     url?: NullableStringFieldUpdateOperationsInput | string | null
-    genres?: GenreUncheckedUpdateManyWithoutGamesNestedInput
-    platforms?: PlatformUncheckedUpdateManyWithoutGamesNestedInput
+    igdbId?: IntFieldUpdateOperationsInput | number
+    originalPlatform?: NullableStringFieldUpdateOperationsInput | string | null
+    developerId?: NullableIntFieldUpdateOperationsInput | number | null
     covers?: CoverUncheckedUpdateManyWithoutGameNestedInput
     screenshots?: ScreenshotUncheckedUpdateManyWithoutGameNestedInput
+    genres?: GenreUncheckedUpdateManyWithoutGamesNestedInput
+    platforms?: PlatformUncheckedUpdateManyWithoutGamesNestedInput
     savedByUsers?: UserProfileUncheckedUpdateManyWithoutSavedGamesNestedInput
   }
 
   export type GameUncheckedUpdateManyWithoutAgeRatingInput = {
     id?: IntFieldUpdateOperationsInput | number
-    igdbId?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
     summary?: NullableStringFieldUpdateOperationsInput | string | null
     storyline?: NullableStringFieldUpdateOperationsInput | string | null
     firstReleaseDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    originalPlatform?: NullableStringFieldUpdateOperationsInput | string | null
     coverUrl?: NullableStringFieldUpdateOperationsInput | string | null
     rating?: NullableFloatFieldUpdateOperationsInput | number | null
     aggregatedRating?: NullableFloatFieldUpdateOperationsInput | number | null
     totalRating?: NullableFloatFieldUpdateOperationsInput | number | null
     totalRatingCount?: NullableIntFieldUpdateOperationsInput | number | null
-    developerId?: NullableIntFieldUpdateOperationsInput | number | null
     url?: NullableStringFieldUpdateOperationsInput | string | null
+    igdbId?: IntFieldUpdateOperationsInput | number
+    originalPlatform?: NullableStringFieldUpdateOperationsInput | string | null
+    developerId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type GameUpdateWithoutPlatformsInput = {
-    igdbId?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
     summary?: NullableStringFieldUpdateOperationsInput | string | null
     storyline?: NullableStringFieldUpdateOperationsInput | string | null
     firstReleaseDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    originalPlatform?: NullableStringFieldUpdateOperationsInput | string | null
     coverUrl?: NullableStringFieldUpdateOperationsInput | string | null
     rating?: NullableFloatFieldUpdateOperationsInput | number | null
     aggregatedRating?: NullableFloatFieldUpdateOperationsInput | number | null
     totalRating?: NullableFloatFieldUpdateOperationsInput | number | null
     totalRatingCount?: NullableIntFieldUpdateOperationsInput | number | null
     url?: NullableStringFieldUpdateOperationsInput | string | null
-    genres?: GenreUpdateManyWithoutGamesNestedInput
+    igdbId?: IntFieldUpdateOperationsInput | number
+    originalPlatform?: NullableStringFieldUpdateOperationsInput | string | null
     covers?: CoverUpdateManyWithoutGameNestedInput
-    screenshots?: ScreenshotUpdateManyWithoutGameNestedInput
-    developer?: DevelopersUpdateOneWithoutGamesNestedInput
     ageRating?: GameRatingUpdateOneWithoutGamesNestedInput
+    developer?: DevelopersUpdateOneWithoutGamesNestedInput
+    screenshots?: ScreenshotUpdateManyWithoutGameNestedInput
+    genres?: GenreUpdateManyWithoutGamesNestedInput
     savedByUsers?: UserProfileUpdateManyWithoutSavedGamesNestedInput
   }
 
   export type GameUncheckedUpdateWithoutPlatformsInput = {
     id?: IntFieldUpdateOperationsInput | number
-    igdbId?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
     summary?: NullableStringFieldUpdateOperationsInput | string | null
     storyline?: NullableStringFieldUpdateOperationsInput | string | null
     firstReleaseDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    originalPlatform?: NullableStringFieldUpdateOperationsInput | string | null
     coverUrl?: NullableStringFieldUpdateOperationsInput | string | null
     rating?: NullableFloatFieldUpdateOperationsInput | number | null
     aggregatedRating?: NullableFloatFieldUpdateOperationsInput | number | null
     totalRating?: NullableFloatFieldUpdateOperationsInput | number | null
     totalRatingCount?: NullableIntFieldUpdateOperationsInput | number | null
+    url?: NullableStringFieldUpdateOperationsInput | string | null
+    igdbId?: IntFieldUpdateOperationsInput | number
+    originalPlatform?: NullableStringFieldUpdateOperationsInput | string | null
     ageRatingId?: NullableIntFieldUpdateOperationsInput | number | null
     developerId?: NullableIntFieldUpdateOperationsInput | number | null
-    url?: NullableStringFieldUpdateOperationsInput | string | null
-    genres?: GenreUncheckedUpdateManyWithoutGamesNestedInput
     covers?: CoverUncheckedUpdateManyWithoutGameNestedInput
     screenshots?: ScreenshotUncheckedUpdateManyWithoutGameNestedInput
+    genres?: GenreUncheckedUpdateManyWithoutGamesNestedInput
     savedByUsers?: UserProfileUncheckedUpdateManyWithoutSavedGamesNestedInput
   }
 
   export type GameUncheckedUpdateManyWithoutPlatformsInput = {
     id?: IntFieldUpdateOperationsInput | number
-    igdbId?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
     summary?: NullableStringFieldUpdateOperationsInput | string | null
     storyline?: NullableStringFieldUpdateOperationsInput | string | null
     firstReleaseDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    originalPlatform?: NullableStringFieldUpdateOperationsInput | string | null
     coverUrl?: NullableStringFieldUpdateOperationsInput | string | null
     rating?: NullableFloatFieldUpdateOperationsInput | number | null
     aggregatedRating?: NullableFloatFieldUpdateOperationsInput | number | null
     totalRating?: NullableFloatFieldUpdateOperationsInput | number | null
     totalRatingCount?: NullableIntFieldUpdateOperationsInput | number | null
+    url?: NullableStringFieldUpdateOperationsInput | string | null
+    igdbId?: IntFieldUpdateOperationsInput | number
+    originalPlatform?: NullableStringFieldUpdateOperationsInput | string | null
     ageRatingId?: NullableIntFieldUpdateOperationsInput | number | null
     developerId?: NullableIntFieldUpdateOperationsInput | number | null
-    url?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type GameCreateManyDeveloperInput = {
     id?: number
-    igdbId: number
     name: string
     slug: string
     summary?: string | null
     storyline?: string | null
     firstReleaseDate?: Date | string | null
-    originalPlatform?: string | null
     coverUrl?: string | null
     rating?: number | null
     aggregatedRating?: number | null
     totalRating?: number | null
     totalRatingCount?: number | null
-    ageRatingId?: number | null
     url?: string | null
+    igdbId: number
+    originalPlatform?: string | null
+    ageRatingId?: number | null
   }
 
   export type GameUpdateWithoutDeveloperInput = {
-    igdbId?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
     summary?: NullableStringFieldUpdateOperationsInput | string | null
     storyline?: NullableStringFieldUpdateOperationsInput | string | null
     firstReleaseDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    originalPlatform?: NullableStringFieldUpdateOperationsInput | string | null
     coverUrl?: NullableStringFieldUpdateOperationsInput | string | null
     rating?: NullableFloatFieldUpdateOperationsInput | number | null
     aggregatedRating?: NullableFloatFieldUpdateOperationsInput | number | null
     totalRating?: NullableFloatFieldUpdateOperationsInput | number | null
     totalRatingCount?: NullableIntFieldUpdateOperationsInput | number | null
     url?: NullableStringFieldUpdateOperationsInput | string | null
+    igdbId?: IntFieldUpdateOperationsInput | number
+    originalPlatform?: NullableStringFieldUpdateOperationsInput | string | null
+    covers?: CoverUpdateManyWithoutGameNestedInput
+    ageRating?: GameRatingUpdateOneWithoutGamesNestedInput
+    screenshots?: ScreenshotUpdateManyWithoutGameNestedInput
     genres?: GenreUpdateManyWithoutGamesNestedInput
     platforms?: PlatformUpdateManyWithoutGamesNestedInput
-    covers?: CoverUpdateManyWithoutGameNestedInput
-    screenshots?: ScreenshotUpdateManyWithoutGameNestedInput
-    ageRating?: GameRatingUpdateOneWithoutGamesNestedInput
     savedByUsers?: UserProfileUpdateManyWithoutSavedGamesNestedInput
   }
 
   export type GameUncheckedUpdateWithoutDeveloperInput = {
     id?: IntFieldUpdateOperationsInput | number
-    igdbId?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
     summary?: NullableStringFieldUpdateOperationsInput | string | null
     storyline?: NullableStringFieldUpdateOperationsInput | string | null
     firstReleaseDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    originalPlatform?: NullableStringFieldUpdateOperationsInput | string | null
     coverUrl?: NullableStringFieldUpdateOperationsInput | string | null
     rating?: NullableFloatFieldUpdateOperationsInput | number | null
     aggregatedRating?: NullableFloatFieldUpdateOperationsInput | number | null
     totalRating?: NullableFloatFieldUpdateOperationsInput | number | null
     totalRatingCount?: NullableIntFieldUpdateOperationsInput | number | null
-    ageRatingId?: NullableIntFieldUpdateOperationsInput | number | null
     url?: NullableStringFieldUpdateOperationsInput | string | null
-    genres?: GenreUncheckedUpdateManyWithoutGamesNestedInput
-    platforms?: PlatformUncheckedUpdateManyWithoutGamesNestedInput
+    igdbId?: IntFieldUpdateOperationsInput | number
+    originalPlatform?: NullableStringFieldUpdateOperationsInput | string | null
+    ageRatingId?: NullableIntFieldUpdateOperationsInput | number | null
     covers?: CoverUncheckedUpdateManyWithoutGameNestedInput
     screenshots?: ScreenshotUncheckedUpdateManyWithoutGameNestedInput
+    genres?: GenreUncheckedUpdateManyWithoutGamesNestedInput
+    platforms?: PlatformUncheckedUpdateManyWithoutGamesNestedInput
     savedByUsers?: UserProfileUncheckedUpdateManyWithoutSavedGamesNestedInput
   }
 
   export type GameUncheckedUpdateManyWithoutDeveloperInput = {
     id?: IntFieldUpdateOperationsInput | number
-    igdbId?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
     summary?: NullableStringFieldUpdateOperationsInput | string | null
     storyline?: NullableStringFieldUpdateOperationsInput | string | null
     firstReleaseDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    originalPlatform?: NullableStringFieldUpdateOperationsInput | string | null
     coverUrl?: NullableStringFieldUpdateOperationsInput | string | null
     rating?: NullableFloatFieldUpdateOperationsInput | number | null
     aggregatedRating?: NullableFloatFieldUpdateOperationsInput | number | null
     totalRating?: NullableFloatFieldUpdateOperationsInput | number | null
     totalRatingCount?: NullableIntFieldUpdateOperationsInput | number | null
-    ageRatingId?: NullableIntFieldUpdateOperationsInput | number | null
     url?: NullableStringFieldUpdateOperationsInput | string | null
+    igdbId?: IntFieldUpdateOperationsInput | number
+    originalPlatform?: NullableStringFieldUpdateOperationsInput | string | null
+    ageRatingId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type GameUpdateWithoutGenresInput = {
-    igdbId?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
     summary?: NullableStringFieldUpdateOperationsInput | string | null
     storyline?: NullableStringFieldUpdateOperationsInput | string | null
     firstReleaseDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    originalPlatform?: NullableStringFieldUpdateOperationsInput | string | null
     coverUrl?: NullableStringFieldUpdateOperationsInput | string | null
     rating?: NullableFloatFieldUpdateOperationsInput | number | null
     aggregatedRating?: NullableFloatFieldUpdateOperationsInput | number | null
     totalRating?: NullableFloatFieldUpdateOperationsInput | number | null
     totalRatingCount?: NullableIntFieldUpdateOperationsInput | number | null
     url?: NullableStringFieldUpdateOperationsInput | string | null
-    platforms?: PlatformUpdateManyWithoutGamesNestedInput
+    igdbId?: IntFieldUpdateOperationsInput | number
+    originalPlatform?: NullableStringFieldUpdateOperationsInput | string | null
     covers?: CoverUpdateManyWithoutGameNestedInput
-    screenshots?: ScreenshotUpdateManyWithoutGameNestedInput
-    developer?: DevelopersUpdateOneWithoutGamesNestedInput
     ageRating?: GameRatingUpdateOneWithoutGamesNestedInput
+    developer?: DevelopersUpdateOneWithoutGamesNestedInput
+    screenshots?: ScreenshotUpdateManyWithoutGameNestedInput
+    platforms?: PlatformUpdateManyWithoutGamesNestedInput
     savedByUsers?: UserProfileUpdateManyWithoutSavedGamesNestedInput
   }
 
   export type GameUncheckedUpdateWithoutGenresInput = {
     id?: IntFieldUpdateOperationsInput | number
-    igdbId?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
     summary?: NullableStringFieldUpdateOperationsInput | string | null
     storyline?: NullableStringFieldUpdateOperationsInput | string | null
     firstReleaseDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    originalPlatform?: NullableStringFieldUpdateOperationsInput | string | null
     coverUrl?: NullableStringFieldUpdateOperationsInput | string | null
     rating?: NullableFloatFieldUpdateOperationsInput | number | null
     aggregatedRating?: NullableFloatFieldUpdateOperationsInput | number | null
     totalRating?: NullableFloatFieldUpdateOperationsInput | number | null
     totalRatingCount?: NullableIntFieldUpdateOperationsInput | number | null
+    url?: NullableStringFieldUpdateOperationsInput | string | null
+    igdbId?: IntFieldUpdateOperationsInput | number
+    originalPlatform?: NullableStringFieldUpdateOperationsInput | string | null
     ageRatingId?: NullableIntFieldUpdateOperationsInput | number | null
     developerId?: NullableIntFieldUpdateOperationsInput | number | null
-    url?: NullableStringFieldUpdateOperationsInput | string | null
-    platforms?: PlatformUncheckedUpdateManyWithoutGamesNestedInput
     covers?: CoverUncheckedUpdateManyWithoutGameNestedInput
     screenshots?: ScreenshotUncheckedUpdateManyWithoutGameNestedInput
+    platforms?: PlatformUncheckedUpdateManyWithoutGamesNestedInput
     savedByUsers?: UserProfileUncheckedUpdateManyWithoutSavedGamesNestedInput
   }
 
   export type GameUncheckedUpdateManyWithoutGenresInput = {
     id?: IntFieldUpdateOperationsInput | number
-    igdbId?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
     summary?: NullableStringFieldUpdateOperationsInput | string | null
     storyline?: NullableStringFieldUpdateOperationsInput | string | null
     firstReleaseDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    originalPlatform?: NullableStringFieldUpdateOperationsInput | string | null
     coverUrl?: NullableStringFieldUpdateOperationsInput | string | null
     rating?: NullableFloatFieldUpdateOperationsInput | number | null
     aggregatedRating?: NullableFloatFieldUpdateOperationsInput | number | null
     totalRating?: NullableFloatFieldUpdateOperationsInput | number | null
     totalRatingCount?: NullableIntFieldUpdateOperationsInput | number | null
+    url?: NullableStringFieldUpdateOperationsInput | string | null
+    igdbId?: IntFieldUpdateOperationsInput | number
+    originalPlatform?: NullableStringFieldUpdateOperationsInput | string | null
     ageRatingId?: NullableIntFieldUpdateOperationsInput | number | null
     developerId?: NullableIntFieldUpdateOperationsInput | number | null
-    url?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
 

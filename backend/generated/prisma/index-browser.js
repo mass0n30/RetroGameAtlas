@@ -144,21 +144,21 @@ exports.Prisma.UserProfileScalarFieldEnum = {
 
 exports.Prisma.GameScalarFieldEnum = {
   id: 'id',
-  igdbId: 'igdbId',
   name: 'name',
   slug: 'slug',
   summary: 'summary',
   storyline: 'storyline',
   firstReleaseDate: 'firstReleaseDate',
-  originalPlatform: 'originalPlatform',
   coverUrl: 'coverUrl',
   rating: 'rating',
   aggregatedRating: 'aggregatedRating',
   totalRating: 'totalRating',
   totalRatingCount: 'totalRatingCount',
+  url: 'url',
+  igdbId: 'igdbId',
+  originalPlatform: 'originalPlatform',
   ageRatingId: 'ageRatingId',
-  developerId: 'developerId',
-  url: 'url'
+  developerId: 'developerId'
 };
 
 exports.Prisma.GameRatingScalarFieldEnum = {
@@ -170,11 +170,11 @@ exports.Prisma.GameRatingScalarFieldEnum = {
 exports.Prisma.PlatformScalarFieldEnum = {
   id: 'id',
   name: 'name',
-  releaseOrder: 'releaseOrder',
   abbreviation: 'abbreviation',
   generation: 'generation',
   slug: 'slug',
-  platformLogo: 'platformLogo'
+  platformLogo: 'platformLogo',
+  releaseOrder: 'releaseOrder'
 };
 
 exports.Prisma.DevelopersScalarFieldEnum = {
@@ -186,29 +186,29 @@ exports.Prisma.DevelopersScalarFieldEnum = {
 
 exports.Prisma.GenreScalarFieldEnum = {
   id: 'id',
-  igdbId: 'igdbId',
   name: 'name',
-  slug: 'slug'
+  slug: 'slug',
+  igdbId: 'igdbId'
 };
 
 exports.Prisma.CoverScalarFieldEnum = {
   id: 'id',
-  igdbId: 'igdbId',
   imageId: 'imageId',
   url: 'url',
+  igdbId: 'igdbId',
+  gameId: 'gameId',
   height: 'height',
-  width: 'width',
-  gameId: 'gameId'
+  width: 'width'
 };
 
 exports.Prisma.ScreenshotScalarFieldEnum = {
   id: 'id',
-  igdbId: 'igdbId',
   imageId: 'imageId',
   url: 'url',
+  gameId: 'gameId',
   height: 'height',
   width: 'width',
-  gameId: 'gameId'
+  igdbId: 'igdbId'
 };
 
 exports.Prisma.SortOrder = {
