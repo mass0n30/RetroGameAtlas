@@ -2,6 +2,7 @@
 let authenticationToken = null;
 
 const apicalypse = require('apicalypse').default;
+const { prisma } = require('../db/prismaClient.js');
 
 
 async function getTwitchToken() {
@@ -44,9 +45,10 @@ async function requestOptions() {
 };
 
 async function populateAllGames(req, res, next) {
+  await delay(200);
   
-  let year = 1978;
-  let page = 1;
+  let year = 1990;
+  let page = 2;
 
   while (year < 2013) {
     const results = await getGamesByYear(req, res, next, year, page);
@@ -112,7 +114,8 @@ async function getGamesByYear(req, res, next, year, page) {
     }
 
   } catch (error) {
-     next(error);
+    console.log(error)
+  //   next(error);
   }
   return false;
 };
@@ -155,7 +158,8 @@ async function getGamesByPlatform(req, res, next) {
 
     .request('/games'); 
     } catch (error) {
-    next(error);
+      console.log(error)
+   // next(error);
   }
 };   
 
@@ -174,7 +178,7 @@ async function saveGame(gameData) {
   return game;
 };
 
-const { prisma } = require("../db/prismaClient.js");
+// prisma already imported above
 
 // return if game is on any platforms, returning platform id's for map function
 // !!!! perhaps only return the original release console ??
@@ -198,7 +202,14 @@ function filterGame(game) {
 
 // filter games by platforms
 async function saveGames(games) {
+
+  const storedGames = await prisma.game.findMany();
+
   for (const game of games) {
+    // skip processing if the game is already stored
+    if (storedGames.some((storedGame) => storedGame.name === game.name && storedGame.rating === game.rating)) {
+      continue;
+    }
     const platformData = filterGame(game);
     if (platformData) {
       await mapGameData(game, platformData);
@@ -215,7 +226,7 @@ async function delay(ms) {
 // POST REQUESTS 
 
 async function getCover(game, options) {
-
+    await delay(80);
     if (game.cover) {
       const response = await apicalypse(options)
       .fields('url, game, image_id, width, height')  // image_id is used to coonstruct image URL 'fast responses'
@@ -234,9 +245,8 @@ async function getCover(game, options) {
   };
 
 async function getScreenshots(game, options) {
-
   if (game.screenshots) {
-    await delay(300);
+    await delay(200);
     const response = await apicalypse(options)
     .fields('url, game, image_id, height, width')
     .where(`game = ${game.id}`)
@@ -341,19 +351,21 @@ async function mapGameData(game, platformData) {
 
   const options = await requestOptions();
 
-  const [
-    gameCover,
-    gameScreenshots,
-    gameGenre,
-    gameAgeRating,
-    gameDeveloper
-  ] = await Promise.all([
-    getCover(game, options),
-    getScreenshots(game, options),
-    getGenre(game, options),
-    getAgeRatingCategory(game, options),
-    getDeveloper(game, options)
-  ]);
+  const gameCover = await getCover(game, options);
+  await delay(150);
+
+  const gameScreenshots = await getScreenshots(game, options);
+  await delay(150);
+
+  const gameGenre = await getGenre(game, options);
+  await delay(150);
+
+  const gameAgeRating = await getAgeRatingCategory(game, options);
+  await delay(150);
+
+  const gameDeveloper = await getDeveloper(game, options);
+  await delay(150);
+
 
   const gameCoverUrl = gameCover?.image_id
     ? `https://images.igdb.com/igdb/image/upload/t_cover_big/${gameCover.image_id}.jpg`

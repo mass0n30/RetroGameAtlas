@@ -128,8 +128,8 @@ if (loading) {
   const game = normalizeGameData(gameDetails);
   return (
    <>
+  <SnackBarAlert open={alert} setOpen={setAlert} status={saved} msg={saved ? 'Saved to Games' : 'Removed from Games'}/>
    <div className={styles.outercontainer}>
-        <SnackBarAlert open={alert} setOpen={setAlert} status={saved} msg={saved ? 'Saved to Games' : 'Removed from Games'}/>
         <div className={styles.savecontainer}>
           <button onClick={async () => handleSaveGame()} className={styles.likeBtn}>
             <Heart fill={saved ? "red" : "white"} size={50}/>

@@ -12,8 +12,14 @@ function Login() {
   const [error, setError] = useState(null);
   const navigate = useNavigate();
   
-  //JWT removed from local storage upon mount (redirect to login page)
-  localStorage.removeItem('usertoken');
+  useEffect(() => {
+    const token = localStorage.getItem("usertoken");
+    
+    // eventually navigate to uesr dashboard instead
+    if (token) {
+      navigate("/home", {replace: true});
+    }
+  }, []);
 
   const handleSubmit = async (event) => {
     event.preventDefault();

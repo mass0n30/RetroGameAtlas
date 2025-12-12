@@ -109,14 +109,21 @@ export default function SideBar({ categoryData, orderData, orderDirection, setOr
                </div>
               </TreeItemContent>
 
-              {section.array.map((item) => ( 
+            { section.name == "Consoles" ? (
+              section.array.map((item) => ( 
+                <TreeItem key={item.name} id={item.name} textValue={item.name} > 
+                  <SectionTreeItem open={open} setOpen={setOpen} category={section.category} itemname={item.name} itemId={item.id}  toggleItem={toggleItem} logo={item.platformLogo}/>
+                </TreeItem>
+              ))
+            ) : (
+              section.array.map((item) => ( 
                 <TreeItem key={item.name} id={item.name} textValue={item.name} > 
                   <SectionTreeItem open={open} setOpen={setOpen} category={section.category} itemname={item.name} itemId={item.id} toggleItem={toggleItem}/>
                 </TreeItem>
-
-              ))}
+              ))
+            )};
             </TreeItem>
-          ))}  
+          ))}; 
         </Tree>
       </div>
       <div className={styles.yearsfiltercontainer}>

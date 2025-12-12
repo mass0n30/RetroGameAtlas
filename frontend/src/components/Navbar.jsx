@@ -32,6 +32,7 @@ export default function Navbar({ toggle, setToggle, setSearch, search, discover,
   };
 
   const handleNavBack = () => {
+
     navigate(-1);
   };
 
@@ -48,7 +49,7 @@ export default function Navbar({ toggle, setToggle, setSearch, search, discover,
           </button>
         <div className={styles.navContainer}>
           <button className={styles.btn} onClick={() => handleNavBack()}>
-              <ArrowLeft size={30}/>
+              <ArrowLeft className={styles.btnA} size={30}/>
           </button>
 
         </div>

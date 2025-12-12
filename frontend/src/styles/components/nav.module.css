@@ -45,6 +45,10 @@ nav {
   color: var(--orange-fire);
 }
 
+.btnA:hover {
+  color: var(--color-primary);
+}
+
 .toggleBtn {
   background-color: var(--color-background);
   border-color: var(--color-background-light);
@@ -62,9 +66,6 @@ nav {
   opacity: 70%;
 }
 
-.btn:hover {
-  color: var(--color-primary-hover);
-}
 
 .navRightContainer {
   flex: 2;

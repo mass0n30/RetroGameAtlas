@@ -1,7 +1,7 @@
 
 
 /* variables.css */
-
+@import url('https://api.fontshare.com/v2/css?f[]=satoshi@900,700,500,400&display=swap');
 /* ----------------- Colors ----------------- */
 :root {
   --color-background: #0d0f17;
@@ -31,8 +31,9 @@
 }
 
 /* ----------------- Typography ----------------- */
+
 :root {
-  --font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  --font-family: 'Satoshi', -apple-system, BlinkMacSystemFont, sans-serif;
   --text-xs: 0.75rem;      /* 12px */
   --text-sm: 0.875rem;     /* 14px */
   --text-base: 1rem;       /* 16px */

@@ -64,7 +64,6 @@ TODO:
   - Make a component for alert messages (like for saved games if no saved games, or no game results upon search, ect.)
   - Make a alert component for alerts (saved to games, ect)
   - Embed ebay listing onto details page?
-  - Add a navigate back -1 arrow icon on GameDetails page (shouldn't scroll to top mounting on home)
   - Add animation and sound? to heart selection
   - put ebay listings as 'related listings (good amount does not have exact title listings, more so related listings, perhaps I can improve this looking back through ebay api docs)
   - game name tags on image covers/screenshots? (lots of japanese/foreign titles in images)
@@ -73,13 +72,15 @@ TODO:
 
 
   - Get rating scores, and rating count on game cards for Rating? Put in Game Details as well. 
+  - Position heart not overlaying cover art in corner more aligned
+  - add transparent loader skeleton in main scroll container for wave animation upon navigation back, while game cards load in
   - adding details like an icon next to 'no more results' at bottom of fetches, ect. (broken controller icon on error page, ect)
   - fix slight space side bar between scroll wheel and rows
   - add user dislike options for inaccuracy feedback (filter by most votes to replace for more accuracy by admin, user can report inaccurate speedrun data, video data, game data, ect)
   - design Game Details page (layout on paper sketch considering flex on mobile)
       - maybe add some related games section in Game Details (this may not be too difficult, inital Grab Same Titles if same developer, fallback grab games in same genre and console?)
   - Populate more Wii games, populate PSP titles and atari 2600 ?
-
+  - put social links in a popout from clicking a share Icon on gamedetail page ( next to heart icon )
   - Improve getting Record Type on details page (level, Any%, ect)?
   - Typography improvements, especially on gameDetails page (font for paragraphs, headers, giving icons more stroke width over text labels? etc)
 

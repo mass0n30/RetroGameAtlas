@@ -11,10 +11,15 @@ export default function NavMenu({setMount}) {
   function handleNavigate() {
     navigate('/home/saved');
     setMount(false);
-  }
+  };
+
+  function handleSettingsNav() {
+    navigate('home/settings');
+    setMount(false);
+  };
 
   function handleLogOut() {
-    localStorage.removeItem("token");
+    localStorage.removeItem("usertoken");
     navigate("/");
   };
 

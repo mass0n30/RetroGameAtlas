@@ -8,7 +8,7 @@ import { resetFilters } from '../helpers';
 import { useEffect } from 'react';
 
 
-function SectionTreeItem({  category, itemname,itemId, toggleItem,open, setOpen,  }) {
+function SectionTreeItem({  category, itemname,itemId, toggleItem,open, setOpen, logo  }) {
 
   // making new set from parent state for toggled element categories, conditionally checking inline upon changes
   const set = new Set(open);
@@ -28,6 +28,7 @@ function SectionTreeItem({  category, itemname,itemId, toggleItem,open, setOpen,
   return (
         <TreeItemContent>
           <Button id={styles.categorybtn} onClick={() => {openHandler(itemId), toggleItem(itemId, category)}} style={set.has(itemId) ? { backgroundColor: '#3b82f6', color: '#a7e9ff' } : null} >
+          
            <div id={styles.categorybtntxt}>{itemname}</div> 
             </Button>
         </TreeItemContent>
