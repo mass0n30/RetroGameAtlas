@@ -95,37 +95,44 @@ export default function SideBar({ categoryData, orderData, orderDirection, setOr
       </div>
 
       <div className={styles.categoriescontainer}>
-        <Tree aria-label="Categories" className={styles.tree}
-          >
+        <Tree aria-label="Categories" className={styles.tree}>
           {categoryData.map((section) => (
-            <TreeItem key={section.category} id={section.category} className={styles.treeItem} textValue={section.category}>
-          
+            <TreeItem
+              key={section.category}
+              id={section.category}
+              className={styles.treeItem}
+              textValue={section.category}
+            >
               <TreeItemContent className={styles.categoryheader}>
-               <div className={styles.categoryheadertxt}> 
-                { section.category == "Consoles" && <Joystick size={32} color="#E8F1F2" />}
-                { section.category == "Genres" && <LibraryBig size={32} color="#E8F1F2" /> }
-                { section.category == "Developers" && <Handshake size={32} color="#E8F1F2" /> }
-                <strong>{section.category}</strong> 
-               </div>
+                <div className={styles.categoryheadertxt}>
+                  {section.category === "Consoles" && <Joystick size={32} color="#E8F1F2" />}
+                  {section.category === "Genres" && <LibraryBig size={32} color="#E8F1F2" />}
+                  {section.category === "Developers" && <Handshake size={32} color="#E8F1F2" />}
+                  <strong>{section.category}</strong>
+                </div>
               </TreeItemContent>
 
-            { section.name == "Consoles" ? (
-              section.array.map((item) => ( 
-                <TreeItem key={item.name} id={item.name} textValue={item.name} > 
-                  <SectionTreeItem open={open} setOpen={setOpen} category={section.category} itemname={item.name} itemId={item.id}  toggleItem={toggleItem} logo={item.platformLogo}/>
+              {section.array.map((item) => (
+                <TreeItem
+                  key={item.name}
+                  id={item.name}
+                  textValue={item.name}    
+                >
+                  <SectionTreeItem
+                    open={open}
+                    setOpen={setOpen}
+                    category={section.category}
+                    itemname={item.name}
+                    itemId={item.id}
+                    toggleItem={toggleItem}
+                  />
                 </TreeItem>
-              ))
-            ) : (
-              section.array.map((item) => ( 
-                <TreeItem key={item.name} id={item.name} textValue={item.name} > 
-                  <SectionTreeItem open={open} setOpen={setOpen} category={section.category} itemname={item.name} itemId={item.id} toggleItem={toggleItem}/>
-                </TreeItem>
-              ))
-            )};
+              ))}
             </TreeItem>
-          ))}; 
+          ))}
         </Tree>
       </div>
+      
       <div className={styles.yearsfiltercontainer}>
         <YearDropdown className={styles.yearSelect} selectedYear={minyear} compYear={maxyear} setSelectedYear={setYear} arg={"min"}/>
         <YearDropdown className={styles.yearSelect} selectedYear={maxyear} compYear={minyear} setSelectedYear={setYear} arg={"max"}/>
@@ -182,7 +189,8 @@ function handleSetYear(compYear, setSelectedYear, arg, e) {
 
 // eslint-disable-next-line react/prop-types
 const YearDropdown = ({ selectedYear, compYear, setSelectedYear, arg }) => {
-  const years = [ 1985, 1986, 1987, 1988, 1989, 1990, 1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006 ];
+  const years = [1974, 1975, 1976, 1978, 1979, 1980, 1981, 1982, 1983, 1984, 1985, 1986, 1987, 1988, 1989, 1990, 1991, 1992, 1993, 1994, 1995, 
+    1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012 ];
 
   return (
     <select

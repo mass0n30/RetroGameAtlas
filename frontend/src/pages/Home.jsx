@@ -21,7 +21,7 @@ function Home() {
   const [platform, setPlatform] = useState();
   const [genre, setGenre] = useState();
   const [developer, setDeveloper] = useState();
-  const [year, setYear] = useState({min: 1985, max: 2006});
+  const [year, setYear] = useState({min: 1974, max: 2012});
   const [search, setSearch] = useState("");
   const [order, setOrder] = useState({data: "Popularity", order: true}); //false = desc, true = asc
   const [discover, setDiscover] = useState(false);

@@ -47,8 +47,8 @@ async function requestOptions() {
 async function populateAllGames(req, res, next) {
   await delay(200);
   
-  let year = 1990;
-  let page = 2;
+  let year = 1993;
+  let page = 1;
 
   while (year < 2013) {
     const results = await getGamesByYear(req, res, next, year, page);
@@ -203,26 +203,19 @@ function filterGame(game) {
 // filter games by platforms
 async function saveGames(games) {
 
-  const storedGames = await prisma.game.findMany();
-
-  for (const game of games) {
-    // skip processing if the game is already stored
-    if (storedGames.some((storedGame) => storedGame.name === game.name && storedGame.rating === game.rating)) {
-      continue;
-    }
-    const platformData = filterGame(game);
+  for (const single_game of games) {
+    const platformData = filterGame(single_game);
     if (platformData) {
-      await mapGameData(game, platformData);
+      await mapGameData(single_game, platformData);
     }
   }
   console.log('Done!');
 };
 
+
 async function delay(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
-
-
 // POST REQUESTS 
 
 async function getCover(game, options) {

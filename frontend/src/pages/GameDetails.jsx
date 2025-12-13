@@ -5,7 +5,7 @@ import axios from "axios";
 import normalizeGameData from '../helpers';
 import CustomSpinner from '../components/Spinner';
 import YouTubeEmbed from '../components/Youtube';
-import {Heart, ArrowBigLeftDash, ArrowBigRightDash} from 'lucide-react';
+import {Heart, ArrowBigLeftDash, ArrowBigRightDash, DollarSign} from 'lucide-react';
 import SocialsShare from '../components/ShareSocials';
 import SnackBarAlert from '../components/reactMUI/Alerts';
 import GameDetailsSkeleton from '../components/Skeleton';
@@ -146,6 +146,7 @@ if (loading) {
             </div>
           </div>
           <div className={styles.lowercovercontainer}>
+          <div className={styles.namecontainer}><h1 className={styles.name}>{game.name}</h1></div>
             <div className={styles.platformcontainer}>
               <div>
                 {gameDetails?.originalPlatform ? (
@@ -178,7 +179,7 @@ if (loading) {
           </div>
 
         </div> 
-        <div className={styles.datacontainer}>
+        <article className={styles.datacontainer}>
           <div className={styles.screenshotscontainer}>
             {screenshots.length > 0 ? (
               <div className={styles.carousel}>
@@ -225,7 +226,7 @@ if (loading) {
             ) : (
                 <> </>
             )}
-            </div>
+            </article>
           </div>
       {game.storyline ? (
         <div className={styles.storylinecontainer}> 
@@ -241,11 +242,30 @@ if (loading) {
           <div className={styles.ebaycontainer}>
             {gameEbayData.map((post) => (
               <div className={styles.ebayinnercontainer} key={post.itemId}>
-                {post.title}
-                <div className={styles.ebaycondition}>{post.condition}</div>
-                <div className={styles.ebayprice}>
-                  {post.price.currency} {post.price.value}
+                <div className={styles.ebaytitlecontainer}>
+                  <h2 className={styles.ebaytitle}>{post.title}</h2>  
                 </div>
+                <div className={styles.ebayinfocontainer}>
+                  <div className={styles.ebayinfoinnercontainer}>
+                    <div className={styles.ebaypricecontianer}>
+                      <div className={styles.ebaycondition}>{post.condition}</div>
+                        
+                      <div className={styles.pricecontainer}>
+                        <div className={styles.dollar}><DollarSign size={14}/></div>  
+                        <div className={styles.value}>{post.price.value}</div> 
+                        <div className={styles.currency}>{post.price.currency}</div>
+                      </div>
+                    </div>
+                    <div className={styles.sellerinfocontainer}>
+                      <div className={styles.sellername}>{post?.seller?.username}</div>
+                      <div className={styles.sellerrating}>{post?.seller?.feedbackPercentage}</div>
+                    </div>
+                </div>
+                <div className={styles.ebayimg}>
+                  <img src={post.image?.imageUrl}/>
+                </div>
+              </div>
+
                 <div className={styles.ebaylink}>
                   <a
                     href={post.itemWebUrl}
