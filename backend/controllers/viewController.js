@@ -168,7 +168,16 @@ async function handleGetGames(req, res, next) {
 
     console.log(`Fetching offset: ${offset}, limit: ${limit}`);
 
-    const orderBy = await constructQueryByCategory(order, dir);
+    // ordering Popular games with Rating sorting algorithm below
+    let currentOrder = null;
+
+    if (order == "Rating") {
+      currentOrder = "Popularity"
+    } else {
+      currentOrder = order;
+    }
+
+    const orderBy = await constructQueryByCategory(currentOrder, dir);
     const queryArrays = await constructQueryArrays(req);
     const offsetCal = parseInt(offset) * parseInt(limit);
 

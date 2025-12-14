@@ -58,6 +58,8 @@ async function getHundredPercentTime(gameName, gameConsole) {
   const wr = await fetch(`https://www.speedrun.com/api/v1/categories/${hundredPercent.id}/records?top=1`);
   const test = (await wr.json()).data[0].runs?.[0];
   const runLink = test?.run?.weblink || null;
+  const playerId = test?.run?.players?.[0]?.id || null;
+  const username = await getUsernameById(playerId);
   const videoLink = test?.run?.videos?.links?.[0]?.uri || null;
   const timeInSeconds = test?.run?.times?.primary_t || null;
   const timeConverted = formatSecondsToHHMMSS(timeInSeconds);
@@ -66,9 +68,20 @@ async function getHundredPercentTime(gameName, gameConsole) {
     timeConverted,
     runLink,
     videoLink,
-    recordName
+    recordName,
+    username
   };
 };
+
+async function getUsernameById(userId) {
+  if (!userId) return null;
+
+  const res = await fetch(`https://www.speedrun.com/api/v1/users/${userId}`);
+  const json = await res.json();
+
+  return json?.data?.names?.international || null;
+}
+
 
 function formatSecondsToHHMMSS(totalSeconds) {
   const hours = Math.floor(totalSeconds / 3600);

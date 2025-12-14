@@ -5,7 +5,7 @@ import axios from "axios";
 import normalizeGameData from '../helpers';
 import CustomSpinner from '../components/Spinner';
 import YouTubeEmbed from '../components/Youtube';
-import {Heart, ArrowBigLeftDash, ArrowBigRightDash, DollarSign} from 'lucide-react';
+import {Award, Heart, ArrowBigLeftDash, ArrowBigRightDash, DollarSign, Percent, ShoppingCart} from 'lucide-react';
 import SocialsShare from '../components/ShareSocials';
 import SnackBarAlert from '../components/reactMUI/Alerts';
 import GameDetailsSkeleton from '../components/Skeleton';
@@ -132,7 +132,7 @@ if (loading) {
    <div className={styles.outercontainer}>
         <div className={styles.savecontainer}>
           <button onClick={async () => handleSaveGame()} className={styles.likeBtn}>
-            <Heart fill={saved ? "red" : "white"} size={50}/>
+            <Heart fill={saved ? "red" : "white"} className={styles.iconsHeart} />
           </button>
         </div>
       <div className={styles.detailscontainer}>
@@ -191,7 +191,7 @@ if (loading) {
                     )
                   }
                 >
-                <ArrowBigLeftDash size={32} color="#E8F1F2" />
+                <ArrowBigLeftDash className={styles.icons} color="#E8F1F2" />
                 </button>
                 <div className={styles.screenshotcarouselcontainer}> 
                   <img
@@ -209,7 +209,7 @@ if (loading) {
                     )
                   }
                 >
-                <ArrowBigRightDash size={32} color="#E8F1F2" />
+                <ArrowBigRightDash className={styles.icons} color="#E8F1F2" />
 
                 </button>
               </div>
@@ -238,6 +238,79 @@ if (loading) {
       ) : (
           <> </>
       )}
+
+        <div className={styles.recordscontainer}>
+          {recordData && (
+          <div className={styles.recorditem}>
+            <div className={styles.recordinfo}>
+              <div className={styles.award}>
+                <Award fill='gold' color='gold' className={styles.icons}/>
+                  <h3>
+                    {recordData.recordName}
+                  </h3>
+              </div>
+                {recordData.username && (
+                  <div className={styles.recordusername}>
+                    <span>Speedrunner - </span><div>{recordData.username} </div>
+                  </div>
+                )}
+              <div className={styles.recordtime}>
+                Record Time - {recordData.timeConverted}
+              </div>
+            </div>
+            <div className={styles.recordvideocontainer}> 
+              <YouTubeEmbed url={recordData.videoLink} title={recordData.recordName}/>
+            </div>
+            <div className={styles.recordlink}>
+              <a href={'recordDataAlt.runLink'}>
+                <button> {gameDetails.name} Speedrun Data </button>
+                </a>
+            </div>
+          </div>
+  
+          )}
+
+        {recordDataAlt && (
+          <div className={styles.recorditem}>
+
+            <div className={styles.recordinfo}>
+              <div className={styles.award}>
+                <Award fill='gold' color='gold' className={styles.icons}/>
+                <h3>
+                  {recordDataAlt.recordName}
+                </h3>
+              </div>
+                {recordDataAlt.username && (
+                  <div className={styles.recordusername}>
+                    <span>Speedrunner - </span><div>{recordDataAlt.username} </div>
+                  </div>
+                )}
+              <div className={styles.recordtime}>
+                Record Time - {recordDataAlt.timeConverted}
+              </div>
+            </div>
+
+            <div className={styles.recordvideocontainer}> 
+              <YouTubeEmbed
+                url={recordDataAlt.videoLink}
+                title={recordDataAlt.recordName}
+              />
+            </div>
+
+            <div className={styles.recordlink}>
+              <a
+                href={recordDataAlt.runLink}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <button>{gameDetails.name} Speedrun Data</button>
+              </a>
+            </div>
+
+          </div>
+        )}
+        </div>
+
         {gameEbayData ? (
           <div className={styles.ebaycontainer}>
             {gameEbayData.map((post) => (
@@ -245,85 +318,46 @@ if (loading) {
                 <div className={styles.ebaytitlecontainer}>
                   <h2 className={styles.ebaytitle}>{post.title}</h2>  
                 </div>
+                <div className={styles.ebaylink}>                    
+                    <a
+                      href={post?.itemWebUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <button>
+                        <ShoppingCart className={styles.icons}/>
+                         View on Ebay
+                      </button>
+                    </a>
+                </div>
                 <div className={styles.ebayinfocontainer}>
                   <div className={styles.ebayinfoinnercontainer}>
                     <div className={styles.ebaypricecontianer}>
-                      <div className={styles.ebaycondition}>{post.condition}</div>
+                      <div className={styles.sellertitle}>Price Information</div>
+                      <div className={styles.ebaycondition}><span>Condition: </span>{post.condition}</div>
                         
                       <div className={styles.pricecontainer}>
-                        <div className={styles.dollar}><DollarSign size={14}/></div>  
+                        <div className={styles.dollar}><DollarSign className={styles.iconsDollar}/></div>  
                         <div className={styles.value}>{post.price.value}</div> 
                         <div className={styles.currency}>{post.price.currency}</div>
                       </div>
                     </div>
                     <div className={styles.sellerinfocontainer}>
-                      <div className={styles.sellername}>{post?.seller?.username}</div>
-                      <div className={styles.sellerrating}>{post?.seller?.feedbackPercentage}</div>
+                      <div className={styles.sellertitle}>Seller Information</div>
+                      <div className={styles.sellername}><span>Username: </span>{post?.seller?.username}</div>
+                      <div className={styles.sellerrating}><span>Seller Rating: </span>{post?.seller?.feedbackPercentage}<Percent className={styles.iconsPercent}/></div>
                     </div>
                 </div>
                 <div className={styles.ebayimg}>
                   <img src={post.image?.imageUrl}/>
                 </div>
               </div>
-
-                <div className={styles.ebaylink}>
-                  <a
-                    href={post.itemWebUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    View on Ebay
-                  </a>
-                </div>
               </div>
             ))}
           </div>
         ) : (
           <></>
         )}
-
-        <div className={styles.recordscontainer}>
-          {recordData? (
-          <div className={styles.recorditem}>
-            <h1>
-              {recordData.recordName}
-            </h1>
-            <div className={styles.recordtime}>
-              {recordData.timeConverted}
-            </div>
-            <div className={styles.recordvideocontainer}> 
-              <YouTubeEmbed url={recordData.videoLink} title={recordData.recordName}/>
-            </div>
-            <div className={styles.recordlink}>
-              <a href={'recordData.runLink'}>{recordData.runLink}</a>
-            </div>
-          </div>
-  
-          ) : (
-            <></>
-          )}
-
-          {recordDataAlt? (
-          <div className={styles.recorditem}>
-            <h1>
-              {recordDataAlt.recordName}
-            </h1>
-            <div className={styles.recordtime}>
-              {recordDataAlt.timeConverted}
-            </div>
-            <div className={styles.recordvideocontainer}> 
-              <YouTubeEmbed url={recordDataAlt.videoLink} title={recordDataAlt.recordName}/>
-            </div>
-            <div className={styles.recordlink}>
-              <a href={'recordDataAlt.runLink'}>{recordDataAlt.runLink}</a>
-            </div>
-          </div>
-  
-          ) : (
-            <></>
-          )}
-
-        </div>
 
         { user.admin ? (
           <div className={styles.admindeletecontainer}>

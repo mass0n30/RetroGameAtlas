@@ -14,7 +14,8 @@
   --color-white-alt: #E8F1F2;
   --color-text-active: #a7e9ff; /* sidebar category selected text */
 
-  --purple-accent: #602cff;;
+  --purple-accent: #602cff;
+  --purple-accent-dark: #321686;
   --orange-fire: #fd7310; /* accent orange */
 
   --color-primary: #3b82f6;             /* main neon */

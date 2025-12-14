@@ -1,7 +1,15 @@
 
 require('dotenv').config(); 
 
+// storing access token server side in global variable
+let ebayAccessToken = null;
+
  async function getEbayToken() {
+
+  if (ebayAccessToken) {
+    console.log('returning stored ebay accesst')
+    return ebayAccessToken;
+  }
 
   const res = await fetch('https://api.ebay.com/identity/v1/oauth2/token',
     {
@@ -23,6 +31,7 @@ require('dotenv').config();
   }
 
   const data = await res.json();
+  ebayAccessToken = data.access_token;
   return data.access_token;
 
 };
@@ -30,15 +39,13 @@ require('dotenv').config();
 async function getGamePrice(gameName, platform) {
   const token = await getEbayToken();  
 
-  console.log(token);
-
   if (token == null) {
     return null
   };
 
-  const res = await fetch(
-    `https://api.ebay.com/buy/browse/v1/item_summary/search?q=${encodeURIComponent(`${gameName} ${platform}`
-    )}&fieldgroups=MATCHING_ITEMS&aspect_filter=category_id:139973,Title:${gameName}&limit=3&filter=conditions:{NEW|USED},buyingOptions:{FIXED_PRICE}`,
+  // try fetching w authentic and ridding reproduction keywords first
+  let res = await fetch(
+    `https://api.ebay.com/buy/browse/v1/item_summary/search?q=${encodeURIComponent(`${gameName} ${platform}authentic -repro -reproduction -bootleg -fake`)}&fieldgroups=MATCHING_ITEMS&aspect_filter=category_id:139973,Title:${gameName}&limit=3&filter=conditions:{NEW|USED},buyingOptions:{FIXED_PRICE}`,
     {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -46,6 +53,19 @@ async function getGamePrice(gameName, platform) {
       },
     }
   );
+
+  if (!res.itemSummaries) {
+    res = await fetch(
+      `https://api.ebay.com/buy/browse/v1/item_summary/search?q=${encodeURIComponent(`${gameName} ${platform}`
+      )}&fieldgroups=MATCHING_ITEMS&aspect_filter=category_id:139973,Title:${gameName}&limit=3&filter=conditions:{NEW|USED},buyingOptions:{FIXED_PRICE}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "X-EBAY-C-MARKETPLACE-ID": "EBAY_US",
+        },
+      }
+    );
+  }
 
   if (res) {
     const data = await res.json();

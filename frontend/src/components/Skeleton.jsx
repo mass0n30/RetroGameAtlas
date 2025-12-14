@@ -34,7 +34,7 @@ function GameDetailsSkeleton() {
                 sx={{ bgcolor: skeletonBg, color: skeletonHighlight }}
               />
             </div>
-            <div className={styles.summarycontainer}>
+            <div className={styles.summarycontainerskeleton}>
               <Skeleton 
                 variant="rounded" 
                 width="100%" 

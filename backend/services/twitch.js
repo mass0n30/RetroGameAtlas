@@ -45,10 +45,9 @@ async function requestOptions() {
 };
 
 async function populateAllGames(req, res, next) {
-  await delay(200);
   
-  let year = 1993;
-  let page = 1;
+  let year = 2002;
+  let page = 19;
 
   while (year < 2013) {
     const results = await getGamesByYear(req, res, next, year, page);
@@ -74,7 +73,7 @@ async function getGamesByYear(req, res, next, year, page) {
     console.log(`Getting games for: ${currentYear} Page ${currentPage}`)
 
     // items per page
-    const pageSize = 500;
+    const pageSize = 100;
     const offset = (currentPage - 1) * pageSize;
 
     const results = await apicalypse(options)
@@ -99,7 +98,7 @@ async function getGamesByYear(req, res, next, year, page) {
     `)  // & total_rating > 70 & total_rating_count > 20;` (further filtering if needed)
     .where(`first_release_date >= ${new Date(currentYear, 0).getTime() / 1000} & first_release_date < ${new Date(currentYear + 1, 0).getTime() / 1000}`)
     .sort('total_rating desc')
-    .limit(500)
+    .limit(100)
     .offset(offset)
 
     .request('/games'); 
