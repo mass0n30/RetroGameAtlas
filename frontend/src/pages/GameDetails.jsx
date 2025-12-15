@@ -5,7 +5,7 @@ import axios from "axios";
 import normalizeGameData from '../helpers';
 import CustomSpinner from '../components/Spinner';
 import YouTubeEmbed from '../components/Youtube';
-import {Award, Heart, ArrowBigLeftDash, ArrowBigRightDash, DollarSign, Percent, ShoppingCart} from 'lucide-react';
+import {CircleCheckBig,ChevronLeft, ChevronRight, Award, Heart, ArrowBigLeftDash, ArrowBigRightDash, DollarSign, Percent, ShoppingCart} from 'lucide-react';
 import SocialsShare from '../components/ShareSocials';
 import SnackBarAlert from '../components/reactMUI/Alerts';
 import GameDetailsSkeleton from '../components/Skeleton';
@@ -20,7 +20,9 @@ const [recordDataAlt, setRecordDataAlt] = useState(null);
 const [gameEbayData, setGameEbayData] = useState(null);
 const [screenshots, setScreenshots] = useState([]);
 const [saved, setSaved] = useState(false);
-const [alert, setAlert] = useState(false);
+const [completed, setCompleted] = useState(false);
+const [alertSave, setAlertSave] = useState(false);
+const [alertComplete, setAlertComplete] = useState(false);
 const [currentIndex, setCurrentIndex] = useState(0);
 
 
@@ -69,7 +71,7 @@ useEffect(() => {
   fetchDetails();
 }, [gameId]);
 
-const handleSaveGame = async () => {
+const handleUpdateGame = async (type) => {
   try {
     const response = await fetch(`http://localhost:5000/home/details/${gameId}`, {
       method: 'PUT',
@@ -77,12 +79,15 @@ const handleSaveGame = async () => {
         'Authorization': `Bearer ${token}`,
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(gameDetails)
+      body: JSON.stringify(gameDetails, type)
     });
-    if (response.status === 200) {
+    if (response.status === 200 && type == "save") {
       saved ? setSaved(false) : setSaved(true);
-      setAlert(true);
-    } 
+      setAlertSave(true);
+    } else {
+      completed ? setCompleted(false) : setCompleted(true);
+      setAlertComplete(true);
+    }
 
     // updating client side userProfile save state games
     const result = await response.json();
@@ -91,7 +96,8 @@ const handleSaveGame = async () => {
     }
 
     return (() => {
-      setAlert(false);
+      setCompleted(false);
+      setAlertSave(false);
     });
 
   } catch (error) {
@@ -116,25 +122,33 @@ const handleDeleteGame = async () => {
 if (loading) {
   return (
     <>
-    <div className={styles.loaders}>
-      <CustomSpinner/>
-    </div>
-      <GameDetailsSkeleton/>
+      <div className={styles.loaders}>
+        <CustomSpinner/>
+      </div>
+        <GameDetailsSkeleton/>
     </>
-
   )
 }
   if (gameDetails) {
   const game = normalizeGameData(gameDetails);
   return (
    <>
-  <SnackBarAlert open={alert} setOpen={setAlert} status={saved} msg={saved ? 'Saved to Games' : 'Removed from Games'}/>
+  <SnackBarAlert open={alertSave} setOpen={setAlertSave} status={saved} msg={saved ? 'Saved to Games' : 'Removed from Games'}/>
+  <SnackBarAlert open={alertComplete} setOpen={setAlertSave} status={completed} msg={completed ? 'Saved to Completed Games' : 'Removed from Completed Games'}/>
+
    <div className={styles.outercontainer}>
+      <div className={styles.gamedetailsBtnContainer}>
         <div className={styles.savecontainer}>
-          <button onClick={async () => handleSaveGame()} className={styles.likeBtn}>
-            <Heart fill={saved ? "red" : "white"} className={styles.iconsHeart} />
+          <button onClick={async () => handleUpdateGame('save')} className={styles.likeBtn}>
+            <Heart fill={saved ? "red" : "#0d0f17"} className={styles.iconsHeart} />
           </button>
         </div>
+        <div className={styles.completedcontainer}>
+          <button onClick={async () => handleUpdateGame('complete')} className={styles.completedBtn}>
+            <CircleCheckBig fill={saved ? "green" : "#0d0f17"} className={styles.checkBig} />
+          </button>
+        </div>
+      </div>
       <div className={styles.detailscontainer}>
 
         <div className={styles.covercontainer}>
@@ -164,14 +178,6 @@ if (loading) {
                 <></>
               )
             }
-              <div className={styles.developername}>
-                {gameDetails?.developer?.name ? (
-                  gameDetails.developer.name
-                ) : (
-                  <></> 
-                )
-              }
-            </div>
             <div className={styles.socialshares}>
               <SocialsShare/>
             </div>
@@ -181,18 +187,32 @@ if (loading) {
         </div> 
         <article className={styles.datacontainer}>
           <div className={styles.screenshotscontainer}>
+            <button
+              className={styles.arrowL}
+              onClick={() =>
+                setCurrentIndex((prev) =>
+                  prev === 0 ? screenshots.length - 1 : prev - 1
+                )
+              }
+            >
+            <ChevronLeft className={styles.icons} color="#E8F1F2" />
+            </button>
+
+            <button
+              className={styles.arrowR}
+              onClick={() =>
+                setCurrentIndex((prev) =>
+                  prev === screenshots.length - 1 ? 0 : prev + 1
+                )
+              }
+            >
+            <ChevronRight className={styles.icons} color="#E8F1F2" />
+
+            </button>
+
             {screenshots.length > 0 ? (
               <div className={styles.carousel}>
-                <button
-                  className={styles.arrowL}
-                  onClick={() =>
-                    setCurrentIndex((prev) =>
-                      prev === 0 ? screenshots.length - 1 : prev - 1
-                    )
-                  }
-                >
-                <ArrowBigLeftDash className={styles.icons} color="#E8F1F2" />
-                </button>
+
                 <div className={styles.screenshotcarouselcontainer}> 
                   <img
                     src={`https:${screenshots[currentIndex].url}`}
@@ -201,17 +221,7 @@ if (loading) {
                   />
                 </div>
 
-                <button
-                  className={styles.arrowR}
-                  onClick={() =>
-                    setCurrentIndex((prev) =>
-                      prev === screenshots.length - 1 ? 0 : prev + 1
-                    )
-                  }
-                >
-                <ArrowBigRightDash className={styles.icons} color="#E8F1F2" />
 
-                </button>
               </div>
             ) : (
               <p>No screenshots available.</p>
@@ -219,6 +229,7 @@ if (loading) {
           </div>
           {game.summary ? (
             <div className={styles.summarycontainer}> 
+              <span>Information</span>
               <p>
                 { game.summary} 
               </p>
@@ -230,7 +241,7 @@ if (loading) {
           </div>
       {game.storyline ? (
         <div className={styles.storylinecontainer}> 
-          <h4>Storyline</h4>
+          <span>Storyline</span>
           <p>
             {game.storyline}
           </p>
@@ -239,8 +250,14 @@ if (loading) {
           <> </>
       )}
 
+
+
         <div className={styles.recordscontainer}>
+          {recordData || recordDataAlt ? (
+            <h2 className={styles.relatedMediaHeader}>Related Media</h2>
+          ) : <></>}
           {recordData && (
+            
           <div className={styles.recorditem}>
             <div className={styles.recordinfo}>
               <div className={styles.award}>

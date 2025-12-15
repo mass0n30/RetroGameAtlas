@@ -25,7 +25,7 @@
 }
 
 /* container selectors for flex and grid*/
-* {border: dashed var(--color-primary-glow) 1px;}
+* {border: dashed var(--color-primary-glow) 0px;}
 
 html, body, nav, #root, main, section, .infinite-scroll-component__outerdiv, .infinite-scroll-component {
     margin: 0;

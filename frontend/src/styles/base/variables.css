@@ -7,10 +7,11 @@
   --color-background: #0d0f17;
   --color-background-light: #191c25;
   --color-surface: #1a2b29ad;
-  --color-surface-translucent: #1a2b2900;
-  --color-surface-translucent-alt: #1a2b298e;
+  --color-surface-translucent: #1a2b2941;
+  --color-surface-translucent-alt: #2c3d3bc4;
 
   --color-text: #e5e7eb;
+  --color-text-paragraph: #d4d4d4;
   --color-white-alt: #E8F1F2;
   --color-text-active: #a7e9ff; /* sidebar category selected text */
 

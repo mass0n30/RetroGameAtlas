@@ -34,32 +34,32 @@ const ratings = [
 ];
 
 const developers = [
-  { id: 70, name: "Nintendo", country: "Japan", logoUrl: 'https://images.igdb.com/igdb/image/upload/t_logo_med/cl8bi.jpg'},
-  { id: 37, name: "Capcom", country: "Japan" ,logoUrl:'https://images.igdb.com/igdb/image/upload/t_logo_med/cl317.jpg'},
-  { id: 112, name: "Sega", country: "Japan" ,logoUrl:'https://images.igdb.com/igdb/image/upload/t_logo_med/hbil3xrhnp8fdust2juk.jpg'},
-  { id: 24170, name: "Squaresoft", country: "Japan" ,logoUrl: null},
-  { id: 129, name: "Konami", country: "Japan", logoUrl:'https://images.igdb.com/igdb/image/upload/t_logo_med/cl4vr.jpg'},
-  { id: 771, name: "Rare", country: "UK" ,logoUrl:'https://images.igdb.com/igdb/image/upload/t_logo_med/feggrbspqjrkyggtagei.jpg'},
-  { id: 818, name: "Atlus", country: "Japan" ,logoUrl:'https://images.igdb.com/igdb/image/upload/t_logo_med/ckfhnwwfvnp7xmait71m.jpg'},
-  { id: 401, name: "Naughty Dog", country: "USA" ,logoUrl:'https://images.igdb.com/igdb/image/upload/t_logo_med/cl52c.jpg'},
-  { id: 620, name: "Bungie", country: "USA" ,logoUrl: 'https://images.igdb.com/igdb/image/upload/t_logo_med/cl4lm.jpg'},
+  { id: 70, name: "Nintendo", country: "Japan", logoUrl: '/developers/Nintendo.svg'},
+  { id: 37, name: "Capcom", country: "Japan" ,logoUrl:'/developers/capcom.svg'},
+  { id: 112, name: "Sega", country: "Japan" ,logoUrl:'/developers/sega.svg'},
+  { id: 24170, name: "Squaresoft", country: "Japan" ,logoUrl: '/developers/squaresoft.svg'},
+  { id: 129, name: "Konami", country: "Japan", logoUrl:'/developers/konami.svg'},
+  { id: 771, name: "Rare", country: "UK" ,logoUrl:'/devlopers/rare.png'},
+  { id: 818, name: "Atlus", country: "Japan" ,logoUrl:'/developers/atlus.svg'},
+{ id: 401, name: "Naughty Dog", country: "USA", logoUrl: '/developers/naughtydog.png'},
+  { id: 620, name: "Bungie", country: "USA" ,logoUrl: '/developers/bungie.svg'},
 
 
-  { id: 1474, name: "SNK", country: "Japan", logoUrl: 'https://images.igdb.com/igdb/image/upload/t_logo_med/cl8bu.jpg' },             
-  { id: 248, name: "Bandai Namco Entertainment", country: "Japan", logoUrl: 'https://images.igdb.com/igdb/image/upload/t_logo_med/cl7dx.jpg' }, 
-  { id: 184, name: "id Software", country: "USA", logoUrl: '  https://images.igdb.com/igdb/image/upload/t_logo_med/bzknbyeus9prunspvomm.jpg' },
-  { id: 51, name: "Blizzard Entertainment", country: "USA", logoUrl: '  https://images.igdb.com/igdb/image/upload/t_logo_med/cl4mm.jpg' },
-  { id: 10, name: "LucasArts", country: "USA", logoUrl: 'https://images.igdb.com/igdb/image/upload/t_logo_med/ktmvlzpc7quw9rjui0qq.jpg' },
-  { id: 56, name: "Valve", country: "USA", logoUrl: '  https://images.igdb.com/igdb/image/upload/t_logo_med/cl2he.jpg' },
-  { id: 126, name: "Bethesda Game Studios", country: "USA", logoUrl: 'https://images.igdb.com/igdb/image/upload/t_logo_med/zoq5fmhbkbvs2qkb76kj.jpg' },
-  { id: 104, name: "Ubisoft Entertainment", country: "France", logoUrl: 'https://images.igdb.com/igdb/image/upload/t_logo_med/cl4xr.jpg' }, 
-  { id: 8, name: "2K Games", country: "USA", logoUrl: 'https://images.igdb.com/igdb/image/upload/t_logo_med/cl51z.jpg' },
-  { id: 29, name: "Rockstar Games", country: "USA", logoUrl:'https://images.igdb.com/igdb/image/upload/t_logo_med/cl8g0.jpg' },
-  { id: 1012, name: "FromSoftware", country: "Japan", logoUrl:'https://images.igdb.com/igdb/image/upload/t_logo_med/irwmnrvf0hny5wr0ap0d.jpg' },
-  { id: 17463, name: "Epic Games", country: "USA", logoUrl: 'https://images.igdb.com/igdb/image/upload/t_logo_med/cl2ho.jpg' },
-  { id: 834, name: "Insomniac Games", country: "USA", logoUrl: 'https://images.igdb.com/igdb/image/upload/t_logo_med/cl3w6.jpg' },
-  { id: 2, name: "BioWare", country: "Canada", logoUrl: '  https://images.igdb.com/igdb/image/upload/t_logo_med/cl4vp.jpg' },
-]
+  { id: 1474, name: "SNK", country: "Japan", logoUrl: '/devlopers/snk.svg' },             
+  { id: 248, name: "Bandai Namco Entertainment", country: "Japan", logoUrl: '/developers/bandai.svg' }, 
+  { id: 184, name: "id Software", country: "USA", logoUrl: '/developers/idsoftware.png' },
+  { id: 51, name: "Blizzard Entertainment", country: "USA", logoUrl: '/developers/blizzard.svg' },
+  { id: 10, name: "LucasArts", country: "USA", logoUrl: '/developers/lucasarts.png' },
+  { id: 56, name: "Valve", country: "USA", logoUrl: '/developers/valve.svg' },
+  { id: 126, name: "Bethesda Game Studios", country: "USA", logoUrl: '/developers/bethesda.svg' },
+  { id: 104, name: "Ubisoft Entertainment", country: "France", logoUrl: '/developers/ubisoft.svg' }, 
+  { id: 8, name: "2K Games", country: "USA", logoUrl: '/developers/2kgames.svg' },
+  { id: 29, name: "Rockstar Games", country: "USA", logoUrl:'/developers/rockstar.png' },
+  { id: 1012, name: "FromSoftware", country: "Japan", logoUrl:'/developers/fromsoftware.svg' },
+  { id: 17463, name: "Epic Games", country: "USA", logoUrl: '/developers/epicgames.svg' },
+  { id: 834, name: "Insomniac Games", country: "USA", logoUrl: '/developers/insomniac.svg' },
+  { id: 2, name: "BioWare", country: "Canada", logoUrl: '/developers/bioware.svg' },
+];
 
 
 function mapRating(ageRatingId) {
@@ -81,7 +81,7 @@ async function seed() {
   for (const platform of platforms) {
     await prisma.platform.upsert({
       where: { id: platform.id },
-      update: {},
+      update: platform,
       create: platform
     });
   }
@@ -89,7 +89,7 @@ async function seed() {
   for (const rating of ratings) {
     await prisma.gameRating.upsert({
       where: { id: rating.id },
-      update: {},
+      update: rating,
       create: rating
     });
   }
@@ -97,7 +97,7 @@ async function seed() {
   for (const developer of developers) {
     await prisma.developers.upsert({
       where: {id: developer.id},
-      update: {},
+      update: developer,
       create: developer
     });
   }
