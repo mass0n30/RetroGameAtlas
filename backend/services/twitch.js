@@ -46,8 +46,8 @@ async function requestOptions() {
 
 async function populateAllGames(req, res, next) {
   
-  let year = 2004;
-  let page = 6;
+  let year = 2009;
+  let page = 32;
 
   while (year < 2013) {
     const results = await getGamesByYear(req, res, next, year, page);

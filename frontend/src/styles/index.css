@@ -67,6 +67,14 @@ main {
   display: flex;
 }
 
+.mainIcons {
+  width: var(--icon-size-desktop);
+  max-width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .alertContainer {
   z-index: 1;
 }
@@ -151,6 +159,10 @@ section {
     min-width: 3rem;
     justify-content: center;
   }
+
+  .mainIcons {
+    width: var(--icon-size-tablet);
+  }
 }
 
 @media (max-width: 500px) {
@@ -163,6 +175,10 @@ section {
 
 /* Mobile */
 @media (max-width: 360px) {
+
+  .mainIcons {
+    width: var(--icon-size-mobile);
+  }
 
   section {
     gap: 0.5rem;

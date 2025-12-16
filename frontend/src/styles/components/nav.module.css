@@ -9,8 +9,8 @@ nav {
   top: 0;
   height: 5rem;
   z-index: 100;
-  background-color: rgba(24, 24, 24, 0.623);
   backdrop-filter: blur(15px);
+  border: solid 2px var(--color-primary);
 }
 
 .btn {

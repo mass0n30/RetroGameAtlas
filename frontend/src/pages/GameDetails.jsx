@@ -5,7 +5,7 @@ import axios from "axios";
 import normalizeGameData from '../helpers';
 import CustomSpinner from '../components/Spinner';
 import YouTubeEmbed from '../components/Youtube';
-import {CircleCheckBig,ChevronLeft, ChevronRight, Award, Heart, ArrowBigLeftDash, ArrowBigRightDash, DollarSign, Percent, ShoppingCart} from 'lucide-react';
+import {CircleCheckBig,ChevronLeft, ChevronRight, ChevronUp, ChevronDown, Award, Heart, ArrowBigLeftDash, ArrowBigRightDash, DollarSign, Percent, ShoppingCart} from 'lucide-react';
 import SocialsShare from '../components/ShareSocials';
 import SnackBarAlert from '../components/reactMUI/Alerts';
 import GameDetailsSkeleton from '../components/Skeleton';
@@ -24,6 +24,7 @@ const [completed, setCompleted] = useState(false);
 const [alertSave, setAlertSave] = useState(false);
 const [alertComplete, setAlertComplete] = useState(false);
 const [currentIndex, setCurrentIndex] = useState(0);
+const [isExpanded, setIsExpanded] = useState(false);
 
 
 const {user, userProfile, SetUserProfile} = useOutletContext();
@@ -227,15 +228,37 @@ if (loading) {
               <p>No screenshots available.</p>
             )}
           </div>
-          {game.summary ? (
-            <div className={styles.summarycontainer}> 
-              <span>Information</span>
-              <p>
-                { game.summary} 
-              </p>
-            </div> 
+            {game.summary ? (
+              <div className={styles.summarycontainer}>
+                { game.summary.length > 500 && (
+                <div 
+                  onClick={() => setIsExpanded(!isExpanded)}
+                  className="flex items-center justify-between w-full cursor-pointer"
+                >
+                  <span>Information</span>
+
+                  {isExpanded ? (
+                    <ChevronUp/>
+                  ) : (
+                    <ChevronDown/>
+                  )}  
+                </div> 
+                )}
+                <div 
+                  className={styles.summarytxt}
+                  style={{
+                    maxHeight: isExpanded ? '1000px' : '9.5rem',
+                    transition: 'max-height 0.5s ease-in-out',
+                    overflow: 'hidden'
+                  }}
+                >
+                  <p>
+                    {game.summary}
+                  </p>
+                </div>
+              </div>
             ) : (
-                <> </>
+              <></>
             )}
             </article>
           </div>

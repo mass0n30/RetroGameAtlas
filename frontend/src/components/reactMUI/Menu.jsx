@@ -26,7 +26,7 @@ export default function NavMenu({setMount}) {
   return (
     <Menu.Root>
       <Menu.Trigger className={styles.Button}>
-        <Ellipsis/>
+       <span className='mainIcons'><Ellipsis width={'80%'} size={'auto'}/></span> 
       </Menu.Trigger>
       <Menu.Portal>
         <Menu.Positioner className={styles.Positioner} sideOffset={10}>

@@ -74,7 +74,7 @@ export default function SideBar({ categoryData, orderData, orderDirection, setOr
               </div> : 
               <div className={styles.discovergamestxt}>
               <div>Discover Games</div>
-              <Dices style={{ marginLeft: '0.5rem' }} />
+                <span className='mainIcons'><Dices width={'80%'} size={'auto'} style={{ marginLeft: '0.5rem' }} /></span> 
               </div>}
           </Button>
         </div>
@@ -83,12 +83,12 @@ export default function SideBar({ categoryData, orderData, orderDirection, setOr
             {screenshotMode ?
             <div className={styles.discovermodetxt}>
               <div>Screenshot Mode</div>
-              <Image style={{ marginLeft: '0.5rem' }} />
+               <span className='mainIcons'><Image width={'80%'} size={'auto'} style={{ marginLeft: '0.5rem' }} /></span>
             </div> 
                 : 
               <div className={styles.discovermodetxt}>
                 <div>Cover Art Mode</div>
-                <BookImage style={{ marginLeft: '0.5rem' }} />
+               <span className='mainIcons'><BookImage width={'80%'} size={'auto'} style={{ marginLeft: '0.5rem' }} /> </span> 
               </div>}
           </Button>
         </div>
@@ -105,9 +105,9 @@ export default function SideBar({ categoryData, orderData, orderDirection, setOr
             >
               <TreeItemContent className={styles.categoryheader}>
                 <div className={styles.categoryheadertxt}>
-                  {section.category === "Consoles" && <Joystick size={32} color="#E8F1F2" />}
-                  {section.category === "Genres" && <LibraryBig size={32} color="#E8F1F2" />}
-                  {section.category === "Developers" && <Handshake size={32} color="#E8F1F2" />}
+                  {section.category === "Consoles" && <span className='mainIcons'><Joystick size={'auto'} color="#E8F1F2" /></span> }
+                  {section.category === "Genres" && <span className='mainIcons'><LibraryBig size={'auto'} color="#E8F1F2" /></span> }
+                  {section.category === "Developers" && <span className='mainIcons'><Handshake size={'auto'} color="#E8F1F2" /></span> }
                   <strong>{section.category}</strong>
                 </div>
               </TreeItemContent>
@@ -141,7 +141,7 @@ export default function SideBar({ categoryData, orderData, orderDirection, setOr
         <div className={styles.orderbyrating}>
           <Button onClick={() => handleToggleOrder("Rating")}>
             <div className={styles.ordertxt}>
-              {orderData === "Rating" ? <Star size={32} color="#ffee03ff" fill='#ffee03ff'/> : <Star size={32} color="#E8F1F2" />}
+              {orderData === "Rating" ? <span className='mainIcons'><Star size={'auto'} color="#ffee03ff" fill='#ffee03ff'/></span>  : <span className='mainIcons'><Star size={'auto'} color="#E8F1F2" /></span> }
               <div>Rating</div>
               {orderData === "Rating" ? (orderDirection === true ?<ArrowDownWideNarrow size={24} color="#E8F1F2" /> : <ArrowUpWideNarrow size={24} color="#E8F1F2" />) : ""}
             </div>
@@ -150,7 +150,7 @@ export default function SideBar({ categoryData, orderData, orderDirection, setOr
         <div className={styles.orderbypopularity}>
           <Button onClick={() => handleToggleOrder("Popularity")}>
            <div className={styles.ordertxt}>
-              {orderData === "Popularity" ? <Flame size={32} color="#F03A47" fill='#F03A47'/> : <Flame size={32} color="#E8F1F2" />}
+              {orderData === "Popularity" ? <span className='mainIcons'><Flame size={'auto'} color="#F03A47" fill='#F03A47'/> </span> : <span className='mainIcons'><Flame size={'auto'} color="#E8F1F2" /></span>}
               <div>Popularity</div>
               {orderData === "Popularity" ? (orderDirection === true ? <ArrowDownWideNarrow size={24} color="#E8F1F2" /> : <ArrowUpWideNarrow size={24} color="#E8F1F2" />) : ""}
             </div> 
@@ -159,7 +159,7 @@ export default function SideBar({ categoryData, orderData, orderDirection, setOr
         <div className={styles.orderbydata}>
           <Button onClick={() => handleToggleOrder("Release Date")}>
             <div className={styles.ordertxt}>
-              {orderData === "Release Date" ? <CalendarDays size={32} color="#03A9F4" fill='#03a8f4b4'/> : <CalendarDays size={32} color="#E8F1F2" />}
+              {orderData === "Release Date" ? <span className='mainIcons'><CalendarDays size={'auto'} color="#03A9F4" fill='#03a8f4b4'/></span>  : <span className='mainIcons'><CalendarDays size={'auto'} color="#E8F1F2" /></span> }
               <div>Release Date</div> 
               {orderData === "Release Date" ? (orderDirection === true ? <ArrowDownWideNarrow size={24} color="#E8F1F2" /> : <ArrowUpWideNarrow size={24} color="#E8F1F2" />) : ""}
             </div>

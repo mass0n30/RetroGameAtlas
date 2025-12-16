@@ -42,14 +42,14 @@ export default function Navbar({ toggle, setToggle, setSearch, search, discover,
       <div className={styles.navLeftContainer}>
           <button className={styles.toggleBtn} onClick={() => handleToggle()}>
             { toggle ? (
-              <X className={styles.btnX}/>
+             <span className='mainIcons'><X width={'80%'} size={'auto'} className={styles.btnX}/></span> 
             ) : (
-              <PanelsTopLeft size={30}/>
+            <span className='mainIcons'><PanelsTopLeft width={'80%'} size={'auto'}/></span>  
             )}
           </button>
         <div className={styles.navContainer}>
           <button className={styles.btn} onClick={() => handleNavBack()}>
-              <ArrowLeft className={styles.btnA} size={30}/>
+             <span className='mainIcons'><ArrowLeft width={'80%'} className={styles.btnA} size={'auto'}/></span> 
           </button>
 
         </div>
@@ -84,7 +84,7 @@ export default function Navbar({ toggle, setToggle, setSearch, search, discover,
 
       <div className={styles.navRightContainer}>
           <button className={styles.btn} onClick={() => handleNavHome()}>
-            <House size={30} className={styles.btnH}/>
+           <span className='mainIcons'><House width={'80%'} size={'auto'} className={styles.btnH}/></span> 
           </button>
           <div className={styles.navmenucontainer}>
             <NavMenu setMount={setMount}></NavMenu>

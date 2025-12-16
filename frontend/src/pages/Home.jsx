@@ -1,5 +1,5 @@
 {/* import { useState, useEffect } from 'react' */}
-import { useParams, Outlet } from "react-router-dom";
+import { useParams, Outlet, useNavigate } from "react-router-dom";
 import { useEffect, useState,  } from 'react';
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
@@ -43,6 +43,7 @@ function Home() {
   const [toggle, setToggle] = useState(false);
 
   const token = localStorage.getItem('usertoken');
+  const navigate = useNavigate();
 
   //spinner upon mount with delay
   useEffect(() => {
@@ -67,6 +68,9 @@ function Home() {
           },
         });
         if (!response.ok) {
+          localStorage.removeItem('usertoken');
+          navigate('/');
+
           throw new Error(`HTTP error! status: ${response.status}`);
         }
 
@@ -148,7 +152,7 @@ function Home() {
         transform: toggle ? 'translateX(0)' : 'translateX(-100%)',
         width: toggle ? '20em' : '0em',
         opacity: toggle ? '100%': '0%',
-        transition: 'all 0.3s ease-in-out',
+        transition: 'opacity 0.3s ease-in-out, width 0.2s ease-in-out',
         overflow: 'hidden',
         }} >
         <SideBar

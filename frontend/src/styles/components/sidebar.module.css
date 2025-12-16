@@ -27,7 +27,7 @@ aside {
   width: 100%;
   display: flex;
   flex-direction: column;
-  border-top:  2px solid var(--color-primary);
+  border-top:  4px solid var(--color-background);
 }
 
 .treeItem {
@@ -37,11 +37,8 @@ aside {
   align-items: center;
   font-weight: 600;
   font-size: 1.2rem;
-  border-bottom: 2px solid var(--color-primary);
-
-
-  transition:
-    padding-left 0.25s ease,
+  border-bottom: 4px solid var(--color-background);
+  transition:padding-left 0.25s ease,
     background-color 0.25s ease;
 }
 
@@ -66,7 +63,6 @@ aside {
 
 .orderfiltercontainer {
   gap: 0.5rem;
-  padding: 1rem;
   flex: 2;
   display: flex;
   justify-content: center;
@@ -120,9 +116,11 @@ aside {
   transition: background-color 0.25s, color 0.25s;
   background-color: var(--color-background);
   color: var(--color-text);
+  border: 2px solid var(--color-surface);
 } 
 
-.orderbydata button:hover, .orderbyrating button:hover, .orderbypopularity button:hover, .discovermodebtn button:hover, .discovergamesbtn button:hover  {
+.orderbydata button:hover, .orderbyrating button:hover, .orderbypopularity button:hover, 
+.discovermodebtn button:hover, .discovergamesbtn button:hover, .yearsfiltercontainer select:hover  {
   background-color: var(--color-background-light);
 }
 
@@ -161,7 +159,7 @@ aside {
 
 .categoryheadertxt {
   font-size: 1.2rem;
-  font-weight: 700;
+  font-weight: 500;
   text-align: left;
   width: 80%;
   display: flex;
@@ -196,16 +194,14 @@ aside {
   justify-content: center;
   gap: 1rem;
   padding: 0.5rem;
-  background-color: var(--color-surface);
-  border: 1px solid #2a2d3a;
   align-items: center;
   font-family:sans-serif;
 }
 
 .yearsfiltercontainer select {
   color: var(--color-text);
-  background-color: var(--color-surface);
-  border: 2px solid var(--color-border);
+  background-color: var(--color-background);
+  border: 2px solid var(--color-surface);
   border-radius: 6px;
   padding: 0.6rem 1rem;
   font-size: 1rem;

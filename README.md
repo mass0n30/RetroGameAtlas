@@ -62,6 +62,7 @@ Ebay Game Props:
   - Game Details page Screenshots in a carosel?
 
 TODO:
+  - Improve search query with fetching for games taking space out of query if no results, ect
   - !Add Related Games Section in Game Details
   - Make a component for alert messages (like for saved games if no saved games, or no game results upon search, ect.)
   - Make a alert component for alerts (saved to games, ect)
