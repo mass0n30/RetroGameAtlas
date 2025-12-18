@@ -70,12 +70,7 @@ Ebay Game Props:
 
 TODO:
 
-  Deployment: 
-    - Hosting dynamic frontend to Vercel hosting platform, and setting connection api URL to where backend will be hosted on Railway PaaS. 
-    - Setup PSQL service and get Database_URL string
-    - Setup up Railway .env adding the DATABASE_URL conneciton string
-
-  - Rework fetching on gameDetails, implementing waterfalling lazy loading, fetching gamedetails fast for users, before ebay + twitch data load in below on page. 
+  - Rework fetching on gameDetails, implementing lazy loading fixing waterfalling problem, fetching gamedetails fast for users, before ebay + twitch data load in below on page. 
   - Prisma studio filter to clean up filler games, may need raw sql for screenshots 
   - Improve search query with fetching for games taking space out of query if no results, ect
   - !Add Related Games Section in Game Details
@@ -106,6 +101,17 @@ Production tasks
   - adding user accessibility (keyboard shortucts)
   - handling errors on client side form API (redirect on 401 error code to login)
   - Maybe integrating Ebay's Buy API for affiliate buying on Game Details pages, listing to buy next to embedded videos. 
+
+  The Repos Deployment Process for this Full-Stack PERN project: 
+    - Setup new Railway Project environment for backend
+    - Started new PostgreSQL database instance, taking DATABASE_URL
+    - pg_dump all my data of 25k games to PostgreSQL db
+    - Connected backend node.js repo, plugging in DATABASE_URL and SECRET to .env variables before deploying.
+    - Setup a new Vercel project for frontend connecting Railway's URL API for REST fetch
+    - Added Vercel URL API to URL param endpoints in React locally
+    - Added all my service .env variables (Ebay and Twitch) Client ID/Secrets to Railway
+    - Hoisted ebay and twitch access tokens server side, checking for saved access token in memory and exp variable
+
 
 Ebay: 
   - Category ID subject to change for ebay price data?: https://developer.ebay.com/api-docs/buy/browse/resources/item_summary/methods/search#uri.filter 

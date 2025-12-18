@@ -269,7 +269,7 @@ if (!genre && !platform && !developer && !searchTerm) {
     const normalizedScreenshots = game.screenshots.map(ss => ({
       id: ss.id,
       gameId: ss.gameId,
-      url: ss.url?.replace("t_thumb", "t_screenshot_big") ?? "",
+      url: ss.url?.replace("t_thumb", "t_screenshot_huge") ?? "",
       width: ss.width,
       height: ss.height,
     }));
@@ -313,7 +313,6 @@ async function handleGetGameDetails(req, res, next) {
 
   const gameId = parseInt(req.params.gameid);
 
-
   try {
 
     const gameDetails = await prisma.game.findUnique({
@@ -336,28 +335,39 @@ async function handleGetGameDetails(req, res, next) {
       height: ss.height,
     }));
 
+    return {gameDetails, normalizedScreenshots};
+    
+  } catch (error) {
+    next(error);
+  }
+};
 
-    const originalConsoleObj = await prisma.platform.findUnique({
+async function handleGetGameData(req, res, next) {
+  const {gameId, gameName, originalPlatform} = req.body;
+
+  const originalConsoleObj = await prisma.platform.findUnique({
       where: {
         name: gameDetails.originalPlatform
       }
     });
+  const consoleAbbrev = originalConsoleObj ? originalConsoleObj.abbreviation : null;
 
-    const consoleAbbrev = originalConsoleObj ? originalConsoleObj.abbreviation : null;
-    
+  try {
     const [worldRecord, worldRecordAlt, gameEbayData] = await Promise.all([
-      getWorldRecordTime(gameDetails.name, consoleAbbrev),
-      getHundredPercentTime(gameDetails.name, consoleAbbrev),
-      getGamePrice(gameDetails.name, gameDetails.originalPlatform) // fix, causing delay
+      getWorldRecordTime(gameName, consoleAbbrev),
+      getHundredPercentTime(gameName, consoleAbbrev),
+      getGamePrice(gameName, originalPlatform) 
     ]);
-    
-    return {gameDetails, worldRecord, worldRecordAlt, gameEbayData, normalizedScreenshots};
+
+    return  {game:
+      {worldRecord, worldRecordAlt, gameEbayData}}
     
   } catch (error) {
-    next(error)
+    next(error);
   }
+
 };
 
 
 
-module.exports = {getUserProfile,handleGetGames, handleGetGameDetails, getAllCategoryData};
+module.exports = {getUserProfile,handleGetGames, handleGetGameDetails, handleGetGameData, getAllCategoryData};

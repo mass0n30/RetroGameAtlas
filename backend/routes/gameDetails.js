@@ -1,16 +1,26 @@
 const { Router } = require("express");
 const gameDetailsRouter = Router();
 const passport = require('passport');
-const {handleGetGameDetails} = require('../controllers/viewController');
+const {handleGetGameDetails, handleGetGameData} = require('../controllers/viewController');
 
 gameDetailsRouter.get('/:gameid', async (req, res, next) => {
 
- const gameData = await handleGetGameDetails(req, res, next);
+ const gameDetails = await handleGetGameDetails(req, res, next);
+
+  res.json({
+    game: gameDetails,
+  })
+});
+
+gameDetailsRouter.post('/data/:gameid', async (req, res, next) => {
+  
+ const gameData = await handleGetGameData(req, res, next);
 
   res.json({
     game: gameData,
   })
 });
+
 
  const { deleteGameById } = require('../controllers/dataController/deleteController.js');
  const {updateUserSavedGames} = require('../controllers/dataController/updateController.js');

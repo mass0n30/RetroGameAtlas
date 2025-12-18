@@ -7,7 +7,7 @@ function GameCardSS(props) {
 
     const [loading, setLoading] = useState(true);
    // eslint-disable-next-line react/prop-types
-   const {gameId, randomScreenshot, length, index, mount, setMount} = props;
+   const {gameId, randomScreenshot, length, index, mount, setMount, setGameDetails, gameDetails} = props;
 
    useEffect(() => {
     const timer = setTimeout(() => {

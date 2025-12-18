@@ -1,13 +1,16 @@
 
-let authenticationToken = null;
+let twitchAccessToken = null;
+let twitchTokenExpiresAt = null;
 
 const apicalypse = require('apicalypse').default;
 const { prisma } = require('../db/prismaClient.js');
 
 
 async function getTwitchToken() {
-  if (authenticationToken) {
-    return authenticationToken;
+  const now = Date.now();
+
+  if (twitchAccessToken && now < twitchTokenExpiresAt) {
+    return twitchAccessToken;
   } else {
     const clientId = process.env.CLIENT_ID;
     const clientSecret = process.env.CLIENT_SECRET;
@@ -21,9 +24,8 @@ async function getTwitchToken() {
   }
 
   const data = await response.json();
-  authenticationToken = data.access_token;
-  process.env.TOKEN_EXP = data.expires_in;
-  process.env.ACCESS_TOKEN = data.access_token;
+  twitchAccessToken = data.access_token;
+  twitchTokenExpiresAt = Date.now() + data.expires_in * 1000; 
   return data.access_token;
   }
 };

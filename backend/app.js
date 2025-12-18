@@ -19,7 +19,10 @@ const app = express();
 app.use(express.static(path.join(__dirname, 'public')));
 
 
-app.use(cors({origin:'https://retro-game-atlas.vercel.app'}));
+app.use(cors({
+  origin: ['http://localhost:5173', 'https://retro-game-atlas.vercel.app'],
+  credentials: true
+}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
