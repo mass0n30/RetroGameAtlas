@@ -60,43 +60,50 @@ Ebay Game Props:
   - finish up sidebar cateogories container (flexing category containers nicely upon selection *reference resume project)
     - let categories flex container flex 3 over rest of containers to give category rows the most room upon flexing... (flexing makes sidebar height full??)
   - Game Details page Screenshots in a carosel?
+  - Make a alert component for alerts (saved to games, ect)
+  - put ebay listings as 'related listings (good amount does not have exact title listings, more so related listings, perhaps I can improve this looking back through ebay api docs)
+  - design Game Details page (layout on paper sketch considering flex on mobile)
+  - Populate more Wii games, populate PSP titles and atari 2600 ?
+  - adding MVP features, user features 
+  - Typography improvements, especially on gameDetails page (font for paragraphs, headers, giving icons more stroke width over text labels? etc)
+
+
 
 TODO:
+
+  Deployment: 
+    - Hosting dynamic frontend to Vercel hosting platform, and setting connection api URL to where backend will be hosted on Railway PaaS. 
+    - Setup PSQL service and get Database_URL string
+    - Setup up Railway .env adding the DATABASE_URL conneciton string
+
+  - Rework fetching on gameDetails, implementing waterfalling lazy loading, fetching gamedetails fast for users, before ebay + twitch data load in below on page. 
+  - Prisma studio filter to clean up filler games, may need raw sql for screenshots 
   - Improve search query with fetching for games taking space out of query if no results, ect
   - !Add Related Games Section in Game Details
   - Make a component for alert messages (like for saved games if no saved games, or no game results upon search, ect.)
-  - Make a alert component for alerts (saved to games, ect)
-  - Embed ebay listing onto details page?
   - Add animation and sound? to heart selection
-  - put ebay listings as 'related listings (good amount does not have exact title listings, more so related listings, perhaps I can improve this looking back through ebay api docs)
-  - game name tags on image covers/screenshots? (lots of japanese/foreign titles in images)
 
   - for related data (runs and ebay listings), numbered series title's causes related data (runs and ebay) to list other games in a collection: http://localhost:5173/home/details/10192 
-
 
   - Get rating scores, and rating count on game cards for Rating? Put in Game Details as well. 
   - Position heart not overlaying cover art in corner more aligned
   - add transparent loader skeleton in main scroll container for wave animation upon navigation back, while game cards load in
   - adding details like an icon next to 'no more results' at bottom of fetches, ect. (broken controller icon on error page, ect)
   - fix slight space side bar between scroll wheel and rows
-  - add user dislike options for inaccuracy feedback (filter by most votes to replace for more accuracy by admin, user can report inaccurate speedrun data, video data, game data, ect)
-  - design Game Details page (layout on paper sketch considering flex on mobile)
       - maybe add some related games section in Game Details (this may not be too difficult, inital Grab Same Titles if same developer, fallback grab games in same genre and console?)
-  - Populate more Wii games, populate PSP titles and atari 2600 ?
   - put social links in a popout from clicking a share Icon on gamedetail page ( next to heart icon )
-  - Improve getting Record Type on details page (level, Any%, ect)?
-  - Typography improvements, especially on gameDetails page (font for paragraphs, headers, giving icons more stroke width over text labels? etc)
 
   - Re look into design principles for UI and consider mobile React wrapper? before further design changes
   - market game value from PriceCharting API (adding a extra API will add an additional fetch to game details, further slowing down load, need work around or fast loading, *OR get a median price from ebay purchased listings?)
-  - adding MVP features, user features 
   - adding additional user features(completed games list, watch list)?
   - maybe add tag group components in main body, for better user exp?
   - maybe replace my custom Form with more cohesive Form Component Library
 
   *Big feauture idea: Index loads in on landing page, it is user sorta dashboard greeting user, showing most recent comments from users on any given game page, and a selection to begin finding games, continuing where they left off or going to saved games. (a bit grandiose, but perhaps a bit of a commenting system and engagement for users). 
-  
+
+
 Production tasks
+  - eBay Partner Network sign up?
   - adding user accessibility (keyboard shortucts)
   - handling errors on client side form API (redirect on 401 error code to login)
   - Maybe integrating Ebay's Buy API for affiliate buying on Game Details pages, listing to buy next to embedded videos. 

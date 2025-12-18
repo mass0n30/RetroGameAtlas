@@ -230,12 +230,12 @@ if (loading) {
           </div>
             {game.summary ? (
               <div className={styles.summarycontainer}>
-                { game.summary.length > 500 && (
+                <span>Information</span>
+                { game.summary.length > 700 && (
                 <div 
                   onClick={() => setIsExpanded(!isExpanded)}
                   className="flex items-center justify-between w-full cursor-pointer"
                 >
-                  <span>Information</span>
 
                   {isExpanded ? (
                     <ChevronUp/>

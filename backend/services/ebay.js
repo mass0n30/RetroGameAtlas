@@ -1,13 +1,15 @@
 
 require('dotenv').config(); 
 
-// storing access token server side in global variable
+// storing access token server side in global variable 
+// Update Logic to use Exp and 
 let ebayAccessToken = null;
+let ebayTokenExpiresAt = null;
 
  async function getEbayToken() {
+  const now = Date.now();
 
-  if (ebayAccessToken) {
-    console.log('returning stored ebay accesst')
+  if (ebayAccessToken && now < ebayTokenExpiresAt) {
     return ebayAccessToken;
   }
 
@@ -32,6 +34,7 @@ let ebayAccessToken = null;
 
   const data = await res.json();
   ebayAccessToken = data.access_token;
+  ebayTokenExpiresAt = Date.now() + data.expires_in * 1000; 
   return data.access_token;
 
 };
@@ -40,6 +43,7 @@ async function getGamePrice(gameName, platform) {
   const token = await getEbayToken();  
 
   if (token == null) {
+    console.log('ebay token is null')
     return null
   };
 
