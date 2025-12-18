@@ -67,6 +67,26 @@ Ebay Game Props:
   - adding MVP features, user features 
   - Typography improvements, especially on gameDetails page (font for paragraphs, headers, giving icons more stroke width over text labels? etc)
 
+app.use(
+  expressSession({
+    cookie: {
+     maxAge: 7 * 24 * 60 * 60 * 1000 // ms
+    },
+    secret:  process.env.SESSION_SECRET,
+    resave: true,
+    saveUninitialized: true,
+    store: new PrismaSessionStore(
+      new PrismaClient(),
+      {
+        pool: pgPool,
+        checkPeriod: 2 * 60 * 1000,  //ms
+        dbRecordIdIsSessionId: true,
+        dbRecordIdFunction: undefined,
+      }
+    )
+  })
+);
+
 
 
 TODO:
