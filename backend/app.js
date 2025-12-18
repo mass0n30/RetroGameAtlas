@@ -19,7 +19,7 @@ const app = express();
 app.use(express.static(path.join(__dirname, 'public')));
 
 
-app.use(cors({origin:'https://retro-game-atlas.vercel.app/'}));
+app.use(cors({origin:'https://retro-game-atlas.vercel.app'}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -28,7 +28,7 @@ app.use(
     cookie: {
      maxAge: 7 * 24 * 60 * 60 * 1000 // ms
     },
-    secret: 'cats',
+    secret:  process.env.SESSION_SECRET,
     resave: true,
     saveUninitialized: true,
     store: new PrismaSessionStore(
