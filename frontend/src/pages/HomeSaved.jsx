@@ -20,7 +20,7 @@ function HomeSaved() {
   const token = localStorage.getItem('usertoken');
 
   useEffect(() => {
-    axios.get('http://localhost:5000/home/saved', {
+    axios.get(`${import.meta.env.VITE_API_URL}/home/saved`, {
       headers: {
         'Authorization': `Bearer ${token}`,
       }

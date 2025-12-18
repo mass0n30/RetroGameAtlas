@@ -60,7 +60,7 @@ function Home() {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const response = await fetch('http://localhost:5000/home', {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/home`, {
           method: 'GET',
           headers: {
             'Authorization': `Bearer ${token}`,
@@ -105,7 +105,7 @@ function Home() {
     SetLoading(true);
     // scrolls to top page upon category changes
     axios
-      .get(`http://localhost:5000/home/games?${query}&order=${order.data}&dir=${order.order}&offset=${0}&limit=${limit}&discover=${discover}`,{
+      .get(`${import.meta.env.VITE_API_URL}/home/games?${query}&order=${order.data}&dir=${order.order}&offset=${0}&limit=${limit}&discover=${discover}`,{
       })
       .then((res) => setGames(res.data.games))
       .catch((err) => console.log(err));

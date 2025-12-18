@@ -28,7 +28,7 @@ function HomePage() {
     setMount(false);
     setTimeout(() => {
     axios
-    .get(`http://localhost:5000/home/games?${query}&order=${orderData}&dir=${orderDirection}&offset=${index + 1}&limit=${limit}&discover=${discover}`,)
+    .get(`${import.meta.env.VITE_API_URL}/home/games?${query}&order=${orderData}&dir=${orderDirection}&offset=${index + 1}&limit=${limit}&discover=${discover}`,)
     .then((res) => {
       console.log(res, 'response');
 

@@ -51,7 +51,7 @@ useEffect(() => {
 useEffect(() => {
   async function fetchDetails() {
     try {
-      const res = await axios.get(`http://localhost:5000/home/details/${gameId}`);
+      const res = await axios.get(`${import.meta.env.VITE_API_URL}/home/details/${gameId}`);
       setGameDetails(res.data.game.gameDetails);
       res.data.game.worldRecord ? setRecordData(res.data.game.worldRecord) : null;
       res.data.game.worldRecordAlt ? setRecordDataAlt(res.data.game.worldRecordAlt) : null;
@@ -74,7 +74,7 @@ useEffect(() => {
 
 const handleUpdateGame = async (type) => {
   try {
-    const response = await fetch(`http://localhost:5000/home/details/${gameId}`, {
+    const response = await fetch(`${import.meta.env.VITE_API_URL}/home/details/${gameId}`, {
       method: 'PUT',
       headers: {
         'Authorization': `Bearer ${token}`,

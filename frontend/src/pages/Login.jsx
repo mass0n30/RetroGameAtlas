@@ -23,7 +23,7 @@ function Login() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    await fetch('http://localhost:5000/', {
+    await fetch(`${import.meta.env.VITE_API_URL}/`, {
         mode: 'cors',
         method: 'POST',
         headers: {
