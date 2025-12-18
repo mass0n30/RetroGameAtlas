@@ -23,6 +23,25 @@ app.use(cors({origin:'https://retro-game-atlas.vercel.app'}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+app.use(
+  expressSession({
+    cookie: {
+     maxAge: 7 * 24 * 60 * 60 * 1000 // ms
+    },
+    secret:  process.env.SESSION_SECRET,
+    resave: true,
+    saveUninitialized: true,
+    store: new PrismaSessionStore(
+      new PrismaClient(),
+      {
+        pool: pgPool,
+        checkPeriod: 2 * 60 * 1000,  //ms
+        dbRecordIdIsSessionId: true,
+        dbRecordIdFunction: undefined,
+      }
+    )
+  })
+);
 
 app.use(passport.session());  //enables persistent login sessions
 
