@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import styles from '../styles/components/details.module.css';
 import axios from "axios";
-import { Award, DollarSign, Percent, ShoppingCart} from 'lucide-react';
+import { Award, DollarSign, Percent, ShoppingCart, ExternalLink} from 'lucide-react';
 import YouTubeEmbed from './Youtube';
 
 export default function GameDataSection({game}) {
@@ -74,8 +74,12 @@ if (loading) {
               <YouTubeEmbed url={recordData.videoLink} title={recordData.recordName}/>
             </div>
             <div className={styles.recordlink}>
-              <a href={'recordDataAlt.runLink'}>
-                <button> {gameName} Speedrun Data </button>
+              <a href={recordData?.runLink}
+                target="_blank"
+                rel="noopener noreferrer">
+                <button> View <b>{gameName} {recordData.recordName}</b> Speedrun Data 
+                  <ExternalLink />
+                </button>
                 </a>
             </div>
           </div>
@@ -110,13 +114,13 @@ if (loading) {
             </div>
 
             <div className={styles.recordlink}>
-              <a
-                href={recordDataAlt.runLink}
+              <a href={recordDataAlt?.runLink}
                 target="_blank"
-                rel="noopener noreferrer"
-              >
-                <button>{gameName} Speedrun Data</button>
-              </a>
+                rel="noopener noreferrer">
+                <button> View <b>{gameName} {recordDataAlt.recordName}</b> Speedrun Data 
+                  <ExternalLink />
+                </button>
+                </a>
             </div>
 
           </div>

@@ -1680,10 +1680,12 @@ export namespace Prisma {
 
   export type UserProfileCountOutputType = {
     savedGames: number
+    completedGames: number
   }
 
   export type UserProfileCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     savedGames?: boolean | UserProfileCountOutputTypeCountSavedGamesArgs
+    completedGames?: boolean | UserProfileCountOutputTypeCountCompletedGamesArgs
   }
 
   // Custom InputTypes
@@ -1704,6 +1706,13 @@ export namespace Prisma {
     where?: GameWhereInput
   }
 
+  /**
+   * UserProfileCountOutputType without action
+   */
+  export type UserProfileCountOutputTypeCountCompletedGamesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: GameWhereInput
+  }
+
 
   /**
    * Count Type GameCountOutputType
@@ -1715,6 +1724,7 @@ export namespace Prisma {
     genres: number
     platforms: number
     savedByUsers: number
+    completedByUsers: number
   }
 
   export type GameCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -1723,6 +1733,7 @@ export namespace Prisma {
     genres?: boolean | GameCountOutputTypeCountGenresArgs
     platforms?: boolean | GameCountOutputTypeCountPlatformsArgs
     savedByUsers?: boolean | GameCountOutputTypeCountSavedByUsersArgs
+    completedByUsers?: boolean | GameCountOutputTypeCountCompletedByUsersArgs
   }
 
   // Custom InputTypes
@@ -1768,6 +1779,13 @@ export namespace Prisma {
    * GameCountOutputType without action
    */
   export type GameCountOutputTypeCountSavedByUsersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: UserProfileWhereInput
+  }
+
+  /**
+   * GameCountOutputType without action
+   */
+  export type GameCountOutputTypeCountCompletedByUsersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: UserProfileWhereInput
   }
 
@@ -4185,6 +4203,7 @@ export namespace Prisma {
     userId?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
     savedGames?: boolean | UserProfile$savedGamesArgs<ExtArgs>
+    completedGames?: boolean | UserProfile$completedGamesArgs<ExtArgs>
     _count?: boolean | UserProfileCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["userProfile"]>
 
@@ -4209,6 +4228,7 @@ export namespace Prisma {
   export type UserProfileInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
     savedGames?: boolean | UserProfile$savedGamesArgs<ExtArgs>
+    completedGames?: boolean | UserProfile$completedGamesArgs<ExtArgs>
     _count?: boolean | UserProfileCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserProfileIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -4223,6 +4243,7 @@ export namespace Prisma {
     objects: {
       user: Prisma.$UserPayload<ExtArgs>
       savedGames: Prisma.$GamePayload<ExtArgs>[]
+      completedGames: Prisma.$GamePayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -4623,6 +4644,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     savedGames<T extends UserProfile$savedGamesArgs<ExtArgs> = {}>(args?: Subset<T, UserProfile$savedGamesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GamePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    completedGames<T extends UserProfile$completedGamesArgs<ExtArgs> = {}>(args?: Subset<T, UserProfile$completedGamesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GamePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -5074,6 +5096,30 @@ export namespace Prisma {
   }
 
   /**
+   * UserProfile.completedGames
+   */
+  export type UserProfile$completedGamesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Game
+     */
+    select?: GameSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Game
+     */
+    omit?: GameOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GameInclude<ExtArgs> | null
+    where?: GameWhereInput
+    orderBy?: GameOrderByWithRelationInput | GameOrderByWithRelationInput[]
+    cursor?: GameWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: GameScalarFieldEnum | GameScalarFieldEnum[]
+  }
+
+  /**
    * UserProfile without action
    */
   export type UserProfileDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -5413,6 +5459,7 @@ export namespace Prisma {
     genres?: boolean | Game$genresArgs<ExtArgs>
     platforms?: boolean | Game$platformsArgs<ExtArgs>
     savedByUsers?: boolean | Game$savedByUsersArgs<ExtArgs>
+    completedByUsers?: boolean | Game$completedByUsersArgs<ExtArgs>
     _count?: boolean | GameCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["game"]>
 
@@ -5486,6 +5533,7 @@ export namespace Prisma {
     genres?: boolean | Game$genresArgs<ExtArgs>
     platforms?: boolean | Game$platformsArgs<ExtArgs>
     savedByUsers?: boolean | Game$savedByUsersArgs<ExtArgs>
+    completedByUsers?: boolean | Game$completedByUsersArgs<ExtArgs>
     _count?: boolean | GameCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type GameIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -5507,6 +5555,7 @@ export namespace Prisma {
       genres: Prisma.$GenrePayload<ExtArgs>[]
       platforms: Prisma.$PlatformPayload<ExtArgs>[]
       savedByUsers: Prisma.$UserProfilePayload<ExtArgs>[]
+      completedByUsers: Prisma.$UserProfilePayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -5926,6 +5975,7 @@ export namespace Prisma {
     genres<T extends Game$genresArgs<ExtArgs> = {}>(args?: Subset<T, Game$genresArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GenrePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     platforms<T extends Game$platformsArgs<ExtArgs> = {}>(args?: Subset<T, Game$platformsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PlatformPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     savedByUsers<T extends Game$savedByUsersArgs<ExtArgs> = {}>(args?: Subset<T, Game$savedByUsersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserProfilePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    completedByUsers<T extends Game$completedByUsersArgs<ExtArgs> = {}>(args?: Subset<T, Game$completedByUsersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserProfilePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -6504,6 +6554,30 @@ export namespace Prisma {
    * Game.savedByUsers
    */
   export type Game$savedByUsersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserProfile
+     */
+    select?: UserProfileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserProfile
+     */
+    omit?: UserProfileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserProfileInclude<ExtArgs> | null
+    where?: UserProfileWhereInput
+    orderBy?: UserProfileOrderByWithRelationInput | UserProfileOrderByWithRelationInput[]
+    cursor?: UserProfileWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: UserProfileScalarFieldEnum | UserProfileScalarFieldEnum[]
+  }
+
+  /**
+   * Game.completedByUsers
+   */
+  export type Game$completedByUsersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the UserProfile
      */
@@ -7649,6 +7723,7 @@ export namespace Prisma {
     id: number | null
     name: string | null
     abbreviation: string | null
+    displayabbrev: string | null
     generation: number | null
     slug: string | null
     platformLogo: string | null
@@ -7659,6 +7734,7 @@ export namespace Prisma {
     id: number | null
     name: string | null
     abbreviation: string | null
+    displayabbrev: string | null
     generation: number | null
     slug: string | null
     platformLogo: string | null
@@ -7669,6 +7745,7 @@ export namespace Prisma {
     id: number
     name: number
     abbreviation: number
+    displayabbrev: number
     generation: number
     slug: number
     platformLogo: number
@@ -7693,6 +7770,7 @@ export namespace Prisma {
     id?: true
     name?: true
     abbreviation?: true
+    displayabbrev?: true
     generation?: true
     slug?: true
     platformLogo?: true
@@ -7703,6 +7781,7 @@ export namespace Prisma {
     id?: true
     name?: true
     abbreviation?: true
+    displayabbrev?: true
     generation?: true
     slug?: true
     platformLogo?: true
@@ -7713,6 +7792,7 @@ export namespace Prisma {
     id?: true
     name?: true
     abbreviation?: true
+    displayabbrev?: true
     generation?: true
     slug?: true
     platformLogo?: true
@@ -7810,6 +7890,7 @@ export namespace Prisma {
     id: number
     name: string
     abbreviation: string | null
+    displayabbrev: string | null
     generation: number | null
     slug: string
     platformLogo: string | null
@@ -7839,6 +7920,7 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     abbreviation?: boolean
+    displayabbrev?: boolean
     generation?: boolean
     slug?: boolean
     platformLogo?: boolean
@@ -7851,6 +7933,7 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     abbreviation?: boolean
+    displayabbrev?: boolean
     generation?: boolean
     slug?: boolean
     platformLogo?: boolean
@@ -7861,6 +7944,7 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     abbreviation?: boolean
+    displayabbrev?: boolean
     generation?: boolean
     slug?: boolean
     platformLogo?: boolean
@@ -7871,13 +7955,14 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     abbreviation?: boolean
+    displayabbrev?: boolean
     generation?: boolean
     slug?: boolean
     platformLogo?: boolean
     releaseOrder?: boolean
   }
 
-  export type PlatformOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "abbreviation" | "generation" | "slug" | "platformLogo" | "releaseOrder", ExtArgs["result"]["platform"]>
+  export type PlatformOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "abbreviation" | "displayabbrev" | "generation" | "slug" | "platformLogo" | "releaseOrder", ExtArgs["result"]["platform"]>
   export type PlatformInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     games?: boolean | Platform$gamesArgs<ExtArgs>
     _count?: boolean | PlatformCountOutputTypeDefaultArgs<ExtArgs>
@@ -7894,6 +7979,7 @@ export namespace Prisma {
       id: number
       name: string
       abbreviation: string | null
+      displayabbrev: string | null
       generation: number | null
       slug: string
       platformLogo: string | null
@@ -8325,6 +8411,7 @@ export namespace Prisma {
     readonly id: FieldRef<"Platform", 'Int'>
     readonly name: FieldRef<"Platform", 'String'>
     readonly abbreviation: FieldRef<"Platform", 'String'>
+    readonly displayabbrev: FieldRef<"Platform", 'String'>
     readonly generation: FieldRef<"Platform", 'Int'>
     readonly slug: FieldRef<"Platform", 'String'>
     readonly platformLogo: FieldRef<"Platform", 'String'>
@@ -13293,6 +13380,7 @@ export namespace Prisma {
     id: 'id',
     name: 'name',
     abbreviation: 'abbreviation',
+    displayabbrev: 'displayabbrev',
     generation: 'generation',
     slug: 'slug',
     platformLogo: 'platformLogo',
@@ -13565,6 +13653,7 @@ export namespace Prisma {
     userId?: IntFilter<"UserProfile"> | number
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     savedGames?: GameListRelationFilter
+    completedGames?: GameListRelationFilter
   }
 
   export type UserProfileOrderByWithRelationInput = {
@@ -13572,6 +13661,7 @@ export namespace Prisma {
     userId?: SortOrder
     user?: UserOrderByWithRelationInput
     savedGames?: GameOrderByRelationAggregateInput
+    completedGames?: GameOrderByRelationAggregateInput
   }
 
   export type UserProfileWhereUniqueInput = Prisma.AtLeast<{
@@ -13582,6 +13672,7 @@ export namespace Prisma {
     NOT?: UserProfileWhereInput | UserProfileWhereInput[]
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     savedGames?: GameListRelationFilter
+    completedGames?: GameListRelationFilter
   }, "id" | "userId">
 
   export type UserProfileOrderByWithAggregationInput = {
@@ -13629,6 +13720,7 @@ export namespace Prisma {
     genres?: GenreListRelationFilter
     platforms?: PlatformListRelationFilter
     savedByUsers?: UserProfileListRelationFilter
+    completedByUsers?: UserProfileListRelationFilter
   }
 
   export type GameOrderByWithRelationInput = {
@@ -13655,6 +13747,7 @@ export namespace Prisma {
     genres?: GenreOrderByRelationAggregateInput
     platforms?: PlatformOrderByRelationAggregateInput
     savedByUsers?: UserProfileOrderByRelationAggregateInput
+    completedByUsers?: UserProfileOrderByRelationAggregateInput
   }
 
   export type GameWhereUniqueInput = Prisma.AtLeast<{
@@ -13684,6 +13777,7 @@ export namespace Prisma {
     genres?: GenreListRelationFilter
     platforms?: PlatformListRelationFilter
     savedByUsers?: UserProfileListRelationFilter
+    completedByUsers?: UserProfileListRelationFilter
   }, "id" | "slug" | "igdbId">
 
   export type GameOrderByWithAggregationInput = {
@@ -13786,6 +13880,7 @@ export namespace Prisma {
     id?: IntFilter<"Platform"> | number
     name?: StringFilter<"Platform"> | string
     abbreviation?: StringNullableFilter<"Platform"> | string | null
+    displayabbrev?: StringNullableFilter<"Platform"> | string | null
     generation?: IntNullableFilter<"Platform"> | number | null
     slug?: StringFilter<"Platform"> | string
     platformLogo?: StringNullableFilter<"Platform"> | string | null
@@ -13797,6 +13892,7 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     abbreviation?: SortOrderInput | SortOrder
+    displayabbrev?: SortOrderInput | SortOrder
     generation?: SortOrderInput | SortOrder
     slug?: SortOrder
     platformLogo?: SortOrderInput | SortOrder
@@ -13812,6 +13908,7 @@ export namespace Prisma {
     OR?: PlatformWhereInput[]
     NOT?: PlatformWhereInput | PlatformWhereInput[]
     abbreviation?: StringNullableFilter<"Platform"> | string | null
+    displayabbrev?: StringNullableFilter<"Platform"> | string | null
     generation?: IntNullableFilter<"Platform"> | number | null
     slug?: StringFilter<"Platform"> | string
     platformLogo?: StringNullableFilter<"Platform"> | string | null
@@ -13822,6 +13919,7 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     abbreviation?: SortOrderInput | SortOrder
+    displayabbrev?: SortOrderInput | SortOrder
     generation?: SortOrderInput | SortOrder
     slug?: SortOrder
     platformLogo?: SortOrderInput | SortOrder
@@ -13840,6 +13938,7 @@ export namespace Prisma {
     id?: IntWithAggregatesFilter<"Platform"> | number
     name?: StringWithAggregatesFilter<"Platform"> | string
     abbreviation?: StringNullableWithAggregatesFilter<"Platform"> | string | null
+    displayabbrev?: StringNullableWithAggregatesFilter<"Platform"> | string | null
     generation?: IntNullableWithAggregatesFilter<"Platform"> | number | null
     slug?: StringWithAggregatesFilter<"Platform"> | string
     platformLogo?: StringNullableWithAggregatesFilter<"Platform"> | string | null
@@ -14207,23 +14306,27 @@ export namespace Prisma {
   export type UserProfileCreateInput = {
     user: UserCreateNestedOneWithoutUserProfileInput
     savedGames?: GameCreateNestedManyWithoutSavedByUsersInput
+    completedGames?: GameCreateNestedManyWithoutCompletedByUsersInput
   }
 
   export type UserProfileUncheckedCreateInput = {
     id?: number
     userId: number
     savedGames?: GameUncheckedCreateNestedManyWithoutSavedByUsersInput
+    completedGames?: GameUncheckedCreateNestedManyWithoutCompletedByUsersInput
   }
 
   export type UserProfileUpdateInput = {
     user?: UserUpdateOneRequiredWithoutUserProfileNestedInput
     savedGames?: GameUpdateManyWithoutSavedByUsersNestedInput
+    completedGames?: GameUpdateManyWithoutCompletedByUsersNestedInput
   }
 
   export type UserProfileUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     userId?: IntFieldUpdateOperationsInput | number
     savedGames?: GameUncheckedUpdateManyWithoutSavedByUsersNestedInput
+    completedGames?: GameUncheckedUpdateManyWithoutCompletedByUsersNestedInput
   }
 
   export type UserProfileCreateManyInput = {
@@ -14261,6 +14364,7 @@ export namespace Prisma {
     genres?: GenreCreateNestedManyWithoutGamesInput
     platforms?: PlatformCreateNestedManyWithoutGamesInput
     savedByUsers?: UserProfileCreateNestedManyWithoutSavedGamesInput
+    completedByUsers?: UserProfileCreateNestedManyWithoutCompletedGamesInput
   }
 
   export type GameUncheckedCreateInput = {
@@ -14285,6 +14389,7 @@ export namespace Prisma {
     genres?: GenreUncheckedCreateNestedManyWithoutGamesInput
     platforms?: PlatformUncheckedCreateNestedManyWithoutGamesInput
     savedByUsers?: UserProfileUncheckedCreateNestedManyWithoutSavedGamesInput
+    completedByUsers?: UserProfileUncheckedCreateNestedManyWithoutCompletedGamesInput
   }
 
   export type GameUpdateInput = {
@@ -14308,6 +14413,7 @@ export namespace Prisma {
     genres?: GenreUpdateManyWithoutGamesNestedInput
     platforms?: PlatformUpdateManyWithoutGamesNestedInput
     savedByUsers?: UserProfileUpdateManyWithoutSavedGamesNestedInput
+    completedByUsers?: UserProfileUpdateManyWithoutCompletedGamesNestedInput
   }
 
   export type GameUncheckedUpdateInput = {
@@ -14332,6 +14438,7 @@ export namespace Prisma {
     genres?: GenreUncheckedUpdateManyWithoutGamesNestedInput
     platforms?: PlatformUncheckedUpdateManyWithoutGamesNestedInput
     savedByUsers?: UserProfileUncheckedUpdateManyWithoutSavedGamesNestedInput
+    completedByUsers?: UserProfileUncheckedUpdateManyWithoutCompletedGamesNestedInput
   }
 
   export type GameCreateManyInput = {
@@ -14438,6 +14545,7 @@ export namespace Prisma {
     id: number
     name: string
     abbreviation?: string | null
+    displayabbrev?: string | null
     generation?: number | null
     slug: string
     platformLogo?: string | null
@@ -14449,6 +14557,7 @@ export namespace Prisma {
     id: number
     name: string
     abbreviation?: string | null
+    displayabbrev?: string | null
     generation?: number | null
     slug: string
     platformLogo?: string | null
@@ -14460,6 +14569,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     abbreviation?: NullableStringFieldUpdateOperationsInput | string | null
+    displayabbrev?: NullableStringFieldUpdateOperationsInput | string | null
     generation?: NullableIntFieldUpdateOperationsInput | number | null
     slug?: StringFieldUpdateOperationsInput | string
     platformLogo?: NullableStringFieldUpdateOperationsInput | string | null
@@ -14471,6 +14581,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     abbreviation?: NullableStringFieldUpdateOperationsInput | string | null
+    displayabbrev?: NullableStringFieldUpdateOperationsInput | string | null
     generation?: NullableIntFieldUpdateOperationsInput | number | null
     slug?: StringFieldUpdateOperationsInput | string
     platformLogo?: NullableStringFieldUpdateOperationsInput | string | null
@@ -14482,6 +14593,7 @@ export namespace Prisma {
     id: number
     name: string
     abbreviation?: string | null
+    displayabbrev?: string | null
     generation?: number | null
     slug: string
     platformLogo?: string | null
@@ -14492,6 +14604,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     abbreviation?: NullableStringFieldUpdateOperationsInput | string | null
+    displayabbrev?: NullableStringFieldUpdateOperationsInput | string | null
     generation?: NullableIntFieldUpdateOperationsInput | number | null
     slug?: StringFieldUpdateOperationsInput | string
     platformLogo?: NullableStringFieldUpdateOperationsInput | string | null
@@ -14502,6 +14615,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     abbreviation?: NullableStringFieldUpdateOperationsInput | string | null
+    displayabbrev?: NullableStringFieldUpdateOperationsInput | string | null
     generation?: NullableIntFieldUpdateOperationsInput | number | null
     slug?: StringFieldUpdateOperationsInput | string
     platformLogo?: NullableStringFieldUpdateOperationsInput | string | null
@@ -15231,6 +15345,7 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     abbreviation?: SortOrder
+    displayabbrev?: SortOrder
     generation?: SortOrder
     slug?: SortOrder
     platformLogo?: SortOrder
@@ -15247,6 +15362,7 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     abbreviation?: SortOrder
+    displayabbrev?: SortOrder
     generation?: SortOrder
     slug?: SortOrder
     platformLogo?: SortOrder
@@ -15257,6 +15373,7 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     abbreviation?: SortOrder
+    displayabbrev?: SortOrder
     generation?: SortOrder
     slug?: SortOrder
     platformLogo?: SortOrder
@@ -15490,9 +15607,21 @@ export namespace Prisma {
     connect?: GameWhereUniqueInput | GameWhereUniqueInput[]
   }
 
+  export type GameCreateNestedManyWithoutCompletedByUsersInput = {
+    create?: XOR<GameCreateWithoutCompletedByUsersInput, GameUncheckedCreateWithoutCompletedByUsersInput> | GameCreateWithoutCompletedByUsersInput[] | GameUncheckedCreateWithoutCompletedByUsersInput[]
+    connectOrCreate?: GameCreateOrConnectWithoutCompletedByUsersInput | GameCreateOrConnectWithoutCompletedByUsersInput[]
+    connect?: GameWhereUniqueInput | GameWhereUniqueInput[]
+  }
+
   export type GameUncheckedCreateNestedManyWithoutSavedByUsersInput = {
     create?: XOR<GameCreateWithoutSavedByUsersInput, GameUncheckedCreateWithoutSavedByUsersInput> | GameCreateWithoutSavedByUsersInput[] | GameUncheckedCreateWithoutSavedByUsersInput[]
     connectOrCreate?: GameCreateOrConnectWithoutSavedByUsersInput | GameCreateOrConnectWithoutSavedByUsersInput[]
+    connect?: GameWhereUniqueInput | GameWhereUniqueInput[]
+  }
+
+  export type GameUncheckedCreateNestedManyWithoutCompletedByUsersInput = {
+    create?: XOR<GameCreateWithoutCompletedByUsersInput, GameUncheckedCreateWithoutCompletedByUsersInput> | GameCreateWithoutCompletedByUsersInput[] | GameUncheckedCreateWithoutCompletedByUsersInput[]
+    connectOrCreate?: GameCreateOrConnectWithoutCompletedByUsersInput | GameCreateOrConnectWithoutCompletedByUsersInput[]
     connect?: GameWhereUniqueInput | GameWhereUniqueInput[]
   }
 
@@ -15517,6 +15646,19 @@ export namespace Prisma {
     deleteMany?: GameScalarWhereInput | GameScalarWhereInput[]
   }
 
+  export type GameUpdateManyWithoutCompletedByUsersNestedInput = {
+    create?: XOR<GameCreateWithoutCompletedByUsersInput, GameUncheckedCreateWithoutCompletedByUsersInput> | GameCreateWithoutCompletedByUsersInput[] | GameUncheckedCreateWithoutCompletedByUsersInput[]
+    connectOrCreate?: GameCreateOrConnectWithoutCompletedByUsersInput | GameCreateOrConnectWithoutCompletedByUsersInput[]
+    upsert?: GameUpsertWithWhereUniqueWithoutCompletedByUsersInput | GameUpsertWithWhereUniqueWithoutCompletedByUsersInput[]
+    set?: GameWhereUniqueInput | GameWhereUniqueInput[]
+    disconnect?: GameWhereUniqueInput | GameWhereUniqueInput[]
+    delete?: GameWhereUniqueInput | GameWhereUniqueInput[]
+    connect?: GameWhereUniqueInput | GameWhereUniqueInput[]
+    update?: GameUpdateWithWhereUniqueWithoutCompletedByUsersInput | GameUpdateWithWhereUniqueWithoutCompletedByUsersInput[]
+    updateMany?: GameUpdateManyWithWhereWithoutCompletedByUsersInput | GameUpdateManyWithWhereWithoutCompletedByUsersInput[]
+    deleteMany?: GameScalarWhereInput | GameScalarWhereInput[]
+  }
+
   export type GameUncheckedUpdateManyWithoutSavedByUsersNestedInput = {
     create?: XOR<GameCreateWithoutSavedByUsersInput, GameUncheckedCreateWithoutSavedByUsersInput> | GameCreateWithoutSavedByUsersInput[] | GameUncheckedCreateWithoutSavedByUsersInput[]
     connectOrCreate?: GameCreateOrConnectWithoutSavedByUsersInput | GameCreateOrConnectWithoutSavedByUsersInput[]
@@ -15527,6 +15669,19 @@ export namespace Prisma {
     connect?: GameWhereUniqueInput | GameWhereUniqueInput[]
     update?: GameUpdateWithWhereUniqueWithoutSavedByUsersInput | GameUpdateWithWhereUniqueWithoutSavedByUsersInput[]
     updateMany?: GameUpdateManyWithWhereWithoutSavedByUsersInput | GameUpdateManyWithWhereWithoutSavedByUsersInput[]
+    deleteMany?: GameScalarWhereInput | GameScalarWhereInput[]
+  }
+
+  export type GameUncheckedUpdateManyWithoutCompletedByUsersNestedInput = {
+    create?: XOR<GameCreateWithoutCompletedByUsersInput, GameUncheckedCreateWithoutCompletedByUsersInput> | GameCreateWithoutCompletedByUsersInput[] | GameUncheckedCreateWithoutCompletedByUsersInput[]
+    connectOrCreate?: GameCreateOrConnectWithoutCompletedByUsersInput | GameCreateOrConnectWithoutCompletedByUsersInput[]
+    upsert?: GameUpsertWithWhereUniqueWithoutCompletedByUsersInput | GameUpsertWithWhereUniqueWithoutCompletedByUsersInput[]
+    set?: GameWhereUniqueInput | GameWhereUniqueInput[]
+    disconnect?: GameWhereUniqueInput | GameWhereUniqueInput[]
+    delete?: GameWhereUniqueInput | GameWhereUniqueInput[]
+    connect?: GameWhereUniqueInput | GameWhereUniqueInput[]
+    update?: GameUpdateWithWhereUniqueWithoutCompletedByUsersInput | GameUpdateWithWhereUniqueWithoutCompletedByUsersInput[]
+    updateMany?: GameUpdateManyWithWhereWithoutCompletedByUsersInput | GameUpdateManyWithWhereWithoutCompletedByUsersInput[]
     deleteMany?: GameScalarWhereInput | GameScalarWhereInput[]
   }
 
@@ -15574,6 +15729,12 @@ export namespace Prisma {
     connect?: UserProfileWhereUniqueInput | UserProfileWhereUniqueInput[]
   }
 
+  export type UserProfileCreateNestedManyWithoutCompletedGamesInput = {
+    create?: XOR<UserProfileCreateWithoutCompletedGamesInput, UserProfileUncheckedCreateWithoutCompletedGamesInput> | UserProfileCreateWithoutCompletedGamesInput[] | UserProfileUncheckedCreateWithoutCompletedGamesInput[]
+    connectOrCreate?: UserProfileCreateOrConnectWithoutCompletedGamesInput | UserProfileCreateOrConnectWithoutCompletedGamesInput[]
+    connect?: UserProfileWhereUniqueInput | UserProfileWhereUniqueInput[]
+  }
+
   export type CoverUncheckedCreateNestedManyWithoutGameInput = {
     create?: XOR<CoverCreateWithoutGameInput, CoverUncheckedCreateWithoutGameInput> | CoverCreateWithoutGameInput[] | CoverUncheckedCreateWithoutGameInput[]
     connectOrCreate?: CoverCreateOrConnectWithoutGameInput | CoverCreateOrConnectWithoutGameInput[]
@@ -15603,6 +15764,12 @@ export namespace Prisma {
   export type UserProfileUncheckedCreateNestedManyWithoutSavedGamesInput = {
     create?: XOR<UserProfileCreateWithoutSavedGamesInput, UserProfileUncheckedCreateWithoutSavedGamesInput> | UserProfileCreateWithoutSavedGamesInput[] | UserProfileUncheckedCreateWithoutSavedGamesInput[]
     connectOrCreate?: UserProfileCreateOrConnectWithoutSavedGamesInput | UserProfileCreateOrConnectWithoutSavedGamesInput[]
+    connect?: UserProfileWhereUniqueInput | UserProfileWhereUniqueInput[]
+  }
+
+  export type UserProfileUncheckedCreateNestedManyWithoutCompletedGamesInput = {
+    create?: XOR<UserProfileCreateWithoutCompletedGamesInput, UserProfileUncheckedCreateWithoutCompletedGamesInput> | UserProfileCreateWithoutCompletedGamesInput[] | UserProfileUncheckedCreateWithoutCompletedGamesInput[]
+    connectOrCreate?: UserProfileCreateOrConnectWithoutCompletedGamesInput | UserProfileCreateOrConnectWithoutCompletedGamesInput[]
     connect?: UserProfileWhereUniqueInput | UserProfileWhereUniqueInput[]
   }
 
@@ -15717,6 +15884,19 @@ export namespace Prisma {
     deleteMany?: UserProfileScalarWhereInput | UserProfileScalarWhereInput[]
   }
 
+  export type UserProfileUpdateManyWithoutCompletedGamesNestedInput = {
+    create?: XOR<UserProfileCreateWithoutCompletedGamesInput, UserProfileUncheckedCreateWithoutCompletedGamesInput> | UserProfileCreateWithoutCompletedGamesInput[] | UserProfileUncheckedCreateWithoutCompletedGamesInput[]
+    connectOrCreate?: UserProfileCreateOrConnectWithoutCompletedGamesInput | UserProfileCreateOrConnectWithoutCompletedGamesInput[]
+    upsert?: UserProfileUpsertWithWhereUniqueWithoutCompletedGamesInput | UserProfileUpsertWithWhereUniqueWithoutCompletedGamesInput[]
+    set?: UserProfileWhereUniqueInput | UserProfileWhereUniqueInput[]
+    disconnect?: UserProfileWhereUniqueInput | UserProfileWhereUniqueInput[]
+    delete?: UserProfileWhereUniqueInput | UserProfileWhereUniqueInput[]
+    connect?: UserProfileWhereUniqueInput | UserProfileWhereUniqueInput[]
+    update?: UserProfileUpdateWithWhereUniqueWithoutCompletedGamesInput | UserProfileUpdateWithWhereUniqueWithoutCompletedGamesInput[]
+    updateMany?: UserProfileUpdateManyWithWhereWithoutCompletedGamesInput | UserProfileUpdateManyWithWhereWithoutCompletedGamesInput[]
+    deleteMany?: UserProfileScalarWhereInput | UserProfileScalarWhereInput[]
+  }
+
   export type CoverUncheckedUpdateManyWithoutGameNestedInput = {
     create?: XOR<CoverCreateWithoutGameInput, CoverUncheckedCreateWithoutGameInput> | CoverCreateWithoutGameInput[] | CoverUncheckedCreateWithoutGameInput[]
     connectOrCreate?: CoverCreateOrConnectWithoutGameInput | CoverCreateOrConnectWithoutGameInput[]
@@ -15781,6 +15961,19 @@ export namespace Prisma {
     connect?: UserProfileWhereUniqueInput | UserProfileWhereUniqueInput[]
     update?: UserProfileUpdateWithWhereUniqueWithoutSavedGamesInput | UserProfileUpdateWithWhereUniqueWithoutSavedGamesInput[]
     updateMany?: UserProfileUpdateManyWithWhereWithoutSavedGamesInput | UserProfileUpdateManyWithWhereWithoutSavedGamesInput[]
+    deleteMany?: UserProfileScalarWhereInput | UserProfileScalarWhereInput[]
+  }
+
+  export type UserProfileUncheckedUpdateManyWithoutCompletedGamesNestedInput = {
+    create?: XOR<UserProfileCreateWithoutCompletedGamesInput, UserProfileUncheckedCreateWithoutCompletedGamesInput> | UserProfileCreateWithoutCompletedGamesInput[] | UserProfileUncheckedCreateWithoutCompletedGamesInput[]
+    connectOrCreate?: UserProfileCreateOrConnectWithoutCompletedGamesInput | UserProfileCreateOrConnectWithoutCompletedGamesInput[]
+    upsert?: UserProfileUpsertWithWhereUniqueWithoutCompletedGamesInput | UserProfileUpsertWithWhereUniqueWithoutCompletedGamesInput[]
+    set?: UserProfileWhereUniqueInput | UserProfileWhereUniqueInput[]
+    disconnect?: UserProfileWhereUniqueInput | UserProfileWhereUniqueInput[]
+    delete?: UserProfileWhereUniqueInput | UserProfileWhereUniqueInput[]
+    connect?: UserProfileWhereUniqueInput | UserProfileWhereUniqueInput[]
+    update?: UserProfileUpdateWithWhereUniqueWithoutCompletedGamesInput | UserProfileUpdateWithWhereUniqueWithoutCompletedGamesInput[]
+    updateMany?: UserProfileUpdateManyWithWhereWithoutCompletedGamesInput | UserProfileUpdateManyWithWhereWithoutCompletedGamesInput[]
     deleteMany?: UserProfileScalarWhereInput | UserProfileScalarWhereInput[]
   }
 
@@ -16191,11 +16384,13 @@ export namespace Prisma {
 
   export type UserProfileCreateWithoutUserInput = {
     savedGames?: GameCreateNestedManyWithoutSavedByUsersInput
+    completedGames?: GameCreateNestedManyWithoutCompletedByUsersInput
   }
 
   export type UserProfileUncheckedCreateWithoutUserInput = {
     id?: number
     savedGames?: GameUncheckedCreateNestedManyWithoutSavedByUsersInput
+    completedGames?: GameUncheckedCreateNestedManyWithoutCompletedByUsersInput
   }
 
   export type UserProfileCreateOrConnectWithoutUserInput = {
@@ -16216,11 +16411,13 @@ export namespace Prisma {
 
   export type UserProfileUpdateWithoutUserInput = {
     savedGames?: GameUpdateManyWithoutSavedByUsersNestedInput
+    completedGames?: GameUpdateManyWithoutCompletedByUsersNestedInput
   }
 
   export type UserProfileUncheckedUpdateWithoutUserInput = {
     id?: IntFieldUpdateOperationsInput | number
     savedGames?: GameUncheckedUpdateManyWithoutSavedByUsersNestedInput
+    completedGames?: GameUncheckedUpdateManyWithoutCompletedByUsersNestedInput
   }
 
   export type UserCreateWithoutUserProfileInput = {
@@ -16267,6 +16464,7 @@ export namespace Prisma {
     screenshots?: ScreenshotCreateNestedManyWithoutGameInput
     genres?: GenreCreateNestedManyWithoutGamesInput
     platforms?: PlatformCreateNestedManyWithoutGamesInput
+    completedByUsers?: UserProfileCreateNestedManyWithoutCompletedGamesInput
   }
 
   export type GameUncheckedCreateWithoutSavedByUsersInput = {
@@ -16290,11 +16488,64 @@ export namespace Prisma {
     screenshots?: ScreenshotUncheckedCreateNestedManyWithoutGameInput
     genres?: GenreUncheckedCreateNestedManyWithoutGamesInput
     platforms?: PlatformUncheckedCreateNestedManyWithoutGamesInput
+    completedByUsers?: UserProfileUncheckedCreateNestedManyWithoutCompletedGamesInput
   }
 
   export type GameCreateOrConnectWithoutSavedByUsersInput = {
     where: GameWhereUniqueInput
     create: XOR<GameCreateWithoutSavedByUsersInput, GameUncheckedCreateWithoutSavedByUsersInput>
+  }
+
+  export type GameCreateWithoutCompletedByUsersInput = {
+    name: string
+    slug: string
+    summary?: string | null
+    storyline?: string | null
+    firstReleaseDate?: Date | string | null
+    coverUrl?: string | null
+    rating?: number | null
+    aggregatedRating?: number | null
+    totalRating?: number | null
+    totalRatingCount?: number | null
+    url?: string | null
+    igdbId: number
+    originalPlatform?: string | null
+    covers?: CoverCreateNestedManyWithoutGameInput
+    ageRating?: GameRatingCreateNestedOneWithoutGamesInput
+    developer?: DevelopersCreateNestedOneWithoutGamesInput
+    screenshots?: ScreenshotCreateNestedManyWithoutGameInput
+    genres?: GenreCreateNestedManyWithoutGamesInput
+    platforms?: PlatformCreateNestedManyWithoutGamesInput
+    savedByUsers?: UserProfileCreateNestedManyWithoutSavedGamesInput
+  }
+
+  export type GameUncheckedCreateWithoutCompletedByUsersInput = {
+    id?: number
+    name: string
+    slug: string
+    summary?: string | null
+    storyline?: string | null
+    firstReleaseDate?: Date | string | null
+    coverUrl?: string | null
+    rating?: number | null
+    aggregatedRating?: number | null
+    totalRating?: number | null
+    totalRatingCount?: number | null
+    url?: string | null
+    igdbId: number
+    originalPlatform?: string | null
+    ageRatingId?: number | null
+    developerId?: number | null
+    covers?: CoverUncheckedCreateNestedManyWithoutGameInput
+    screenshots?: ScreenshotUncheckedCreateNestedManyWithoutGameInput
+    genres?: GenreUncheckedCreateNestedManyWithoutGamesInput
+    platforms?: PlatformUncheckedCreateNestedManyWithoutGamesInput
+    savedByUsers?: UserProfileUncheckedCreateNestedManyWithoutSavedGamesInput
+  }
+
+  export type GameCreateOrConnectWithoutCompletedByUsersInput = {
+    where: GameWhereUniqueInput
+    create: XOR<GameCreateWithoutCompletedByUsersInput, GameUncheckedCreateWithoutCompletedByUsersInput>
   }
 
   export type UserUpsertWithoutUserProfileInput = {
@@ -16363,6 +16614,22 @@ export namespace Prisma {
     originalPlatform?: StringNullableFilter<"Game"> | string | null
     ageRatingId?: IntNullableFilter<"Game"> | number | null
     developerId?: IntNullableFilter<"Game"> | number | null
+  }
+
+  export type GameUpsertWithWhereUniqueWithoutCompletedByUsersInput = {
+    where: GameWhereUniqueInput
+    update: XOR<GameUpdateWithoutCompletedByUsersInput, GameUncheckedUpdateWithoutCompletedByUsersInput>
+    create: XOR<GameCreateWithoutCompletedByUsersInput, GameUncheckedCreateWithoutCompletedByUsersInput>
+  }
+
+  export type GameUpdateWithWhereUniqueWithoutCompletedByUsersInput = {
+    where: GameWhereUniqueInput
+    data: XOR<GameUpdateWithoutCompletedByUsersInput, GameUncheckedUpdateWithoutCompletedByUsersInput>
+  }
+
+  export type GameUpdateManyWithWhereWithoutCompletedByUsersInput = {
+    where: GameScalarWhereInput
+    data: XOR<GameUpdateManyMutationInput, GameUncheckedUpdateManyWithoutCompletedByUsersInput>
   }
 
   export type CoverCreateWithoutGameInput = {
@@ -16477,6 +16744,7 @@ export namespace Prisma {
     id: number
     name: string
     abbreviation?: string | null
+    displayabbrev?: string | null
     generation?: number | null
     slug: string
     platformLogo?: string | null
@@ -16487,6 +16755,7 @@ export namespace Prisma {
     id: number
     name: string
     abbreviation?: string | null
+    displayabbrev?: string | null
     generation?: number | null
     slug: string
     platformLogo?: string | null
@@ -16500,16 +16769,34 @@ export namespace Prisma {
 
   export type UserProfileCreateWithoutSavedGamesInput = {
     user: UserCreateNestedOneWithoutUserProfileInput
+    completedGames?: GameCreateNestedManyWithoutCompletedByUsersInput
   }
 
   export type UserProfileUncheckedCreateWithoutSavedGamesInput = {
     id?: number
     userId: number
+    completedGames?: GameUncheckedCreateNestedManyWithoutCompletedByUsersInput
   }
 
   export type UserProfileCreateOrConnectWithoutSavedGamesInput = {
     where: UserProfileWhereUniqueInput
     create: XOR<UserProfileCreateWithoutSavedGamesInput, UserProfileUncheckedCreateWithoutSavedGamesInput>
+  }
+
+  export type UserProfileCreateWithoutCompletedGamesInput = {
+    user: UserCreateNestedOneWithoutUserProfileInput
+    savedGames?: GameCreateNestedManyWithoutSavedByUsersInput
+  }
+
+  export type UserProfileUncheckedCreateWithoutCompletedGamesInput = {
+    id?: number
+    userId: number
+    savedGames?: GameUncheckedCreateNestedManyWithoutSavedByUsersInput
+  }
+
+  export type UserProfileCreateOrConnectWithoutCompletedGamesInput = {
+    where: UserProfileWhereUniqueInput
+    create: XOR<UserProfileCreateWithoutCompletedGamesInput, UserProfileUncheckedCreateWithoutCompletedGamesInput>
   }
 
   export type CoverUpsertWithWhereUniqueWithoutGameInput = {
@@ -16667,6 +16954,7 @@ export namespace Prisma {
     id?: IntFilter<"Platform"> | number
     name?: StringFilter<"Platform"> | string
     abbreviation?: StringNullableFilter<"Platform"> | string | null
+    displayabbrev?: StringNullableFilter<"Platform"> | string | null
     generation?: IntNullableFilter<"Platform"> | number | null
     slug?: StringFilter<"Platform"> | string
     platformLogo?: StringNullableFilter<"Platform"> | string | null
@@ -16697,6 +16985,22 @@ export namespace Prisma {
     userId?: IntFilter<"UserProfile"> | number
   }
 
+  export type UserProfileUpsertWithWhereUniqueWithoutCompletedGamesInput = {
+    where: UserProfileWhereUniqueInput
+    update: XOR<UserProfileUpdateWithoutCompletedGamesInput, UserProfileUncheckedUpdateWithoutCompletedGamesInput>
+    create: XOR<UserProfileCreateWithoutCompletedGamesInput, UserProfileUncheckedCreateWithoutCompletedGamesInput>
+  }
+
+  export type UserProfileUpdateWithWhereUniqueWithoutCompletedGamesInput = {
+    where: UserProfileWhereUniqueInput
+    data: XOR<UserProfileUpdateWithoutCompletedGamesInput, UserProfileUncheckedUpdateWithoutCompletedGamesInput>
+  }
+
+  export type UserProfileUpdateManyWithWhereWithoutCompletedGamesInput = {
+    where: UserProfileScalarWhereInput
+    data: XOR<UserProfileUpdateManyMutationInput, UserProfileUncheckedUpdateManyWithoutCompletedGamesInput>
+  }
+
   export type GameCreateWithoutAgeRatingInput = {
     name: string
     slug: string
@@ -16717,6 +17021,7 @@ export namespace Prisma {
     genres?: GenreCreateNestedManyWithoutGamesInput
     platforms?: PlatformCreateNestedManyWithoutGamesInput
     savedByUsers?: UserProfileCreateNestedManyWithoutSavedGamesInput
+    completedByUsers?: UserProfileCreateNestedManyWithoutCompletedGamesInput
   }
 
   export type GameUncheckedCreateWithoutAgeRatingInput = {
@@ -16740,6 +17045,7 @@ export namespace Prisma {
     genres?: GenreUncheckedCreateNestedManyWithoutGamesInput
     platforms?: PlatformUncheckedCreateNestedManyWithoutGamesInput
     savedByUsers?: UserProfileUncheckedCreateNestedManyWithoutSavedGamesInput
+    completedByUsers?: UserProfileUncheckedCreateNestedManyWithoutCompletedGamesInput
   }
 
   export type GameCreateOrConnectWithoutAgeRatingInput = {
@@ -16788,6 +17094,7 @@ export namespace Prisma {
     screenshots?: ScreenshotCreateNestedManyWithoutGameInput
     genres?: GenreCreateNestedManyWithoutGamesInput
     savedByUsers?: UserProfileCreateNestedManyWithoutSavedGamesInput
+    completedByUsers?: UserProfileCreateNestedManyWithoutCompletedGamesInput
   }
 
   export type GameUncheckedCreateWithoutPlatformsInput = {
@@ -16811,6 +17118,7 @@ export namespace Prisma {
     screenshots?: ScreenshotUncheckedCreateNestedManyWithoutGameInput
     genres?: GenreUncheckedCreateNestedManyWithoutGamesInput
     savedByUsers?: UserProfileUncheckedCreateNestedManyWithoutSavedGamesInput
+    completedByUsers?: UserProfileUncheckedCreateNestedManyWithoutCompletedGamesInput
   }
 
   export type GameCreateOrConnectWithoutPlatformsInput = {
@@ -16854,6 +17162,7 @@ export namespace Prisma {
     genres?: GenreCreateNestedManyWithoutGamesInput
     platforms?: PlatformCreateNestedManyWithoutGamesInput
     savedByUsers?: UserProfileCreateNestedManyWithoutSavedGamesInput
+    completedByUsers?: UserProfileCreateNestedManyWithoutCompletedGamesInput
   }
 
   export type GameUncheckedCreateWithoutDeveloperInput = {
@@ -16877,6 +17186,7 @@ export namespace Prisma {
     genres?: GenreUncheckedCreateNestedManyWithoutGamesInput
     platforms?: PlatformUncheckedCreateNestedManyWithoutGamesInput
     savedByUsers?: UserProfileUncheckedCreateNestedManyWithoutSavedGamesInput
+    completedByUsers?: UserProfileUncheckedCreateNestedManyWithoutCompletedGamesInput
   }
 
   export type GameCreateOrConnectWithoutDeveloperInput = {
@@ -16925,6 +17235,7 @@ export namespace Prisma {
     screenshots?: ScreenshotCreateNestedManyWithoutGameInput
     platforms?: PlatformCreateNestedManyWithoutGamesInput
     savedByUsers?: UserProfileCreateNestedManyWithoutSavedGamesInput
+    completedByUsers?: UserProfileCreateNestedManyWithoutCompletedGamesInput
   }
 
   export type GameUncheckedCreateWithoutGenresInput = {
@@ -16948,6 +17259,7 @@ export namespace Prisma {
     screenshots?: ScreenshotUncheckedCreateNestedManyWithoutGameInput
     platforms?: PlatformUncheckedCreateNestedManyWithoutGamesInput
     savedByUsers?: UserProfileUncheckedCreateNestedManyWithoutSavedGamesInput
+    completedByUsers?: UserProfileUncheckedCreateNestedManyWithoutCompletedGamesInput
   }
 
   export type GameCreateOrConnectWithoutGenresInput = {
@@ -16991,6 +17303,7 @@ export namespace Prisma {
     genres?: GenreCreateNestedManyWithoutGamesInput
     platforms?: PlatformCreateNestedManyWithoutGamesInput
     savedByUsers?: UserProfileCreateNestedManyWithoutSavedGamesInput
+    completedByUsers?: UserProfileCreateNestedManyWithoutCompletedGamesInput
   }
 
   export type GameUncheckedCreateWithoutCoversInput = {
@@ -17014,6 +17327,7 @@ export namespace Prisma {
     genres?: GenreUncheckedCreateNestedManyWithoutGamesInput
     platforms?: PlatformUncheckedCreateNestedManyWithoutGamesInput
     savedByUsers?: UserProfileUncheckedCreateNestedManyWithoutSavedGamesInput
+    completedByUsers?: UserProfileUncheckedCreateNestedManyWithoutCompletedGamesInput
   }
 
   export type GameCreateOrConnectWithoutCoversInput = {
@@ -17052,6 +17366,7 @@ export namespace Prisma {
     genres?: GenreUpdateManyWithoutGamesNestedInput
     platforms?: PlatformUpdateManyWithoutGamesNestedInput
     savedByUsers?: UserProfileUpdateManyWithoutSavedGamesNestedInput
+    completedByUsers?: UserProfileUpdateManyWithoutCompletedGamesNestedInput
   }
 
   export type GameUncheckedUpdateWithoutCoversInput = {
@@ -17075,6 +17390,7 @@ export namespace Prisma {
     genres?: GenreUncheckedUpdateManyWithoutGamesNestedInput
     platforms?: PlatformUncheckedUpdateManyWithoutGamesNestedInput
     savedByUsers?: UserProfileUncheckedUpdateManyWithoutSavedGamesNestedInput
+    completedByUsers?: UserProfileUncheckedUpdateManyWithoutCompletedGamesNestedInput
   }
 
   export type GameCreateWithoutScreenshotsInput = {
@@ -17097,6 +17413,7 @@ export namespace Prisma {
     genres?: GenreCreateNestedManyWithoutGamesInput
     platforms?: PlatformCreateNestedManyWithoutGamesInput
     savedByUsers?: UserProfileCreateNestedManyWithoutSavedGamesInput
+    completedByUsers?: UserProfileCreateNestedManyWithoutCompletedGamesInput
   }
 
   export type GameUncheckedCreateWithoutScreenshotsInput = {
@@ -17120,6 +17437,7 @@ export namespace Prisma {
     genres?: GenreUncheckedCreateNestedManyWithoutGamesInput
     platforms?: PlatformUncheckedCreateNestedManyWithoutGamesInput
     savedByUsers?: UserProfileUncheckedCreateNestedManyWithoutSavedGamesInput
+    completedByUsers?: UserProfileUncheckedCreateNestedManyWithoutCompletedGamesInput
   }
 
   export type GameCreateOrConnectWithoutScreenshotsInput = {
@@ -17158,6 +17476,7 @@ export namespace Prisma {
     genres?: GenreUpdateManyWithoutGamesNestedInput
     platforms?: PlatformUpdateManyWithoutGamesNestedInput
     savedByUsers?: UserProfileUpdateManyWithoutSavedGamesNestedInput
+    completedByUsers?: UserProfileUpdateManyWithoutCompletedGamesNestedInput
   }
 
   export type GameUncheckedUpdateWithoutScreenshotsInput = {
@@ -17181,6 +17500,7 @@ export namespace Prisma {
     genres?: GenreUncheckedUpdateManyWithoutGamesNestedInput
     platforms?: PlatformUncheckedUpdateManyWithoutGamesNestedInput
     savedByUsers?: UserProfileUncheckedUpdateManyWithoutSavedGamesNestedInput
+    completedByUsers?: UserProfileUncheckedUpdateManyWithoutCompletedGamesNestedInput
   }
 
   export type GameUpdateWithoutSavedByUsersInput = {
@@ -17203,6 +17523,7 @@ export namespace Prisma {
     screenshots?: ScreenshotUpdateManyWithoutGameNestedInput
     genres?: GenreUpdateManyWithoutGamesNestedInput
     platforms?: PlatformUpdateManyWithoutGamesNestedInput
+    completedByUsers?: UserProfileUpdateManyWithoutCompletedGamesNestedInput
   }
 
   export type GameUncheckedUpdateWithoutSavedByUsersInput = {
@@ -17226,9 +17547,76 @@ export namespace Prisma {
     screenshots?: ScreenshotUncheckedUpdateManyWithoutGameNestedInput
     genres?: GenreUncheckedUpdateManyWithoutGamesNestedInput
     platforms?: PlatformUncheckedUpdateManyWithoutGamesNestedInput
+    completedByUsers?: UserProfileUncheckedUpdateManyWithoutCompletedGamesNestedInput
   }
 
   export type GameUncheckedUpdateManyWithoutSavedByUsersInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    summary?: NullableStringFieldUpdateOperationsInput | string | null
+    storyline?: NullableStringFieldUpdateOperationsInput | string | null
+    firstReleaseDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coverUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    rating?: NullableFloatFieldUpdateOperationsInput | number | null
+    aggregatedRating?: NullableFloatFieldUpdateOperationsInput | number | null
+    totalRating?: NullableFloatFieldUpdateOperationsInput | number | null
+    totalRatingCount?: NullableIntFieldUpdateOperationsInput | number | null
+    url?: NullableStringFieldUpdateOperationsInput | string | null
+    igdbId?: IntFieldUpdateOperationsInput | number
+    originalPlatform?: NullableStringFieldUpdateOperationsInput | string | null
+    ageRatingId?: NullableIntFieldUpdateOperationsInput | number | null
+    developerId?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type GameUpdateWithoutCompletedByUsersInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    summary?: NullableStringFieldUpdateOperationsInput | string | null
+    storyline?: NullableStringFieldUpdateOperationsInput | string | null
+    firstReleaseDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coverUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    rating?: NullableFloatFieldUpdateOperationsInput | number | null
+    aggregatedRating?: NullableFloatFieldUpdateOperationsInput | number | null
+    totalRating?: NullableFloatFieldUpdateOperationsInput | number | null
+    totalRatingCount?: NullableIntFieldUpdateOperationsInput | number | null
+    url?: NullableStringFieldUpdateOperationsInput | string | null
+    igdbId?: IntFieldUpdateOperationsInput | number
+    originalPlatform?: NullableStringFieldUpdateOperationsInput | string | null
+    covers?: CoverUpdateManyWithoutGameNestedInput
+    ageRating?: GameRatingUpdateOneWithoutGamesNestedInput
+    developer?: DevelopersUpdateOneWithoutGamesNestedInput
+    screenshots?: ScreenshotUpdateManyWithoutGameNestedInput
+    genres?: GenreUpdateManyWithoutGamesNestedInput
+    platforms?: PlatformUpdateManyWithoutGamesNestedInput
+    savedByUsers?: UserProfileUpdateManyWithoutSavedGamesNestedInput
+  }
+
+  export type GameUncheckedUpdateWithoutCompletedByUsersInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    summary?: NullableStringFieldUpdateOperationsInput | string | null
+    storyline?: NullableStringFieldUpdateOperationsInput | string | null
+    firstReleaseDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coverUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    rating?: NullableFloatFieldUpdateOperationsInput | number | null
+    aggregatedRating?: NullableFloatFieldUpdateOperationsInput | number | null
+    totalRating?: NullableFloatFieldUpdateOperationsInput | number | null
+    totalRatingCount?: NullableIntFieldUpdateOperationsInput | number | null
+    url?: NullableStringFieldUpdateOperationsInput | string | null
+    igdbId?: IntFieldUpdateOperationsInput | number
+    originalPlatform?: NullableStringFieldUpdateOperationsInput | string | null
+    ageRatingId?: NullableIntFieldUpdateOperationsInput | number | null
+    developerId?: NullableIntFieldUpdateOperationsInput | number | null
+    covers?: CoverUncheckedUpdateManyWithoutGameNestedInput
+    screenshots?: ScreenshotUncheckedUpdateManyWithoutGameNestedInput
+    genres?: GenreUncheckedUpdateManyWithoutGamesNestedInput
+    platforms?: PlatformUncheckedUpdateManyWithoutGamesNestedInput
+    savedByUsers?: UserProfileUncheckedUpdateManyWithoutSavedGamesNestedInput
+  }
+
+  export type GameUncheckedUpdateManyWithoutCompletedByUsersInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
@@ -17341,6 +17729,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     abbreviation?: NullableStringFieldUpdateOperationsInput | string | null
+    displayabbrev?: NullableStringFieldUpdateOperationsInput | string | null
     generation?: NullableIntFieldUpdateOperationsInput | number | null
     slug?: StringFieldUpdateOperationsInput | string
     platformLogo?: NullableStringFieldUpdateOperationsInput | string | null
@@ -17351,6 +17740,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     abbreviation?: NullableStringFieldUpdateOperationsInput | string | null
+    displayabbrev?: NullableStringFieldUpdateOperationsInput | string | null
     generation?: NullableIntFieldUpdateOperationsInput | number | null
     slug?: StringFieldUpdateOperationsInput | string
     platformLogo?: NullableStringFieldUpdateOperationsInput | string | null
@@ -17361,6 +17751,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     abbreviation?: NullableStringFieldUpdateOperationsInput | string | null
+    displayabbrev?: NullableStringFieldUpdateOperationsInput | string | null
     generation?: NullableIntFieldUpdateOperationsInput | number | null
     slug?: StringFieldUpdateOperationsInput | string
     platformLogo?: NullableStringFieldUpdateOperationsInput | string | null
@@ -17369,14 +17760,32 @@ export namespace Prisma {
 
   export type UserProfileUpdateWithoutSavedGamesInput = {
     user?: UserUpdateOneRequiredWithoutUserProfileNestedInput
+    completedGames?: GameUpdateManyWithoutCompletedByUsersNestedInput
   }
 
   export type UserProfileUncheckedUpdateWithoutSavedGamesInput = {
     id?: IntFieldUpdateOperationsInput | number
     userId?: IntFieldUpdateOperationsInput | number
+    completedGames?: GameUncheckedUpdateManyWithoutCompletedByUsersNestedInput
   }
 
   export type UserProfileUncheckedUpdateManyWithoutSavedGamesInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type UserProfileUpdateWithoutCompletedGamesInput = {
+    user?: UserUpdateOneRequiredWithoutUserProfileNestedInput
+    savedGames?: GameUpdateManyWithoutSavedByUsersNestedInput
+  }
+
+  export type UserProfileUncheckedUpdateWithoutCompletedGamesInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    savedGames?: GameUncheckedUpdateManyWithoutSavedByUsersNestedInput
+  }
+
+  export type UserProfileUncheckedUpdateManyWithoutCompletedGamesInput = {
     id?: IntFieldUpdateOperationsInput | number
     userId?: IntFieldUpdateOperationsInput | number
   }
@@ -17419,6 +17828,7 @@ export namespace Prisma {
     genres?: GenreUpdateManyWithoutGamesNestedInput
     platforms?: PlatformUpdateManyWithoutGamesNestedInput
     savedByUsers?: UserProfileUpdateManyWithoutSavedGamesNestedInput
+    completedByUsers?: UserProfileUpdateManyWithoutCompletedGamesNestedInput
   }
 
   export type GameUncheckedUpdateWithoutAgeRatingInput = {
@@ -17442,6 +17852,7 @@ export namespace Prisma {
     genres?: GenreUncheckedUpdateManyWithoutGamesNestedInput
     platforms?: PlatformUncheckedUpdateManyWithoutGamesNestedInput
     savedByUsers?: UserProfileUncheckedUpdateManyWithoutSavedGamesNestedInput
+    completedByUsers?: UserProfileUncheckedUpdateManyWithoutCompletedGamesNestedInput
   }
 
   export type GameUncheckedUpdateManyWithoutAgeRatingInput = {
@@ -17482,6 +17893,7 @@ export namespace Prisma {
     screenshots?: ScreenshotUpdateManyWithoutGameNestedInput
     genres?: GenreUpdateManyWithoutGamesNestedInput
     savedByUsers?: UserProfileUpdateManyWithoutSavedGamesNestedInput
+    completedByUsers?: UserProfileUpdateManyWithoutCompletedGamesNestedInput
   }
 
   export type GameUncheckedUpdateWithoutPlatformsInput = {
@@ -17505,6 +17917,7 @@ export namespace Prisma {
     screenshots?: ScreenshotUncheckedUpdateManyWithoutGameNestedInput
     genres?: GenreUncheckedUpdateManyWithoutGamesNestedInput
     savedByUsers?: UserProfileUncheckedUpdateManyWithoutSavedGamesNestedInput
+    completedByUsers?: UserProfileUncheckedUpdateManyWithoutCompletedGamesNestedInput
   }
 
   export type GameUncheckedUpdateManyWithoutPlatformsInput = {
@@ -17564,6 +17977,7 @@ export namespace Prisma {
     genres?: GenreUpdateManyWithoutGamesNestedInput
     platforms?: PlatformUpdateManyWithoutGamesNestedInput
     savedByUsers?: UserProfileUpdateManyWithoutSavedGamesNestedInput
+    completedByUsers?: UserProfileUpdateManyWithoutCompletedGamesNestedInput
   }
 
   export type GameUncheckedUpdateWithoutDeveloperInput = {
@@ -17587,6 +18001,7 @@ export namespace Prisma {
     genres?: GenreUncheckedUpdateManyWithoutGamesNestedInput
     platforms?: PlatformUncheckedUpdateManyWithoutGamesNestedInput
     savedByUsers?: UserProfileUncheckedUpdateManyWithoutSavedGamesNestedInput
+    completedByUsers?: UserProfileUncheckedUpdateManyWithoutCompletedGamesNestedInput
   }
 
   export type GameUncheckedUpdateManyWithoutDeveloperInput = {
@@ -17627,6 +18042,7 @@ export namespace Prisma {
     screenshots?: ScreenshotUpdateManyWithoutGameNestedInput
     platforms?: PlatformUpdateManyWithoutGamesNestedInput
     savedByUsers?: UserProfileUpdateManyWithoutSavedGamesNestedInput
+    completedByUsers?: UserProfileUpdateManyWithoutCompletedGamesNestedInput
   }
 
   export type GameUncheckedUpdateWithoutGenresInput = {
@@ -17650,6 +18066,7 @@ export namespace Prisma {
     screenshots?: ScreenshotUncheckedUpdateManyWithoutGameNestedInput
     platforms?: PlatformUncheckedUpdateManyWithoutGamesNestedInput
     savedByUsers?: UserProfileUncheckedUpdateManyWithoutSavedGamesNestedInput
+    completedByUsers?: UserProfileUncheckedUpdateManyWithoutCompletedGamesNestedInput
   }
 
   export type GameUncheckedUpdateManyWithoutGenresInput = {

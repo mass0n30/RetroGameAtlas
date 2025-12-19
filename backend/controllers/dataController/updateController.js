@@ -4,7 +4,7 @@ const { prisma } = require("../../db/prismaClient.js");
 async function updateUserSavedGames(req, res, next) {
 
   const gameId = parseInt(req.params.gameid);
-  const gameigdbID = (req.body.igdbId);
+  const igdbId = (req.body.gameDetails.igdbId);
 
   // checking users saved games first
   const userProfile = await prisma.userProfile.findUnique({
@@ -12,17 +12,20 @@ async function updateUserSavedGames(req, res, next) {
     include: { savedGames: true }, 
   });
 
-  const isSaved = userProfile.savedGames.some(game => game.igdbId === gameigdbID);
+  const isSaved = userProfile.savedGames.some(game => game.igdbId === igdbId);
 
   if (isSaved) {
     const updatedUserProfile = await prisma.userProfile.update({
       where: {userId: req.user.id},
       data: {
         savedGames: {
-          disconnect: {igdbId: gameigdbID}
+          disconnect: {igdbId: igdbId}
         },
       },
-      include: {savedGames: true}
+      include: {
+        savedGames: true,
+        completedGames: true,
+      }
     });
     return updatedUserProfile;
 
@@ -31,14 +34,63 @@ async function updateUserSavedGames(req, res, next) {
       where: {userId: req.user.id},
       data: {
         savedGames: {
-          connect: {igdbId: gameigdbID}
+          connect: {igdbId: igdbId}
         },
       },
-      include: {savedGames:true}
+      include: {
+        savedGames: true,
+        completedGames: true,
+      }
     });
     return updatedUserProfile;
   }
 };
+
+async function updateUserCompletedGames(req, res, next) {
+
+  const gameId = parseInt(req.params.gameid);
+  const igdbId = (req.body.gameDetails.igdbId);
+
+  // checking users saved games first
+  const userProfile = await prisma.userProfile.findUnique({
+    where: { userId: req.user.id },
+    include: { completedGames: true }, 
+  });
+
+  const isCompleted = userProfile.completedGames.some(game => game.igdbId === igdbId);
+
+  if (isCompleted) {
+    const updatedUserProfile = await prisma.userProfile.update({
+      where: {userId: req.user.id},
+      data: {
+        completedGames: {
+          disconnect: {igdbId: igdbId}
+        },
+      },
+      include: {
+        savedGames: true,
+        completedGames: true,
+      }
+    });
+    return updatedUserProfile;
+
+  } else {
+    const updatedUserProfile = await prisma.userProfile.update({
+      where: {userId: req.user.id},
+      data: {
+        completedGames: {
+          connect: {igdbId: igdbId}
+        },
+      },
+      include: {
+        savedGames: true,
+        completedGames: true,
+      }
+    });
+    return updatedUserProfile;
+  }
+};
+
 
 
 async function handleUpdateGamePlatforms(game, platformData) {
@@ -99,4 +151,4 @@ async function handleUpdateGameDeveloper(gameDeveloperId, game) {
   }
 };
 
-module.exports = { updateUserSavedGames, handleUpdateGamePlatforms, handleUpdateGameAgeRating, handleUpdateGameDeveloper};
+module.exports = { updateUserCompletedGames,updateUserSavedGames, handleUpdateGamePlatforms, handleUpdateGameAgeRating, handleUpdateGameDeveloper};

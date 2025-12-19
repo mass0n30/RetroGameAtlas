@@ -19,6 +19,8 @@ const [loading, setLoading] = useState(true);
 const [gameDetails, setGameDetails] = useState(null);
 
 const [screenshots, setScreenshots] = useState([]);
+const [platformLogo, setPlatformLogo] = useState(null);
+const [platformName, setPlatformName] = useState(null);
 const [saved, setSaved] = useState(false);
 const [completed, setCompleted] = useState(false);
 const [alertSave, setAlertSave] = useState(false);
@@ -38,14 +40,14 @@ useEffect(() => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 2000);
+    }, 1000);
 
     return () => clearTimeout(timer,); 
   } ,[loading, setLoading]);
 
   useEffect(() => {
 
-  }, [saved])
+  }, [saved]);
 
 
 useEffect(() => {
@@ -54,7 +56,8 @@ useEffect(() => {
       const res = await axios.get(`${import.meta.env.VITE_API_URL}/home/details/${gameId}`);
       setGameDetails(res.data.game.gameDetails);
       res.data.game.normalizedScreenshots ? setScreenshots(res.data.game.normalizedScreenshots) : null;
-
+      res.data.game.platformLogo ? setPlatformLogo(res.data.game.platformLogo) : null;
+      setPlatformName(res.data.game.platformName);
 
       // color fav heart if in savedGames
       userProfile?.savedGames?.forEach((game) => {
@@ -62,6 +65,14 @@ useEffect(() => {
           setSaved(true);
         }
       });
+
+      // color fav heart if in savedGames
+      userProfile?.completedGames?.forEach((game) => {
+        if (res.data.game.gameDetails.igdbId == game.igdbId) {
+          setCompleted(true);
+        }
+      });
+
 
     } catch (err) {
       console.error(err);
@@ -73,14 +84,18 @@ useEffect(() => {
 const handleUpdateGame = async (type) => {
   try {
     const response = await fetch(`${import.meta.env.VITE_API_URL}/home/details/${gameId}`, {
-      method: 'PUT',
+      method: 'POST',
       headers: {
         'Authorization': `Bearer ${token}`,
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(gameDetails, type)
+      body: JSON.stringify({
+        gameDetails,
+        type
+      })
     });
-    if (response.status === 200 && type == "save") {
+
+    if (type == "save") {
       saved ? setSaved(false) : setSaved(true);
       setAlertSave(true);
     } else {
@@ -139,12 +154,12 @@ if (loading) {
       <div className={styles.gamedetailsBtnContainer}>
         <div className={styles.savecontainer}>
           <button onClick={async () => handleUpdateGame('save')} className={styles.likeBtn}>
-            <Heart fill={saved ? "red" : "#0d0f17"} className={styles.iconsHeart} />
+            <Heart fill={saved ? "#F03A47" : "#0d0f17"} className={styles.iconsHeart} />
           </button>
         </div>
         <div className={styles.completedcontainer}>
           <button onClick={async () => handleUpdateGame('complete')} className={styles.completedBtn}>
-            <CircleCheckBig fill={saved ? "green" : "#0d0f17"} className={styles.checkBig} />
+            <CircleCheckBig fill={saved ? "#00aaff" : "#0d0f17"} className={styles.checkBig} />
           </button>
         </div>
       </div>
@@ -161,10 +176,11 @@ if (loading) {
           <div className={styles.lowercovercontainer}>
           <div className={styles.namecontainer}><h1 className={styles.name}>{game.name}</h1></div>
             <div className={styles.platformcontainer}>
+              <div className={styles.platformlogocontainer}>
+                <img src={platformLogo} className={styles.platformlogo}/>
+              </div>
               <div>
-                {gameDetails?.originalPlatform ? (
-                  gameDetails.originalPlatform
-                ) : (<></> )}
+                {platformName}
               </div>
             </div>
 

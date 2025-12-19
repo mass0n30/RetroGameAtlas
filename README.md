@@ -80,8 +80,6 @@ TODO:
   - for related data (runs and ebay listings), numbered series title's causes related data (runs and ebay) to list other games in a collection: http://localhost:5173/home/details/10192 
 
   - Get rating scores, and rating count on game cards for Rating? Put in Game Details as well. 
-  - Position heart not overlaying cover art in corner more aligned
-  - add transparent loader skeleton in main scroll container for wave animation upon navigation back, while game cards load in
   - adding details like an icon next to 'no more results' at bottom of fetches, ect. (broken controller icon on error page, ect)
   - fix slight space side bar between scroll wheel and rows
       - maybe add some related games section in Game Details (this may not be too difficult, inital Grab Same Titles if same developer, fallback grab games in same genre and console?)
@@ -97,6 +95,7 @@ TODO:
 
 
 Production tasks
+  - Add OAuth for Signup with Google / Facebook
   - eBay Partner Network sign up?
   - adding user accessibility (keyboard shortucts)
   - handling errors on client side form API (redirect on 401 error code to login)

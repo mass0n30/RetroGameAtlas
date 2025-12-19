@@ -83,9 +83,11 @@ export default function Navbar({ toggle, setToggle, setSearch, search, discover,
       </div>
 
       <div className={styles.navRightContainer}>
+        <div className={styles.homebtncontainer}>
           <button className={styles.btn} onClick={() => handleNavHome()}>
            <span className='mainIcons'><House width={'80%'} size={'auto'} className={styles.btnH}/></span> 
           </button>
+        </div>
           <div className={styles.navmenucontainer}>
             <NavMenu setMount={setMount}></NavMenu>
           </div>

@@ -61,7 +61,7 @@ async function getGamePrice(gameName, platform) {
   if (!res.itemSummaries) {
     res = await fetch(
       `https://api.ebay.com/buy/browse/v1/item_summary/search?q=${encodeURIComponent(`${gameName} ${platform}`
-      )}&fieldgroups=MATCHING_ITEMS&aspect_filter=category_id:139973,Title:${gameName}&limit=3&filter=conditions:{NEW|USED},buyingOptions:{FIXED_PRICE}`,
+      )}&fieldgroups=MATCHING_ITEMS&aspect_filter=category_id:139973,Title:${gameName}&limit=5&filter=conditions:{NEW|USED},buyingOptions:{FIXED_PRICE}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,

@@ -118,14 +118,26 @@ export default function SideBar({ categoryData, orderData, orderDirection, setOr
                   id={item.name}
                   textValue={item.name}    
                 >
-                  <SectionTreeItem
-                    open={open}
-                    setOpen={setOpen}
-                    category={section.category}
-                    itemname={item.name}
-                    itemId={item.id}
-                    toggleItem={toggleItem}
-                  />
+                  { section.category == "Consoles" ? (
+                    <SectionTreeItem
+                      open={open}
+                      setOpen={setOpen}
+                      category={section.category}
+                      itemname={item.displayabbrev}
+                      itemId={item.id}
+                      toggleItem={toggleItem}
+                    />
+                  ) : (
+                    <SectionTreeItem
+                      open={open}
+                      setOpen={setOpen}
+                      category={section.category}
+                      itemname={item.name}
+                      itemId={item.id}
+                      toggleItem={toggleItem}
+                    />
+                  )}
+
                 </TreeItem>
               ))}
             </TreeItem>

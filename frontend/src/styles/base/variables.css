@@ -5,9 +5,9 @@
 /* ----------------- Colors ----------------- */
 :root {
   --color-background: #0d0f17;
-  --color-background-light: #191c25;
+  --color-background-light: #1a1e27;
   --color-surface: #1a2b29ad;
-  --color-surface-translucent: #1a2b2956;
+  --color-surface-translucent: #171f1e5b;
   --color-surface-translucent-alt: #2c3d3bc4;
 
   --color-text: #e5e7eb;
@@ -15,9 +15,13 @@
   --color-white-alt: #E8F1F2;
   --color-text-active: #a7e9ff; /* sidebar category selected text */
 
-  --purple-accent: #602cff;
+  --purple-accent: #612cffcb;
   --purple-accent-dark: #321686;
-  --orange-fire: #fd7310; /* accent orange */
+  --orange-fire: #fd7310da; /* accent orange */
+
+  --purple-ambient: rgba(58, 25, 156, 0.137);
+  --blue-ambient:   rgba(59, 131, 246, 0.11);
+  --blue-light-ambient: #1992cf10;
 
   --color-primary: #3b82f6;             /* main neon */
   --color-primary-hover: rgb(96, 165, 250);       /* softer neon */

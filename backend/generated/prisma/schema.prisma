@@ -27,10 +27,11 @@ model User {
 }
 
 model UserProfile {
-  id         Int    @id @default(autoincrement())
-  userId     Int    @unique
-  user       User   @relation(fields: [userId], references: [id], onDelete: Cascade)
-  savedGames Game[] @relation("UserSavedGames")
+  id             Int    @id @default(autoincrement())
+  userId         Int    @unique
+  user           User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  savedGames     Game[] @relation("UserSavedGames")
+  completedGames Game[] @relation("UserCompletedGames")
 }
 
 model Game {
@@ -57,6 +58,7 @@ model Game {
   genres           Genre[]       @relation("GameGenres")
   platforms        Platform[]    @relation("GamePlatforms")
   savedByUsers     UserProfile[] @relation("UserSavedGames")
+  completedByUsers UserProfile[] @relation("UserCompletedGames")
 }
 
 model GameRating {
@@ -67,14 +69,15 @@ model GameRating {
 }
 
 model Platform {
-  id           Int     @id
-  name         String  @unique
-  abbreviation String?
-  generation   Int?
-  slug         String
-  platformLogo String?
-  releaseOrder Int?    @unique
-  games        Game[]  @relation("GamePlatforms")
+  id            Int     @id
+  name          String  @unique
+  abbreviation  String?
+  displayabbrev String?
+  generation    Int?
+  slug          String
+  platformLogo  String?
+  releaseOrder  Int?    @unique
+  games         Game[]  @relation("GamePlatforms")
 }
 
 model Developers {

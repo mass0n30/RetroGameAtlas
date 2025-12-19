@@ -3,16 +3,41 @@
 
 nav {
   display: flex;
-  align-items: center;       
-  justify-content: space-between; 
+  align-items: center;
+  justify-content: space-between;
   position: sticky;
   top: 0;
   height: 5rem;
   z-index: 100;
+
   backdrop-filter: blur(15px);
   border: solid 2px var(--color-primary);
   background-color: var(--color-surface-translucent);
+  overflow: hidden;
 }
+
+nav::before {
+  content: "";
+  position: absolute;
+  inset: -40% -20%;
+  background:
+
+  radial-gradient(
+      ellipse at 20% 30%,
+      var(--blue-light-ambient) 0%,
+      transparent 65%
+    ),
+
+    radial-gradient(
+      ellipse at 80% 60%,
+      var(--purple-ambient) 0%,
+      transparent 70%
+    );
+  z-index: -1;
+  pointer-events: none;
+}
+
+
 
 .btn {
   color: var(--color-border);
@@ -70,27 +95,29 @@ nav {
 
 .navRightContainer {
   flex: 2;
+  height: 100%;
   display: flex;
+  align-items: center;
   justify-content: space-evenly;
-  max-height: 60%;
+  position: relative;
 }
+
 
 .navMiddleContainer {
   flex: 3;
 }
 
+
 .navLeftContainer {
   flex: 3;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-  max-height: 60%;
+  position: relative;
 }
 
-.navmenucontainer {
-  display: flex;
-  align-items: center;
-}
+
 
 .toggleContainer {
   border-color: var(--color-background-light);

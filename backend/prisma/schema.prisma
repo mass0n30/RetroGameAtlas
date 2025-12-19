@@ -31,7 +31,7 @@ model UserProfile {
   userId     Int    @unique
   user       User   @relation(fields: [userId], references: [id], onDelete: Cascade)
   savedGames Game[] @relation("UserSavedGames")
- // completedGames Game[] 
+  completedGames Game[] @relation("UserCompletedGames")
 }
 
 model Game {
@@ -58,6 +58,7 @@ model Game {
   genres           Genre[]       @relation("GameGenres")
   platforms        Platform[]    @relation("GamePlatforms")
   savedByUsers     UserProfile[] @relation("UserSavedGames")
+  completedByUsers UserProfile[] @relation("UserCompletedGames")
 }
 
 model GameRating {
@@ -71,6 +72,7 @@ model Platform {
   id           Int     @id
   name         String  @unique
   abbreviation String?
+  displayabbrev String?
   generation   Int?
   slug         String
   platformLogo String?

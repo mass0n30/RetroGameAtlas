@@ -28,7 +28,13 @@ async function getUserProfile(req, res, next, userId) {
 async function getAllCategoryData(req, res, next) {
 
   try {
-    const platforms = await prisma.platform.findMany();
+    const platforms = await prisma.platform.findMany({
+      orderBy: {
+        releaseOrder: 'asc'
+      }
+    }
+
+    );
     const genres = await prisma.genre.findMany();
     const developers = await prisma.developers.findMany();
 
@@ -309,6 +315,22 @@ function calculateWeightedRating(itemRating, itemVotes) {
 const {getWorldRecordTime, getHundredPercentTime} = require('../services/speedrun.js');
 const { getGamePrice} = require('../services/ebay.js');
 
+async function handleGetGameOriginalPlatform(originalPlatform) {
+
+  try {
+    const originalPlatformObj = await prisma.platform.findUnique({
+      where: {
+        name: originalPlatform
+      }
+    });
+    return originalPlatformObj;
+
+  } catch (error) {
+    next(error);
+  }
+
+}
+
 async function handleGetGameDetails(req, res, next) {
 
   const gameId = parseInt(req.params.gameid);
@@ -335,7 +357,12 @@ async function handleGetGameDetails(req, res, next) {
       height: ss.height,
     }));
 
-    return {gameDetails, normalizedScreenshots};
+    const originalPlatformObj = await handleGetGameOriginalPlatform(gameDetails.originalPlatform);
+
+    const platformLogo = originalPlatformObj ? originalPlatformObj.platformLogo : null;
+    const platformName = originalPlatformObj.displayabbrev;
+
+    return {gameDetails, normalizedScreenshots, platformLogo, platformName};
     
   } catch (error) {
     next(error);
@@ -345,11 +372,8 @@ async function handleGetGameDetails(req, res, next) {
 async function handleGetGameData(req, res, next) {
   const {gameId, gameName, originalPlatform} = req.body;
 
-  const originalConsoleObj = await prisma.platform.findUnique({
-      where: {
-        name: originalPlatform
-      }
-    });
+  const originalConsoleObj = await handleGetGameOriginalPlatform(originalPlatform);
+
   const consoleAbbrev = originalConsoleObj ? originalConsoleObj.abbreviation : null;
 
   try {

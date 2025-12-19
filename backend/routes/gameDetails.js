@@ -23,14 +23,18 @@ gameDetailsRouter.post('/data', async (req, res, next) => {
 
 
  const { deleteGameById } = require('../controllers/dataController/deleteController.js');
- const {updateUserSavedGames} = require('../controllers/dataController/updateController.js');
+ const {updateUserSavedGames, updateUserCompletedGames} = require('../controllers/dataController/updateController.js');
 
 gameDetailsRouter.delete('/:gameid', async (req, res, next) => {
   await deleteGameById(req, res, next);
 });
 
-gameDetailsRouter.put('/:gameid', passport.authenticate('jwt', {session:false} ),  async (req, res, next) => {
-  const updatedProfile = await updateUserSavedGames(req, res, next);
+gameDetailsRouter.post('/:gameid', passport.authenticate('jwt', {session:false} ),  async (req, res, next) => {
+  if (req.body.type == "save") {
+      updatedProfile = await updateUserSavedGames(req, res, next);
+  } else {
+     updatedProfile = await updateUserCompletedGames(req, res, next);
+  }
 
   res.json({
     updatedProfile: updatedProfile

@@ -171,6 +171,7 @@ exports.Prisma.PlatformScalarFieldEnum = {
   id: 'id',
   name: 'name',
   abbreviation: 'abbreviation',
+  displayabbrev: 'displayabbrev',
   generation: 'generation',
   slug: 'slug',
   platformLogo: 'platformLogo',
