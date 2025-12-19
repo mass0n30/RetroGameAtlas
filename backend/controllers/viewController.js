@@ -347,7 +347,7 @@ async function handleGetGameData(req, res, next) {
 
   const originalConsoleObj = await prisma.platform.findUnique({
       where: {
-        name: gameDetails.originalPlatform
+        name: originalPlatform
       }
     });
   const consoleAbbrev = originalConsoleObj ? originalConsoleObj.abbreviation : null;
@@ -359,8 +359,7 @@ async function handleGetGameData(req, res, next) {
       getGamePrice(gameName, originalPlatform) 
     ]);
 
-    return  {game:
-      {worldRecord, worldRecordAlt, gameEbayData}}
+    return  {worldRecord, worldRecordAlt, gameEbayData}
     
   } catch (error) {
     next(error);

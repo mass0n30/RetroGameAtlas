@@ -12,7 +12,7 @@ gameDetailsRouter.get('/:gameid', async (req, res, next) => {
   })
 });
 
-gameDetailsRouter.post('/data/:gameid', async (req, res, next) => {
+gameDetailsRouter.post('/data', async (req, res, next) => {
   
  const gameData = await handleGetGameData(req, res, next);
 

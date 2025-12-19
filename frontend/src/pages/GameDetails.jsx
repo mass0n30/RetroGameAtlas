@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, lazy, Suspense } from 'react';
 import { useParams, useOutletContext } from 'react-router-dom';
 import styles from '../styles/components/details.module.css';
 import axios from "axios";
@@ -8,7 +8,9 @@ import {CircleCheckBig,ChevronLeft, ChevronRight, ChevronUp, ChevronDown, Award,
 import SocialsShare from '../components/ShareSocials';
 import SnackBarAlert from '../components/reactMUI/Alerts';
 import GameDetailsSkeleton from '../components/Skeleton';
-import GameDataSection from '../components/GameDetailsData';
+
+const GameDataSection = lazy(() => import('../components/GameDetailsData'));
+
 
 function GameDetails() {
 
@@ -268,7 +270,11 @@ if (loading) {
       ) : (
           <> </>
       )}
-      <GameDataSection game={gameDetails} />
+			<Suspense
+				fallback={<div>Component1 are loading please wait...</div>}
+			>
+       <GameDataSection game={gameDetails} />
+			</Suspense>
 
         { user.admin ? (
           <div className={styles.admindeletecontainer}>

@@ -14,12 +14,18 @@ const { id: gameId, name: gameName, originalPlatform } = game;
   const [loading, setLoading] = useState(true);
 
 
-useEffect(() => {
-  async function fetchDetails() {
-    try {
-      const res = await axios.post(
-        `${import.meta.env.VITE_API_URL}/home/details/data`, { gameId, gameName, originalPlatform }
-      );
+  useEffect(() => {
+    async function fetchDetails() {
+      try {
+        const res = await axios.post(
+          `${import.meta.env.VITE_API_URL}/home/details/data`, { gameId, gameName, originalPlatform }
+        );
+  console.log('DATA', {
+    recordData,
+    recordDataAlt,
+    gameEbayData,
+    ebayLength: gameEbayData?.length
+  });
       res.data.game.worldRecord ? setRecordData(res.data.game.worldRecord) : null;
       res.data.game.worldRecordAlt ? setRecordDataAlt(res.data.game.worldRecordAlt) : null;
       res.data.game.gameEbayData ? setGameEbayData(res.data.game.gameEbayData) : null;
@@ -35,7 +41,9 @@ useEffect(() => {
 
 
 
-  if (loading || !gameName) return (<></>)
+if (loading) {
+  return <div className={styles.recordscontainer}>Loading game data…</div>;
+}
 
   return (
     <>
