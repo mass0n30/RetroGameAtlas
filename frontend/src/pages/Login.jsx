@@ -26,6 +26,7 @@ function Login() {
     await fetch(`${import.meta.env.VITE_API_URL}/`, {
         mode: 'cors',
         method: 'POST',
+        credentials: 'include',
         headers: {
             'Content-Type': 'application/json',
         },
