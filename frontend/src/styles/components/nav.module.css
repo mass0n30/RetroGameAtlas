@@ -129,10 +129,36 @@ nav::before {
   align-items: center;
 }
 
-.logoContainer {
-  font-size: 1.2rem;
+.logoTxt {
+  font-size: 1.4rem;
   font-weight: 700;
   text-decoration: none;
+  margin: 0;
+  padding: 0;
+}
+
+.logoContainer, .logoTxt, .logoTxtContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logoTxtContainer {
+  align-items: center;
+  justify-content: center;
+}
+
+.logoPngContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logoPng {
+  aspect-ratio: 6/5;
+  max-height: 80px;
+  max-width: 90px;
+  object-fit: contain;
 }
 
 .homeContainer {

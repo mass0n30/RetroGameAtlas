@@ -454,16 +454,17 @@
 .gamedetailsBtnContainer {
   position:absolute;
   z-index: 1;
-  opacity: 50%;
   transition: opacity 0.3s ease;
   display: flex;
   flex-direction: column;
   flex: 1;
   justify-content: space-around;
+  padding: 1rem;
 }
 
 .likeBtn, .completedBtn {
   padding: 0%;
+  opacity: 80%;
   background-color: transparent;
   outline: none;
   border: none;
@@ -471,7 +472,9 @@
 
 
 
-.likeBtn:focus, .likeBtn:hover {
+.likeBtn:focus, .likeBtn:hover,
+.completedBtn:focus, .completedBtn:hover
+{
   border: none;
   opacity: 100%;
 }
@@ -556,6 +559,18 @@ h3 {
 
 .recordscontainer {
   margin-top: 2%;
+}
+
+.recordsloadercontainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1%;
+}
+
+.loadingtxt {
+  color: var(--color-primary-glow);
+  font-weight: 700;
 }
 
 .recordvideocontainer {

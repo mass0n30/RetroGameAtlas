@@ -3,6 +3,7 @@ import styles from '../styles/components/details.module.css';
 import axios from "axios";
 import { Award, DollarSign, Percent, ShoppingCart, ExternalLink} from 'lucide-react';
 import YouTubeEmbed from './Youtube';
+import  {CustomSpinnerDots} from '../components/Spinner';
 
 export default function GameDataSection({game}) {
 
@@ -20,12 +21,6 @@ const { id: gameId, name: gameName, originalPlatform } = game;
         const res = await axios.post(
           `${import.meta.env.VITE_API_URL}/home/details/data`, { gameId, gameName, originalPlatform }
         );
-  console.log('DATA', {
-    recordData,
-    recordDataAlt,
-    gameEbayData,
-    ebayLength: gameEbayData?.length
-  });
       res.data.game.worldRecord ? setRecordData(res.data.game.worldRecord) : null;
       res.data.game.worldRecordAlt ? setRecordDataAlt(res.data.game.worldRecordAlt) : null;
       res.data.game.gameEbayData ? setGameEbayData(res.data.game.gameEbayData) : null;
@@ -42,8 +37,13 @@ const { id: gameId, name: gameName, originalPlatform } = game;
 
 
 if (loading) {
-  return <div className={styles.recordscontainer}>Loading game data…</div>;
-}
+  return( 
+    <div className={styles.recordsloadercontainer}>
+      <span className={styles.loadingtxt}>Loading</span>
+      <CustomSpinnerDots/>
+    </div>
+  )
+};
 
   return (
     <>

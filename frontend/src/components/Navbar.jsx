@@ -53,9 +53,14 @@ export default function Navbar({ toggle, setToggle, setSearch, search, discover,
           </button>
 
         </div>
-          <div className={styles.logoContainer}>
-            RetroGameAtlas
+        <div className={styles.logoContainer}>
+          <div className={styles.logoTxtContainer}>
+            <h1 className={styles.logoTxt}>RetroGameAtlas</h1> 
           </div>
+          <div className={styles.logoPngContainer}>
+            <img className={styles.logoPng} src='/logo/originallogo.png' />
+          </div>
+        </div>
 
       </div>
       <div className={styles.navMiddleContainer}>

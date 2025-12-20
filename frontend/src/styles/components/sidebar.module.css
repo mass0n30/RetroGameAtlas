@@ -10,13 +10,22 @@ aside {
 aside::before {
   content: "";
   position: absolute;
-  inset: 0px;
-  background: radial-gradient(
-    circle,
-    var(--purple-ambient) 0%,
-    transparent 70%
-  );
+  inset: -40% -20%;
+  background:
+
+  radial-gradient(
+      ellipse at 40% 10%, /* x y */
+      var(--blue-light-ambient) 0%,
+      transparent 80%
+    ),
+
+    radial-gradient(
+      ellipse at 60% 50%,
+      var(--purple-ambient) 0%,
+      transparent 80%
+    );
   z-index: -1;
+  pointer-events: none;
 }
 
 .sidebarcontainer {

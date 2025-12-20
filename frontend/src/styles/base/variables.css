@@ -39,7 +39,7 @@
 /* ----------------- Typography ----------------- */
 
 :root {
-  --font-family: 'Satoshi', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-family: 'Satoshi', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   --icon-size-desktop: 34px;
   --icon-size-tablet: 32px;
   --icon-size-mobile: 28px;

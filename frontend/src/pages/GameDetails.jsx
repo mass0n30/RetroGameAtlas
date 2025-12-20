@@ -136,10 +136,7 @@ const handleDeleteGame = async () => {
 if (loading) {
   return (
     <>
-      <div className={styles.loaders}>
-        <CustomSpinner/>
-      </div>
-        <GameDetailsSkeleton/>
+      <GameDetailsSkeleton/>
     </>
   )
 }
@@ -148,7 +145,7 @@ if (loading) {
   return (
    <>
   <SnackBarAlert open={alertSave} setOpen={setAlertSave} status={saved} msg={saved ? 'Saved to Games' : 'Removed from Games'}/>
-  <SnackBarAlert open={alertComplete} setOpen={setAlertSave} status={completed} msg={completed ? 'Saved to Completed Games' : 'Removed from Completed Games'}/>
+  <SnackBarAlert open={alertComplete} setOpen={setAlertComplete} status={completed} msg={completed ? 'Saved to Completed Games' : 'Removed from Completed Games'}/>
 
    <div className={styles.outercontainer}>
       <div className={styles.gamedetailsBtnContainer}>
@@ -159,7 +156,7 @@ if (loading) {
         </div>
         <div className={styles.completedcontainer}>
           <button onClick={async () => handleUpdateGame('complete')} className={styles.completedBtn}>
-            <CircleCheckBig fill={saved ? "#00aaff" : "#0d0f17"} className={styles.checkBig} />
+            <CircleCheckBig fill={completed ? "#00aaff" : "#0d0f17"} className={styles.checkBig} />
           </button>
         </div>
       </div>
@@ -286,9 +283,7 @@ if (loading) {
       ) : (
           <> </>
       )}
-			<Suspense
-				fallback={<div>Component1 are loading please wait...</div>}
-			>
+			<Suspense>
        <GameDataSection game={gameDetails} />
 			</Suspense>
 
