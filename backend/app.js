@@ -13,28 +13,32 @@ const cors = require('cors');
 const {indexRouter} = require('./routes/index');
 const {signupRouter} = require('./routes/signup');
 const {homeRouter} = require('./routes/home');
+const { name } = require('ejs');
 
 const app = express();
 
 app.use(express.static(path.join(__dirname, 'public')));
 
 
-app.use(cors({
+app.use(cors({ // put client URL domain in .env eventually
   origin: ['https://retro-game-atlas.vercel.app', 'http://localhost:5173'],
-  methods: ['GET', 'POST'],
+  methods: ['GET', 'POST', 'DELETE', 'PUT'],
   credentials: true
 }));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+app.set("trust proxy", 1); // need to include with secure:true to trust Railway proxy before sending HTTPS request to Express Node.js
+
+// https://expressjs.com/en/resources/middleware/session.html
 app.use(
   expressSession({
-    cookie: {
-     maxAge: 7 * 24 * 60 * 60 * 1000, // ms
-     httpOnly: true,
-     secure: true,
-     sameSite:'none'
+   cookie: {
+    maxAge: 7 * 24 * 60 * 60 * 1000, // ms
+    httpOnly: true, // Prevents client-side JS from reading the cookie
+    secure: true, // Only transmit cookie over HTTPS (essential for production)
+    sameSite: "None", // Explicitly allow cross-site cookies (essential for separate F/E, B/E)
     },
     secret:  process.env.SESSION_SECRET,
     resave: true,
