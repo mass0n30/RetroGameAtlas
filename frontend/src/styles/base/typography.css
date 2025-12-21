@@ -10,14 +10,20 @@ body {
   color: var(--color-text);
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-heading, var(--font-sans));
+ h3, h4, h5, h6 {
+  font-family: var(--font-heading, var(--font-family));
   font-weight: 600;
   color: var(--color-text);
   line-height: var(--line-height-sm);
 }
 
-h2 { font-size: 2rem; }
+h2 {
+  font-family: var(--font-family);
+  margin: 1rem;
+  margin-bottom: 2rem;
+  font-weight: 1000;
+}
+
 h3 { font-size: 1.75rem; }
 h4 { font-size: 1.5rem; }
 h5 { font-size: 1.25rem; }
@@ -30,7 +36,8 @@ h4 {
 p {
   margin: 0;
   padding: 5px;
-  font-size: 0.8rem;
+  font-size: 1rem;
+line-height: 1.5;
   text-align: left;
 }
 

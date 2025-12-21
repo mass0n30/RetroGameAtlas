@@ -7,9 +7,8 @@
   background: none;
   padding: 0;
   border-radius: 10px;
-  transition: 
-    border-color 0.25s ease,
-    box-shadow 0.25s ease,
+  cursor: url('../icons/custompointervar.svg'), auto;
+
 }
 
 .card_button, .cardss_button {
@@ -21,11 +20,12 @@
   border-color: var(--color-primary-glow);
   box-shadow: 0 0 12px var(--color-primary-glow);
   transform: translateY(-2px);
+  cursor: url('../icons/custompointervar.svg'), auto;
 }
 
 
  .ss_card, .card {
-  cursor: pointer;
+  cursor: url('../icons/custompointervar.svg'), auto;
   border-radius: 10px;
 }
 

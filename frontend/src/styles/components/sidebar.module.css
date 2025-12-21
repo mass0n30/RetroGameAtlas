@@ -216,6 +216,7 @@ aside::before {
   justify-content: center;
   gap: 1rem;
   padding: 0.5rem;
+  padding-top: 1rem;
   align-items: center;
   font-family:sans-serif;
 }
@@ -225,7 +226,7 @@ aside::before {
   background-color: var(--color-background);
   border: 2px solid var(--color-surface);
   border-radius: 6px;
-  padding: 0.6rem 1rem;
+  padding: 1rem 1.5rem;
   font-size: 1rem;
   font-weight: 800;
   cursor: pointer;

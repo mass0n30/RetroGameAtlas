@@ -5,7 +5,7 @@ import axios from "axios";
 import normalizeGameData from '../helpers';
 import CustomSpinner from '../components/Spinner';
 import {CircleCheckBig,ChevronLeft, ChevronRight, ChevronUp, ChevronDown, Award, Heart, ArrowBigLeftDash, ArrowBigRightDash, DollarSign, Percent, ShoppingCart} from 'lucide-react';
-import SocialsShare from '../components/ShareSocials';
+import SocialPopup from '../components/reactMUI/Popup';
 import SnackBarAlert from '../components/reactMUI/Alerts';
 import GameDetailsSkeleton from '../components/Skeleton';
 
@@ -27,6 +27,7 @@ const [alertSave, setAlertSave] = useState(false);
 const [alertComplete, setAlertComplete] = useState(false);
 const [currentIndex, setCurrentIndex] = useState(0);
 const [isExpanded, setIsExpanded] = useState(false);
+const [isExpandedAlt, setIsExpandedAlt] = useState(false);
 
 
 const {user, userProfile, SetUserProfile} = useOutletContext();
@@ -156,8 +157,11 @@ if (loading) {
         </div>
         <div className={styles.completedcontainer}>
           <button onClick={async () => handleUpdateGame('complete')} className={styles.completedBtn}>
-            <CircleCheckBig fill={completed ? "#00aaff" : "#0d0f17"} className={styles.checkBig} />
+            <CircleCheckBig fill={completed ? "#00aaff" : "#0d0f17"} className={styles.iconsCheck} />
           </button>
+        </div>
+        <div className={styles.sharecontainer}>
+          <SocialPopup/>
         </div>
       </div>
       <div className={styles.detailscontainer}>
@@ -176,8 +180,9 @@ if (loading) {
               <div className={styles.platformlogocontainer}>
                 <img src={platformLogo} className={styles.platformlogo}/>
               </div>
-              <div>
-                {platformName}
+              <div className={styles.platformnamecontainer}>
+                <span className={styles.originalreleasetxt}>Original Release</span>
+                <span className={styles.platname}>{platformName}</span>
               </div>
             </div>
 
@@ -190,10 +195,6 @@ if (loading) {
                 <></>
               )
             }
-            <div className={styles.socialshares}>
-              <SocialsShare/>
-            </div>
-
           </div>
 
         </div> 
@@ -242,7 +243,7 @@ if (loading) {
             {game.summary ? (
               <div className={styles.summarycontainer}>
                 <span>Information</span>
-                { game.summary.length > 700 && (
+                { game.summary.length > 580 && (
                 <div 
                   onClick={() => setIsExpanded(!isExpanded)}
                   className="flex items-center justify-between w-full cursor-pointer"
@@ -276,9 +277,31 @@ if (loading) {
       {game.storyline ? (
         <div className={styles.storylinecontainer}> 
           <span>Storyline</span>
-          <p>
-            {game.storyline}
-          </p>
+                { game.storyline.length > 1000 && (
+                <div 
+                  onClick={() => setIsExpandedAlt(!isExpandedAlt)}
+                  className="flex items-center justify-between w-full cursor-pointer"
+                >
+
+                  {isExpandedAlt ? (
+                    <ChevronUp/>
+                  ) : (
+                    <ChevronDown/>
+                  )}  
+                </div> 
+                )}
+                <div 
+                  className={styles.summarytxt}
+                  style={{
+                    maxHeight: isExpandedAlt ? '1000px' : '9.5rem',
+                    transition: 'max-height 0.5s ease-in-out',
+                    overflow: 'hidden'
+                  }}
+                >
+                  <p>
+                    {game.storyline}
+                  </p>
+                </div>
         </div>
       ) : (
           <> </>

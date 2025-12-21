@@ -17,6 +17,7 @@
 
       return (
         <>
+        <div className={styles.socialsContainer}>
           <FacebookShareButton url={shareUrl} quote={title} className={styles.socialsharesbtn}>
             <FacebookIcon size={64} round />
           </FacebookShareButton>
@@ -32,6 +33,7 @@
             >
               <RedditIcon size={64} round={true} />
             </RedditShareButton>
+            </div>
           </>
       );
     }
