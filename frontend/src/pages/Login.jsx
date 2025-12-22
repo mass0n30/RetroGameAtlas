@@ -61,15 +61,22 @@ function Login() {
 
   return (
     <>
-    {error ? (
-      <p>A network error was encountered: {error}</p>
-    ) : null}
+    <div className={styles.loginContainer}>
 
       <div className={styles.formContainer}  >
+        <div className={styles.logoContainer}>
+          <div>
+             <img className={styles.logo} src='/logo/fulllogo.png'></img>
+          </div>
+          <div className={styles.logoText}>Discover. Play. Repeat.</div>
+        </div>
+        {error ? (
+          <span style={{ color: 'red' }}>Error was encountered: {error}</span>
+        ) : null}
         <form 
           onSubmit={handleSubmit} 
           method="POST" 
-          id="loginFormInput" 
+          className={styles.loginForm} 
           autoComplete="off"
         >
           <div className={styles.form_row}>
@@ -94,19 +101,21 @@ function Login() {
             type ="password" 
             />
           </div>
-          <div className="formBtns">
+          <div className={styles.form_row}>
             <button type="submit" className={styles.form_button}>Log In</button>
           </div>
         </form>
-          <div className="formBtns" id="signUp">
+          <div className={styles.form_row} id="signUp">
             <div className={styles.form_link} >
               Not a member? 
             </div>
             <Link to="/sign-up">
-              <button>Sign Up!</button>
+              <button className={styles.form_button_signup}>Sign Up!</button>
             </Link>
           </div>
       </div>
+    </div>
+
     </>
   )
 }

@@ -243,12 +243,15 @@ if (loading) {
             {game.summary ? (
               <div className={styles.summarycontainer}>
                 <span>Information</span>
-                { game.summary.length > 580 && (
+                { game.summary.length > 430 && (
                 <div 
                   onClick={() => setIsExpanded(!isExpanded)}
                   className="flex items-center justify-between w-full cursor-pointer"
+                  style={{
+                    margin: '0',
+                    padding: '0',
+                  }}
                 >
-
                   {isExpanded ? (
                     <ChevronUp/>
                   ) : (
@@ -281,6 +284,11 @@ if (loading) {
                 <div 
                   onClick={() => setIsExpandedAlt(!isExpandedAlt)}
                   className="flex items-center justify-between w-full cursor-pointer"
+                  style={{
+                    margin: '0',
+                    padding: '0',
+                    transition: ' 0.5s ease-in-out',
+                  }}
                 >
 
                   {isExpandedAlt ? (

@@ -69,6 +69,10 @@ main {
   display: flex;
 }
 
+li {
+  list-style: none;
+}
+
 .mainIcons {
   width: var(--icon-size-desktop);
   max-width: 100%;

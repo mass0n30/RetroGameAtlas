@@ -53,6 +53,7 @@ Ebay Game Props:
   - maybe integrate ebay API for price data and ebay listing links
   - fix duplicate game card keys (preventing DOM errors)
   - fix CLS
+  - Rework fetching on gameDetails, implementing lazy loading fixing waterfalling problem, fetching gamedetails fast for users, before ebay + twitch data load in below on page. 
   - fix game card loader animation delay iterations
     - upon navigating back from game details, have no loader cards for seamless navigation
 - Add a share feature on Game details page? Sharing to socials or email.
@@ -69,8 +70,6 @@ Ebay Game Props:
 
 
 TODO:
-
-  - Rework fetching on gameDetails, implementing lazy loading fixing waterfalling problem, fetching gamedetails fast for users, before ebay + twitch data load in below on page. 
   - Prisma studio filter to clean up filler games, may need raw sql for screenshots 
   - Improve search query with fetching for games taking space out of query if no results, ect
   - !Add Related Games Section in Game Details

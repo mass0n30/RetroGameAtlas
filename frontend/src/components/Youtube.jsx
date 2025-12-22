@@ -49,10 +49,11 @@ export default function VideoEmbed({ url, title }) {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
+                background: '#ffffff49'
               }}
             >
               <div className={styles.watchonContainer}>
-                <Play size={50} fill='#F03A47'/>
+                <Play size={50} fill='#F03A47' />
                 <img src='/logo/youtubeLogo.svg' style={{ width: '10rem', height: 'auto' }}/>
               </div>
             </div>

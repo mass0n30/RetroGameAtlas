@@ -77,7 +77,7 @@ if (loading) {
               <a href={recordData?.runLink}
                 target="_blank"
                 rel="noopener noreferrer">
-                <button> View <b>{gameName} {recordData.recordName}</b> Speedrun Data 
+                <button className={styles.recordBtn}> View <b>{gameName} {recordData.recordName}</b> Speedrun Data 
                   <ExternalLink />
                 </button>
                 </a>
@@ -117,7 +117,7 @@ if (loading) {
               <a href={recordDataAlt?.runLink}
                 target="_blank"
                 rel="noopener noreferrer">
-                <button> View <b>{gameName} {recordDataAlt.recordName}</b> Speedrun Data 
+                <button className={styles.recordBtn}> View <b>{gameName} {recordDataAlt.recordName}</b> Speedrun Data 
                   <ExternalLink />
                 </button>
                 </a>
