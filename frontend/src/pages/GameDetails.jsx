@@ -35,7 +35,7 @@ const token = localStorage.getItem('usertoken');
 
 useEffect(() => {
     window.scrollTo(0, 0);
-  }, []);
+  });
 
   //spinner upon mount with delay
   useEffect(() => {

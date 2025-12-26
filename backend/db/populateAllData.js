@@ -39,11 +39,10 @@ const developers = [
   { id: 112, name: "Sega", country: "Japan" ,logoUrl:'/developers/sega.svg'},
   { id: 24170, name: "Squaresoft", country: "Japan" ,logoUrl: '/developers/squaresoft.svg'},
   { id: 129, name: "Konami", country: "Japan", logoUrl:'/developers/konami.svg'},
-  { id: 771, name: "Rare", country: "UK" ,logoUrl:'/devlopers/rare.png'},
+  { id: 771, name: "Rare", country: "UK" ,logoUrl:'/developers/rare.png'},
   { id: 818, name: "Atlus", country: "Japan" ,logoUrl:'/developers/atlus.svg'},
-{ id: 401, name: "Naughty Dog", country: "USA", logoUrl: '/developers/naughtydog.png'},
+  { id: 401, name: "Naughty Dog", country: "USA", logoUrl: '/developers/naughtydog.png'},
   { id: 620, name: "Bungie", country: "USA" ,logoUrl: '/developers/bungie.svg'},
-
 
   { id: 1474, name: "SNK", country: "Japan", logoUrl: '/devlopers/snk.svg' },             
   { id: 248, name: "Bandai Namco Entertainment", country: "Japan", logoUrl: '/developers/bandai.svg' }, 

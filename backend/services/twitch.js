@@ -396,6 +396,44 @@ async function mapGameData(game, platformData) {
   await handleUpdateGameDeveloper(gameDeveloper, savedGame);
 };
 
+async function getGameFranchise(gameId) {
+  try {
+    const options = await requestOptions();
+
+    const response = await apicalypse(options)
+    .fields('franchise')
+    .where(`id = ${gameId};`)
+    .request('/games');
+
+    console.log(response.data[0], 'franchise response');
+
+    const franchiseResponse = response.data[0].id;
+
+    if (franchiseResponse) {
+      return franchiseGames = await getFranchiseGames(franchiseResponse.id, options);
+    } else {
+      return null;
+    }
+  } catch (error) {
+    throw error;
+  }   
+};
+
+async function getFranchiseGames(franchiseId, options) {
+  const response = await apicalypse(options)
+  .fields('name, slug, cover')
+  .where(`franchise = ${franchiseId};`)
+  .request('/games');
+
+  const games = response.data;
+  console.log(games, 'franchise games response');
+
+  if (games) {
+    return games;
+  } else {
+    return null;
+  }
+};
 
 
-module.exports = { getGamesByYear, getGamesByPlatform, populateAllGames };
+module.exports = { getGamesByYear, getGamesByPlatform, populateAllGames, getGameFranchise  };

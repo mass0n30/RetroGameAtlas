@@ -1,17 +1,19 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from 'react-router-dom';
 import styles from '../styles/components/details.module.css';
 import axios from "axios";
 import { Award, DollarSign, Percent, ShoppingCart, ExternalLink} from 'lucide-react';
 import YouTubeEmbed from './Youtube';
 import  {CustomSpinnerDots} from '../components/Spinner';
 
-export default function GameDataSection({game}) {
+export default function GameDataSection({game, setGameId, setMount}) {
 
-const { id: gameId, name: gameName, originalPlatform } = game;
+const { id: gameId, name: gameName, originalPlatform, platforms, developerId, genres } = game;
 
   const [recordData, setRecordData] = useState(null);
   const [recordDataAlt, setRecordDataAlt] = useState(null);
   const [gameEbayData, setGameEbayData] = useState(null);
+  const [relatedGames, setRelatedGames] = useState(null);
   const [loading, setLoading] = useState(true);
 
 
@@ -19,11 +21,13 @@ const { id: gameId, name: gameName, originalPlatform } = game;
     async function fetchDetails() {
       try {
         const res = await axios.post(
-          `${import.meta.env.VITE_API_URL}/home/details/data`, { gameId, gameName, originalPlatform }
+          `${import.meta.env.VITE_API_URL}/home/details/data`, { gameId, gameName, originalPlatform, platforms, developerId, genres }
         );
       res.data.game.worldRecord ? setRecordData(res.data.game.worldRecord) : null;
       res.data.game.worldRecordAlt ? setRecordDataAlt(res.data.game.worldRecordAlt) : null;
       res.data.game.gameEbayData ? setGameEbayData(res.data.game.gameEbayData) : null;
+      res.data.game.relatedGames ? setRelatedGames(res.data.game.relatedGames) : null;
+      console.log(res.data.game, 'game details response');
 
     } catch (err) {
       console.error(err);
@@ -34,6 +38,11 @@ const { id: gameId, name: gameName, originalPlatform } = game;
   fetchDetails();
 }, []);
 
+   const navigate = useNavigate();
+
+   const handleNavigate = (id) => {
+      navigate(`/home/details/${id}` );
+   }
 
 
 if (loading) {
@@ -170,6 +179,26 @@ if (loading) {
               </div>
               </div>
             ))}
+          </div>
+        ) : (
+          <></>
+        )}
+        {relatedGames ? (
+          <div className={styles.relatedgamescontainer}>
+            <h2 className={styles.relatedMediaHeader}>Related Games</h2>
+            <div className={styles.relatedgamesgrid}>
+              {relatedGames.map((relatedGame) => (
+                <div key={relatedGame.id} className={styles.relatedgameitem}>
+                  <h3 className={styles.relatedgametitle}>{relatedGame.name}</h3>
+                    <div className={styles.relatedgamelink}>
+                      <button onClick={() => handleNavigate(relatedGame.id)}>
+                        <ExternalLink className={styles.icons}/>
+                        View Game Details
+                      </button>
+                    </div>
+                  </div>
+              ))}
+            </div>
           </div>
         ) : (
           <></>

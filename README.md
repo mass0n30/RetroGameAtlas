@@ -70,6 +70,11 @@ Ebay Game Props:
 
 
 TODO:
+
+  Mobile: 
+    - outside of design responsiveness for mobile viewports, android chrome, ect. browsers have stricter security, adding credentials to session headers needed. 
+    Fetch more doesn't seem to work in mobile
+
   - Prisma studio filter to clean up filler games, may need raw sql for screenshots 
   - Improve search query with fetching for games taking space out of query if no results, ect
   - !Add Related Games Section in Game Details

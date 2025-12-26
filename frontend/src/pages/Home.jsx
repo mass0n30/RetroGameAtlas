@@ -2,7 +2,6 @@
 import { useParams, Outlet, useNavigate } from "react-router-dom";
 import { useEffect, useState,  } from 'react';
 import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
 import SideBar from "../components/SideBar";
 import CustomSpinner from "../components/Spinner";
 import { resetFilters } from '../helpers';
@@ -128,7 +127,6 @@ function Home() {
         <div style={{ display: "flex", flex: 1, alignItems: "center", justifyContent: "center", marginTop: "2rem" }}>
           <CustomSpinner/>
         </div>
-      <Footer/>
       </>
     );
   }
