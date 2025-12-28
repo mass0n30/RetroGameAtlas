@@ -33,9 +33,6 @@ const [isExpandedAlt, setIsExpandedAlt] = useState(false);
 const {user, userProfile, SetUserProfile} = useOutletContext();
 const token = localStorage.getItem('usertoken');
 
-useEffect(() => {
-    window.scrollTo(0, 0);
-  });
 
   //spinner upon mount with delay
   useEffect(() => {
@@ -43,7 +40,9 @@ useEffect(() => {
       setLoading(false);
     }, 1000);
 
-    return () => clearTimeout(timer,); 
+    window.scrollTo(0, 0);
+
+    return () => clearTimeout(timer); 
   } ,[loading, setLoading]);
 
   useEffect(() => {
@@ -52,6 +51,7 @@ useEffect(() => {
 
 
 useEffect(() => {
+  setLoading(true);
   async function fetchDetails() {
     try {
       const res = await axios.get(`${import.meta.env.VITE_API_URL}/home/details/${gameId}`);
@@ -175,7 +175,13 @@ if (loading) {
             </div>
           </div>
           <div className={styles.lowercovercontainer}>
-          <div className={styles.namecontainer}><h1 className={styles.name}>{game.name}</h1></div>
+          <div className={styles.namecontainer}>
+            <div className={styles.ratingcontainer}>
+              <img src={game.ageRating.description} className={styles.ratinglogo} />
+            </div>
+            <div>
+              <h1 className={styles.name}>{game.name}</h1></div>
+            </div>
             <div className={styles.platformcontainer}>
               <div className={styles.platformlogocontainer}>
                 <img src={platformLogo} className={styles.platformlogo}/>
@@ -242,7 +248,17 @@ if (loading) {
           </div>
             {game.summary ? (
               <div className={styles.summarycontainer}>
-                <span>Information</span>
+                <div className={styles.informationheader}>
+                  <div className={styles.infoheadertxt}>Information</div> 
+                  <div className={styles.ratingtxt}>
+                  { game.rating && gameDetails.totalRatingCount > 0 && (
+                    <div>
+                      <div>Rated {game.rating}%</div>
+                      <div>{gameDetails.totalRatingCount} ratings</div>
+                    </div>
+                  )}
+                  </div>
+                </div>
                 { game.summary.length > 430 && (
                 <div 
                   onClick={() => setIsExpanded(!isExpanded)}

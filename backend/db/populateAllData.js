@@ -25,12 +25,12 @@ const platforms = [
 
 
 const ratings = [
-  { id: 2, rating: 'C', description: 'Early Childhood' },
-  { id: 3, rating: 'E', description: 'Everyone – Suitable for all ages.' },
-  { id: 4, rating: 'E10+', description: 'Everyone 10+' },
-  { id: 5, rating: 'T', description: 'Teen – Suitable for ages 13 and older.' },
-  { id: 6, rating: 'M', description: 'Mature 17+ – Suitable for ages 17 and older.' },
-  { id: 7, rating: 'AO', description: 'Adults Only 18+ – Suitable only for adults 18 and older.' }
+  { id: 2, rating: 'C', description: '/ratings/Crating.png' },
+  { id: 3, rating: 'E', description: '/ratings/Erating.png' },
+  { id: 4, rating: 'E10+', description: '/ratings/E10rating.png' },
+  { id: 5, rating: 'T', description: '/ratings/Trating.png' },
+  { id: 6, rating: 'M', description: '/ratings/Mrating.png' },
+  { id: 7, rating: 'AO', description: '/ratings/Mrating.png' }
 ];
 
 const developers = [

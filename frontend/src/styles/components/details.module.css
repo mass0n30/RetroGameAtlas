@@ -264,6 +264,13 @@
   border-radius: 8px;
 }
 
+.namecontainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1%;
+}
+
 .platformcontainer {
   display: flex;
   align-items: center;
@@ -297,6 +304,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.ratinglogo {
+  width: 40px;
+  height: auto;
 }
 
 .uppercovercontainer {
@@ -424,6 +436,18 @@
   border-right: solid 2px var(--color-surface);
 }
 
+.informationheader {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-family);
+  color: var(--color-text-muted);
+}
+
+.infoheadertxt {
+  display: flex;
+  align-items: flex-end;
+}
+
 .summarytxt {
   overflow: hidden;
   transition: all 0.4s ease-in-out; 
@@ -449,18 +473,12 @@
 }
 
 .relatedMediaHeader {
-  font-size: 2rem;
+  font-size: 1.5rem;
   color: var(--color-text); 
   font-family: var(--font-family);
-  letter-spacing: 5px;
-  text-shadow: 1px 1px 5px var(--color-primary-glow-translucent); 
-}
-
-.summarycontainer span, .storylinecontainer span {
-  display: flex;
-  flex: 1;
-  align-items: flex-start;
-  color: var(--color-text-muted);
+  margin: 0;
+  margin-bottom: 1.5%;
+  text-shadow: 1px 1px 3px var(--color-primary-glow-translucent); 
 }
 
 .summarycontainer p {
@@ -678,11 +696,18 @@ h3 {
 }
 
 .relatedgamescontainer {
-  margin-top: 4%;
-  margin-bottom: 4%;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
+  padding: 1%;
   justify-content: center;
   width: 100%;
 }
+
+.relatedgamesflex {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.1rem;
+}
+

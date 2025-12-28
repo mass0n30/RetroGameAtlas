@@ -22,7 +22,7 @@ function Home() {
   const [developer, setDeveloper] = useState();
   const [year, setYear] = useState({min: 1974, max: 2012});
   const [search, setSearch] = useState("");
-  const [order, setOrder] = useState({data: "Popularity", order: true}); //false = desc, true = asc
+  const [order, setOrder] = useState({data: "Rating", order: true}); //false = desc, true = asc
   const [discover, setDiscover] = useState(false);
   const [screenshotMode, setScreenshotMode] = useState(false);
   // games state

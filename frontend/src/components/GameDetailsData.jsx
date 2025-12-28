@@ -60,7 +60,7 @@ if (loading) {
     <>
         <div className={styles.recordscontainer}>
           {recordData || recordDataAlt ? (
-            <h2 className={styles.relatedMediaHeader}>Related Media</h2>
+            <h2 className={styles.relatedMediaHeader}>Speedrun Data</h2>
           ) : <></>}
           {recordData && (
             
@@ -188,12 +188,12 @@ if (loading) {
         {similarGames && similarGames.length > 0 && (
           <div className={styles.relatedgamescontainer}>
             <h2 className={styles.relatedMediaHeader}>Games you may like </h2>
-            <div className={styles.relatedgamesgrid}>
+            <div className={styles.relatedgamesflex}>
               {similarGames.map((relatedGame) => (
                 ( relatedGame.coverUrl && ( 
                 <div key={relatedGame.id} className={styles.relatedgameitem}>
                     <div className={styles.relatedgamelink}>
-                      <button onClick={() => handleNavigate(relatedGame.id)}>
+                      <button className={styles.coverBtn} onClick={() => handleNavigate(relatedGame.id)}>
                         <img src={relatedGame.coverUrl} className={styles.cover} width="264" height="374" />
                       </button>
                     </div>
@@ -207,7 +207,7 @@ if (loading) {
         {franchiseGames && franchiseGames.length > 0 && (
           <div className={styles.relatedgamescontainer}>
             <h2 className={styles.relatedMediaHeader}>Franchise Games</h2>
-            <div className={styles.relatedgamesgrid}>
+            <div className={styles.relatedgamesflex}>
               {franchiseGames.map((franchiseGame) => (
                 ( franchiseGame.cover?.url || franchiseGame.coverUrl ) && (
                 <div key={franchiseGame.id} className={styles.relatedgameitem}>
