@@ -21,7 +21,7 @@ async function getUserProfile(req, res, next, userId) {
   } catch (error) {
     next(error)
   }
-}
+};
 
 
 
@@ -370,25 +370,24 @@ async function handleGetGameDetails(req, res, next) {
   }
 };
 
-const { getGameFranchise } = require( "../services/twitch.js");
+const { getRelatedGames } = require( "../services/twitch.js");
 
 async function handleGetGameData(req, res, next) {
-  const {gameId, gameName, originalPlatform, platforms, developerId, genres } = req.body;
+  const {gameId, gameigdbId, gameName, originalPlatform } = req.body;
 
   const originalConsoleObj = await handleGetGameOriginalPlatform(originalPlatform);
 
   const consoleAbbrev = originalConsoleObj ? originalConsoleObj.abbreviation : null;
 
   try {
-    const [worldRecord, worldRecordAlt, gameEbayData, relatedGames, franchise] = await Promise.all([
+    const [worldRecord, worldRecordAlt, gameEbayData, relatedGames] = await Promise.all([
       getWorldRecordTime(gameName, consoleAbbrev),
       getHundredPercentTime(gameName, consoleAbbrev),
-      getGamePrice(gameName, originalPlatform),
-      handleGetRelatedGames(gameName, gameId, developerId, genres, originalPlatform),
-      getGameFranchise(gameId)
+      getGamePrice(gameName, originalPlatform), // ebay data
+      getRelatedGames(gameId, gameigdbId), // similar and franchise games from IGDB
     ]);
 
-    return  {worldRecord, worldRecordAlt, gameEbayData, relatedGames, franchise};
+    return  {worldRecord, worldRecordAlt, gameEbayData, relatedGames};
     
   } catch (error) {
     next(error);
@@ -396,47 +395,7 @@ async function handleGetGameData(req, res, next) {
 
 };
 
-// Fetch related games by developer or genres 
-async function handleGetRelatedGames(gameTitle, gameId, developerId, genreIds, platform) {
 
-  const genreIdsArray = genreIds.map(genre => genre.id);
-    const normalizeGameName = gameTitle
-    ?.toLowerCase()
-    .trim()
-    .replace(/\s+/g, "-"); 
-
-  try {
-    const relatedGames = await prisma.game.findMany({
-      where: {
-        AND: [
-          {
-            id: { not: gameId }
-          },
-          {
-            slug: { not : normalizeGameName }
-          },
-          {
-            slug: { contains: normalizeGameName, mode: "insensitive" },
-          },
-          {
-            OR: [
-              { developerId: developerId },
-              { genres: { some: { id: { in: genreIdsArray } } } },
-              { originalPlatform: platform}
-            ]
-          }
-        ]
-      },
-      take: 5,
-    });
-
-    return relatedGames;
-
-  } catch (error) {
-    console.error("Error fetching related games:", error);
-    throw error;
-  }
-};
 
 
 

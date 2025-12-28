@@ -8,12 +8,13 @@ import  {CustomSpinnerDots} from '../components/Spinner';
 
 export default function GameDataSection({game, setGameId, setMount}) {
 
-const { id: gameId, name: gameName, originalPlatform, platforms, developerId, genres } = game;
+const { id: gameId, igdbId: gameigdbId, name: gameName, originalPlatform, platforms, developerId, genres } = game;
 
   const [recordData, setRecordData] = useState(null);
   const [recordDataAlt, setRecordDataAlt] = useState(null);
   const [gameEbayData, setGameEbayData] = useState(null);
-  const [relatedGames, setRelatedGames] = useState(null);
+  const [franchiseGames, setFranchiseGames] = useState(null);
+  const [similarGames, setSimilarGames] = useState(null);
   const [loading, setLoading] = useState(true);
 
 
@@ -21,13 +22,14 @@ const { id: gameId, name: gameName, originalPlatform, platforms, developerId, ge
     async function fetchDetails() {
       try {
         const res = await axios.post(
-          `${import.meta.env.VITE_API_URL}/home/details/data`, { gameId, gameName, originalPlatform, platforms, developerId, genres }
+          `${import.meta.env.VITE_API_URL}/home/details/data`, { gameId, gameigdbId, gameName, originalPlatform }
         );
       res.data.game.worldRecord ? setRecordData(res.data.game.worldRecord) : null;
       res.data.game.worldRecordAlt ? setRecordDataAlt(res.data.game.worldRecordAlt) : null;
       res.data.game.gameEbayData ? setGameEbayData(res.data.game.gameEbayData) : null;
-      res.data.game.relatedGames ? setRelatedGames(res.data.game.relatedGames) : null;
-      console.log(res.data.game, 'game details response');
+      res.data.game.relatedGames.franchiseGames ? setFranchiseGames(res.data.game.relatedGames.franchiseGames) : null;
+      res.data.game.relatedGames.similarGames ? setSimilarGames(res.data.game.relatedGames.similarGames) : null;
+      console.log(res.data.game.relatedGames, 'related games response');
 
     } catch (err) {
       console.error(err);
@@ -183,26 +185,54 @@ if (loading) {
         ) : (
           <></>
         )}
-        {relatedGames ? (
+        {similarGames && similarGames.length > 0 && (
           <div className={styles.relatedgamescontainer}>
-            <h2 className={styles.relatedMediaHeader}>Related Games</h2>
+            <h2 className={styles.relatedMediaHeader}>Games you may like </h2>
             <div className={styles.relatedgamesgrid}>
-              {relatedGames.map((relatedGame) => (
+              {similarGames.map((relatedGame) => (
+                ( relatedGame.coverUrl && ( 
                 <div key={relatedGame.id} className={styles.relatedgameitem}>
-                  <h3 className={styles.relatedgametitle}>{relatedGame.name}</h3>
                     <div className={styles.relatedgamelink}>
                       <button onClick={() => handleNavigate(relatedGame.id)}>
-                        <ExternalLink className={styles.icons}/>
-                        View Game Details
+                        <img src={relatedGame.coverUrl} className={styles.cover} width="264" height="374" />
                       </button>
                     </div>
                   </div>
+                ))
               ))}
             </div>
           </div>
-        ) : (
-          <></>
         )}
+
+        {franchiseGames && franchiseGames.length > 0 && (
+          <div className={styles.relatedgamescontainer}>
+            <h2 className={styles.relatedMediaHeader}>Franchise Games</h2>
+            <div className={styles.relatedgamesgrid}>
+              {franchiseGames.map((franchiseGame) => (
+                ( franchiseGame.cover?.url || franchiseGame.coverUrl ) && (
+                <div key={franchiseGame.id} className={styles.relatedgameitem}>
+                  <div className={styles.relatedgamelink}>
+                    <button 
+                      onClick={() => handleNavigate(franchiseGame.id)}
+                      className={styles.coverBtn} 
+                    >
+                      <img 
+                        src={franchiseGame.cover?.url || franchiseGame.coverUrl} 
+                        alt={franchiseGame.name} 
+                        className={styles.cover} 
+                        width="264" 
+                        height="374" 
+                      />
+                    </button>
+                  </div>
+                </div>
+                )
+              ))}
+            </div>
+          </div>
+        )}
+
+
       </>  
   )
 }

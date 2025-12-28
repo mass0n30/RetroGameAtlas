@@ -46,7 +46,7 @@ async function checkUserByEmail(value) {
   }
 };
 
-async function checkGame(id) {
+async function getGame(id) {
   
   const game = await prisma.game.findUnique({
     where: {
@@ -56,11 +56,21 @@ async function checkGame(id) {
 
   if (game) {
     return game;
-  } else {
-    // fetchGame from IGDB API
-    // throw new Error("No found game.");
-  }
+  } 
 };
+
+async function getGameByIGDB(igdbId) {
+  
+  const game = await prisma.game.findUnique({
+    where: {
+      igdbId: igdbId,
+    },
+  });
+
+  if (game) {
+    return game;
+  }
+}
 
 async function constructQueryByCategory(order, dir) {
       var orderBy = {}
@@ -151,7 +161,8 @@ module.exports = {
   checkEmail,
   checkUser,
   checkUserByEmail,
-  checkGame,
+  getGame,
+  getGameByIGDB,
   constructQueryByCategory,
   constructQueryArrays
 }

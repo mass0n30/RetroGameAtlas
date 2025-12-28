@@ -651,3 +651,38 @@ h3 {
   background-color: var(--purple-accent);
 }
 
+.relatedgamelink {
+  display: block;          
+  width: 100%;
+  height: 100%;
+}
+
+.coverBtn {
+  border: none;
+  background: none;
+  padding: 0;
+  margin: 0;
+  display: block;           
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.cover {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  aspect-ratio: 264 / 374;
+  border-radius: 10px;
+}
+
+.relatedgamescontainer {
+  margin-top: 4%;
+  margin-bottom: 4%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}

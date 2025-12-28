@@ -3,8 +3,7 @@ let twitchAccessToken = null;
 let twitchTokenExpiresAt = null;
 
 const apicalypse = require('apicalypse').default;
-const { prisma } = require('../db/prismaClient.js');
-
+const {prisma} = require("../db/prismaClient.js");
 
 async function getTwitchToken() {
   const now = Date.now();
@@ -396,44 +395,64 @@ async function mapGameData(game, platformData) {
   await handleUpdateGameDeveloper(gameDeveloper, savedGame);
 };
 
-async function getGameFranchise(gameId) {
+const { getGame, getGameByIGDB } = require('../db/queries.js');
+
+async function getRelatedGames(gameId, gameigdbId) {
   try {
     const options = await requestOptions();
 
+    // fetching for franchise and similar games ids
     const response = await apicalypse(options)
-    .fields('franchise')
-    .where(`id = ${gameId};`)
-    .request('/games');
+      .fields('franchise, similar_games')
+      .where(`id = ${gameigdbId};`)
+      .request('/games');
 
-    console.log(response.data[0], 'franchise response');
+    const gameData = response.data[0];
+    console.log(response.data[0], 'relatedgames response');
+    if (!gameData) return { franchiseGames: null, similarGames: null };
 
-    const franchiseResponse = response.data[0].id;
+    const franchiseId = gameData.franchise || null; // id is franchise id for request
+    const similarGameIds = gameData.similar_games || [];
 
-    if (franchiseResponse) {
-      return franchiseGames = await getFranchiseGames(franchiseResponse.id, options);
-    } else {
-      return null;
+    // fetch for franchise games
+    let franchiseGamesIds = null;
+    if (franchiseId) {
+      const franchiseResp = await apicalypse(options)
+        .fields('id, name, cover, slug, platforms')
+        .where(`franchise = ${franchiseId};`)
+        .request('/games');
+      console.log(franchiseResp.data, 'franch');
+      franchiseGamesIds = franchiseResp.data.map(game => game.id) || null;
     }
+
+    // check my DB for franchise games
+    let franchiseGames = null;
+    if (franchiseGamesIds && franchiseGamesIds.length > 0) {
+      console.log(franchiseGamesIds, 'ids');
+      franchiseGames = [];
+      for (let i = 0; i < franchiseGamesIds.length; i++) {
+        const game = await getGameByIGDB(franchiseGamesIds[i]);
+        if (game) franchiseGames.push(game);
+      }
+    }
+
+    // fetch for similar games
+    const similarGames = [];
+    if (similarGameIds.length > 0) {
+      for (let i = 0; i < similarGameIds.length; i++) {
+        const game = await getGameByIGDB(similarGameIds[i]);
+        if (game) similarGames.push(game);
+      }
+    }
+    return { franchiseGames, similarGames };
+
   } catch (error) {
-    throw error;
-  }   
-};
-
-async function getFranchiseGames(franchiseId, options) {
-  const response = await apicalypse(options)
-  .fields('name, slug, cover')
-  .where(`franchise = ${franchiseId};`)
-  .request('/games');
-
-  const games = response.data;
-  console.log(games, 'franchise games response');
-
-  if (games) {
-    return games;
-  } else {
-    return null;
+    console.error('Error fetching games:', error);
+    return { franchiseGames: null, similarGames: null };
   }
-};
+}
 
 
-module.exports = { getGamesByYear, getGamesByPlatform, populateAllGames, getGameFranchise  };
+
+
+module.exports = { getGamesByYear, getGamesByPlatform, populateAllGames, getRelatedGames };
