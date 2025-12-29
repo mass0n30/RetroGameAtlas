@@ -9,14 +9,18 @@ import { resetFilters } from '../helpers';
 
 
 // eslint-disable-next-line react/prop-types
-export default function Navbar({ toggle, setToggle, setSearch, search, discover, setDiscover, open, setOpen, setMount}) {
+export default function Navbar({ toggle, setToggle, setSearch, search, discover, setDiscover, open, setOpen, setMount
+  // eslint-disable-next-line react/prop-types
+  ,setPlatform, setDeveloper, setGenre, setYear, setOrder, setScreenshotMode
+}) {
 
   const handleToggle = () => {
     toggle ? setToggle(false) : setToggle(true);
   };
 
   const handleSearchChange = () => {
-    resetFilters(null, null, null, null, null, null, null, setMount, setOpen);
+    resetFilters(setPlatform, setDeveloper, setGenre,
+       setYear, setOrder, null, setScreenshotMode, null, setOpen, setDiscover);
     (discover) ? setDiscover(false) : null;
     (open) ? setOpen(new Set()) : null;
   };

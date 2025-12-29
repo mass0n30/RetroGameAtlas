@@ -13,7 +13,7 @@ export default function SideBar({ categoryData, orderData, orderDirection, setOr
     function toggleItem(id, category) {
 
       setMount(true);
-      setSearch("");
+      setDiscover(false);
 
       if (category == "Consoles") {
         const newSet = new Set(platform);
@@ -51,9 +51,10 @@ export default function SideBar({ categoryData, orderData, orderDirection, setOr
 
   // upon discovering games toggle, reset category filters
   const handleDiscoverGames = () => {
-    resetFilters(setPlatform, setDeveloper, setGenre, setYear, setOrder, setSearch, setScreenshotMode, setMount, setOpen);
+    resetFilters(setPlatform, setDeveloper, setGenre, setYear, setOrder, setSearch, null, setMount, setOpen, setDiscover);
     setMount(true);
     setSearch("");
+    setScreenshotMode(true);
     discover ? setDiscover(false) : setDiscover(true);
   };
 
@@ -178,7 +179,7 @@ export default function SideBar({ categoryData, orderData, orderDirection, setOr
           </Button>
         </div>
         <div className={styles.clearfilterscontainer}>
-          <Button onClick={() => resetFilters(setPlatform, setDeveloper, setGenre, setYear, setOrder, setSearch, undefined, setMount, setOpen)}>Clear Filters</Button>
+          <Button onClick={() => resetFilters(setPlatform, setDeveloper, setGenre, setYear, setOrder, setSearch, undefined, setMount, setOpen, setDiscover)}>Clear Filters</Button>
         </div>
       </div>
 

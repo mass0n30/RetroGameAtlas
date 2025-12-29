@@ -123,7 +123,8 @@ function Home() {
   if ( !user || !categoryData ) {
     return (
       <>
-      <Navbar toggle={toggle} setToggle={setToggle} setSearch={setSearch} resetFilters={resetFilters} setDiscover={setDiscover} setOpen={setOpen} setMount={setMount}/>
+      <Navbar toggle={toggle} setToggle={setToggle} setSearch={setSearch} resetFilters={resetFilters} setDiscover={setDiscover} setOpen={setOpen} setMount={setMount}
+      setPlatform={setPlatform} setDeveloper={setDeveloper} setGenre={setGenre} setYear={setYear} setOrder={setOrder} setScreenshotMode={setScreenshotMode} />
         <div style={{ display: "flex", flex: 1, alignItems: "center", justifyContent: "center", marginTop: "2rem" }}>
           <CustomSpinner/>
         </div>
@@ -143,6 +144,12 @@ function Home() {
         open={open}
         setOpen={setOpen}
         setMount={setMount}
+        setPlatform={setPlatform}
+        setDeveloper={setDeveloper}
+        setGenre={setGenre}
+        setYear={setYear}
+        setOrder={setOrder}
+        setScreenshotMode={setScreenshotMode}
       />
     <main>
     <aside
