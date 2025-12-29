@@ -3,7 +3,6 @@ import { useOutletContext, useLocation } from "react-router-dom";
 import InfiniteScroll from "react-infinite-scroll-component";
 import GameCard from '../components/GameCard';
 import GameCardSS from '../components/GameCardSS';
-import styles from '../styles/components/home.module.css';
 import axios from "axios";
 import CustomSpinnerBottom from '../components/Spinner';
 import CustomSpinner from '../components/Spinner';

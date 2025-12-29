@@ -5,7 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import NavMenu from './reactMUI/Menu';
 import  {House} from 'lucide-react';
 import { ArrowLeft, Ellipsis, X, PanelsTopLeft } from 'lucide-react';
-
+import { resetFilters } from '../helpers';
 
 
 // eslint-disable-next-line react/prop-types
@@ -16,6 +16,7 @@ export default function Navbar({ toggle, setToggle, setSearch, search, discover,
   };
 
   const handleSearchChange = () => {
+    resetFilters(null, null, null, null, null, null, null, setMount, setOpen);
     (discover) ? setDiscover(false) : null;
     (open) ? setOpen(new Set()) : null;
   };

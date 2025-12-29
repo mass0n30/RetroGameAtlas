@@ -6,7 +6,7 @@ import { Award, DollarSign, Percent, ShoppingCart, ExternalLink} from 'lucide-re
 import YouTubeEmbed from './Youtube';
 import  {CustomSpinnerDots} from '../components/Spinner';
 
-export default function GameDataSection({game, setGameId, setMount}) {
+export default function GameDataSection({game, setLoading}) {
 
 const { id: gameId, igdbId: gameigdbId, name: gameName, originalPlatform, platforms, developerId, genres } = game;
 
@@ -15,7 +15,7 @@ const { id: gameId, igdbId: gameigdbId, name: gameName, originalPlatform, platfo
   const [gameEbayData, setGameEbayData] = useState(null);
   const [franchiseGames, setFranchiseGames] = useState(null);
   const [similarGames, setSimilarGames] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoadingData] = useState(true);
 
 
   useEffect(() => {
@@ -34,7 +34,7 @@ const { id: gameId, igdbId: gameigdbId, name: gameName, originalPlatform, platfo
     } catch (err) {
       console.error(err);
     } finally {
-      setLoading(false);
+      setLoadingData(false);
     }
   }
   fetchDetails();
@@ -43,6 +43,7 @@ const { id: gameId, igdbId: gameigdbId, name: gameName, originalPlatform, platfo
    const navigate = useNavigate();
 
    const handleNavigate = (id) => {
+      setLoading(true);
       navigate(`/home/details/${id}` );
    }
 

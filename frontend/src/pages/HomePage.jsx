@@ -4,10 +4,10 @@ import { useOutletContext, useLocation } from "react-router-dom";
 import InfiniteScroll from "react-infinite-scroll-component";
 import GameCard from '../components/GameCard';
 import GameCardSS from '../components/GameCardSS';
-import styles from '../styles/components/home.module.css';
 import axios from "axios";
 import CustomSpinnerBottom from '../components/Spinner';
 import CustomSpinner from '../components/Spinner';
+import { Funnel } from 'lucide-react';
 
 //import Loader from "./Loader";
 
@@ -61,7 +61,9 @@ function HomePage() {
       scrollableTarget={'gamesScrollContainer'}
       >
       <section>
-
+      <div className='funnelContainer'>
+        <Funnel className='funnelIcon'/>
+      </div>
       { screenshotMode ? (
     
       games.map((game, index) => (

@@ -27,7 +27,7 @@ Ebay Game Props:
   - price.value & price.currency
   - title (actual ebay listing title)
 
-
+https://css-tricks.com/css-only-carousel/  Sliding carosoel effect
 ***************
 
   DONE:
@@ -67,9 +67,15 @@ Ebay Game Props:
   - Populate more Wii games, populate PSP titles and atari 2600 ?
   - adding MVP features, user features 
   - Typography improvements, especially on gameDetails page (font for paragraphs, headers, giving icons more stroke width over text labels? etc)
+  - put social links in a popout from clicking a share Icon on gamedetail page ( next to heart icon )
+  - !Add Related Games Section in Game Details
 
 
 TODO:
+
+  -! clear filter is on indication, adding a toggle module displaying what filters are on?
+      (upon a search user should know filters are on clearly, so can reset if they are on and not correct results)
+  - double check over loading and mounting upon navigation in details, add minimal fade ins for game details
 
   Mobile: 
     - outside of design responsiveness for mobile viewports, android chrome, ect. browsers have stricter security, adding credentials to session headers needed. 
@@ -77,17 +83,11 @@ TODO:
 
   - Prisma studio filter to clean up filler games, may need raw sql for screenshots 
   - Improve search query with fetching for games taking space out of query if no results, ect
-  - !Add Related Games Section in Game Details
   - Make a component for alert messages (like for saved games if no saved games, or no game results upon search, ect.)
   - Add animation and sound? to heart selection
 
-  - for related data (runs and ebay listings), numbered series title's causes related data (runs and ebay) to list other games in a collection: http://localhost:5173/home/details/10192 
-
-  - Get rating scores, and rating count on game cards for Rating? Put in Game Details as well. 
   - adding details like an icon next to 'no more results' at bottom of fetches, ect. (broken controller icon on error page, ect)
   - fix slight space side bar between scroll wheel and rows
-      - maybe add some related games section in Game Details (this may not be too difficult, inital Grab Same Titles if same developer, fallback grab games in same genre and console?)
-  - put social links in a popout from clicking a share Icon on gamedetail page ( next to heart icon )
 
   - Re look into design principles for UI and consider mobile React wrapper? before further design changes
   - market game value from PriceCharting API (adding a extra API will add an additional fetch to game details, further slowing down load, need work around or fast loading, *OR get a median price from ebay purchased listings?)

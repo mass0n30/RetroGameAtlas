@@ -45,6 +45,7 @@ body {
   margin: 0;
   display: flex;
   min-width: 320px;
+  max-width: 100%;
   min-height: 100vh;
   cursor: default;
   background: url('/Galactic.jpg') center center fixed;
@@ -79,6 +80,21 @@ li {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.funnelContainer {
+  position: fixed;
+  top: 100%;
+  right: 80%;
+  padding: 0.5rem;
+  border-radius: 8px;
+  z-index: 2;
+  color: var(--color-primary-glow);
+}
+
+.funnelIcon {
+  width: var(--icon-size-desktop);
+  height: var(--icon-size-desktop);
 }
 
 .alertContainer {
@@ -149,6 +165,7 @@ section {
   flex-wrap: wrap;
   justify-content: center;
   min-height: 100vh;
+  position: relative;
 }
 
 .endResult {

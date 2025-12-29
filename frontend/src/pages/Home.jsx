@@ -109,7 +109,7 @@ function Home() {
       .then((res) => setGames(res.data.games))
       .catch((err) => console.log(err));
 
-      window.scrollTo({top: 0, behavior: 'smooth'});
+     window.scrollTo({top: 0, behavior: 'smooth'});
 
   }, [ query, genre, platform, year.min, year.max, developer, setGames, order.data, order.order, discover, screenshotMode ]);
 

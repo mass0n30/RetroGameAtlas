@@ -40,14 +40,20 @@ const token = localStorage.getItem('usertoken');
       setLoading(false);
     }, 1000);
 
-    window.scrollTo(0, 0);
+    window.scrollTo({top: 0, behavior: 'smooth'});
 
-    return () => clearTimeout(timer); 
+
+    return () =>  {clearTimeout(timer)}; 
   } ,[loading, setLoading]);
 
   useEffect(() => {
 
   }, [saved]);
+
+  // loader upon nav back and forth between games
+  useEffect(() => {
+    setLoading(true);
+  }, [gameId]);
 
 
 useEffect(() => {
@@ -173,13 +179,13 @@ if (loading) {
                 <img src={game.cover} className={styles.cover}
                 />) : ( <></> )}
             </div>
-          </div>
-          <div className={styles.lowercovercontainer}>
-          <div className={styles.namecontainer}>
             <div className={styles.ratingcontainer}>
               <img src={game.ageRating.description} className={styles.ratinglogo} />
             </div>
-            <div>
+          </div>
+          <div className={styles.lowercovercontainer}>
+          <div className={styles.namecontainer}>
+            <div className={styles.nametxtcontainer}>
               <h1 className={styles.name}>{game.name}</h1></div>
             </div>
             <div className={styles.platformcontainer}>
@@ -229,12 +235,12 @@ if (loading) {
 
             </button>
 
-            {screenshots.length > 0 ? (
+            {screenshots.length > 0 && screenshots[currentIndex]?.url ? (
               <div className={styles.carousel}>
 
                 <div className={styles.screenshotcarouselcontainer}> 
                   <img
-                    src={`https:${screenshots[currentIndex].url}`}
+                    src={`https:${screenshots[currentIndex]?.url}`}
                     alt={`${game.name} screenshot`}
                     className={styles.screenshot}
                   />
@@ -251,9 +257,28 @@ if (loading) {
                 <div className={styles.informationheader}>
                   <div className={styles.infoheadertxt}>Information</div> 
                   <div className={styles.ratingtxt}>
+                  { gameDetails.genres && gameDetails.genres.length > 0 && (
+                    <div className={styles.genrescontainer}>
+                      <div className={styles.genrestxt}>Genre: </div>
+                      { gameDetails.genres.map((genre) => (
+                          <div key={genre.id}>{genre.name}</div>
+                      ))}
+                    </div>
+                  )}
                   { game.rating && gameDetails.totalRatingCount > 0 && (
-                    <div>
-                      <div>Rated {game.rating}%</div>
+                    <div className={styles.ratingscontainer}>
+                        <div
+                          style={{
+                            color:
+                              game.rating >= 80
+                                ? "green"
+                                : game.rating < 60
+                                ? "red"
+                                : undefined
+                          }}
+                        >
+                          Rated {game.rating}%
+                        </div>
                       <div>{gameDetails.totalRatingCount} ratings</div>
                     </div>
                   )}
@@ -295,7 +320,7 @@ if (loading) {
           </div>
       {game.storyline ? (
         <div className={styles.storylinecontainer}> 
-          <span>Storyline</span>
+          <div className={styles.storylinetitle} >Storyline</div>
                 { game.storyline.length > 1000 && (
                 <div 
                   onClick={() => setIsExpandedAlt(!isExpandedAlt)}
@@ -331,7 +356,7 @@ if (loading) {
           <> </>
       )}
 			<Suspense>
-       <GameDataSection game={gameDetails} />
+       <GameDataSection game={gameDetails} setLoading={setLoading} />
 			</Suspense>
 
         { user.admin ? (

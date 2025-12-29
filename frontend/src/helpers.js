@@ -54,7 +54,8 @@ function normalizeScreenshots(screenshots) {
   }));
 };
 
-export function resetFilters(setPlatform, setDeveloper, setGenre, setYear, setOrder, setSearch, setScreenshotMode, setMount, setOpen) {
+export function resetFilters(setPlatform, setDeveloper, 
+  setGenre, setYear, setOrder, setSearch, setScreenshotMode, setMount, setOpen) {
   setPlatform(new Set());
   setDeveloper(new Set());
   setGenre(new Set());
