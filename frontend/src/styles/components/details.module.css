@@ -413,7 +413,8 @@
   width: 100%;
   height: auto;
   height: auto;  
-  border-radius: 8px;   
+  border-radius: 8px;  
+  animation: fadeInUp 0.6s ease-out forwards; 
 }
 
 .datacontainer {
@@ -598,6 +599,7 @@
   max-width: 100%;
   border-radius: 8px;
   object-fit: contain;
+  animation: fadeInUp 0.6s ease-out forwards;
 }
 
 
@@ -666,7 +668,7 @@
 .awardbadgepillcontainer {
   display: inline-block; 
   padding: .8em .8em;   
-  font-size: 75%;      
+  font-size: 65%;      
   font-weight: 600;    
   line-height: 1;      
   text-align: center;   
@@ -676,6 +678,7 @@
   border-radius: 10rem; 
 
   background-color: var(--purple-ambient);
+  border: solid 2px var(--color-background-light);
   color: #fff;            
 }
 
@@ -794,7 +797,7 @@ h3 {
 .relatedgamescontainer {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
   width: 100%;
 }
@@ -802,7 +805,7 @@ h3 {
 .relatedgamesflex {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.1rem;
+  justify-content: flex-start;
+  gap: 0.5rem;
 }
 

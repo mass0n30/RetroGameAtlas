@@ -69,6 +69,7 @@ function Login() {
              <img className={styles.logo} src='/logo/fulllogo.png'></img>
           </div>
           <div className={styles.logoText}>Discover. Play. Repeat.</div>
+          <div className={styles.logoTextTag}>Track and explore 25,000+ games across platforms.</div>
         </div>
         {error ? (
           <span style={{ color: 'red' }}>Error was encountered: {error}</span>
@@ -102,7 +103,7 @@ function Login() {
             />
           </div>
           <div className={styles.form_row}>
-            <button type="submit" className={styles.form_button}>Log In</button>
+            <button type="submit" className={styles.form_button}>Continue</button>
           </div>
         </form>
           <div className={styles.form_row} id="signUp">

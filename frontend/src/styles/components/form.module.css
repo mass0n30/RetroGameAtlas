@@ -35,7 +35,15 @@
   color: var(--color-background-light);
   filter: brightness(200%);
   text-align: center;
-  margin-top: 1rem;
+}
+
+.logoTextTag {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--color-background-light);
+  filter: brightness(180%);
+  text-align: center;
+  margin: 0.5rem;
 }
 
 .logoSignup {
