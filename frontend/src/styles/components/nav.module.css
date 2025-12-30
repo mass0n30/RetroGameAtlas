@@ -10,8 +10,7 @@ nav {
   height: 5rem;
   z-index: 100;
 
-  backdrop-filter: blur(15px);
-  border: solid 2px var(--color-primary);
+  backdrop-filter: blur(50px);
   background-color: var(--color-surface-translucent);
   overflow: hidden;
 }

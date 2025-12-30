@@ -29,7 +29,6 @@ const { id: gameId, igdbId: gameigdbId, name: gameName, originalPlatform, platfo
       res.data.game.gameEbayData ? setGameEbayData(res.data.game.gameEbayData) : null;
       res.data.game.relatedGames.franchiseGames ? setFranchiseGames(res.data.game.relatedGames.franchiseGames) : null;
       res.data.game.relatedGames.similarGames ? setSimilarGames(res.data.game.relatedGames.similarGames) : null;
-      console.log(res.data.game.relatedGames, 'related games response');
 
     } catch (err) {
       console.error(err);
@@ -44,6 +43,8 @@ const { id: gameId, igdbId: gameigdbId, name: gameName, originalPlatform, platfo
 
    const handleNavigate = (id) => {
       setLoading(true);
+      // keeps scrolled at top upon user nav back pages
+      window.scrollTo({top: 0});
       navigate(`/home/details/${id}` );
    }
 
@@ -68,7 +69,10 @@ if (loading) {
           <div className={styles.recorditem}>
             <div className={styles.recordinfo}>
               <div className={styles.award}>
-                <Award fill='gold' color='gold' className={styles.icons}/>
+                  <div className={styles.awardbadgepillcontainer}>
+                    <div className={styles.awardbadgetext}>1st Place</div>
+                    <Award fill='gold' color='gold' className={styles.icons}/>
+                  </div>
                   <h3>
                     {recordData.recordName}
                   </h3>
@@ -79,6 +83,7 @@ if (loading) {
                   </div>
                 )}
               <div className={styles.recordtime}>
+                <div className={styles.recordsubtxt}>{recordData.recordName} Completed in</div>
                 Record Time - {recordData.timeConverted}
               </div>
             </div>
@@ -89,7 +94,7 @@ if (loading) {
               <a href={recordData?.runLink}
                 target="_blank"
                 rel="noopener noreferrer">
-                <button className={styles.recordBtn}> View <b>{gameName} {recordData.recordName}</b> Speedrun Data 
+                <button className={styles.recordBtn}> Explore <b>{gameName} </b> Speedrun Leaderboards 
                   <ExternalLink />
                 </button>
                 </a>
@@ -129,7 +134,7 @@ if (loading) {
               <a href={recordDataAlt?.runLink}
                 target="_blank"
                 rel="noopener noreferrer">
-                <button className={styles.recordBtn}> View <b>{gameName} {recordDataAlt.recordName}</b> Speedrun Data 
+                <button className={styles.recordBtn}> View <b>{gameName} {recordDataAlt.recordName}</b> 
                   <ExternalLink />
                 </button>
                 </a>
@@ -140,7 +145,9 @@ if (loading) {
         </div>
 
         {gameEbayData ? (
+
           <div className={styles.ebaycontainer}>
+            <h2 className={styles.relatedMediaHeader}>Related Listings</h2>
             {gameEbayData.map((post) => (
               <div className={styles.ebayinnercontainer} key={post.itemId}>
                 <div className={styles.ebaytitlecontainer}>

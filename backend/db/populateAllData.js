@@ -44,7 +44,7 @@ const developers = [
   { id: 401, name: "Naughty Dog", country: "USA", logoUrl: '/developers/naughtydog.png'},
   { id: 620, name: "Bungie", country: "USA" ,logoUrl: '/developers/bungie.svg'},
 
-  { id: 1474, name: "SNK", country: "Japan", logoUrl: '/devlopers/snk.svg' },             
+  { id: 1474, name: "SNK", country: "Japan", logoUrl: '/developers/snk.svg' },             
   { id: 248, name: "Bandai Namco Entertainment", country: "Japan", logoUrl: '/developers/bandai.svg' }, 
   { id: 184, name: "id Software", country: "USA", logoUrl: '/developers/idsoftware.png' },
   { id: 51, name: "Blizzard Entertainment", country: "USA", logoUrl: '/developers/blizzard.svg' },

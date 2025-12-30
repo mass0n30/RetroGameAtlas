@@ -54,11 +54,13 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  background-color: var(--color-background);
   position: relative;
   opacity: 0;
   animation: fadeInUp 0.6s ease-out forwards;
+  background: var(--color-background-translucent);
+  backdrop-filter: blur(4px);
 }
+
 
 .outercontainer::before {
   content: "";
@@ -71,6 +73,7 @@
   );
   z-index: -1;
   pointer-events: none;
+  filter: blur(50px);
 }
 
 
@@ -105,6 +108,7 @@
 
 
 .detailscontainer {
+  background-color: var(--color-background);
   max-width: 100%;
   display: flex;
   align-items: flex-start;
@@ -113,6 +117,7 @@
   padding: 8%;
   padding-top: 2%;
   padding-bottom: 2%;
+  border-bottom: solid 2px var(--color-surface);
 }
 
 /* Tablet styles */
@@ -124,7 +129,6 @@
     padding: 0%;
     border-bottom-left-radius: 0px;
     border-bottom-right-radius: 0px;
-    border-bottom: solid 2px var(--color-primary-glow);   
   }
 
   .summarycontainer {
@@ -179,6 +183,7 @@
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: (10, 1fr);
   border-bottom: solid 2px var(--color-border);
+  background-color: var(--color-background);
 }
 
 .ebayinfocontainer {
@@ -476,6 +481,13 @@
   align-items: center;
 }
 
+.ratingscontainer {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+
+}
+
 .summarytxt {
   overflow: hidden;
   transition: all 0.4s ease-in-out; 
@@ -512,8 +524,7 @@
   font-size: 1.5rem;
   color: var(--color-text); 
   font-family: var(--font-family);
-  margin: 0;
-  margin-bottom: 1.5%;
+  margin: 1%;
   text-shadow: 1px 1px 3px var(--color-primary-glow-translucent); 
 }
 
@@ -639,11 +650,37 @@
 }
 
 .recorditem {
-  border-bottom: solid 2px var(--color-background-light);
+  background-color: var(--color-background);
+  margin-left: 0%;
+  margin-right: 0%;
+  margin-top: 0%;
+  padding-top: 4%;
+  border-radius: 8px;
+  border: solid 2px var(--color-surface);
 }
 
 .award {
   display: flex;
+}
+
+.awardbadgepillcontainer {
+  display: inline-block; 
+  padding: .8em .8em;   
+  font-size: 75%;      
+  font-weight: 600;    
+  line-height: 1;      
+  text-align: center;   
+  white-space: nowrap;  
+  vertical-align: baseline; 
+  margin-right: 10px;
+  border-radius: 10rem; 
+
+  background-color: var(--purple-ambient);
+  color: #fff;            
+}
+
+.awardbadgetext {
+  margin-left: 0.3rem;
 }
 
 .recordtime {
@@ -652,15 +689,26 @@
   font-size: 1.2rem;
 }
 
+.recordsubtxt {
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-bottom: 0.2rem;
+  color: var(--color-text-muted);
+}
+
 h3 {
   font-weight: 800;
+  font-size: 1rem;
   margin: 0;
   padding: 0;
+  display: flex;
+  align-items: center;
 }
 
 .recordscontainer {
-  border-top: 1px solid var(--color-primary-glow-translucent);
-  box-shadow: 0px -6px 8px -3px var(--color-primary);
+  background-size: cover;
+  background-position: center;
+  background: transparent;
 }
 
 .recordsloadercontainer {
@@ -689,7 +737,7 @@ h3 {
 
 .recordvideocontainer {
   margin-top: 2%;
-  margin-bottom: 2%;
+  gap: 2%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -713,6 +761,14 @@ h3 {
   display: block;          
   width: 100%;
   height: 100%;
+}
+
+.recordusername {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-top: 0.5rem;
+  text-align: center; 
 }
 
 .coverBtn {

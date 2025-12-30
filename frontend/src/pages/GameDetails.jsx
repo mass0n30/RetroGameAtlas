@@ -4,7 +4,7 @@ import styles from '../styles/components/details.module.css';
 import axios from "axios";
 import normalizeGameData from '../helpers';
 import CustomSpinner from '../components/Spinner';
-import {CircleCheckBig,ChevronLeft, ChevronRight, ChevronUp, ChevronDown, Award, Heart, ArrowBigLeftDash, ArrowBigRightDash, DollarSign, Percent, ShoppingCart} from 'lucide-react';
+import {CircleCheckBig,ChevronLeft, ChevronRight, ChevronUp, ChevronDown, Heart, ArrowBigLeftDash, ArrowBigRightDash, DollarSign, Percent, ShoppingCart} from 'lucide-react';
 import SocialPopup from '../components/reactMUI/Popup';
 import SnackBarAlert from '../components/reactMUI/Alerts';
 import GameDetailsSkeleton from '../components/Skeleton';

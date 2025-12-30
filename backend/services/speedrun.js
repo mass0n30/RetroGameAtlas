@@ -93,7 +93,7 @@ function formatSecondsToHHMMSS(totalSeconds) {
   const formattedSeconds = String(seconds.toFixed(2)).padStart(2, '0');
   
 
-  return `${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
+  return `hr ${formattedHours} min ${formattedMinutes} ${formattedSeconds} sec`;
 };
 
 
