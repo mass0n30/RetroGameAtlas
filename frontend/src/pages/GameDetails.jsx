@@ -325,7 +325,7 @@ if (loading) {
       {game.storyline ? (
         <div className={styles.storylinecontainer}> 
           <div className={styles.storylinetitle} >Storyline</div>
-                { game.storyline.length > 1000 && (
+                { game.storyline.length > 600 && (
                 <div 
                   onClick={() => setIsExpandedAlt(!isExpandedAlt)}
                   className="flex items-center justify-between w-full cursor-pointer"

@@ -755,10 +755,11 @@ h3 {
   gap: 0.5rem;
 }
 
-.recordvideocontainer, .recordvideocontainertwitch, .recordvideocontaineryoutube {
+.recordvideocontainer {
   margin-top: 2%;
   gap: 2%;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   background-color: var(--blue-ambient);
@@ -770,11 +771,33 @@ h3 {
 }
 
 .recordvideocontainertwitch {
+  margin-top: 2%;
+  gap: 2%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   background-color: var(--purple-ambient);
+  padding-top: 1%;
+  padding-bottom: 1%;
+  padding-left: 2%;
+  padding-right: 2%;
+  border-radius: 8px;
 }
 
 .recordvideocontaineryoutube {
+  margin-top: 2%;
+  gap: 2%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   background-color: var(--red-ambient);
+  padding-top: 1%;
+  padding-bottom: 1%;
+  padding-left: 2%;
+  padding-right: 2%;
+  border-radius: 8px;
 }
 
 .recordBtn {
