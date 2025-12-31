@@ -403,9 +403,10 @@ async function getRelatedGames(gameId, gameigdbId) {
 
     // fetching for franchise and similar games ids
     const response = await apicalypse(options)
-      .fields('franchise, similar_games')
+      .fields('franchise, similar_games, videos')
       .where(`id = ${gameigdbId};`)
       .request('/games');
+
 
     const gameData = response.data[0];
     console.log(response.data[0], 'relatedgames response');
@@ -413,6 +414,22 @@ async function getRelatedGames(gameId, gameigdbId) {
 
     const franchiseId = gameData.franchise || null; // id is franchise id for request
     const similarGameIds = gameData.similar_games || [];
+
+    // fetch for game videos
+    let gameVideos = null;
+    if (gameData.videos && gameData.videos.length > 0) {
+      gameVideos = [];
+      for (let i = 0; i < gameData.videos.length; i++) {
+        await delay(100);
+        const videoResp = await apicalypse(options)
+          .fields('video_id, name, game')
+          .where(`id = ${gameData.videos[i]};`)
+          .request('/game_videos');
+        if (videoResp.data[0]) {
+          gameVideos.push(videoResp.data[0]);
+        }
+      }
+    }
 
     // fetch for franchise games
     let franchiseGamesIds = null;
@@ -444,11 +461,11 @@ async function getRelatedGames(gameId, gameigdbId) {
         if (game) similarGames.push(game);
       }
     }
-    return { franchiseGames, similarGames };
+    return { franchiseGames, similarGames, gameVideos };
 
   } catch (error) {
     console.error('Error fetching games:', error);
-    return { franchiseGames: null, similarGames: null };
+    return { franchiseGames: null, similarGames: null, gameVideos: null};
   }
 }
 

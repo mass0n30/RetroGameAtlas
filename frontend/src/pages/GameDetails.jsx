@@ -270,11 +270,15 @@ if (loading) {
                         <div
                           style={{
                             color:
-                              game.rating >= 80
-                                ? "green"
-                                : game.rating < 60
-                                ? "red"
-                                : undefined
+                            (game.rating >= 80 && gameDetails.totalRatingCount > 100)
+                              ? "limegreen"
+                              : (game.rating >= 70 && gameDetails.totalRatingCount > 50)
+                              ? "green"
+                              : (game.rating >= 60 && gameDetails.totalRatingCount > 30)
+                              ? "goldenrod"
+                              : (game.rating < 60 && game.totalRatingCount > 20)
+                              ? "red"
+                              : undefined,
                           }}
                         >
                           Rated {game.rating}%
@@ -342,7 +346,7 @@ if (loading) {
                 <div 
                   className={styles.summarytxt}
                   style={{
-                    maxHeight: isExpandedAlt ? '1000px' : '9.5rem',
+                    maxHeight: isExpandedAlt ? '1000px' : '6.5rem',
                     transition: 'max-height 0.5s ease-in-out',
                     overflow: 'hidden'
                   }}

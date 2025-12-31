@@ -143,8 +143,17 @@
   border-top-left-radius: 0px;
   border-top-right-radius: 0px;
   padding: 4%;
+  }
 }
+
+.videosFlexContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  overflow-x: auto;
+  padding-bottom: 1rem;
 }
+
 
 
 .savecontainer {
@@ -182,7 +191,7 @@
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: (10, 1fr);
-  border-bottom: solid 2px var(--color-border);
+  border: solid 2px var(--color-surface);
   background-color: var(--color-background);
 }
 
@@ -507,7 +516,6 @@
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
   padding-top: 2%;
-  padding-bottom: 2%;
   padding: 4%;
   border-bottom: solid 2px var(--color-surface);
   border-top: solid 2px var(--color-surface);
@@ -609,7 +617,7 @@
   font-size: 2rem;
   cursor: pointer;
   padding: 2px;
-
+  z-index: 2;
   user-select: none;
   opacity: 80%;
   transition: opacity 0.2s ease;
@@ -651,12 +659,14 @@
   align-items: center;
 }
 
+
 .recorditem {
   background-color: var(--color-background);
   margin-left: 0%;
   margin-right: 0%;
   margin-top: 0%;
-  padding-top: 4%;
+  padding-top: 5%;
+  padding-bottom: 10%;
   border-radius: 8px;
   border: solid 2px var(--color-surface);
 }
@@ -738,22 +748,39 @@ h3 {
   font-weight: 700;
 }
 
-.recordvideocontainer {
+.videoname {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.recordvideocontainer, .recordvideocontainertwitch, .recordvideocontaineryoutube {
   margin-top: 2%;
   gap: 2%;
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: var(--blue-ambient);
+  padding-top: 1%;
+  padding-bottom: 1%;
+  padding-left: 2%;
+  padding-right: 2%;
+  border-radius: 8px;
+}
+
+.recordvideocontainertwitch {
+  background-color: var(--purple-ambient);
+}
+
+.recordvideocontaineryoutube {
+  background-color: var(--red-ambient);
 }
 
 .recordBtn {
   background-color: var(--purple-ambient);
   color: var(--color-text);
   border: solid 2px var(--color-background-light);
-}
-
-.recordlink {
-  margin-bottom: 5%;
 }
 
 .recordBtn:hover {

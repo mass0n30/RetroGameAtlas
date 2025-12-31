@@ -2,21 +2,32 @@ import { useState } from 'react';
 import { Play } from 'lucide-react';
 import styles from '../styles/components/details.module.css';
 
-export default function VideoEmbed({ url, title }) {
+export default function VideoEmbed({ url, title, urlId }) {
   const [clicked, setClicked] = useState(false);
 
-  if (!url) return null;
+  if (!url && !urlId) return null;
 
   // Detect platform
-  const isYouTube = /youtu\.?be/.test(url);
-  const isTwitch = /twitch\.tv/.test(url);
+  const isYouTube = Boolean(urlId) || (url && url.includes('youtube.com'));
+  const isTwitch = url && url.includes('twitch.tv');
 
-  // Extract IDs
-  const videoId = isYouTube
-    ? url.match(/(?:youtube\.com\/(?:.*v=|embed\/)|youtu\.be\/|youtube\.com\/shorts\/)([^?&"'>]+)/)?.[1]
-    : isTwitch
-    ? url.match(/videos\/(\d+)/)?.[1] || url.match(/twitch\.tv\/[^/]+/)?.[0] // optional fallback
-    : null;
+  let videoId = null;
+
+  if (isYouTube) {
+    // urlId is the YouTube VIDEO ID (e.g. "uUKZrH6R8oc")
+    if (urlId) {
+      videoId = String(urlId).trim();
+    } else {
+      // Standard YouTube watch URL: https://www.youtube.com/watch?v=VIDEO_ID
+      try {
+        videoId = new URL(url).searchParams.get('v');
+      } catch (e) {
+        videoId = null;
+      }
+    }
+  } else if (isTwitch) {
+    videoId = url.match(/videos\/(\d+)/)?.[1] || null;
+  }
 
   if (!videoId) return null;
 
@@ -41,6 +52,7 @@ export default function VideoEmbed({ url, title }) {
               src={thumbnail}
               loading="lazy"
               style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+              alt={title || 'YouTube video thumbnail'}
             />
             <div
               style={{
@@ -49,16 +61,17 @@ export default function VideoEmbed({ url, title }) {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                background: '#ffffff49'
+                background: '#ffffff49',
               }}
             >
               <div className={styles.watchonContainer}>
-                <Play size={50} fill='#F03A47' />
-                <img src='/logo/youtubeLogo.svg' style={{ width: '10rem', height: 'auto' }}/>
+                <Play size={50} fill="#F03A47" stroke='#F03A47' />
+                <img src="/logo/youtubeLogo.svg" style={{ width: '10rem', height: 'auto' }} />
               </div>
             </div>
           </>
         )}
+
         {isTwitch && (
           <div
             style={{
@@ -70,13 +83,13 @@ export default function VideoEmbed({ url, title }) {
               justifyContent: 'center',
               color: '#ddd8e2ff',
               fontSize: '1.2rem',
-              fontWeight: '700'
+              fontWeight: '700',
             }}
           >
-              <div className={styles.watchonContainer}>
-                <Play size={50} fill='#646cff'/>
-                <img  src='/logo/twitchLogo.svg' style={{ width: '10rem', height: 'auto' }}/>
-              </div>
+            <div className={styles.watchonContainer}>
+              <Play size={50} fill="#646cff" stroke='#646cff' />
+              <img src="/logo/twitchLogo.svg" style={{ width: '10rem', height: 'auto' }} />
+            </div>
           </div>
         )}
       </div>
@@ -90,12 +103,13 @@ export default function VideoEmbed({ url, title }) {
           width="100%"
           height="100%"
           src={`https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1`}
-          title={title}
+          title={title || 'YouTube video'}
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen
-          style={{ borderRadius: '12px' }}
+          style={{ borderRadius: '12px', border: 'none' }}
         />
       )}
+
       {isTwitch && (
         <iframe
           src={`https://player.twitch.tv/?video=${videoId}&parent=${window.location.hostname}&autoplay=true`}
@@ -103,9 +117,10 @@ export default function VideoEmbed({ url, title }) {
           width="100%"
           allowFullScreen
           style={{ borderRadius: '12px', border: 'none' }}
-          title={title}
+          title={title || 'Twitch video'}
         />
       )}
     </div>
   );
 }
+
