@@ -51,6 +51,11 @@ const { id: gameId, igdbId: gameigdbId, name: gameName, originalPlatform, platfo
       navigate(`/home/details/${id}`, {behavior: "smooth"} );
    }
 
+  const isYouTube =
+  recordData?.videoLink?.includes("youtube.com") ||
+  recordData?.videoLink?.includes("youtu.be");
+
+
 
 if (loading) {
   return( 
@@ -93,20 +98,20 @@ if (loading) {
                   <Award fill='gold' color='gold' className={styles.icons}/>
                 </div>
                 <h3>
-                  {recordData.recordName}
+                  {recordData?.recordName}
                 </h3>
             </div>
               {recordData.username && (
                 <div className={styles.recordusername}>
-                  <span>Speedrunner - </span><div>{recordData.username} </div>
+                  <span>Speedrunner - </span><div>{recordData?.username} </div>
                 </div>
               )}
             <div className={styles.recordtime}>
-              <div className={styles.recordsubtxt}>{recordData.recordName} Completed in</div>
+              <div className={styles.recordsubtxt}>{recordData?.recordName} Completed in</div>
               Record Time - {recordData.timeConverted}
             </div>
           </div>
-          <div className={recordData.videoLink.includes("youtu", 7) ? styles.recordvideocontaineryoutube : styles.recordvideocontainertwitch}> 
+          <div className={isYouTube ? styles.recordvideocontaineryoutube : styles.recordvideocontainertwitch}> 
             <YouTubeEmbed url={recordData.videoLink} title={recordData.recordName}/>
             <div className={styles.recordlink}>
               <a href={recordData?.runLink}
@@ -138,16 +143,16 @@ if (loading) {
             </div>
               {recordDataAlt.username && (
                 <div className={styles.recordusername}>
-                  <span>Speedrunner - </span><div>{recordDataAlt.username} </div>
+                  <span>Speedrunner - </span><div>{recordDataAlt?.username} </div>
                 </div>
               )}
             <div className={styles.recordtime}>
-              <div className={styles.recordsubtxt}>{recordData.recordName} Completed in</div>
+              <div className={styles.recordsubtxt}>{recordData?.recordName} Completed in</div>
               Record Time - {recordDataAlt.timeConverted}
             </div>
           </div>
 
-          <div className={recordDataAlt.videoLink.includes("youtu", 7) ? styles.recordvideocontaineryoutube : styles.recordvideocontainertwitch}> 
+          <div className={isYouTube ? styles.recordvideocontaineryoutube : styles.recordvideocontainertwitch}> 
             <YouTubeEmbed
               url={recordDataAlt.videoLink}
               title={recordDataAlt.recordName}
@@ -157,7 +162,7 @@ if (loading) {
             <a href={recordDataAlt?.runLink}
               target="_blank"
               rel="noopener noreferrer">
-              <button className={styles.recordBtn}> View <b>{gameName} {recordDataAlt.recordName} Speedrun Leaderboards</b> 
+              <button className={styles.recordBtn}> View <b>{gameName} {recordDataAlt?.recordName} Speedrun Leaderboards</b> 
                 <ExternalLink />
               </button>
               </a>

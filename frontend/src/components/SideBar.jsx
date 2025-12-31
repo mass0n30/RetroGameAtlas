@@ -13,7 +13,6 @@ export default function SideBar({ categoryData, orderData, orderDirection, setOr
     function toggleItem(id, category) {
 
       setMount(true);
-      setDiscover(false);
 
       if (category == "Consoles") {
         const newSet = new Set(platform);

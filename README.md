@@ -69,22 +69,32 @@ https://css-tricks.com/css-only-carousel/  Sliding carosoel effect
   - Typography improvements, especially on gameDetails page (font for paragraphs, headers, giving icons more stroke width over text labels? etc)
   - put social links in a popout from clicking a share Icon on gamedetail page ( next to heart icon )
   - !Add Related Games Section in Game Details
+  - Prisma studio filter to clean up filler games, may need raw sql for screenshots 
+
 
 
 TODO:
+
+  - ! Add guest account option (null out SavedGames or like or completing games (Give option to sign up))
 
   -! clear filter is on indication, adding a toggle module displaying what filters are on?
       (upon a search user should know filters are on clearly, so can reset if they are on and not correct results)
   - double check over loading and mounting upon navigation in details, add minimal fade ins for game details
 
+  -! set Database prod URL in command line and set NES/SNES games from Wii games Original platforms by years in Prisma studio
+
+  - Align and adjust font in ebay containers, and in buttons adjust margins (ebay and speedrun links)
+  - Modal all images??
+  - 
+
   Mobile: 
     - outside of design responsiveness for mobile viewports, android chrome, ect. browsers have stricter security, adding credentials to session headers needed. 
     Fetch more doesn't seem to work in mobile
 
-  - Prisma studio filter to clean up filler games, may need raw sql for screenshots 
   - Improve search query with fetching for games taking space out of query if no results, ect
   - Make a component for alert messages (like for saved games if no saved games, or no game results upon search, ect.)
   - Add animation and sound? to heart selection
+  - !! Fix being able to keep filters and discover 
 
   - adding details like an icon next to 'no more results' at bottom of fetches, ect. (broken controller icon on error page, ect)
   - fix slight space side bar between scroll wheel and rows
@@ -92,8 +102,8 @@ TODO:
   - Re look into design principles for UI and consider mobile React wrapper? before further design changes
   - market game value from PriceCharting API (adding a extra API will add an additional fetch to game details, further slowing down load, need work around or fast loading, *OR get a median price from ebay purchased listings?)
   - adding additional user features(completed games list, watch list)?
+      - User can save ebay listings? Upon retrieving saved can display status (Sold, Bids, Ect.?)
   - maybe add tag group components in main body, for better user exp?
-  - maybe replace my custom Form with more cohesive Form Component Library
 
   *Big feauture idea: Index loads in on landing page, it is user sorta dashboard greeting user, showing most recent comments from users on any given game page, and a selection to begin finding games, continuing where they left off or going to saved games. (a bit grandiose, but perhaps a bit of a commenting system and engagement for users). 
 
