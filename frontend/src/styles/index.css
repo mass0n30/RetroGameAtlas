@@ -68,6 +68,7 @@ body {
 main {
   width: 100%;
   display: flex;
+  position: relative;
 }
 
 li {
@@ -82,20 +83,50 @@ li {
   align-items: center;
 }
 
+
 .funnelContainer {
-  position: fixed;
-  top: 100%;
-  right: 80%;
-  padding: 0.5rem;
-  border-radius: 8px;
-  z-index: 2;
-  color: var(--color-primary-glow);
+  position: absolute;
+  top: 0.2rem;
+  right: 2%;       
+  z-index: 100;
+  width: 35px;
+  align-self: flex-start;
 }
 
+
 .funnelIcon {
-  width: var(--icon-size-desktop);
-  height: var(--icon-size-desktop);
+  width: 100%;
+  height: auto;
+  display: block;
+  color: var(--color-text-muted);
+  opacity: 70%;
 }
+
+.funnelIconActive {
+  width: 100%;
+  height: auto;
+  display: block;
+  color: var(--purple-accent);
+  opacity: 70%;
+}
+
+.funnelButton {
+  width: 35px;
+  height: 35px;
+
+  background-image: url("/icons/funnel-plus.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  background-color: transparent;
+  border: none;
+}
+.funnelButton:hover {
+  cursor: pointer;
+  background-image: url("/icons/funnelx.svg");
+}
+
+
 
 .alertContainer {
   z-index: 1;
@@ -108,13 +139,9 @@ li {
 }
 
 .infinite-scroll-component {
+  position: relative;
   flex: 1;
   overflow-y: auto;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap; 
-  justify-content: center; 
-  align-items: center;
   padding: 1rem;
   background-color: var(--color-background-overlay);
 }

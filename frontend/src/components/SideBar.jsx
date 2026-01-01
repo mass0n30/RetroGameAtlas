@@ -4,7 +4,7 @@ import styles from '../styles/components/sidebar.module.css';
 import { resetFilters } from '../helpers';
 import { useEffect } from 'react';
 import  SectionTreeItem  from './SectionTreeItem';
-import {Star, CalendarDays, ArrowUpWideNarrow, ArrowDownWideNarrow, Joystick, LibraryBig, Handshake, Loader , Flame, Pointer, Heart, HeartMinus, HeartPlus, Sparkles, Dices, Gift, BookImage, Image} from 'lucide-react';
+import {Star, CalendarDays, ArrowUpWideNarrow, ArrowDownWideNarrow, Joystick, LibraryBig, Handshake, Funnel, FunnelX, FunnelIcon , Flame, Pointer, Heart, HeartMinus, HeartPlus, Sparkles, Dices, Gift, BookImage, Image, FunnelPlus} from 'lucide-react';
 
 
  // eslint-disable-next-line react/prop-types
@@ -65,9 +65,22 @@ export default function SideBar({ categoryData, orderData, orderDirection, setOr
     screenshotMode ? setScreenshotMode(false) : setScreenshotMode(true);
   }
 
+  const filterStatus =
+  (genre?.size ?? 0) > 0 ||
+  (platform?.size ?? 0) > 0 ||
+  (developer?.size ?? 0) > 0;
+
   return (
     <div className={[styles.sidebarcontainer, 'glass'].join(' ')}>
       <div className={styles.discovermodecontainer}>
+        <div className='funnelContainer'>
+          { filterStatus ? (
+            <div className='funnelButton' onClick={() => resetFilters(setPlatform, setDeveloper, setGenre, setYear, setOrder, setSearch, undefined, setMount, setOpen, setDiscover)}>
+            </div>
+          ) : (
+            <Funnel className='funnelIcon'/>
+          )} 
+        </div>
         <div className={styles.discovergamesbtn}>
           <Button onClick={() => handleDiscoverGames()} style={discover && { backgroundColor: 'var(--purple-accent)', color: '#ffffffff' }}>
             {discover ?

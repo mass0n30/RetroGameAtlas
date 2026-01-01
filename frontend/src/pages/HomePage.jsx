@@ -59,10 +59,8 @@ function HomePage() {
       scrollThreshold={"20px"}
       scrollableTarget={'gamesScrollContainer'}
       >
+
       <section>
-      <div className='funnelContainer'>
-        <Funnel className='funnelIcon'/>
-      </div>
       { screenshotMode ? (
     
       games.map((game, index) => (

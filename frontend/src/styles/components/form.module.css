@@ -109,12 +109,18 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  font-weight: 400;
-  opacity: 0.7;
+
 }
 
 .guestContainer:hover {
   cursor: pointer;
+}
+
+.guestBtn {
+  background-color: transparent;
+  color: white;
+  font-weight: 400;
+  opacity: 0.7;
 }
 
 .form_row {

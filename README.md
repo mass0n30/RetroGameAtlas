@@ -70,16 +70,13 @@ https://css-tricks.com/css-only-carousel/  Sliding carosoel effect
   - put social links in a popout from clicking a share Icon on gamedetail page ( next to heart icon )
   - !Add Related Games Section in Game Details
   - Prisma studio filter to clean up filler games, may need raw sql for screenshots 
-
+  - Add guest account option (null out SavedGames or like or completing games (Give option to sign up))
+  - double check over loading and mounting upon navigation in details, add minimal fade ins for game details
 
 
 TODO:
-
-  - ! Add guest account option (null out SavedGames or like or completing games (Give option to sign up))
-
   -! clear filter is on indication, adding a toggle module displaying what filters are on?
       (upon a search user should know filters are on clearly, so can reset if they are on and not correct results)
-  - double check over loading and mounting upon navigation in details, add minimal fade ins for game details
 
   -! set Database prod URL in command line and set NES/SNES games from Wii games Original platforms by years in Prisma studio
 
@@ -133,9 +130,7 @@ Ebay:
 
 FRONTEND:
 
-Pseudo for Sidebar category:
-  - query dependency re mounts for data
-  - 
+
 Feature I want to build is having a random screenshot generation on a page with 
 endless scrolling. Clicking on a random given screenshot will take you to the game details page, this gives a nostalgic yet modern discovery feeling to it. Could maybe do this for all sections for the app, or pagination. Perhaps I should look at the library
 first.

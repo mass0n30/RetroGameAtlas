@@ -139,12 +139,12 @@ function Login() {
             </Link>
           </div>
           <div className={styles.form_row}>
-            <div className={styles.guestContainer}>
-              <button className={styles.guestBtn} onClick={handleGuestSubmit}>
-                <div>Continue as Guest</div>
-                <CircleUserRound/>
-              </button>
-            </div>
+            <button className={styles.guestBtn} onClick={handleGuestSubmit}>
+              <div className={styles.guestContainer}>
+                  <div>Continue as Guest</div>
+                  <CircleUserRound/>
+              </div>
+           </button>
           </div>
       </div>
     </div>
