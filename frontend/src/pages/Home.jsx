@@ -28,9 +28,8 @@ function Home() {
   // games state
   const [games, setGames] = useState([]);
   const [gameId, setGameId] = useState(null);
-
+  const [index, setIndex] = useState(0);
   // temporary
-  const offset = 0;
   const limit = 100;
 
   // loading state settings
@@ -104,9 +103,11 @@ function Home() {
     SetLoading(true);
     // scrolls to top page upon category changes
     axios
-      .get(`${import.meta.env.VITE_API_URL}/home/games?${query}&order=${order.data}&dir=${order.order}&offset=${0}&limit=${limit}&discover=${discover}`,{
+      .get(`${import.meta.env.VITE_API_URL}/home/games?${query}&order=${order.data}&dir=${order.order}&offset=${index}&limit=${limit}&discover=${discover}`,{
       })
-      .then((res) => setGames(res.data.games))
+      .then(res => {
+        setGames(res.data.games);
+      })
       .catch((err) => console.log(err));
 
      window.scrollTo({top: 0});
@@ -183,10 +184,11 @@ function Home() {
           open={open}
           setOpen={setOpen}
           setMount={setMount}
+          setIndex={setIndex}
         />
       </aside>
       <Outlet context={{query, limit, loading, success, SetLoading, SetSuccess, discover, setDiscover, screenshotMode, setScreenshotMode, mount, setMount, open, setOpen, 
-        user, userProfile, SetUserProfile, gameId, setGameId, games, setCategoryData, orderData: order.data, orderDirection: order.order, setOrder, setGames, search, setSearch, genre, platform, developer, minyear: year.min, maxyear: year.max, setYear }} />
+        index, setIndex, user, userProfile, SetUserProfile, gameId, setGameId, games, setCategoryData, orderData: order.data, orderDirection: order.order, setOrder, setGames, search, setSearch, genre, platform, developer, minyear: year.min, maxyear: year.max, setYear }} />
     </main>
     </>
   )

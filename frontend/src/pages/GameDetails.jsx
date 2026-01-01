@@ -270,13 +270,13 @@ if (loading) {
                         <div
                           style={{
                             color:
-                            (game.rating >= 80 && gameDetails.totalRatingCount > 100)
+                            (game.rating >= 80 && gameDetails.totalRatingCount > 50)
                               ? "limegreen"
-                              : (game.rating >= 70 && gameDetails.totalRatingCount > 50)
+                              : (game.rating >= 75 && gameDetails.totalRatingCount > 10)
                               ? "green"
-                              : (game.rating >= 60 && gameDetails.totalRatingCount > 30)
+                              : (game.rating >= 60 && gameDetails.totalRatingCount > 10)
                               ? "goldenrod"
-                              : (game.rating < 60 && game.totalRatingCount > 20)
+                              : (game.rating < 60 && game.totalRatingCount > 2)
                               ? "red"
                               : undefined,
                           }}

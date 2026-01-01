@@ -8,11 +8,12 @@ import {Star, CalendarDays, ArrowUpWideNarrow, ArrowDownWideNarrow, Joystick, Li
 
 
  // eslint-disable-next-line react/prop-types
-export default function SideBar({ categoryData, orderData, orderDirection, setOrder, setPlatform, setGenre, setYear, setDeveloper, platform, genre, developer, minyear, maxyear, setSearch, discover, setDiscover, screenshotMode, setScreenshotMode, SetLoading, open, setOpen, setMount}) {
+export default function SideBar({ categoryData, orderData, orderDirection, setOrder, setPlatform, setGenre, setYear, setDeveloper, platform, genre, developer, minyear, maxyear, setSearch, discover, setDiscover, screenshotMode, setScreenshotMode, SetLoading, open, setOpen, setMount, setIndex}) {
 
     function toggleItem(id, category) {
 
       setMount(true);
+      setIndex(0);
 
       if (category == "Consoles") {
         const newSet = new Set(platform);
@@ -35,6 +36,7 @@ export default function SideBar({ categoryData, orderData, orderDirection, setOr
   const handleToggleOrder = (dataType) => {
     setMount(true);
     setDiscover(false);
+    setIndex(0);
     if (orderData === dataType) {
       setOrder(prevOrder => ({
         data: dataType,
@@ -54,6 +56,7 @@ export default function SideBar({ categoryData, orderData, orderDirection, setOr
     setMount(true);
     setSearch("");
     setScreenshotMode(true);
+    setIndex(0);
     discover ? setDiscover(false) : setDiscover(true);
   };
 

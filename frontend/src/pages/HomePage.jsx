@@ -14,11 +14,10 @@ import { Funnel } from 'lucide-react';
 
 function HomePage() {
   const {user, query, loading, limit, setGameId, games, orderData, orderDirection, discover, setDiscover, screenshotMode, setScreenshotMode, open, setOpen,
-  setGames, setCategoryData, search, setSearch, genre, platform, developer, minyear, maxyear, mount, setMount} = useOutletContext();
+  setGames, index, setIndex, mount, setMount} = useOutletContext();
 
   // InfiniteScroll state var
   const [hasMore, setHasMore] = useState(true);
-  const [index, setIndex] = useState(0);
   
   const stableId = useId();
 
