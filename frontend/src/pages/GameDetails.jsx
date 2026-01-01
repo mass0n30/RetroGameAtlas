@@ -6,8 +6,8 @@ import normalizeGameData from '../helpers';
 import CustomSpinner from '../components/Spinner';
 import {CircleCheckBig,ChevronLeft, ChevronRight, ChevronUp, ChevronDown, Heart, ArrowBigLeftDash, ArrowBigRightDash, DollarSign, Percent, ShoppingCart} from 'lucide-react';
 import SocialPopup from '../components/reactMUI/Popup';
-import SnackBarAlert from '../components/reactMUI/Alerts';
 import GameDetailsSkeleton from '../components/Skeleton';
+import SnackBarAlert from '../components/reactMUI/Alerts';
 
 const GameDataSection = lazy(() => import('../components/GameDetailsData'));
 
@@ -25,12 +25,13 @@ const [saved, setSaved] = useState(false);
 const [completed, setCompleted] = useState(false);
 const [alertSave, setAlertSave] = useState(false);
 const [alertComplete, setAlertComplete] = useState(false);
+const [alertGuest, setAlertGuest] = useState(false);
 const [currentIndex, setCurrentIndex] = useState(0);
 const [isExpanded, setIsExpanded] = useState(false);
 const [isExpandedAlt, setIsExpandedAlt] = useState(false);
 
 
-const {user, userProfile, SetUserProfile} = useOutletContext();
+const {user, guest, userProfile, SetUserProfile} = useOutletContext();
 const token = localStorage.getItem('usertoken');
 
 
@@ -66,19 +67,9 @@ useEffect(() => {
       res.data.game.platformLogo ? setPlatformLogo(res.data.game.platformLogo) : null;
       setPlatformName(res.data.game.platformName);
 
-      // color fav heart if in savedGames
-      userProfile?.savedGames?.forEach((game) => {
-        if (res.data.game.gameDetails.igdbId == game.igdbId) {
-          setSaved(true);
-        }
-      });
-
-      // color fav heart if in savedGames
-      userProfile?.completedGames?.forEach((game) => {
-        if (res.data.game.gameDetails.igdbId == game.igdbId) {
-          setCompleted(true);
-        }
-      });
+      if (!guest) {
+        checkForSavedGames(res.data.game.gameDetails);
+      }
 
 
     } catch (err) {
@@ -89,6 +80,12 @@ useEffect(() => {
 }, [gameId]);
 
 const handleUpdateGame = async (type) => {
+
+  if (guest) {
+    setAlertGuest(true);
+    return;
+  }
+
   try {
     const response = await fetch(`${import.meta.env.VITE_API_URL}/home/details/${gameId}`, {
       method: 'POST',
@@ -127,6 +124,23 @@ const handleUpdateGame = async (type) => {
 
 }
 
+
+function checkForSavedGames(gameDetails) {
+    // color fav heart if in savedGames
+    userProfile?.savedGames?.forEach((game) => {
+      if (gameDetails.igdbId == game.igdbId) {
+        setSaved(true);
+      }
+    });
+
+    // color if in savedGames
+    userProfile?.completedGames?.forEach((game) => {
+      if (gameDetails.igdbId == game.igdbId) {
+        setCompleted(true);
+      }
+    });
+};
+
 // Admin Route
 const handleDeleteGame = async () => {
   try {
@@ -153,6 +167,8 @@ if (loading) {
    <>
   <SnackBarAlert open={alertSave} setOpen={setAlertSave} status={saved} msg={saved ? 'Saved to Games' : 'Removed from Games'}/>
   <SnackBarAlert open={alertComplete} setOpen={setAlertComplete} status={completed} msg={completed ? 'Saved to Completed Games' : 'Removed from Completed Games'}/>
+  <SnackBarAlert open={alertGuest} setOpen={setAlertGuest} status={guest} msg={'Signup for User Features'}/>
+
 
    <div className={styles.outercontainer}>
       <div className={styles.gamedetailsBtnContainer}>
@@ -363,7 +379,7 @@ if (loading) {
        <GameDataSection game={gameDetails} setLoading={setLoading} />
 			</Suspense>
 
-        { user.admin ? (
+        { user?.admin ? (
           <div className={styles.admindeletecontainer}>
             <button className={styles.deletebutton} onClick={async () => handleDeleteGame()}>Delete Game</button>
           </div>

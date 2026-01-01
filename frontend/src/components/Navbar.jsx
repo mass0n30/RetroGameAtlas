@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import styles from '../styles/components/nav.module.css';
 import { useDebounce } from '../helpers';
 import { Link, useNavigate } from 'react-router-dom';
-import NavMenu from './reactMUI/Menu';
+import  NavMenu  from './reactMUI/Menu';
 import  {House} from 'lucide-react';
 import { ArrowLeft, Ellipsis, X, PanelsTopLeft } from 'lucide-react';
 import { resetFilters } from '../helpers';
@@ -11,7 +11,7 @@ import { resetFilters } from '../helpers';
 // eslint-disable-next-line react/prop-types
 export default function Navbar({ toggle, setToggle, setSearch, search, discover, setDiscover, open, setOpen, setMount
   // eslint-disable-next-line react/prop-types
-  ,setPlatform, setDeveloper, setGenre, setYear, setOrder, setScreenshotMode
+  ,setPlatform, setDeveloper, setGenre, setYear, setOrder, setScreenshotMode, guest
 }) {
 
   const handleToggle = () => {
@@ -43,6 +43,7 @@ export default function Navbar({ toggle, setToggle, setSearch, search, discover,
 
 
   return (
+    <>
     <nav className={styles.navbar}>
       <div className={styles.navLeftContainer}>
           <button className={styles.toggleBtn} onClick={() => handleToggle()}>
@@ -99,11 +100,12 @@ export default function Navbar({ toggle, setToggle, setSearch, search, discover,
           </button>
         </div>
           <div className={styles.navmenucontainer}>
-            <NavMenu setMount={setMount}></NavMenu>
+            <NavMenu setMount={setMount} guest={guest}></NavMenu>
           </div>
       </div>
 
     </nav>
+  </>
   );
 }
 

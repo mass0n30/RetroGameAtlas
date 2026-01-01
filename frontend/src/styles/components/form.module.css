@@ -25,7 +25,7 @@
 }
 
 .logo {
-  width: 30rem;
+  width: 23rem;
   filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.589));
 }
 
@@ -33,7 +33,7 @@
   font-size: 1.5rem;
   font-weight: 600;
   color: var(--color-background-light);
-  filter: brightness(200%);
+  filter: brightness(250%);
   text-align: center;
 }
 
@@ -41,7 +41,7 @@
   font-size: 1rem;
   font-weight: 500;
   color: var(--color-background-light);
-  filter: brightness(180%);
+  filter: brightness(230%);
   text-align: center;
   margin: 0.5rem;
 }
@@ -102,6 +102,19 @@
 .signupForm {
   margin-bottom: 10px;
   height: auto;
+}
+
+.guestContainer {
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 400;
+  opacity: 0.7;
+}
+
+.guestContainer:hover {
+  cursor: pointer;
 }
 
 .form_row {

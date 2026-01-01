@@ -1,6 +1,7 @@
 
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from "react-router-dom";
+import { CircleUserRound } from "lucide-react";
 import styles from '../styles/components/form.module.css';
 
 
@@ -59,6 +60,29 @@ function Login() {
     })
   };
 
+  const handleGuestSubmit = async () => {
+    await fetch(`${import.meta.env.VITE_API_URL}/home/guest`, {
+        mode: 'cors',
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    })
+    .then(async (response) => {
+
+      const data = await response.json();
+    
+      if (data.error) {
+        setError(data.error);
+        return;
+      }
+
+      if (!data.error) {
+        navigate("/home");
+      }
+    })
+  }
+
   return (
     <>
     <div className={styles.loginContainer}>
@@ -113,6 +137,14 @@ function Login() {
             <Link to="/sign-up">
               <button className={styles.form_button_signup}>Sign Up!</button>
             </Link>
+          </div>
+          <div className={styles.form_row}>
+            <div className={styles.guestContainer}>
+              <button className={styles.guestBtn} onClick={handleGuestSubmit}>
+                <div>Continue as Guest</div>
+                <CircleUserRound/>
+              </button>
+            </div>
           </div>
       </div>
     </div>

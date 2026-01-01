@@ -15,7 +15,7 @@
   --color-white-alt: #E8F1F2;
   --color-text-active: #a7e9ff; /* sidebar category selected text */
 
-  --purple-accent: #612cffcb;
+  --purple-accent: #612cffd5;
   --purple-accent-dark: #321686;
   --orange-fire: #fd7310da; /* accent orange */
 
@@ -24,7 +24,7 @@
   --red-ambient:    rgba(240, 58, 71, 0.137);
   --blue-light-ambient: #1992cf10;
 
-  --color-primary: #3b82f6;             /* main neon */
+  --color-primary: rgb(59, 130, 246);             /* main neon */
   --color-primary-hover: #60a5fa;       /* softer neon */
   --color-primary-glow: #00aaff;        /* bright glow */
   --color-primary-glow-translucent: #00aaffa8;   /* dark glow */

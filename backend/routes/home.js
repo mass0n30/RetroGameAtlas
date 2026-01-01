@@ -29,6 +29,17 @@ homeRouter.get('/', passport.authenticate('jwt', { session: false }), async (req
   });
 });
 
+homeRouter.get('/guest', async (req, res, next) => {
+
+  const categoryData = await getAllCategoryData(req, res, next);
+  const guest = true;
+
+  res.json({
+    categoryData:categoryData,
+    guest:guest
+  });
+});
+
 homeRouter.use('/games', gamesRouter);
 
 homeRouter.use('/details', gameDetailsRouter);

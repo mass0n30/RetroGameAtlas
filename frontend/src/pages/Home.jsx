@@ -12,6 +12,7 @@ function Home() {
 
   // initial mount state data
   const [user, SetUser] = useState(null);
+  const [guest, SetGuestMode] = useState(false);
   const [userProfile, SetUserProfile] = useState(null);
   const [categoryData, setCategoryData] = useState();
   const [open, setOpen] = useState(new Set());
@@ -73,17 +74,56 @@ function Home() {
         }
 
         const result = await response.json();
-        
-        SetUser(result.user); // (only non sensitive user data from backend)
+
+
+        if (!result.guest) {
+          SetUser(result.user); // (only non sensitive user data from backend)
+          SetUserProfile(result.userProfile);
+        } 
+
         setCategoryData(result.categoryData);
-        SetUserProfile(result.userProfile);
+
         // reset boolean fetch after updated posts fetch
       } catch (error) {
         setError(error);
       } 
     };
-    fetchUser();
+
+    // initiate GET home fetch if there's a token else continue guest mode
+     if (token) {
+      fetchUser();
+     } else {
+      fetchGuestMode();
+     }
   }, [token]); 
+
+
+  async function fetchGuestMode() {
+      try {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/home/guest`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json', 
+          },
+        });
+        if (!response.ok) {
+          navigate('/');
+
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const result = await response.json();
+
+        SetGuestMode(true);
+        setCategoryData(result.categoryData);
+
+        // reset boolean fetch after updated posts fetch
+      } catch (error) {
+        setError(error);
+      } 
+    };
+
+  
 
   // making URL for any games query
   const params = new URLSearchParams();
@@ -118,10 +158,10 @@ function Home() {
 
 
   if (error) {
-    return <div>Error: {error.message}</div>;
+    return (<div>Error: {error.message}</div>);
   }
   
-  if ( !user || !categoryData ) {
+  if ( !categoryData ) {
     return (
       <>
       <Navbar toggle={toggle} setToggle={setToggle} setSearch={setSearch} resetFilters={resetFilters} setDiscover={setDiscover} setOpen={setOpen} setMount={setMount}
@@ -151,6 +191,8 @@ function Home() {
         setYear={setYear}
         setOrder={setOrder}
         setScreenshotMode={setScreenshotMode}
+        guest={guest}
+        SetGuestMode={SetGuestMode}
       />
     <main>
     <aside
@@ -188,7 +230,7 @@ function Home() {
         />
       </aside>
       <Outlet context={{query, limit, loading, success, SetLoading, SetSuccess, discover, setDiscover, screenshotMode, setScreenshotMode, mount, setMount, open, setOpen, 
-        index, setIndex, user, userProfile, SetUserProfile, gameId, setGameId, games, setCategoryData, orderData: order.data, orderDirection: order.order, setOrder, setGames, search, setSearch, genre, platform, developer, minyear: year.min, maxyear: year.max, setYear }} />
+        index, setIndex, guest, user, userProfile, SetUserProfile, gameId, setGameId, games, setCategoryData, orderData: order.data, orderDirection: order.order, setOrder, setGames, search, setSearch, genre, platform, developer, minyear: year.min, maxyear: year.max, setYear }} />
     </main>
     </>
   )

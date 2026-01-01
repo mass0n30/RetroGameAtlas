@@ -13,7 +13,7 @@ import { Funnel } from 'lucide-react';
 
 
 function HomePage() {
-  const {user, query, loading, limit, setGameId, games, orderData, orderDirection, discover, setDiscover, screenshotMode, setScreenshotMode, open, setOpen,
+  const {user, guest, query, loading, limit, setGameId, games, orderData, orderDirection, discover, setDiscover, screenshotMode, setScreenshotMode, open, setOpen,
   setGames, index, setIndex, mount, setMount} = useOutletContext();
 
   // InfiniteScroll state var
@@ -67,11 +67,11 @@ function HomePage() {
     
       games.map((game, index) => (
         <GameCardSS style={mount ? { animationDelay: `${index * 0.24}s` }: {}} key={`${stableId}-${index}`} index={index} randomScreenshot={game.randomScreenshot.url} mount={mount} setMount={setMount}
-        gameId={game.id} setGameId={setGameId} coverUrl={game.coverUrl} loading={loading} screenshots={game.screenshots} length={game.screenshots.length} user={user}/>
+        gameId={game.id} setGameId={setGameId} coverUrl={game.coverUrl} loading={loading} screenshots={game.screenshots} length={game.screenshots.length} user={user} guest={guest}/>
     ))) : (
       games.map((game, index) => (
         <GameCard style={mount ? { animationDelay: `${index * 0.24}s` }: {}} key={`${stableId}-${index}`} index={index} mount={mount} setMount={setMount}
-        gameId={game.id} setGameId={setGameId} coverUrl={game.coverUrl} loading={loading} user={user} />
+        gameId={game.id} setGameId={setGameId} coverUrl={game.coverUrl} loading={loading} user={user} guest={guest}/>
       ))
     )}
       </section>

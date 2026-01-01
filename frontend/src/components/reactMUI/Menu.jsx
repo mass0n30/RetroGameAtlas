@@ -1,16 +1,26 @@
 import { Menu } from '@base-ui-components/react/menu';
 import styles from '../../styles/components/menu.module.css';
 import { useNavigate, Outlet, useOutletContext } from 'react-router-dom';
+import { useState } from 'react';
 import { Ellipsis } from 'lucide-react';
+import SnackBarAlert from './Alerts';
+
 // eslint-disable-next-line react/prop-types
-export default function NavMenu({setMount}) {
+export default function NavMenu({setMount, guest}) {
+
+  const [alertGuest, SetAlertGuest] = useState(false);
 
   const navigate = useNavigate();
 
+
   //setting mount to keep loader cards upon nav back?
   function handleNavigate() {
-    navigate('/home/saved');
-    setMount(false);
+    if (guest) { SetAlertGuest(true) 
+
+    } else {
+      navigate('/home/saved');
+      setMount(false);
+    }
   };
 
   function handleSettingsNav() {
@@ -24,6 +34,8 @@ export default function NavMenu({setMount}) {
   };
 
   return (
+    <>
+    <SnackBarAlert open={alertGuest} setOpen={SetAlertGuest} status={guest} msg={'Signup for User Features'}/>
     <Menu.Root>
       <Menu.Trigger className={styles.Button}>
        <span className='mainIcons'><Ellipsis width={'80%'} size={'auto'}/></span> 
@@ -36,11 +48,16 @@ export default function NavMenu({setMount}) {
             <Menu.Separator className={styles.Separator} />
             <Menu.Item className={styles.Item}>Settings</Menu.Item>
             <Menu.Separator className={styles.Separator} />
-            <Menu.Item className={styles.Item} onClick={() => handleLogOut()}>Log Out</Menu.Item>
+            { guest ? (
+              <Menu.Item className={styles.Item} onClick={() => handleLogOut()}>Logout Guest</Menu.Item>
+            ) : (
+              <Menu.Item className={styles.Item} onClick={() => handleLogOut()}>Log Out</Menu.Item>
+            )}
           </Menu.Popup>
         </Menu.Positioner>
       </Menu.Portal>
     </Menu.Root>
+    </>
   );
 }
 
