@@ -223,7 +223,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "/home/massoncorlette/Desktop/Repos/RetroGamingStore/backend/generated/prisma",
+      "value": "/home/massoncorlette/Desktop/RetroGamingStore/backend/generated/prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -237,7 +237,7 @@ const config = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "/home/massoncorlette/Desktop/Repos/RetroGamingStore/backend/prisma/schema.prisma",
+    "sourceFilePath": "/home/massoncorlette/Desktop/RetroGamingStore/backend/prisma/schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
@@ -251,6 +251,7 @@ const config = {
     "db"
   ],
   "activeProvider": "postgresql",
+  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {

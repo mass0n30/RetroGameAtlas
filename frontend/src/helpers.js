@@ -56,9 +56,10 @@ function normalizeScreenshots(screenshots) {
 
 export function resetFilters(setPlatform, setDeveloper, 
   setGenre, setYear, setOrder, setSearch, setScreenshotMode, setMount, setOpen, setDiscover) {
-  setPlatform(new Set());
-  setDeveloper(new Set());
-  setGenre(new Set());
+  if (setPlatform) {setPlatform(new Set())};
+  if (setDeveloper) {setDeveloper(new Set());};
+  if (setGenre)   {setGenre(new Set())};
+
   setYear({ min: "1974", max: "2012"  });
   setOrder("");
   if (setSearch) {

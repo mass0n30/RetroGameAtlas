@@ -1,12 +1,93 @@
-Project Details
-PERN, REST, JWT Auth, Prisma, Seeding/Scripting, Object property mapping, 
+RetroGamingAtlas
+A full-stack game discovery and collection platform for exploring 25k+ titles with fast filtering, rich game detail pages, and user features and libraries (Saved / Completed).
+
+Github: https://github.com/mass0n30
+Live: https://retro-game-atlas.vercel.app/
+
+Add Project screenshots eventually: https://www.reddit.com/r/github/comments/15crgsq/how_do_i_add_images_into_my_readme_and_keep_them/
+
+### Discovery
+- Browse **25k+ games** with limitless filters (platform, genre, year range, developer, etc.)
+- Multiple browse modes (cover mode / screenshot mode)
+- Discovery mode with limitless filters and browse modes, enabling users to find new games
+- Search with fast query + sorting
+- Infinite scrolling with **state persistence** (filters + scroll position restored on back navigation)
+
+### Game Details
+- Rich detail page with embedded screenshots/videos
+- Related games navigation (deep navigation supported with back navigation history)
+- External integrations (twitch, ebay APIs) loaded asynchronously
+
+### Accounts & Libraries
+- Authentication with protected endpoints
+- Guest mode (browse freely; prompts users to sign up when attempting account-only actions)
+- Save games / mark completed
+- Shareable game pages
+
+
+
+## Tech Stack
+
+**Frontend**
+- React + Vite [Context / React Query / Loaders / etc.]
+- Vanilla CSS Modules / Inline styling
+- Luicide Iconography
+- MUI (where used)
+- Cross device media responsiveness
+
+**Backend**
+- Node.js + Express
+- PostgreSQL
+- Prisma
+
+**Integrations**
+Built using twitch IGDB API: https://www.igdb.com/api 
+- [IGDB] for game metadata  
+- [YouTube/Twitch/etc.] for media embeds
+- [eBay] for market listings  https://developer.ebay.com/api-docs
+- [Speedrun.com] for speedrun data https://github.com/speedruncomorg/api/blob/master/version1/README.md 
+
+---
+
+## Architecture Overview
+
+RetroGameAtlas is designed around a **fast core dataset** populated/stored and normalized in the local database, with richer data loaded on-demand.
+
+- The **Discover** experience is powered by lightweight API responses optimized for browsing.
+- The **Game Details** page mounts client ready data for instant load in, while asynchronously fetching for further data (speedrun data, listings, related listings), preventing waterfalling.
+
+---
+
+## Data & Performance Strategy
+
+- **Normalized DB schema**: core game metadata stored locally to reduce repeated external requests and simplify frontend rendering.
+- **Pagination + infinite scroll**: list endpoints return paginated results; client supports endless scrolling.
+- **UI state persistence**: filters and scroll position are saved and restored when navigating back from details.
+- **Hydration model**: details render immediately from core data, while external services load in parallel with loading states + fallbacks.
+
+---
+
+### Prerequisites
+- Node.js [version]
+- PostgreSQL [version]
+
+# install
+npm install (run in both backend and frontend)
+
+# Fill in DATABASE_URL, API keys, etc.
+
 
 What I practiced for this project:
   Frontend:
     - Keeping endpoints clean, fewest amount of URL params, for easier navigation and mounting for saving states.
-    - Making CLS performance good, using loader div containers to preload DOM space.
+    - Making CLS performance 'good', using loader div containers to preload DOM space.
+    - Vanilla CSS modules and inline styling
+    - Preventing waterfall issues - handling Loader and Mounting states + Lifting State + Lazy Loading
+    - 
   Backend:
-    - Following REST, letting HTTP verbs and param make the route clear of function.
+    - Following REST
+    - Schema logic (constraints, segregating sensitive User info, Prisma client, seeding, etc)
+    - Route management, JWT authentication, Passport
 
 Built using twitch IGDB API: https://www.igdb.com/api 
 Speedrun API: https://github.com/speedruncomorg/api/blob/master/version1/README.md 
@@ -18,14 +99,6 @@ https://developer.mozilla.org/en-US/docs/Web/HTML/Guides/Responsive_images  (src
 Icons: https://lucide.dev/icons/ 
 
 CLS: I improved my Culmative Layout Shift by reserving space in DOM with loader cards for cover art and screenshot images in GameCard.jsx
-
-Ebay Game Props:
- data.itemSummaries.  
-  - Condition
-  - image.imageUrl
-  - itemWebUrl
-  - price.value & price.currency
-  - title (actual ebay listing title)
 
 https://css-tricks.com/css-only-carousel/  Sliding carosoel effect
 ***************
@@ -72,11 +145,13 @@ https://css-tricks.com/css-only-carousel/  Sliding carosoel effect
   - Prisma studio filter to clean up filler games, may need raw sql for screenshots 
   - Add guest account option (null out SavedGames or like or completing games (Give option to sign up))
   - double check over loading and mounting upon navigation in details, add minimal fade ins for game details
+  -filter icon as an indication
+      (upon a search user should know filters are on clearly, so can reset if they are on and not correct results)
 
 
 TODO:
-  -! clear filter is on indication, adding a toggle module displaying what filters are on?
-      (upon a search user should know filters are on clearly, so can reset if they are on and not correct results)
+  - add breadcrumbs homepage?
+  - !! remove Records Link? Takes users away from page? need to replace with more information. 
 
   -! set Database prod URL in command line and set NES/SNES games from Wii games Original platforms by years in Prisma studio
 
@@ -111,6 +186,14 @@ Production tasks
   - adding user accessibility (keyboard shortucts)
   - handling errors on client side form API (redirect on 401 error code to login)
   - Maybe integrating Ebay's Buy API for affiliate buying on Game Details pages, listing to buy next to embedded videos. 
+
+  Social Interaction (if gathering any traffic)
+    - User Profile Dashboard, shows Retro Collection, Completed Games (maybe times),
+    - On Dashboard can show anon activities (Anon User added XGame to completed, ect.)
+    - Users can browse others users dashboards and add as friends, maybe DM, trade. 
+    - Collapsable comments on Details page
+
+
 
   The Repos Deployment Process for this Full-Stack PERN project: 
     - Setup new Railway Project environment for backend
@@ -151,12 +234,6 @@ Possibly use these loader animations:
 https://www.reddit.com/r/react/comments/1gm3wxc/react_spinner_toolkit_new_npm_package/
 
 
-Design:
-
-For this project I believe desktop first will be fine, I want to establish how I should modularize my css moving forward, along with other things.
-Will implement BEM practice (Block, Element and Modifier)
-
-
 
 BACKEND:
 
@@ -164,23 +241,8 @@ Image size docs: https://api-docs.igdb.com/#reference
 
 Cache Image responses (screenshots): https://api-docs.igdb.com/#images
 
-I plan to cache a catalog of games storing lots of the more popular,
-upon user search if game not in db hit IGDB API for request. Cover images and screenshots 
 
-
-pseudo:
- - save by year/platform route post requests 
- - json data recieved
- - await save games
- - iterate through games function to map to new obj
- - map function awaits getCover for url
- - getCover: if game has cover ID, request cover data to return
- - in createController create cover for foreign cover table
-
-
-# PERN-Starter-Template
-Starter template, using PERN stack, keeping backend and frontend in seperate directories. 
-
+# Production Setup
 
 Commands:
 Commands in BACKEND directory!
@@ -199,29 +261,7 @@ npm install @quixo3/prisma-session-store  https://github.com/kleydon/prisma-sess
 npx prisma generate (after making schema)
 npx prisma migrate dev (after making changes to schema)
  ----------------------------------------------------------------------
-FRONTEND directory:
 
-Design: Keep CSS inline or modular
-
-npm install - sets up all node modules (installs all dependencies)
-
-npm run dev - starts vite server
-
-If using React to setup up default frontend directory run: 
-npm create vite@latest . -- --template react
-
-
-This template uses Prisma ORM supporting PostgreSQL. 
-Prisma Setup Guide: https://www.prisma.io/docs/getting-started/setup-prisma/start-from-scratch/relational-databases-node-postgresql 
-or use quick commands: 
- ---> npx prisma init  (then after adding DATABASE_URL to .env)  ---> npx prisma migrate dev --name init  ---> npx prisma generate
-
-Don't forget to setup .env where variables such as DATABASE_URL(where data is being served) will go
-.gitignore has .env and /generated/schema to ignore from public 
-
-Using PostMan Web Agent (for full API functionality): https://learning.postman.com/docs/getting-started/installation/installation-and-updates/#install-postman-on-linux   (after installing with snap command, just run 'postman' as a command to launch)
-
-npm install -g nodemon --live view? 
 
 Linter & Prettier Commands
 npm install --save-dev eslint

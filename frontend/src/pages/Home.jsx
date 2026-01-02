@@ -37,6 +37,7 @@ function Home() {
   const [loading, SetLoading] = useState(true);
   const [success, SetSuccess] = useState(false);
   const [error, setError] = useState(null);
+  // used for scroll resoration, navigation
   const [mount, setMount] = useState(true);
 
   const [toggle, setToggle] = useState(false);
@@ -152,7 +153,7 @@ function Home() {
 
      window.scrollTo({top: 0});
 
-  }, [ query, genre, platform, year.min, year.max, developer, setGames, order.data, order.order, discover, screenshotMode ]);
+  }, [ query, genre, platform, year.min, year.max, developer, setGames, order.data, order.order, discover ]);
 
 
 

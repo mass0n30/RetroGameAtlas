@@ -184,21 +184,8 @@ if (loading) {
               <div className={styles.ebaytitlecontainer}>
                 <h2 className={styles.ebaytitle}>{post.title}</h2>  
               </div>
-              <div className={styles.ebaylink}>                    
-                  <a
-                    href={post?.itemWebUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <button>
-                      <ShoppingCart className={styles.icons}/>
-                        View on Ebay
-                    </button>
-                  </a>
-              </div>
-              <div className={styles.ebayinfocontainer}>
                 <div className={styles.ebayinfoinnercontainer}>
-                  <div className={styles.ebaypricecontianer}>
+                  <div className={styles.ebaypricecontainer}>
                     <div className={styles.sellertitle}>Price Information</div>
                     <div className={styles.ebaycondition}><span>Condition: </span>{post.condition}</div>
                       
@@ -214,6 +201,20 @@ if (loading) {
                     <div className={styles.sellerrating}><span>Seller Rating: </span>{post?.seller?.feedbackPercentage}<Percent className={styles.iconsPercent}/></div>
                   </div>
               </div>
+              <div className={styles.ebaylink}>                    
+                  <a
+                    href={post?.itemWebUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <button>
+                      <ShoppingCart className={styles.icons}/>
+                        View on Ebay
+                    </button>
+                  </a>
+              </div>
+              <div className={styles.ebayinfocontainer}>
+
               <div className={styles.ebayimg}>
                 <img src={post.image?.imageUrl}/>
               </div>
