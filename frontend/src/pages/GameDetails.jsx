@@ -299,12 +299,12 @@ if (loading) {
                         >
                           Rated {game.rating}%
                         </div>
-                      <div>{gameDetails.totalRatingCount} ratings</div>
+                      <div>·  {gameDetails.totalRatingCount} ratings</div>
                     </div>
                   )}
                   </div>
                 </div>
-                { game.summary.length > 430 && (
+                { game.summary.length > 190 && (
                 <div 
                   onClick={() => setIsExpanded(!isExpanded)}
                   className="flex items-center justify-between w-full cursor-pointer"
@@ -323,7 +323,7 @@ if (loading) {
                 <div 
                   className={styles.summarytxt}
                   style={{
-                    maxHeight: isExpanded ? '1000px' : '9.5rem',
+                    maxHeight: isExpanded ? '1000px' : '8.9rem',
                     transition: 'max-height 0.5s ease-in-out',
                     overflow: 'hidden'
                   }}
@@ -341,7 +341,7 @@ if (loading) {
       {game.storyline ? (
         <div className={styles.storylinecontainer}> 
           <div className={styles.storylinetitle} >Storyline</div>
-                { game.storyline.length > 600 && (
+                { game.storyline.length > 422 && (
                 <div 
                   onClick={() => setIsExpandedAlt(!isExpandedAlt)}
                   className="flex items-center justify-between w-full cursor-pointer"
@@ -360,9 +360,9 @@ if (loading) {
                 </div> 
                 )}
                 <div 
-                  className={styles.summarytxt}
+                  className={styles.storytxt}
                   style={{
-                    maxHeight: isExpandedAlt ? '1000px' : '6.5rem',
+                    maxHeight: isExpandedAlt ? '1000px' : '3.8rem',
                     transition: 'max-height 0.5s ease-in-out',
                     overflow: 'hidden'
                   }}

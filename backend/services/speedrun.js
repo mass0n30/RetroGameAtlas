@@ -1,6 +1,5 @@
 async function getWorldRecordTime(gameName, gameConsole) {
 
-  let recordName = "Any%"
 
   const search = await fetch(`https://www.speedrun.com/api/v1/games?name=${encodeURIComponent(gameName)}`);
   const game = (await search.json()).data[0];
@@ -8,33 +7,37 @@ async function getWorldRecordTime(gameName, gameConsole) {
 
   const categories = await fetch(`https://www.speedrun.com/api/v1/games/${game.id}/categories`);
   const categoryJson = await categories.json();
-  let anyPercent = categoryJson.data.find(c => c.name === recordName);
+  let anyPercent = categoryJson.data.find(c => c.name.includes('Any%'));
 
+  //looking for any percent run first, if not push another run
   if (!anyPercent && categoryJson.data.length > 0) {
     anyPercent = categoryJson.data[0];
 
     anyPercent.name ? recordName = anyPercent.name : recordName = null
   }
 
-  const wr = await fetch(`https://www.speedrun.com/api/v1/categories/${anyPercent.id}/records?top=1`);
-  const test = (await wr?.json()).data[0]?.runs?.[0];
-  const runLink = test?.run?.weblink || null;
-  const videoLink = test?.run?.videos?.links?.[0]?.uri || null;
-  const timeInSeconds = test?.run?.times?.primary_t || null;
-  const timeConverted = formatSecondsToHHMMSS(timeInSeconds);
+  const wr = await fetch(`https://www.speedrun.com/api/v1/categories/${anyPercent.id}/records?top=3`);
+ 
+  const records = (await wr.json()).data[0] || [];
 
+  const firstRun  = records?.runs?.[0];
+  const secondRun = records?.runs?.[1];
+  const thirdRun  = records?.runs?.[2];
+
+  const [firstPlace, secondPlace, thirdPlace] = await Promise.all([
+    firstRun  ? convertRunData(firstRun.run)  : null,
+    secondRun ? convertRunData(secondRun.run) : null,
+    thirdRun  ? convertRunData(thirdRun.run)  : null,
+  ]);
 
   return {
-    timeConverted,
-    runLink,
-    videoLink,
-    recordName
+    firstPlace,
+    secondPlace,
+    thirdPlace
   };
 };
 
 async function getHundredPercentTime(gameName, gameConsole) {
-
-  let recordName = '100%'
 
   const search = await fetch(`https://www.speedrun.com/api/v1/games?name=${encodeURIComponent(gameName)}`);
   const game = (await search.json()).data[0];
@@ -42,36 +45,60 @@ async function getHundredPercentTime(gameName, gameConsole) {
 
   const categories = await fetch(`https://www.speedrun.com/api/v1/games/${game.id}/categories`);
   const categoriesJson = await categories.json();
+
+  //looking for hundred percent run first, if not push another run
   let hundredPercent = categoriesJson.data.find(c => 
-    c.name.includes('100%') || 
-    c.name.includes('All') || 
-    c.name.includes('Complete')
+    c.name.includes('100%')
   );
+
   if (!hundredPercent && categoriesJson.data.length > 1) {
-    hundredPercent = categoriesJson.data[1]
+    hundredPercent = categoriesJson.data[0]
 
     hundredPercent.name ? recordName = hundredPercent.name : recordName = null
-  } else {
+  } 
+
+const wr = await fetch(`https://www.speedrun.com/api/v1/categories/${hundredPercent.id}/records?top=3`);
+
+const records = (await wr.json()).data[0] || [];
+
+const firstRun  = records?.runs?.[0];
+const secondRun = records?.runs?.[1];
+const thirdRun  = records?.runs?.[2];
+
+const [firstPlace, secondPlace, thirdPlace] = await Promise.all([
+  firstRun  ? convertRunData(firstRun.run)  : null,
+  secondRun ? convertRunData(secondRun.run) : null,
+  thirdRun  ? convertRunData(thirdRun.run)  : null,
+]);
+
+  return {
+    firstPlace,
+    secondPlace,
+    thirdPlace
+  };
+};
+
+async function convertRunData(run) {
+
+  if (run == null) {
     return null;
   }
 
-  const wr = await fetch(`https://www.speedrun.com/api/v1/categories/${hundredPercent.id}/records?top=1`);
-  const test = (await wr.json()).data[0].runs?.[0];
-  const runLink = test?.run?.weblink || null;
-  const playerId = test?.run?.players?.[0]?.id || null;
+  const runLink = run?.weblink || null;
+  const playerId = run?.players?.[0]?.id || null;
   const username = await getUsernameById(playerId);
-  const videoLink = test?.run?.videos?.links?.[0]?.uri || null;
-  const timeInSeconds = test?.run?.times?.primary_t || null;
+  const videoLink = run?.videos?.links?.[0]?.uri || null;
+  const timeInSeconds = run?.times?.primary_t || null;
   const timeConverted = formatSecondsToHHMMSS(timeInSeconds);
 
   return {
     timeConverted,
     runLink,
     videoLink,
-    recordName,
     username
-  };
-};
+  }
+
+}
 
 async function getUsernameById(userId) {
   if (!userId) return null;
@@ -93,7 +120,7 @@ function formatSecondsToHHMMSS(totalSeconds) {
   const formattedSeconds = String(seconds.toFixed(2)).padStart(2, '0');
   
 
-  return `hr ${formattedHours} min ${formattedMinutes} ${formattedSeconds} sec`;
+  return `${formattedHours} hr :${formattedMinutes} min :${formattedSeconds} sec`;
 };
 
 

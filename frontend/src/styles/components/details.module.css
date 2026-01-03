@@ -467,6 +467,7 @@
   border-right: solid 2px var(--color-surface);
 }
 
+
 .summarycontainer {
   flex: 2;
   padding: 4%;
@@ -497,6 +498,7 @@
   display: flex;
   flex: 1;
   gap: 0.5rem;
+  padding: 8px;
   align-items: center;
   justify-content: center;
   border: solid 2px var(--color-surface);
@@ -512,10 +514,18 @@
   font-weight: 800;
 }
 
-.summarytxt {
+.summarytxt, .storytxt {
   overflow: hidden;
   transition: all 0.4s ease-in-out; 
   margin-top: 0.75rem; 
+  border: solid 2px var(--color-surface);
+  background-color: var(--color-background-light);
+  padding: 2%;
+  border-radius: 8px;
+}
+
+.storytxt {
+  background-color: var(--color-background);
 }
 
 .summarytxt p {
@@ -531,6 +541,7 @@
   border-bottom-right-radius: 8px;
   padding-top: 2%;
   padding: 4%;
+  padding-bottom: 2%;
   border-bottom: solid 2px var(--color-surface);
   border-top: solid 2px var(--color-surface);
 }
