@@ -8,7 +8,7 @@ export default function VideoEmbed({ url, title, urlId }) {
   if (!url && !urlId) return null;
 
   // Detect platform
-  const isYouTube = Boolean(urlId) || (url && url.includes('youtube.com'));
+  const isYouTube = Boolean(urlId) || (url && url.includes('youtube.com') || url && url.includes('youtu.be'));
   const isTwitch = url && url.includes('twitch.tv');
 
   let videoId = null;
@@ -19,11 +19,19 @@ export default function VideoEmbed({ url, title, urlId }) {
       videoId = String(urlId).trim();
     } else {
       // Standard YouTube watch URL: https://www.youtube.com/watch?v=VIDEO_ID
-      try {
-        videoId = new URL(url).searchParams.get('v');
-      } catch (e) {
-        videoId = null;
+      
+    try {
+      const u = new URL(url);
+
+      videoId = u.searchParams.get('v');
+
+      if (!videoId && u.hostname === 'youtu.be') {
+        videoId = u.pathname.slice(1);
       }
+
+    } catch (e) {
+      videoId = null;
+    }
     }
   } else if (isTwitch) {
     videoId = url.match(/videos\/(\d+)/)?.[1] || null;

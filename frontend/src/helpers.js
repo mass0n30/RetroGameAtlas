@@ -106,6 +106,29 @@ export function useDebounce(value, delay) {
   return debouncedValue;
 }
 
+export function getYouTubeId(url) {
+  if (!url) return null;
+
+  try {
+    const u = new URL(url);
+
+    // youtube.com/watch?v=ID
+    if (u.hostname.includes("youtube.com")) {
+      return u.searchParams.get("v");
+    }
+
+    // youtu.be/ID
+    if (u.hostname === "youtu.be") {
+      return u.pathname.slice(1);
+    }
+
+    return null;
+  } catch {
+    return null;
+  }
+}
+
+
 
 
 export default normalizeGameData;

@@ -4,6 +4,7 @@ import styles from '../styles/components/details.module.css';
 import axios from "axios";
 import { Award, DollarSign, Percent, ShoppingCart, ExternalLink, Tv} from 'lucide-react';
 import YouTubeEmbed from './Youtube';
+import { getYouTubeId } from "../helpers";
 import  {CustomSpinnerDots} from '../components/Spinner';
 
 export default function GameDataSection({game, setLoading}) {
@@ -11,16 +12,15 @@ export default function GameDataSection({game, setLoading}) {
 const { id: gameId, igdbId: gameigdbId, name: gameName, originalPlatform, platforms, developerId, genres } = game;
 
   const [recordData, setRecordData] = useState(null);
-  const [recordDataAlt, setRecordDataAlt] = useState(null);
-  const [recordName, setName] = useState(null);
-  const [recordNameAlt, setNameAlt] = useState(null);
-
   const [gameEbayData, setGameEbayData] = useState(null);
   const [franchiseGames, setFranchiseGames] = useState(null);
   const [similarGames, setSimilarGames] = useState(null);
   const [loading, setLoadingData] = useState(true);
   const [gameVideos, setGameVideos] = useState(null);
   const [videosIndex, setVideosIndex] = useState(0);
+  // for speedrun videos states
+  const [categoryRunIndex, setCategoryRunIndex] = useState(null);
+  const [categoryRunPlaceIndex, setCategoryRunPlaceIndex] = useState(null);
 
 
   useEffect(() => {
@@ -29,10 +29,7 @@ const { id: gameId, igdbId: gameigdbId, name: gameName, originalPlatform, platfo
         const res = await axios.post(
           `${import.meta.env.VITE_API_URL}/home/details/data`, { gameId, gameigdbId, gameName, originalPlatform }
         );
-      res.data.game.worldRecord ? setRecordData(res.data.game.worldRecord.data) : null;
-      res.data.game.worldRecordAlt ? setRecordDataAlt(res.data.game.worldRecordAlt.data) : null;
-      res.data.game.worldRecord ? setName(res.data.game.worldRecord.recordName) : null;
-      res.data.game.worldRecordAlt ? setNameAlt(res.data.game.worldRecordAlt.recordName) : null;
+      res.data.game.worldRecord ? setRecordData(res.data.game.worldRecord.allTop3Data) : null;
       res.data.game.gameEbayData ? setGameEbayData(res.data.game.gameEbayData) : null;
       res.data.game.relatedGames.franchiseGames ? setFranchiseGames(res.data.game.relatedGames.franchiseGames) : null;
       res.data.game.relatedGames.similarGames ? setSimilarGames(res.data.game.relatedGames.similarGames) : null;
@@ -86,20 +83,15 @@ if (loading) {
             </div>
 
         )}
-        {recordData || recordDataAlt ? (
+        {recordData  ? (
           <h2 className={styles.relatedMediaHeader}>Speedrun Data</h2>
         ) : <></>}
         {recordData && (
-          recordData.map((run) => (
-            runRecordSection(run, gameName, recordName)
+          recordData.map((runCategory) => (
+            runRecordSection(runCategory, gameName)
          ))
         )}
 
-        {recordDataAlt && (
-          recordDataAlt.map((run) => (
-            runRecordSection(run, gameName, recordNameAlt)
-         ))
-        )}
       </div>
 
       {gameEbayData ? (
@@ -165,55 +157,82 @@ if (loading) {
   )
 }
 
-function runRecordSection(run, gameName, runType) {
+function runRecordSection(runCategory, gameName) {
 
-    const isYouTube =
-      run?.videoLink?.includes("youtube.com") ||
-      run?.videoLink?.includes("youtu.be");
+
+  return (
+    <div key={runCategory.categoryId} className={styles.recordsectioncontainer}>
+      <h2 className={styles.recordsectionheader}>{runCategory.categoryName} World Records</h2>
+        {runCategory.top3Runs.map((run, index) => (
+          run ? runRecordRow(run, gameName, 
+            index === 0 ? '1st Place' :
+            index === 1 ? '2nd Place' :
+            index === 2 ? '3rd Place' : ''
+          ) : null
+        ))}
+    </div>
+  )
+
+}
+
+
+function runRecordRow(run, gameName, runType) {
+
+  const isYouTube =
+    run?.videoLink?.includes("youtube.com") ||
+    run?.videoLink?.includes("youtu.be");
+
 
   return (
     <>
-        <div className={styles.recorditem} key={run.runId}>
-          <div className={styles.recordinfo}>
-            <div className={styles.award}>
-                <div className={styles.awardbadgepillcontainer}>
-                  <div className={styles.awardbadgetext}>1st Place</div>
-                  <Award fill='gold' color='gold' className={styles.icons}/>
-                </div>
-                {runType && (
-                  <h3>
-                    {runType}
-                  </h3>
-                )}
-
-            </div>
-              {run.username && (
-                <div className={styles.recordusername}>
-                  <span>Speedrunner - </span><div>{run?.username} </div>
-                </div>
+    {run && (
+      <div className={styles.recorditem} key={run?.runId}>
+        <div className={styles.recordinfo}>
+          <div className={styles.award}>
+              <div className={styles.awardbadgepillcontainer}>
+                <div className={styles.awardbadgetext}>1st Place</div>
+                <Award fill='gold' color='gold' className={styles.icons}/>
+              </div>
+              {runType && (
+                <h3>
+                  {runType}
+                </h3>
               )}
-            <div className={styles.recordtime}>
-              <div className={styles.recordsubtxt}>{run?.recordName} Completed in</div>
-              Record Time - {run.timeConverted}
-            </div>
+
           </div>
-          <div className={isYouTube ? styles.recordvideocontaineryoutube : styles.recordvideocontainertwitch}> 
-            <YouTubeEmbed url={run.videoLink} title={run.recordName}/>
-            <div className={styles.recordlink}>
-              <a href={run?.runLink}
-                target="_blank"
-                rel="noopener noreferrer">
-                <button className={styles.recordBtn}> Explore <b>{gameName} </b> Speedrun Leaderboards 
-                  <ExternalLink />
-                </button>
-                </a>
-            </div>
+            {run?.username && (
+              <div className={styles.recordusername}>
+                <span>Speedrunner - </span><div>{run?.username} </div>
+              </div>
+            )}
+            {run?.timeConverted && (
+              <div className={styles.recordtime}>
+                <div className={styles.recordsubtxt}>{run?.recordName} Completed in</div>
+                Record Time - {run?.timeConverted}
+              </div>
+            )}
           </div>
 
+        <div className={isYouTube ? styles.recordvideocontaineryoutube : styles.recordvideocontainertwitch}> 
+          <YouTubeEmbed url={run?.videoLink} title={run?.recordName}/>
+          <div className={styles.recordlink}>
+            <a href={run?.runLink}
+              target="_blank"
+              rel="noopener noreferrer">
+              <button className={styles.recordBtn}> Explore <b>{gameName} </b> Speedrun Leaderboards 
+                <ExternalLink />
+              </button>
+              </a>
+          </div>
         </div>
+
+      </div>
+    )}
+
     </>
   )
 }
+     
 
 function ebayListingSection(post) {
 

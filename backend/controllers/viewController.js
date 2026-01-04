@@ -312,7 +312,7 @@ function calculateWeightedRating(itemRating, itemVotes) {
     return weightedRating;
 }
 
-const {getWorldRecordTime, getHundredPercentTime} = require('../services/speedrun.js');
+const {getAllWorldRecordRunTimes} = require('../services/speedrun.js');
 const { getGamePrice} = require('../services/ebay.js');
 
 async function handleGetGameOriginalPlatform(originalPlatform) {
@@ -380,24 +380,19 @@ async function handleGetGameData(req, res, next) {
   const consoleAbbrev = originalConsoleObj ? originalConsoleObj.abbreviation : null;
 
   try {
-    const [worldRecord, worldRecordAlt, gameEbayData, relatedGames] = await Promise.all([
-      getWorldRecordTime(gameName, consoleAbbrev),
-      getHundredPercentTime(gameName, consoleAbbrev),
+    const [worldRecord, gameEbayData, relatedGames] = await Promise.all([
+      getAllWorldRecordRunTimes(gameName, consoleAbbrev), // speedrun data
       getGamePrice(gameName, originalPlatform), // ebay data
       getRelatedGames(gameId, gameigdbId), // similar and franchise games from IGDB
     ]);
 
-    return  {worldRecord, worldRecordAlt, gameEbayData, relatedGames};
+    return  {worldRecord, gameEbayData, relatedGames};
     
   } catch (error) {
     next(error);
   }
 
 };
-
-
-
-
 
 
 module.exports = {getUserProfile,handleGetGames, handleGetGameDetails, handleGetGameData, getAllCategoryData};

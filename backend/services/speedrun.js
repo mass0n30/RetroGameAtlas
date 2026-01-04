@@ -2,7 +2,7 @@ let recordName = null;
 let recordNameAlt = null;
 
 
-async function getWorldRecordTime(gameName, gameConsole) {
+async function getAllWorldRecordRunTimes(gameName, gameConsole) {
 
   const search = await fetch(`https://www.speedrun.com/api/v1/games?name=${encodeURIComponent(gameName)}`);
   const game = (await search.json()).data[0];
@@ -10,19 +10,28 @@ async function getWorldRecordTime(gameName, gameConsole) {
 
   const categories = await fetch(`https://www.speedrun.com/api/v1/games/${game.id}/categories`);
   const categoriesJson = await categories.json();
-  let anyPercent = categoriesJson.data.find(c => c.name.includes('Any%'));
+  const allCategoryData = categoriesJson.data;
 
-  //looking for any percent run first, if not push another run that's not 100
-  if (!anyPercent && categoriesJson.data.length > 1) {
-    anyPercent = categoriesJson.data.find(
-      c => !c.name.includes('Any%') && (!recordNameAlt || !c.name.includes(recordNameAlt))
-    );
-  }
+  const allTop3Data = (categoriesJson.data.length > 0) ? await Promise.all(
+    allCategoryData.map(async (category) => {
+      const top3Runs = await getTop3RunsForCategory(category.id);
+      return {
+        categoryName: category.name,
+        categoryId: category.id,
+        top3Runs
+      };
+    })
+  ) : [];
 
-  recordName = anyPercent ? anyPercent.name : null;
 
+  return {
+    allTop3Data
+  };
+};
 
-  const wr = await fetch(`https://www.speedrun.com/api/v1/categories/${anyPercent.id}/records?top=3`);
+async function getTop3RunsForCategory(categoryId) {
+
+  const wr = await fetch(`https://www.speedrun.com/api/v1/categories/${categoryId}/records?top=3`);
  
   const records = (await wr.json()).data[0] || [];
 
@@ -36,62 +45,13 @@ async function getWorldRecordTime(gameName, gameConsole) {
     thirdRun  ? convertRunData(thirdRun.run)  : null,
   ]);
 
-  return {
-    data: [
+  return [
     firstPlace,
     secondPlace,
     thirdPlace,
-    ],
-    recordName
-
-  };
+  ];
 };
 
-async function getHundredPercentTime(gameName, gameConsole) {
-
-  const search = await fetch(`https://www.speedrun.com/api/v1/games?name=${encodeURIComponent(gameName)}`);
-  const game = (await search.json()).data[0];
-  if (!game) return null;
-
-  const categories = await fetch(`https://www.speedrun.com/api/v1/games/${game.id}/categories`);
-  const categoriesJson = await categories.json();
-
-  //looking for hundred percent run first, if not push another run not named Any
-  let hundredPercent = categoriesJson.data.find(c => c.name.includes('100%'));
-
-  if (!hundredPercent && categoriesJson.data.length > 1) {
-    hundredPercent = categoriesJson.data.find(
-      c => !c.name.includes('Any%') && (!recordName || !c.name == recordName)
-    );
-  } 
-
-recordNameAlt = hundredPercent ? hundredPercent.name : null;
-
-
-
-const wr = await fetch(`https://www.speedrun.com/api/v1/categories/${hundredPercent.id}/records?top=3`);
-
-const records = (await wr.json()).data[0] || [];
-
-const firstRun  = records?.runs?.[0];
-const secondRun = records?.runs?.[1];
-const thirdRun  = records?.runs?.[2];
-
-const [firstPlace, secondPlace, thirdPlace] = await Promise.all([
-  firstRun  ? convertRunData(firstRun.run)  : null,
-  secondRun ? convertRunData(secondRun.run) : null,
-  thirdRun  ? convertRunData(thirdRun.run)  : null,
-]);
-
-  return {
-    data: [
-      firstPlace,
-      secondPlace,
-      thirdPlace,
-    ],
-    recordNameAlt
-  };
-};
 
 async function convertRunData(run) {
 
@@ -142,4 +102,4 @@ function formatSecondsToHHMMSS(totalSeconds) {
 
 
 
-module.exports = { getHundredPercentTime, getWorldRecordTime};
+module.exports = { getAllWorldRecordRunTimes};
