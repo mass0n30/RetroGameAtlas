@@ -9,7 +9,7 @@ import SocialPopup from '../components/reactMUI/Popup';
 import GameDetailsSkeleton from '../components/Skeleton';
 import SnackBarAlert from '../components/reactMUI/Alerts';
 
-const GameDataSection = lazy(() => import('../components/GameDetailsData'));
+const GameDataSection = lazy(() => import('../components/GameDetailsComponents/GameDetailsData'));
 
 
 function GameDetails() {

@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
-import styles from '../styles/components/details.module.css';
+import styles from '../../styles/components/details.module.css';
 import axios from "axios";
 import { Award, DollarSign, Percent, ShoppingCart, ExternalLink, Tv} from 'lucide-react';
 import YouTubeEmbed from './Youtube';
-import { getYouTubeId } from "../helpers";
-import  {CustomSpinnerDots} from '../components/Spinner';
+import  {CustomSpinnerDots} from '../Spinner';
+import  GameDetailsRunSection  from './GameDetailsRunSection';
 
 export default function GameDataSection({game, setLoading}) {
 
@@ -18,9 +18,6 @@ const { id: gameId, igdbId: gameigdbId, name: gameName, originalPlatform, platfo
   const [loading, setLoadingData] = useState(true);
   const [gameVideos, setGameVideos] = useState(null);
   const [videosIndex, setVideosIndex] = useState(0);
-  // for speedrun videos states
-  const [categoryRunIndex, setCategoryRunIndex] = useState(null);
-  const [categoryRunPlaceIndex, setCategoryRunPlaceIndex] = useState(null);
 
 
   useEffect(() => {
@@ -44,25 +41,24 @@ const { id: gameId, igdbId: gameigdbId, name: gameName, originalPlatform, platfo
   fetchDetails();
 }, []);
 
-   const navigate = useNavigate();
+ 
+  const navigate = useNavigate();
 
-   const handleNavigate = (id) => {
-      setLoading(true);
-      // keeps scrolled at top upon user nav back pages
-      window.scrollTo({top: 0});
-      navigate(`/home/details/${id}`, {behavior: "smooth"} );
-   }
+  const handleNavigate = (id) => {
+    setLoading(true);
+    // keeps scrolled at top upon user nav back pages
+    window.scrollTo({top: 0});
+    navigate(`/home/details/${id}`, {behavior: "smooth"} );
+  };
 
-
-
-if (loading) {
-  return( 
-    <div className={styles.recordsloadercontainer}>
-      <span className={styles.loadingtxt}>Loading</span>
-      <CustomSpinnerDots/>
-    </div>
-  )
-};
+  if (loading) {
+    return( 
+      <div className={styles.recordsloadercontainer}>
+        <span className={styles.loadingtxt}>Loading</span>
+        <CustomSpinnerDots/>
+      </div>
+    )
+  };
 
   return (
     <>
@@ -83,15 +79,14 @@ if (loading) {
             </div>
 
         )}
-        {recordData  ? (
-          <h2 className={styles.relatedMediaHeader}>Speedrun Data</h2>
-        ) : <></>}
         {recordData && (
-          recordData.map((runCategory) => (
-            runRecordSection(runCategory, gameName)
-         ))
+          <>
+            <h2 className={styles.relatedMediaHeader}>Speedrun Data</h2>
+            <div className={styles.recordsectionscontainer}>
+              <GameDetailsRunSection recordData={recordData} gameName={gameName} />
+            </div>
+          </>
         )}
-
       </div>
 
       {gameEbayData ? (
@@ -157,85 +152,7 @@ if (loading) {
   )
 }
 
-function runRecordSection(runCategory, gameName) {
-
-
-  return (
-    <div key={runCategory.categoryId} className={styles.recordsectioncontainer}>
-      <h2 className={styles.recordsectionheader}>{runCategory.categoryName} World Records</h2>
-        {runCategory.top3Runs.map((run, index) => (
-          run ? runRecordRow(run, gameName, 
-            index === 0 ? '1st Place' :
-            index === 1 ? '2nd Place' :
-            index === 2 ? '3rd Place' : ''
-          ) : null
-        ))}
-    </div>
-  )
-
-}
-
-
-function runRecordRow(run, gameName, runType) {
-
-  const isYouTube =
-    run?.videoLink?.includes("youtube.com") ||
-    run?.videoLink?.includes("youtu.be");
-
-
-  return (
-    <>
-    {run && (
-      <div className={styles.recorditem} key={run?.runId}>
-        <div className={styles.recordinfo}>
-          <div className={styles.award}>
-              <div className={styles.awardbadgepillcontainer}>
-                <div className={styles.awardbadgetext}>1st Place</div>
-                <Award fill='gold' color='gold' className={styles.icons}/>
-              </div>
-              {runType && (
-                <h3>
-                  {runType}
-                </h3>
-              )}
-
-          </div>
-            {run?.username && (
-              <div className={styles.recordusername}>
-                <span>Speedrunner - </span><div>{run?.username} </div>
-              </div>
-            )}
-            {run?.timeConverted && (
-              <div className={styles.recordtime}>
-                <div className={styles.recordsubtxt}>{run?.recordName} Completed in</div>
-                Record Time - {run?.timeConverted}
-              </div>
-            )}
-          </div>
-
-        <div className={isYouTube ? styles.recordvideocontaineryoutube : styles.recordvideocontainertwitch}> 
-          <YouTubeEmbed url={run?.videoLink} title={run?.recordName}/>
-          <div className={styles.recordlink}>
-            <a href={run?.runLink}
-              target="_blank"
-              rel="noopener noreferrer">
-              <button className={styles.recordBtn}> Explore <b>{gameName} </b> Speedrun Leaderboards 
-                <ExternalLink />
-              </button>
-              </a>
-          </div>
-        </div>
-
-      </div>
-    )}
-
-    </>
-  )
-}
-     
-
 function ebayListingSection(post) {
-
 
   return (
     <>

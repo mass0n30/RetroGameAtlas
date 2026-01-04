@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Play } from 'lucide-react';
-import styles from '../styles/components/details.module.css';
+import styles from '../../styles/components/details.module.css';
 
 export default function VideoEmbed({ url, title, urlId }) {
   const [clicked, setClicked] = useState(false);
