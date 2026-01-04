@@ -1,20 +1,26 @@
-async function getWorldRecordTime(gameName, gameConsole) {
+let recordName = null;
+let recordNameAlt = null;
 
+
+async function getWorldRecordTime(gameName, gameConsole) {
 
   const search = await fetch(`https://www.speedrun.com/api/v1/games?name=${encodeURIComponent(gameName)}`);
   const game = (await search.json()).data[0];
   if (!game) return null;
 
   const categories = await fetch(`https://www.speedrun.com/api/v1/games/${game.id}/categories`);
-  const categoryJson = await categories.json();
-  let anyPercent = categoryJson.data.find(c => c.name.includes('Any%'));
+  const categoriesJson = await categories.json();
+  let anyPercent = categoriesJson.data.find(c => c.name.includes('Any%'));
 
-  //looking for any percent run first, if not push another run
-  if (!anyPercent && categoryJson.data.length > 0) {
-    anyPercent = categoryJson.data[0];
-
-    anyPercent.name ? recordName = anyPercent.name : recordName = null
+  //looking for any percent run first, if not push another run that's not 100
+  if (!anyPercent && categoriesJson.data.length > 1) {
+    anyPercent = categoriesJson.data.find(
+      c => !c.name.includes('Any%') && (!recordNameAlt || !c.name.includes(recordNameAlt))
+    );
   }
+
+  recordName = anyPercent ? anyPercent.name : null;
+
 
   const wr = await fetch(`https://www.speedrun.com/api/v1/categories/${anyPercent.id}/records?top=3`);
  
@@ -31,9 +37,13 @@ async function getWorldRecordTime(gameName, gameConsole) {
   ]);
 
   return {
+    data: [
     firstPlace,
     secondPlace,
-    thirdPlace
+    thirdPlace,
+    ],
+    recordName
+
   };
 };
 
@@ -46,16 +56,18 @@ async function getHundredPercentTime(gameName, gameConsole) {
   const categories = await fetch(`https://www.speedrun.com/api/v1/games/${game.id}/categories`);
   const categoriesJson = await categories.json();
 
-  //looking for hundred percent run first, if not push another run
-  let hundredPercent = categoriesJson.data.find(c => 
-    c.name.includes('100%')
-  );
+  //looking for hundred percent run first, if not push another run not named Any
+  let hundredPercent = categoriesJson.data.find(c => c.name.includes('100%'));
 
   if (!hundredPercent && categoriesJson.data.length > 1) {
-    hundredPercent = categoriesJson.data[0]
-
-    hundredPercent.name ? recordName = hundredPercent.name : recordName = null
+    hundredPercent = categoriesJson.data.find(
+      c => !c.name.includes('Any%') && (!recordName || !c.name == recordName)
+    );
   } 
+
+recordNameAlt = hundredPercent ? hundredPercent.name : null;
+
+
 
 const wr = await fetch(`https://www.speedrun.com/api/v1/categories/${hundredPercent.id}/records?top=3`);
 
@@ -72,9 +84,12 @@ const [firstPlace, secondPlace, thirdPlace] = await Promise.all([
 ]);
 
   return {
-    firstPlace,
-    secondPlace,
-    thirdPlace
+    data: [
+      firstPlace,
+      secondPlace,
+      thirdPlace,
+    ],
+    recordNameAlt
   };
 };
 
@@ -84,6 +99,7 @@ async function convertRunData(run) {
     return null;
   }
 
+  const runId = run.id;
   const runLink = run?.weblink || null;
   const playerId = run?.players?.[0]?.id || null;
   const username = await getUsernameById(playerId);
@@ -95,7 +111,8 @@ async function convertRunData(run) {
     timeConverted,
     runLink,
     videoLink,
-    username
+    username,
+    runId
   }
 
 }

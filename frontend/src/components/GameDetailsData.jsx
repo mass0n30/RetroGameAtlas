@@ -12,6 +12,9 @@ const { id: gameId, igdbId: gameigdbId, name: gameName, originalPlatform, platfo
 
   const [recordData, setRecordData] = useState(null);
   const [recordDataAlt, setRecordDataAlt] = useState(null);
+  const [recordName, setName] = useState(null);
+  const [recordNameAlt, setNameAlt] = useState(null);
+
   const [gameEbayData, setGameEbayData] = useState(null);
   const [franchiseGames, setFranchiseGames] = useState(null);
   const [similarGames, setSimilarGames] = useState(null);
@@ -26,8 +29,10 @@ const { id: gameId, igdbId: gameigdbId, name: gameName, originalPlatform, platfo
         const res = await axios.post(
           `${import.meta.env.VITE_API_URL}/home/details/data`, { gameId, gameigdbId, gameName, originalPlatform }
         );
-      res.data.game.worldRecord ? setRecordData(res.data.game.worldRecord) : null;
-      res.data.game.worldRecordAlt ? setRecordDataAlt(res.data.game.worldRecordAlt) : null;
+      res.data.game.worldRecord ? setRecordData(res.data.game.worldRecord.data) : null;
+      res.data.game.worldRecordAlt ? setRecordDataAlt(res.data.game.worldRecordAlt.data) : null;
+      res.data.game.worldRecord ? setName(res.data.game.worldRecord.recordName) : null;
+      res.data.game.worldRecordAlt ? setNameAlt(res.data.game.worldRecordAlt.recordName) : null;
       res.data.game.gameEbayData ? setGameEbayData(res.data.game.gameEbayData) : null;
       res.data.game.relatedGames.franchiseGames ? setFranchiseGames(res.data.game.relatedGames.franchiseGames) : null;
       res.data.game.relatedGames.similarGames ? setSimilarGames(res.data.game.relatedGames.similarGames) : null;
@@ -50,10 +55,6 @@ const { id: gameId, igdbId: gameigdbId, name: gameName, originalPlatform, platfo
       window.scrollTo({top: 0});
       navigate(`/home/details/${id}`, {behavior: "smooth"} );
    }
-
-  const isYouTube =
-  recordData?.videoLink?.includes("youtube.com") ||
-  recordData?.videoLink?.includes("youtu.be");
 
 
 
@@ -89,90 +90,16 @@ if (loading) {
           <h2 className={styles.relatedMediaHeader}>Speedrun Data</h2>
         ) : <></>}
         {recordData && (
-          
-        <div className={styles.recorditem}>
-          <div className={styles.recordinfo}>
-            <div className={styles.award}>
-                <div className={styles.awardbadgepillcontainer}>
-                  <div className={styles.awardbadgetext}>1st Place</div>
-                  <Award fill='gold' color='gold' className={styles.icons}/>
-                </div>
-                <h3>
-                  {recordData?.recordName}
-                </h3>
-            </div>
-              {recordData.username && (
-                <div className={styles.recordusername}>
-                  <span>Speedrunner - </span><div>{recordData?.username} </div>
-                </div>
-              )}
-            <div className={styles.recordtime}>
-              <div className={styles.recordsubtxt}>{recordData?.recordName} Completed in</div>
-              Record Time - {recordData.timeConverted}
-            </div>
-          </div>
-          <div className={isYouTube ? styles.recordvideocontaineryoutube : styles.recordvideocontainertwitch}> 
-            <YouTubeEmbed url={recordData.videoLink} title={recordData.recordName}/>
-            <div className={styles.recordlink}>
-              <a href={recordData?.runLink}
-                target="_blank"
-                rel="noopener noreferrer">
-                <button className={styles.recordBtn}> Explore <b>{gameName} </b> Speedrun Leaderboards 
-                  <ExternalLink />
-                </button>
-                </a>
-            </div>
-          </div>
-
-        </div>
-
+          recordData.map((run) => (
+            runRecordSection(run, gameName, recordName)
+         ))
         )}
 
-      {recordDataAlt && (
-        <div className={styles.recorditem}>
-
-          <div className={styles.recordinfo}>
-            <div className={styles.award}>
-                <div className={styles.awardbadgepillcontainer}>
-                  <div className={styles.awardbadgetext}>1st Place</div>
-                  <Award fill='gold' color='gold' className={styles.icons}/>
-                </div>
-                <h3>
-                  {recordData.recordName}
-                </h3>
-            </div>
-              {recordDataAlt.username && (
-                <div className={styles.recordusername}>
-                  <span>Speedrunner - </span><div>{recordDataAlt?.username} </div>
-                </div>
-              )}
-            <div className={styles.recordtime}>
-              <div className={styles.recordsubtxt}>{recordData?.recordName} Completed in</div>
-              Record Time - {recordDataAlt.timeConverted}
-            </div>
-          </div>
-
-          <div className={isYouTube ? styles.recordvideocontaineryoutube : styles.recordvideocontainertwitch}> 
-            <YouTubeEmbed
-              url={recordDataAlt.videoLink}
-              title={recordDataAlt.recordName}
-            />
-
-          <div className={styles.recordlink}>
-            <a href={recordDataAlt?.runLink}
-              target="_blank"
-              rel="noopener noreferrer">
-              <button className={styles.recordBtn}> View <b>{gameName} {recordDataAlt?.recordName} Speedrun Leaderboards</b> 
-                <ExternalLink />
-              </button>
-              </a>
-          </div>
-
-          </div>
-
-
-        </div>
-      )}
+        {recordDataAlt && (
+          recordDataAlt.map((run) => (
+            runRecordSection(run, gameName, recordNameAlt)
+         ))
+        )}
       </div>
 
       {gameEbayData ? (
@@ -180,46 +107,7 @@ if (loading) {
         <div className={styles.ebaycontainer}>
           <h2 className={styles.relatedMediaHeader}>Related Listings</h2>
           {gameEbayData.map((post) => (
-            <div className={styles.ebayinnercontainer} key={post.itemId}>
-              <div className={styles.ebaytitlecontainer}>
-                <h2 className={styles.ebaytitle}>{post.title}</h2>  
-              </div>
-                <div className={styles.ebayinfoinnercontainer}>
-                  <div className={styles.ebaypricecontainer}>
-                    <div className={styles.sellertitle}>Price Information</div>
-                    <div className={styles.ebaycondition}><span>Condition: </span>{post.condition}</div>
-                      
-                    <div className={styles.pricecontainer}>
-                      <div className={styles.dollar}><DollarSign className={styles.iconsDollar}/></div>  
-                      <div className={styles.value}>{post.price.value}</div> 
-                      <div className={styles.currency}>{post.price.currency}</div>
-                    </div>
-                  </div>
-                  <div className={styles.sellerinfocontainer}>
-                    <div className={styles.sellertitle}>Seller Information</div>
-                    <div className={styles.sellername}><span>Username: </span>{post?.seller?.username}</div>
-                    <div className={styles.sellerrating}><span>Seller Rating: </span>{post?.seller?.feedbackPercentage}<Percent className={styles.iconsPercent}/></div>
-                  </div>
-              </div>
-              <div className={styles.ebaylink}>                    
-                  <a
-                    href={post?.itemWebUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <button>
-                      <ShoppingCart className={styles.icons}/>
-                        View on Ebay
-                    </button>
-                  </a>
-              </div>
-              <div className={styles.ebayinfocontainer}>
-
-              <div className={styles.ebayimg}>
-                <img src={post.image?.imageUrl}/>
-              </div>
-            </div>
-            </div>
+            ebayListingSection(post)
           ))}
         </div>
       ) : (
@@ -276,3 +164,103 @@ if (loading) {
       </>  
   )
 }
+
+function runRecordSection(run, gameName, runType) {
+
+    const isYouTube =
+      run?.videoLink?.includes("youtube.com") ||
+      run?.videoLink?.includes("youtu.be");
+
+  return (
+    <>
+        <div className={styles.recorditem} key={run.runId}>
+          <div className={styles.recordinfo}>
+            <div className={styles.award}>
+                <div className={styles.awardbadgepillcontainer}>
+                  <div className={styles.awardbadgetext}>1st Place</div>
+                  <Award fill='gold' color='gold' className={styles.icons}/>
+                </div>
+                {runType && (
+                  <h3>
+                    {runType}
+                  </h3>
+                )}
+
+            </div>
+              {run.username && (
+                <div className={styles.recordusername}>
+                  <span>Speedrunner - </span><div>{run?.username} </div>
+                </div>
+              )}
+            <div className={styles.recordtime}>
+              <div className={styles.recordsubtxt}>{run?.recordName} Completed in</div>
+              Record Time - {run.timeConverted}
+            </div>
+          </div>
+          <div className={isYouTube ? styles.recordvideocontaineryoutube : styles.recordvideocontainertwitch}> 
+            <YouTubeEmbed url={run.videoLink} title={run.recordName}/>
+            <div className={styles.recordlink}>
+              <a href={run?.runLink}
+                target="_blank"
+                rel="noopener noreferrer">
+                <button className={styles.recordBtn}> Explore <b>{gameName} </b> Speedrun Leaderboards 
+                  <ExternalLink />
+                </button>
+                </a>
+            </div>
+          </div>
+
+        </div>
+    </>
+  )
+}
+
+function ebayListingSection(post) {
+
+
+  return (
+    <>
+      <div className={styles.ebayinnercontainer} key={post.itemId}>
+        <div className={styles.ebaytitlecontainer}>
+          <h2 className={styles.ebaytitle}>{post.title}</h2>  
+        </div>
+          <div className={styles.ebayinfoinnercontainer}>
+            <div className={styles.ebaypricecontainer}>
+              <div className={styles.sellertitle}>Price Information</div>
+              <div className={styles.ebaycondition}><span>Condition: </span>{post.condition}</div>
+                
+              <div className={styles.pricecontainer}>
+                <div className={styles.dollar}><DollarSign className={styles.iconsDollar}/></div>  
+                <div className={styles.value}>{post.price.value}</div> 
+                <div className={styles.currency}>{post.price.currency}</div>
+              </div>
+            </div>
+            <div className={styles.sellerinfocontainer}>
+              <div className={styles.sellertitle}>Seller Information</div>
+              <div className={styles.sellername}><span>Username: </span>{post?.seller?.username}</div>
+              <div className={styles.sellerrating}><span>Seller Rating: </span>{post?.seller?.feedbackPercentage}<Percent className={styles.iconsPercent}/></div>
+            </div>
+        </div>
+        <div className={styles.ebaylink}>                    
+            <a
+              href={post?.itemWebUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <button>
+                <ShoppingCart className={styles.icons}/>
+                  View on Ebay
+              </button>
+            </a>
+        </div>
+        <div className={styles.ebayinfocontainer}>
+
+        <div className={styles.ebayimg}>
+          <img src={post.image?.imageUrl}/>
+        </div>
+      </div>
+    </div>
+
+    </>
+  )
+};
