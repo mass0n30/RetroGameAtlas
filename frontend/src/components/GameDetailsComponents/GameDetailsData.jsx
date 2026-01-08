@@ -7,7 +7,7 @@ import YouTubeEmbed from './Youtube';
 import  {CustomSpinnerDots} from '../Spinner';
 import  GameDetailsRunSection  from './GameDetailsRunSection';
 
-export default function GameDataSection({game, setLoading}) {
+export default function GameDataSection({game, setLoading, setActiveImage}) {
 
 const { id: gameId, igdbId: gameigdbId, name: gameName, originalPlatform, platforms, developerId, genres } = game;
 
@@ -120,7 +120,7 @@ const { id: gameId, igdbId: gameigdbId, name: gameName, originalPlatform, platfo
         <div className={styles.ebaycontainer}>
           <h2 className={styles.relatedMediaHeader}>Related Listings</h2>
           {gameEbayData.map((post) => (
-            ebayListingSection(post)
+            ebayListingSection({post, setActiveImage})
           ))}
         </div>
       ) : (
@@ -178,15 +178,32 @@ const { id: gameId, igdbId: gameigdbId, name: gameName, originalPlatform, platfo
   )
 }
 
-function ebayListingSection(post) {
+function ebayListingSection({post, setActiveImage}) {
 
   return (
     <>
       <div className={styles.ebayinnercontainer} key={post.itemId}>
-        <div className={styles.ebaytitlecontainer}>
-          <h2 className={styles.ebaytitle}>{post.title}</h2>  
+        <div className={styles.ebaylink}>
+          <div>
+            <a
+              href={post?.itemWebUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <button>
+                <ShoppingCart className={styles.icons}/>
+                  View on Ebay
+              </button>
+            </a>
+          </div>                    
+
         </div>
+        <div className={styles.ebayinfocontainer}>
+          <div className={styles.ebaytitlecontainer}>
+            <h2 className={styles.ebaytitle}>{post.title}</h2>  
+          </div>
           <div className={styles.ebayinfoinnercontainer}>
+            
             <div className={styles.ebaypricecontainer}>
               <div className={styles.sellertitle}>Price Information</div>
               <div className={styles.ebaycondition}><span>Condition: </span>{post.condition}</div>
@@ -202,25 +219,13 @@ function ebayListingSection(post) {
               <div className={styles.sellername}><span>Username: </span>{post?.seller?.username}</div>
               <div className={styles.sellerrating}><span>Seller Rating: </span>{post?.seller?.feedbackPercentage}<Percent className={styles.iconsPercent}/></div>
             </div>
+          </div>
         </div>
-        <div className={styles.ebaylink}>                    
-            <a
-              href={post?.itemWebUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <button>
-                <ShoppingCart className={styles.icons}/>
-                  View on Ebay
-              </button>
-            </a>
+        <div className={styles.ebayimgtitlecontainer} >
+          <div className={styles.ebayimgcontainer} >
+            <img src={post.image?.imageUrl} className={styles.ebayimg} onClick={() => setActiveImage(post.image?.imageUrl)}/>
+          </div>
         </div>
-        <div className={styles.ebayinfocontainer}>
-
-        <div className={styles.ebayimg}>
-          <img src={post.image?.imageUrl}/>
-        </div>
-      </div>
     </div>
 
     </>

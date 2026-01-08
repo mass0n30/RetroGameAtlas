@@ -16,6 +16,7 @@ function Home() {
   const [userProfile, SetUserProfile] = useState(null);
   const [categoryData, setCategoryData] = useState();
   const [open, setOpen] = useState(new Set());
+  const [activeImage, setActiveImage] = useState(null);
 
   // state query filters
   const [platform, setPlatform] = useState();
@@ -124,8 +125,6 @@ function Home() {
       } 
     };
 
-  
-
   // making URL for any games query
   const params = new URLSearchParams();
   
@@ -176,6 +175,11 @@ function Home() {
 
     return (
     <>
+    { activeImage && (
+      <div className="activeImageOverlay" onClick={() => setActiveImage(null)}>
+        <img src={activeImage} alt="Active Screenshot" className="activeImage"/>
+      </div>
+    )}
       <Navbar
         toggle={toggle}
         setToggle={setToggle}
@@ -232,7 +236,8 @@ function Home() {
       </aside>
 
       <Outlet context={{query, limit, loading, success, SetLoading, SetSuccess, discover, setDiscover, screenshotMode, setScreenshotMode, mount, setMount, open, setOpen, 
-        index, setIndex, guest, user, userProfile, SetUserProfile, gameId, setGameId, games, setCategoryData, orderData: order.data, orderDirection: order.order, setOrder, setGames, search, setSearch, genre, platform, developer, minyear: year.min, maxyear: year.max, setYear }} />
+        index, setIndex, guest, user, userProfile, SetUserProfile, gameId, setGameId, games, setCategoryData, orderData: order.data, orderDirection: order.order, setOrder, setGames, search, setSearch, genre, platform, developer, minyear: year.min, maxyear: year.max, 
+        setYear, setActiveImage }} />
     </main>
     </>
   )

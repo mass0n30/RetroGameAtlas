@@ -148,10 +148,11 @@ https://css-tricks.com/css-only-carousel/  Sliding carosoel effect
   -filter icon as an indication
       (upon a search user should know filters are on clearly, so can reset if they are on and not correct results)
   -! set Database prod URL in command line and set NES/SNES games from Wii games Original platforms by years in Prisma studio
+  - Speedrun CSS container design ** (making sure all videos embed or else no video info container?)
 
 
 TODO:
-  - Speedrun CSS container design ** (making sure all videos embed or else no video info container?)
+
 
   - constrain ebay image sizes for consistency?
   - finish ebay row listing design

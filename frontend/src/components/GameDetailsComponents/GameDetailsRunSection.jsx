@@ -30,7 +30,6 @@ export default function GameDetailsRunSection({ recordData, gameName }) {
     setCategoryRunPlaceIndex(index);
   };
 
-  // inactive rows
   function runRecordSection(runCategory, gameName, categoryIndex) {
     return (
       <button
@@ -43,79 +42,8 @@ export default function GameDetailsRunSection({ recordData, gameName }) {
               {runCategory.categoryName} World Records
             </h3>
           </div>
-              <div className={styles.recordsectioninactive}>
-                <span className={styles.recordsectioninactivetxt}>
-                  Click to view runs
-                </span>
-              </div>
-          </div>
-      </button>
-    );
-  }
-
-  // active row returning category top 3 run information
-  function runRecordRow(run, gameName, index) {
-    if (!run) return null;
-
-    if (index !== categoryRunIndex) return null;
-
-    const isYouTube =
-    run?.videoLink?.includes("youtube.com") ||
-    run?.videoLink?.includes("youtu.be");
-
-
-    return (
-      <>
-        <div key={run.runId} className={styles.recordrowcontainer}>
-          
-          <div className={styles.recordplacecontainer}>
-            <div className={styles.recordplace}>
-              {index === 0 && <Award className={styles.goldicon} />}
-              {index === 1 && <Award className={styles.silvericon} />}
-              {index === 2 && <Award className={styles.bronzeicon} />}
-              <span className={styles.placetxt}>
-                {index === 0 && "1st Place"}
-                {index === 1 && "2nd Place"}
-                {index === 2 && "3rd Place"}
-              </span>
-            </div>
-          </div>
-
-          <div className={styles.recordinfocontainer}>
-            <div className={styles.recordtime}>Time: {run.time}</div>
-            <div className={styles.recordplayer}>
-              Player: {run.username || "Anonymous"}
-            </div>
-
-            {run.videoLink && (
-              <div className={styles.recordvideolink}>
-                {isYouTube ? (
-                  <a
-                    href={run.videoLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <YouTubeEmbed
-                      url={null}
-                      title={`${gameName} - ${run.username} Speedrun`}
-                      urlId={getYouTubeId(run.videoLink)}
-                    />
-                  </a>
-                ) : (
-                  <a
-                    href={run.videoLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={styles.externalLink}
-                  >
-                    <ExternalLink className={styles.icons} /> View Video
-                  </a>
-                )}
-              </div>
-            )}
-          </div>
         </div>
-      </>
+      </button>
     );
   }
   

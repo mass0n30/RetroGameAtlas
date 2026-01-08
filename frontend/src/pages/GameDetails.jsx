@@ -31,7 +31,7 @@ const [isExpanded, setIsExpanded] = useState(false);
 const [isExpandedAlt, setIsExpandedAlt] = useState(false);
 
 
-const {user, guest, userProfile, SetUserProfile} = useOutletContext();
+const {user, guest, userProfile, SetUserProfile, setActiveImage} = useOutletContext();
 const token = localStorage.getItem('usertoken');
 
 
@@ -193,7 +193,7 @@ if (loading) {
             <div className={styles.imgcontainer}>
               {game.cover ? (
                 <img src={game.cover} className={styles.cover}
-                />) : ( <></> )}
+                onClick={() => setActiveImage(game.cover)}/>) : ( <></> )}
             </div>
             <div className={styles.ratingcontainer}>
               <img src={game.ageRating.description} className={styles.ratinglogo} />
@@ -259,6 +259,7 @@ if (loading) {
                     src={`https:${screenshots[currentIndex]?.url}`}
                     alt={`${game.name} screenshot`}
                     className={styles.screenshot}
+                    onClick={() => setActiveImage(`https:${screenshots[currentIndex]?.url}`)}
                   />
                 </div>
 
@@ -292,7 +293,7 @@ if (loading) {
                               ? "green"
                               : (game.rating >= 60 && gameDetails.totalRatingCount > 10)
                               ? "goldenrod"
-                              : (game.rating < 60 && game.totalRatingCount > 2)
+                              : (game.rating < 60 && gameDetails.totalRatingCount > 2)
                               ? "red"
                               : undefined,
                           }}
@@ -376,7 +377,7 @@ if (loading) {
           <> </>
       )}
 			<Suspense>
-       <GameDataSection game={gameDetails} setLoading={setLoading} />
+       <GameDataSection game={gameDetails} setLoading={setLoading} setActiveImage={setActiveImage} />
 			</Suspense>
 
         { user?.admin ? (
