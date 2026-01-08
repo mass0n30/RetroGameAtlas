@@ -64,6 +64,7 @@ async function convertRunData(run) {
   const playerId = run?.players?.[0]?.id || null;
   const username = await getUsernameById(playerId);
   const videoLink = run?.videos?.links?.[0]?.uri || null;
+  const videoId = videoLink ? videoLink.split('v=')[1] || videoLink.split('.be/')[1] : null;
   const timeInSeconds = run?.times?.primary_t || null;
   const timeConverted = formatSecondsToHHMMSS(timeInSeconds);
 
@@ -71,6 +72,7 @@ async function convertRunData(run) {
     timeConverted,
     runLink,
     videoLink,
+    videoId,
     username,
     runId
   }

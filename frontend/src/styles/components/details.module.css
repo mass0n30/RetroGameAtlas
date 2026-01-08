@@ -682,6 +682,7 @@
   flex-direction: column;
 }
 
+
 .recordsectioncontainer {
   display: flex;
   flex-direction: column;
@@ -707,11 +708,11 @@
 
 .recordsectionbtn:hover {
   cursor: pointer;
+  background-color: var(--color-surface);
 }
 
 .recordsectioncontainer {
   display: flex;
-  flex-direction: column;
   gap: 1rem;
 }
 

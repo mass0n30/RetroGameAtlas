@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import styles from '../../styles/components/details.module.css';
 import YouTubeEmbed from './Youtube';
 import { getYouTubeId } from "../../helpers";
-import { Award, DollarSign, Percent, ShoppingCart, ExternalLink, Tv} from 'lucide-react';
+import { Award, ChevronLeft, ChevronRight, ExternalLink, Tv} from 'lucide-react';
 import { useFetcher } from "react-router-dom";
 
 
@@ -10,7 +10,7 @@ import { useFetcher } from "react-router-dom";
 export default function GameDetailsRunSection({ recordData, gameName }) {
   // for speedrun videos states
   const [categoryRunIndex, setCategoryRunIndex] = useState(null);
-  const [categoryRunPlaceIndex, setCategoryRunPlaceIndex] = useState(null);
+  const [categoryRunPlaceIndex, setCategoryRunPlaceIndex] = useState(0);
 
   useEffect(() => {
     // Set initial categoryRunIndex to 0 when recordData is available
@@ -38,23 +38,11 @@ export default function GameDetailsRunSection({ recordData, gameName }) {
         onClick={() => categoryIndexHandler(categoryIndex)}
         key={runCategory.categoryId}>
         <div className={styles.recordsectioncontainer}>
-          <h3 className={styles.recordsectionheader}>
-            {runCategory.categoryName} World Records
-          </h3>
-          { categoryRunIndex && categoryRunIndex === categoryIndex && (
-            <div className={styles.recordsectionactive}>
-              <span className={styles.recordsectionactivetxt}>
-                {runCategory.top3Runs.length > 0 ? (
-                  runCategory.top3Runs.map((run, placeIndex) =>
-                    runRecordRow(run, gameName, placeIndex)
-                  )
-                ) : (
-                  <span>No runs available</span>
-                )}
-              </span>
-            </div>
-          )}
-
+          <div className={styles.recordsectionheadercontainer}>
+            <h3 className={styles.recordsectionheader}>
+              {runCategory.categoryName} World Records
+            </h3>
+          </div>
               <div className={styles.recordsectioninactive}>
                 <span className={styles.recordsectioninactivetxt}>
                   Click to view runs
@@ -133,10 +121,51 @@ export default function GameDetailsRunSection({ recordData, gameName }) {
   
   return (
     <>
-    {recordData.map((runCategory, index) => (
-      runRecordSection(runCategory, gameName, index)
-    ))}
-    
+
+      {categoryRunIndex !== null && (
+      <div className={styles.recordvideocontainer}>
+        { recordData[categoryRunIndex].top3Runs.length > 1 && (
+          <>
+          <div className={styles.videoname}>
+            <Tv className={styles.icons}/>
+            <h3>{recordData[categoryRunIndex].categoryName}</h3>
+          </div>
+            <button
+              className={styles.arrowL}
+              onClick={() =>
+                categoryPlaceIndexHandler((prev) =>
+                  prev === 0 ? recordData[categoryRunIndex].top3Runs.length - 1 : prev - 1
+                )
+              }
+            >
+            <ChevronLeft className={styles.icons} color="#E8F1F2" />
+            </button>
+
+            <button
+              className={styles.arrowR}
+              onClick={() =>
+                categoryPlaceIndexHandler((prev) =>
+                  prev === recordData[categoryRunIndex].top3Runs.length - 1 ? 0 : prev + 1
+                )
+              }
+            >
+            <ChevronRight className={styles.icons} color="#E8F1F2" />
+
+            </button>
+          </>
+        )}
+        { recordData[categoryRunIndex]?.top3Runs[categoryRunPlaceIndex]?.videoLink && (
+          <YouTubeEmbed url={recordData[categoryRunIndex].top3Runs[categoryRunPlaceIndex].videoLink} title={recordData[categoryRunIndex].categoryName} urlId={recordData[categoryRunIndex].top3Runs[categoryRunPlaceIndex].videoId} />
+        )}
+        </div>
+      )}
+      <div className={styles.recordsectionscontainer}>
+        {recordData.map((runCategory, index) => (
+          <div key={runCategory.categoryId} className={styles.recordsectionwrapper}>
+            {runRecordSection(runCategory, gameName, index)}
+          </div>
+        ))}
+      </div>
     </>
   )
 

@@ -69,7 +69,7 @@ export default function VideoEmbed({ url, title, urlId }) {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                background: '#ffffff49',
+                background: '#fd000049',
               }}
             >
               <div className={styles.watchonContainer}>
