@@ -137,9 +137,7 @@
   }
 
 .storylinecontainer {
-  background-color: var(--color-surface);
   font-weight: 500;
-  background: var(--color-surface-translucent-alt);
   border-top-left-radius: 0px;
   border-top-right-radius: 0px;
   padding: 4%;
@@ -526,6 +524,7 @@
 
 .storytxt {
   background-color: var(--color-background);
+  color: white;
 }
 
 .summarytxt p {
@@ -533,10 +532,9 @@
 }
 
 .storylinecontainer {
-  background-color: var(--color-surface);
   font-weight: 500;
-  
-  background: var(--color-background-light);
+  color: white;
+  background: var(--color-surface-translucent);
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
   padding-top: 2%;
@@ -547,11 +545,12 @@
 }
 
 .storylinetitle {
-  color: var(--color-text-muted); 
+  color: #fff; 
   font-family: var(--font-family);
   margin: 0;
+  line-height: 3.2rem;
   text-align: left;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .relatedMediaHeader {
@@ -820,6 +819,7 @@ h3 {
 }
 
 .recordvideocontainer {
+  position: relative;
   margin-top: 2%;
   gap: 2%;
   display: flex;

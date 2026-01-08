@@ -5,8 +5,9 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import GameCard from '../components/GameCard';
 import GameCardSS from '../components/GameCardSS';
 import axios from "axios";
-import CustomSpinnerBottom from '../components/Spinner';
+import CustomSpinnerBottom, { CustomSpinnerDotsBottom } from '../components/Spinner';
 import CustomSpinner from '../components/Spinner';
+import { CustomSpinnerDots } from '../components/Spinner';
 import { Funnel } from 'lucide-react';
 
 //import Loader from "./Loader";
@@ -38,7 +39,7 @@ function HomePage() {
       res.data.games.length > 0 ? setHasMore(true) : setHasMore(false);       
     })
     .catch((err) => console.log(err));
-    }, 4000)
+    }, 3000)
   };
 
 
@@ -55,7 +56,7 @@ function HomePage() {
       dataLength={games.length * index}
       next={fetchMoreData}
       hasMore={hasMore}
-      loader={<CustomSpinnerBottom/>}
+      loader={<CustomSpinnerDotsBottom/>}
       scrollThreshold={"20px"}
       scrollableTarget={'gamesScrollContainer'}
       >

@@ -28,4 +28,13 @@ export function CustomSpinnerDots() {
   )
 }
 
+export function CustomSpinnerDotsBottom() {
+
+  return (
+      <div id="custom-spinner-dots-bottom">
+        <Spinner shape="fading" color="#00aaff" loading speed={1.3} size={80} transition={true} />
+      </div>
+  )
+}
+
 

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from '../styles/components/card.module.css';
 import { Loader } from 'lucide-react';
+import { CardSkeleton } from './Skeleton';
 
 function GameCard(props) {
 
@@ -13,7 +14,7 @@ function GameCard(props) {
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 3000);
+    }, 2000);
 
     return () => clearTimeout(timer); 
   } ,[loading, setLoading]);
@@ -33,9 +34,7 @@ function GameCard(props) {
      { coverUrl ? ( 
       <div className={styles.card_loader_container} style={mount ? { animationDelay: `${index * 0.12}s` }: {}} disabled>
       { loading ? (
-         <div className={styles.card_loader}  >
-            <Loader size={48} className="spinner"color={'#1a2b29ad'}  />
-         </div>
+         <CardSkeleton/>
       ) : (
          <button onClick={(() => handleNavigate())} className={styles.card_button} style={mount ? { animationDelay: `${index * 0.24}s` }: {}}>
             <div className={styles.card}  >

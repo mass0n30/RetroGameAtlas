@@ -6,7 +6,7 @@ import normalizeGameData from '../helpers';
 import CustomSpinner from '../components/Spinner';
 import {CircleCheckBig,ChevronLeft, ChevronRight, ChevronUp, ChevronDown, Heart, ArrowBigLeftDash, ArrowBigRightDash, DollarSign, Percent, ShoppingCart} from 'lucide-react';
 import SocialPopup from '../components/reactMUI/Popup';
-import GameDetailsSkeleton from '../components/Skeleton';
+import { GameDetailsSkeleton } from '../components/Skeleton';
 import SnackBarAlert from '../components/reactMUI/Alerts';
 
 const GameDataSection = lazy(() => import('../components/GameDetailsComponents/GameDetailsData'));
@@ -362,7 +362,7 @@ if (loading) {
                 <div 
                   className={styles.storytxt}
                   style={{
-                    maxHeight: isExpandedAlt ? '1000px' : '3.8rem',
+                    maxHeight: isExpandedAlt ? '2000px' : '3.8rem',
                     transition: 'max-height 0.5s ease-in-out',
                     overflow: 'hidden'
                   }}

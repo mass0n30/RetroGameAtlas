@@ -147,17 +147,18 @@ https://css-tricks.com/css-only-carousel/  Sliding carosoel effect
   - double check over loading and mounting upon navigation in details, add minimal fade ins for game details
   -filter icon as an indication
       (upon a search user should know filters are on clearly, so can reset if they are on and not correct results)
+  -! set Database prod URL in command line and set NES/SNES games from Wii games Original platforms by years in Prisma studio
 
 
 TODO:
+  - Speedrun CSS container design ** (making sure all videos embed or else no video info container?)
+
+  - constrain ebay image sizes for consistency?
+  - finish ebay row listing design
+  - inner boxshadow bottom of information and storline containers (fade out cut text?)
   - add breadcrumbs homepage?
-  - !! remove Records Link? Takes users away from page? need to replace with more information. 
-
-  -! set Database prod URL in command line and set NES/SNES games from Wii games Original platforms by years in Prisma studio
-
-  - Align and adjust font in ebay containers, and in buttons adjust margins (ebay and speedrun links)
+  - check for duplicates in franchise games on details screen (check megaman series example)
   - Modal all images??
-  - 
 
   Mobile: 
     - outside of design responsiveness for mobile viewports, android chrome, ect. browsers have stricter security, adding credentials to session headers needed. 
@@ -166,7 +167,6 @@ TODO:
   - Improve search query with fetching for games taking space out of query if no results, ect
   - Make a component for alert messages (like for saved games if no saved games, or no game results upon search, ect.)
   - Add animation and sound? to heart selection
-  - !! Fix being able to keep filters and discover 
 
   - adding details like an icon next to 'no more results' at bottom of fetches, ect. (broken controller icon on error page, ect)
   - fix slight space side bar between scroll wheel and rows

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import styles from '../../styles/components/details.module.css';
 import axios from "axios";
-import { Award, DollarSign, Percent, ShoppingCart, ExternalLink, Tv} from 'lucide-react';
+import { Award, DollarSign, Percent, ShoppingCart, ChevronLeft, ChevronRight, Tv} from 'lucide-react';
 import YouTubeEmbed from './Youtube';
 import  {CustomSpinnerDots} from '../Spinner';
 import  GameDetailsRunSection  from './GameDetailsRunSection';
@@ -73,6 +73,32 @@ const { id: gameId, igdbId: gameigdbId, name: gameName, originalPlatform, platfo
                   <h3>{gameVideos[videosIndex].name}</h3>
                 </div>
                 <div key={gameVideos[videosIndex].id} className={styles.recordvideocontainer}>
+                { gameVideos.length > 1 && (
+                  <>
+                    <button
+                      className={styles.arrowL}
+                      onClick={() =>
+                        setVideosIndex((prev) =>
+                          prev === 0 ? gameVideos.length - 1 : prev - 1
+                        )
+                      }
+                    >
+                    <ChevronLeft className={styles.icons} color="#E8F1F2" />
+                    </button>
+
+                    <button
+                      className={styles.arrowR}
+                      onClick={() =>
+                        setVideosIndex((prev) =>
+                          prev === gameVideos.length - 1 ? 0 : prev + 1
+                        )
+                      }
+                    >
+                    <ChevronRight className={styles.icons} color="#E8F1F2" />
+
+                    </button>
+                  </>
+                )}
                   <YouTubeEmbed url={null} title={gameVideos[videosIndex].name} urlId={gameVideos[videosIndex].video_id} />
                 </div>
               </div>

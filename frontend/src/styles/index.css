@@ -151,6 +151,11 @@ li {
   background-color: var(--color-background-overlay);
 }
 
+#custom-spinner-dots-bottom {
+
+  margin: 1rem;
+}
+
 
 .spinner {
   border: 4px solid #f3f3f3; 

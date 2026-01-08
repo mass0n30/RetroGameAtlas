@@ -1,8 +1,9 @@
 import { Skeleton, Stack, Box } from "@mui/material";
 import styles from '../styles/components/details.module.css';
-const skeletonBg = "#191c25";       // slightly lighter than background
-const skeletonHighlight = "#1a1e2a"; // slightly lighter still for wave
-function GameDetailsSkeleton() {
+const skeletonBg = "#1a2b29ad";       
+const skeletonHighlight = "#1a1e2a"; 
+
+export function GameDetailsSkeleton() {
   return (
       <>
       <div className={styles.outercontaineralt}>
@@ -35,5 +36,35 @@ function GameDetailsSkeleton() {
   );
 }
 
+export function CardSkeleton() {
+  return (
+      <div className={styles.card_loader_container}>
+        <div className={styles.card_loader} >
+            <Skeleton 
+              variant="rounded" 
+              width={264} 
+              height={374} 
+              animation="wave"
+              sx={{ bgcolor: skeletonBg }}
+            />
+        </div>
+      </div>
+  )
+};
 
-export default GameDetailsSkeleton;
+export function SSCardSkeleton() {
+  return (
+      <div className={styles.cardss_loader_container}>
+        <div className={styles.cardss_loader}>
+            <Skeleton 
+              variant="rounded" 
+              width={500} 
+              height={267} 
+              animation="wave"
+              sx={{ bgcolor: skeletonBg }}
+            />
+        </div>
+      </div>   
+  )
+};
+
