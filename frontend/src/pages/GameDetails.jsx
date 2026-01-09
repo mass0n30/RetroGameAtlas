@@ -42,6 +42,7 @@ const token = localStorage.getItem('usertoken');
     }, 1000);
 
     window.scrollTo({top: 0, behavior: 'smooth'});
+    setCurrentIndex(0);
 
 
     return () =>  {clearTimeout(timer)}; 
@@ -228,6 +229,8 @@ if (loading) {
         </div> 
         <article className={styles.datacontainer}>
           <div className={styles.screenshotscontainer}>
+           {screenshots.length > 1 &&  (
+            <>
             <button
               className={styles.arrowL}
               onClick={() =>
@@ -250,7 +253,8 @@ if (loading) {
             <ChevronRight className={styles.icons} color="#E8F1F2" />
 
             </button>
-
+            </>
+            )}
             {screenshots.length > 0 && screenshots[currentIndex]?.url ? (
               <div className={styles.carousel}>
 
@@ -377,7 +381,7 @@ if (loading) {
           <> </>
       )}
 			<Suspense>
-       <GameDataSection game={gameDetails} setLoading={setLoading} setActiveImage={setActiveImage} />
+       <GameDataSection game={gameDetails} setLoading={setLoading} setActiveImage={setActiveImage} setCurrentIndex={setCurrentIndex} />
 			</Suspense>
 
         { user?.admin ? (

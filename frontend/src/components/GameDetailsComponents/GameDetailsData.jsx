@@ -7,9 +7,9 @@ import YouTubeEmbed from './Youtube';
 import  {CustomSpinnerDots} from '../Spinner';
 import  GameDetailsRunSection  from './GameDetailsRunSection';
 
-export default function GameDataSection({game, setLoading, setActiveImage}) {
+export default function GameDataSection({game, setLoading, setActiveImage, setCurrentIndex}) {
 
-const { id: gameId, igdbId: gameigdbId, name: gameName, originalPlatform, platforms, developerId, genres } = game;
+const { id: gameId, igdbId: gameigdbId, name: gameName, originalPlatform, platforms, developer, genres } = game;
 
   const [recordData, setRecordData] = useState(null);
   const [gameEbayData, setGameEbayData] = useState(null);
@@ -24,7 +24,7 @@ const { id: gameId, igdbId: gameigdbId, name: gameName, originalPlatform, platfo
     async function fetchDetails() {
       try {
         const res = await axios.post(
-          `${import.meta.env.VITE_API_URL}/home/details/data`, { gameId, gameigdbId, gameName, originalPlatform }
+          `${import.meta.env.VITE_API_URL}/home/details/data`, { gameId, gameigdbId, gameName, originalPlatform, platforms, developer, genres }
         );
       res.data.game.worldRecord ? setRecordData(res.data.game.worldRecord.allTop3Data) : null;
       res.data.game.gameEbayData ? setGameEbayData(res.data.game.gameEbayData) : null;
@@ -46,6 +46,7 @@ const { id: gameId, igdbId: gameigdbId, name: gameName, originalPlatform, platfo
 
   const handleNavigate = (id) => {
     setLoading(true);
+    setCurrentIndex(0);
     // keeps scrolled at top upon user nav back pages
     window.scrollTo({top: 0});
     navigate(`/home/details/${id}`, {behavior: "smooth"} );
@@ -126,24 +127,6 @@ const { id: gameId, igdbId: gameigdbId, name: gameName, originalPlatform, platfo
       ) : (
         <></>
       )}
-      {similarGames && similarGames.length > 0 && (
-        <div className={styles.relatedgamescontainer}>
-          <h2 className={styles.relatedMediaHeader}>Games you may like </h2>
-          <div className={styles.relatedgamesflex}>
-            {similarGames.map((relatedGame) => (
-              ( relatedGame.coverUrl && ( 
-              <div key={relatedGame.id} className={styles.relatedgameitem}>
-                  <div className={styles.relatedgamelink}>
-                    <button className={styles.coverBtn} onClick={() => handleNavigate(relatedGame.id)}>
-                      <img src={relatedGame.coverUrl} className={styles.cover} width="264" height="374" />
-                    </button>
-                  </div>
-                </div>
-              ))
-            ))}
-          </div>
-        </div>
-      )}
 
       {franchiseGames && franchiseGames.length > 0 && (
         <div className={styles.relatedgamescontainer}>
@@ -173,7 +156,24 @@ const { id: gameId, igdbId: gameigdbId, name: gameName, originalPlatform, platfo
         </div>
       )}
 
-
+      {similarGames && similarGames.length > 0 && (
+        <div className={styles.relatedgamescontainer}>
+          <h2 className={styles.relatedMediaHeader}>Games you may like </h2>
+          <div className={styles.relatedgamesflex}>
+            {similarGames.map((relatedGame) => (
+              ( relatedGame.coverUrl && ( 
+              <div key={relatedGame.id} className={styles.relatedgameitem}>
+                  <div className={styles.relatedgamelink}>
+                    <button className={styles.coverBtn} onClick={() => handleNavigate(relatedGame.id)}>
+                      <img src={relatedGame.coverUrl} className={styles.cover} width="264" height="374" />
+                    </button>
+                  </div>
+                </div>
+              ))
+            ))}
+          </div>
+        </div>
+      )}
       </>  
   )
 }

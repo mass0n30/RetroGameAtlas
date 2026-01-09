@@ -397,23 +397,35 @@ async function mapGameData(game, platformData) {
 
 const { getGame, getGameByIGDB } = require('../db/queries.js');
 
-async function getRelatedGames(gameId, gameigdbId) {
+async function getRelatedGames(gameigdbId, platforms, developer, genres) {
   try {
     const options = await requestOptions();
 
     // fetching for franchise and similar games ids
     const response = await apicalypse(options)
-      .fields('franchise, similar_games, videos')
+      .fields('franchise, similar_games, videos' )
       .where(`id = ${gameigdbId};`)
       .request('/games');
 
 
     const gameData = response.data[0];
+  
+
     console.log(response.data[0], 'relatedgames response');
     if (!gameData) return { franchiseGames: null, similarGames: null };
 
     const franchiseId = gameData.franchise || null; // id is franchise id for request
     const similarGameIds = gameData.similar_games || [];
+
+    // fetch for franchise games
+    let franchiseGamesIds = null;
+    if (franchiseId) {
+      const franchiseResp = await apicalypse(options)
+        .fields('id, name, cover, slug, platforms')
+        .where(`franchise = ${franchiseId};`)
+        .request('/games');
+      franchiseGamesIds = franchiseResp.data.map(game => game.id) || null;
+    }
 
     // fetch for game videos
     let gameVideos = null;
@@ -425,21 +437,10 @@ async function getRelatedGames(gameId, gameigdbId) {
           .fields('video_id, name, game')
           .where(`id = ${gameData.videos[i]};`)
           .request('/game_videos');
-        if (videoResp.data[0]) {
+        if (videoResp.data[0] ) {
           gameVideos.push(videoResp.data[0]);
         }
       }
-    }
-
-    // fetch for franchise games
-    let franchiseGamesIds = null;
-    if (franchiseId) {
-      const franchiseResp = await apicalypse(options)
-        .fields('id, name, cover, slug, platforms')
-        .where(`franchise = ${franchiseId};`)
-        .request('/games');
-      console.log(franchiseResp.data, 'franch');
-      franchiseGamesIds = franchiseResp.data.map(game => game.id) || null;
     }
 
     // check my DB for franchise games
@@ -457,10 +458,32 @@ async function getRelatedGames(gameId, gameigdbId) {
     const similarGames = [];
     if (similarGameIds.length > 0) {
       for (let i = 0; i < similarGameIds.length; i++) {
+        if (franchiseGames && franchiseGames.length > 0) {
+          const check = franchiseGames.find(g => g.igdbId === similarGameIds[i]);
+          if (check) continue; // skip if already in franchise games
+        }
         const game = await getGameByIGDB(similarGameIds[i]);
         if (game) similarGames.push(game);
       }
     }
+
+    // look for additional game from same genre 
+      const additionalSimilarGames = [];
+      for (let i = 0; i < 10; i++) {
+        const game = await getAdditionalSimilarGame(gameigdbId, genres);
+        if (game && game.length > 0) {
+          additionalSimilarGames.push(game);
+        }
+      }
+      for (let i = 0; i < additionalSimilarGames.length; i++) {
+        const existsInSimilar = similarGames.find(g => g.igdbId === additionalSimilarGames[i].igdbId);
+        const existsInFranchise = franchiseGames ? franchiseGames.find(g => g.igdbId === additionalSimilarGames[i].igdbId) : null;
+        if (!existsInSimilar && !existsInFranchise) {
+          similarGames.push(additionalSimilarGames[i][0]);
+        }
+      }
+
+
     return { franchiseGames, similarGames, gameVideos };
 
   } catch (error) {
@@ -469,6 +492,49 @@ async function getRelatedGames(gameId, gameigdbId) {
   }
 }
 
+
+async function getAdditionalSimilarGame(gameigdbId, genres) {
+
+  const genre = genres[Math.floor(Math.random() * genres.length)];
+
+  // getting count of games in same genre
+  const genreGameCount = await prisma.game.count({
+    where: {
+      genres: {
+        some: {
+          id:genre.id,
+        },
+      },
+      rating: { gte: 60 },
+      totalRatingCount: { gte: 10 },
+      id: { not: gameigdbId },
+    },
+  });
+
+  // selecting a random offset to get a random game from same genre
+  const randomLimit = { min: 1, max: genreGameCount - 1 };
+  const randomInt = Math.floor(Math.random() * (randomLimit.max - randomLimit.min + 1)) + randomLimit.min;
+
+  // fetching the similar game
+  const similarGame = await prisma.game.findMany({
+    where: {
+      id: { not: gameigdbId },
+      genres: {
+        some: {
+          id:genre.id,
+        },
+      },
+      rating: { gte: 60 },
+      totalRatingCount: { gte: 10 },
+      id: { not: gameigdbId },
+    },
+    skip: randomInt,
+    take: 1,
+  });
+
+  return similarGame;
+ 
+}
 
 
 

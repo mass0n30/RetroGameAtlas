@@ -373,7 +373,7 @@ async function handleGetGameDetails(req, res, next) {
 const { getRelatedGames } = require( "../services/twitch.js");
 
 async function handleGetGameData(req, res, next) {
-  const {gameId, gameigdbId, gameName, originalPlatform } = req.body;
+  const {gameId, gameigdbId, gameName, originalPlatform, platforms, developer, genres } = req.body;
 
   const originalConsoleObj = await handleGetGameOriginalPlatform(originalPlatform);
 
@@ -383,7 +383,7 @@ async function handleGetGameData(req, res, next) {
     const [worldRecord, gameEbayData, relatedGames] = await Promise.all([
       getAllWorldRecordRunTimes(gameName, consoleAbbrev), // speedrun data
       getGamePrice(gameName, originalPlatform), // ebay data
-      getRelatedGames(gameId, gameigdbId), // similar and franchise games from IGDB
+      getRelatedGames(gameigdbId, platforms, developer, genres), // similar and franchise games from IGDB
     ]);
 
     return  {worldRecord, gameEbayData, relatedGames};
