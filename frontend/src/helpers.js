@@ -130,5 +130,24 @@ export function getYouTubeId(url) {
 
 
 
+export function styleMessages() {
+  let toggleRowsColors = false;
+
+  const fieldsDivs = document.querySelectorAll(".recordsectionbtn");
+
+  console.log("Styling message rows:", fieldsDivs);
+
+  fieldsDivs.forEach((message) => {
+    if (toggleRowsColors) {
+      message.classList.add("light");
+      toggleRowsColors = false;
+    } else {
+      message.classList.add("dark");
+      toggleRowsColors = true;
+    }
+  });
+};
+
+
 
 export default normalizeGameData;

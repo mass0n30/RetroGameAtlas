@@ -119,8 +119,8 @@ const { id: gameId, igdbId: gameigdbId, name: gameName, originalPlatform, platfo
 
         <div className={styles.ebaycontainer}>
           <h2 className={styles.relatedMediaHeader}>Related Listings</h2>
-          {gameEbayData.map((post) => (
-            ebayListingSection({post, setActiveImage})
+          {gameEbayData.map((post, index) => (
+            ebayListingSection({post, setActiveImage, index})
           ))}
         </div>
       ) : (
@@ -178,7 +178,7 @@ const { id: gameId, igdbId: gameigdbId, name: gameName, originalPlatform, platfo
   )
 }
 
-function ebayListingSection({post, setActiveImage}) {
+function ebayListingSection({post, setActiveImage, index}) {
 
   return (
     <>
@@ -192,7 +192,6 @@ function ebayListingSection({post, setActiveImage}) {
             >
               <button>
                 <ShoppingCart className={styles.icons}/>
-                  View on Ebay
               </button>
             </a>
           </div>                    
@@ -206,13 +205,13 @@ function ebayListingSection({post, setActiveImage}) {
             
             <div className={styles.ebaypricecontainer}>
               <div className={styles.sellertitle}>Price Information</div>
-              <div className={styles.ebaycondition}><span>Condition: </span>{post.condition}</div>
                 
               <div className={styles.pricecontainer}>
                 <div className={styles.dollar}><DollarSign className={styles.iconsDollar}/></div>  
                 <div className={styles.value}>{post.price.value}</div> 
                 <div className={styles.currency}>{post.price.currency}</div>
               </div>
+              <div className={styles.ebaycondition}>{post.condition}</div>
             </div>
             <div className={styles.sellerinfocontainer}>
               <div className={styles.sellertitle}>Seller Information</div>

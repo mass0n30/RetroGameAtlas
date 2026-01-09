@@ -4,12 +4,14 @@ import YouTubeEmbed from './Youtube';
 import { getYouTubeId } from "../../helpers";
 import { Award, ChevronLeft, ChevronRight, ExternalLink, Tv} from 'lucide-react';
 import { useFetcher } from "react-router-dom";
+import { styleMessages } from "../../helpers";
+import { Trophy } from "lucide-react";
 
 
 // eslint-disable-next-line react/prop-types
 export default function GameDetailsRunSection({ recordData, gameName }) {
   // for speedrun videos states
-  const [categoryRunIndex, setCategoryRunIndex] = useState(null);
+  const [categoryRunIndex, setCategoryRunIndex] = useState(0);
   const [categoryRunPlaceIndex, setCategoryRunPlaceIndex] = useState(0);
 
   useEffect(() => {
@@ -33,9 +35,12 @@ export default function GameDetailsRunSection({ recordData, gameName }) {
   function runRecordSection(runCategory, gameName, categoryIndex) {
     return (
       <button
-        className={styles.recordsectionbtn}
         onClick={() => categoryIndexHandler(categoryIndex)}
-        key={runCategory.categoryId}>
+        key={runCategory.categoryId}
+        className={`${styles.recordsectionbtn} ${categoryIndex % 2 ? styles.light : styles.dark}`}
+        style={categoryIndex === categoryRunIndex ? { backgroundColor: 'var(--color-primary)' } : {}}
+      >
+
         <div className={styles.recordsectioncontainer}>
           <div className={styles.recordsectionheadercontainer}>
             <h3 className={styles.recordsectionheader}>
@@ -50,13 +55,23 @@ export default function GameDetailsRunSection({ recordData, gameName }) {
   return (
     <>
 
-      {categoryRunIndex !== null && (
+      {recordData[categoryRunIndex] !== null && (
       <div className={styles.recordvideocontainer}>
         { recordData[categoryRunIndex].top3Runs.length > 1 && (
           <>
-          <div className={styles.videoname}>
-            <Tv className={styles.icons}/>
-            <h3>{recordData[categoryRunIndex].categoryName}</h3>
+          <div className={styles.recordvideocontent}>
+            <div className={styles.videoname}>
+              <h3>{recordData[categoryRunIndex].categoryName}</h3>
+            </div>
+            <div className={styles.videoplaceinfo}>
+              { categoryRunPlaceIndex === 0 && (<div className={styles.placeinfo}><div><Trophy size={16} className={styles.icons} style={{ color: 'gold', filter: 'drop-shadow(0 0 5px gold)' }}/></div><p>1st Place</p></div>)}
+              { categoryRunPlaceIndex === 1 && (<div className={styles.placeinfo}><div><Trophy size={16} className={styles.icons} style={{ color: 'silver', filter: 'drop-shadow(0 0 5px silver)' }}/></div><p>2nd Place</p></div>)}
+              { categoryRunPlaceIndex === 2 && (<div className={styles.placeinfo}><div><Trophy size={16} className={styles.icons} style={{ color: '#cd7f32', filter: 'drop-shadow(0 0 5px #cd7f32)'  }}/></div><p>3rd Place</p></div>)}
+            </div>
+            <div className={styles.runinfo}>
+              <p><strong>Runner:</strong> {recordData[categoryRunIndex].top3Runs[categoryRunPlaceIndex]?.username || 'Unknown'}</p>
+              <p><strong>Time:</strong> {recordData[categoryRunIndex].top3Runs[categoryRunPlaceIndex]?.timeConverted || 'N/A'}</p>
+            </div>
           </div>
             <button
               className={styles.arrowL}

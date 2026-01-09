@@ -192,6 +192,7 @@ li {
   backdrop-filter: blur(4px);
 }
 
+
 /* scrollbar styling */
 ::-webkit-scrollbar {
   width: 10px;

@@ -150,7 +150,6 @@ function Home() {
       })
       .catch((err) => console.log(err));
 
-     window.scrollTo({top: 0});
 
   }, [ query, genre, platform, year.min, year.max, developer, setGames, order.data, order.order, discover ]);
 
