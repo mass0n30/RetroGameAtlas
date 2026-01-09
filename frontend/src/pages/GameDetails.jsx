@@ -14,7 +14,7 @@ const GameDataSection = lazy(() => import('../components/GameDetailsComponents/G
 
 function GameDetails() {
 
-const {gameId} = useParams(); 
+const {gameIgdbId} = useParams(); 
 const [loading, setLoading] = useState(true);
 const [gameDetails, setGameDetails] = useState(null);
 
@@ -55,14 +55,14 @@ const token = localStorage.getItem('usertoken');
   // loader upon nav back and forth between games
   useEffect(() => {
     setLoading(true);
-  }, [gameId]);
+  }, [gameIgdbId]);
 
 
 useEffect(() => {
   setLoading(true);
   async function fetchDetails() {
     try {
-      const res = await axios.get(`${import.meta.env.VITE_API_URL}/home/details/${gameId}`);
+      const res = await axios.get(`${import.meta.env.VITE_API_URL}/home/details/${gameIgdbId}`);
       setGameDetails(res.data.game.gameDetails);
       res.data.game.normalizedScreenshots ? setScreenshots(res.data.game.normalizedScreenshots) : null;
       res.data.game.platformLogo ? setPlatformLogo(res.data.game.platformLogo) : null;
@@ -78,7 +78,7 @@ useEffect(() => {
     } 
   }
   fetchDetails();
-}, [gameId]);
+}, [gameIgdbId, guest]);
 
 const handleUpdateGame = async (type) => {
 
@@ -88,7 +88,7 @@ const handleUpdateGame = async (type) => {
   }
 
   try {
-    const response = await fetch(`${import.meta.env.VITE_API_URL}/home/details/${gameId}`, {
+    const response = await fetch(`${import.meta.env.VITE_API_URL}/home/details/${gameIgdbId}`, {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${token}`,
@@ -145,7 +145,7 @@ function checkForSavedGames(gameDetails) {
 // Admin Route
 const handleDeleteGame = async () => {
   try {
-    const response = await axios.delete(`http://localhost:5000/home/details/${gameId}`);
+    const response = await axios.delete(`http://localhost:5000/home/details/${gameIgdbId}`);
     if (response.status === 200) {
       alert('deleted successfully');
     }

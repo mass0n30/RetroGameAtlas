@@ -149,17 +149,15 @@ https://css-tricks.com/css-only-carousel/  Sliding carosoel effect
       (upon a search user should know filters are on clearly, so can reset if they are on and not correct results)
   -! set Database prod URL in command line and set NES/SNES games from Wii games Original platforms by years in Prisma studio
   - Speedrun CSS container design ** (making sure all videos embed or else no video info container?)
-
+  - constrain ebay image sizes for consistency?
+  - modal all images
 
 TODO:
 
-
-  - constrain ebay image sizes for consistency?
-  - finish ebay row listing design
-  - inner boxshadow bottom of information and storline containers (fade out cut text?)
+  - improve relatedGames listings with updated multiple genres fetched,
+  add the genres on gamedetails as well
+  - add profile dashboard
   - add breadcrumbs homepage?
-  - check for duplicates in franchise games on details screen (check megaman series example)
-  - Modal all images??
 
   Mobile: 
     - outside of design responsiveness for mobile viewports, android chrome, ect. browsers have stricter security, adding credentials to session headers needed. 

@@ -258,21 +258,28 @@ async function getScreenshots(game, options) {
 
 async function getGenre(game, options) {
 
+  if (!options) {
+    options = await requestOptions();
+  }
+
+  const genres = [];
+
   if (game.genres) {
-    const response = await apicalypse(options)
-    .fields('name, slug')
-    .where(`id = ${game.genres[0]}`)
-    .request('/genres')
+    for (let i = 0; i < game.genres.length; i++) {
+      await delay(50);
+      const response = await apicalypse(options)
+      .fields('name, slug')
+      .where(`id = ${game.genres[i]}`)
+      .request('/genres')
 
-    const genresResponse = await response.data;
+      const genresResponse = await response.data[0];
 
-    if (genresResponse) {
-      return genresResponse;
-    } else {
-      return null;
+      if (genresResponse) {
+        genres.push(genresResponse);
+      } 
     }
   }
-  return null;
+  return genres;
 };
 
 async function getAgeRatingCategory(game, options) {
@@ -397,7 +404,7 @@ async function mapGameData(game, platformData) {
 
 const { getGame, getGameByIGDB } = require('../db/queries.js');
 
-async function getRelatedGames(gameigdbId, platforms, developer, genres) {
+async function getRelatedGames(gameigdbId, platforms, developer, genres, ageRating) {
   try {
     const options = await requestOptions();
 
@@ -450,7 +457,11 @@ async function getRelatedGames(gameigdbId, platforms, developer, genres) {
       franchiseGames = [];
       for (let i = 0; i < franchiseGamesIds.length; i++) {
         const game = await getGameByIGDB(franchiseGamesIds[i]);
-        if (game) franchiseGames.push(game);
+        if (game && game.igdbId !== gameigdbId) {
+          franchiseGames.push(game);
+        } else {
+          continue;
+        }
       }
     }
 
@@ -469,15 +480,20 @@ async function getRelatedGames(gameigdbId, platforms, developer, genres) {
 
     // look for additional game from same genre 
       const additionalSimilarGames = [];
-      for (let i = 0; i < 10; i++) {
-        const game = await getAdditionalSimilarGame(gameigdbId, genres);
+      for (let i = 0; i < 50; i++) {
+        const game = await getAdditionalSimilarGame(gameigdbId, genres, ageRating, platforms, developer);
         if (game && game.length > 0) {
           additionalSimilarGames.push(game);
+        }
+        if (additionalSimilarGames.length >= 10) {
+          break;
         }
       }
       for (let i = 0; i < additionalSimilarGames.length; i++) {
         const existsInSimilar = similarGames.find(g => g.igdbId === additionalSimilarGames[i].igdbId);
         const existsInFranchise = franchiseGames ? franchiseGames.find(g => g.igdbId === additionalSimilarGames[i].igdbId) : null;
+        const checkAlreadyAdded = additionalSimilarGames.find(g => g[0].igdbId === additionalSimilarGames[i][0].igdbId && g !== additionalSimilarGames[i]);
+        if (checkAlreadyAdded) continue; // skip if already added from additional similar games
         if (!existsInSimilar && !existsInFranchise) {
           similarGames.push(additionalSimilarGames[i][0]);
         }
@@ -493,9 +509,16 @@ async function getRelatedGames(gameigdbId, platforms, developer, genres) {
 }
 
 
-async function getAdditionalSimilarGame(gameigdbId, genres) {
+async function getAdditionalSimilarGame(gameigdbId, genres, ageRating, platforms, developer) {
 
-  const genre = genres[Math.floor(Math.random() * genres.length)];
+  let genre = {};
+
+  if (genres) {
+    genre = { [genres[Math.floor(Math.random() * genres.length)]]: null };
+  }
+  const ageRatingId = ageRating ? ageRating.id : null;
+  const platformIds = platforms ? platforms.map(p => p.id) : [];
+  const developerId = developer ? developer.id : null;
 
   // getting count of games in same genre
   const genreGameCount = await prisma.game.count({
@@ -505,28 +528,46 @@ async function getAdditionalSimilarGame(gameigdbId, genres) {
           id:genre.id,
         },
       },
+      ageRating: {
+        id : ageRatingId || undefined,
+      },
+      platforms: {
+        some: {
+          id: { in: platformIds }
+        }
+      }, 
+      developer: {
+        id: developerId || undefined,
+      },
       rating: { gte: 60 },
       totalRatingCount: { gte: 10 },
-      id: { not: gameigdbId },
     },
   });
 
-  // selecting a random offset to get a random game from same genre
+  // selecting a random offset to get a random game from same genre w/ same age rating
   const randomLimit = { min: 1, max: genreGameCount - 1 };
   const randomInt = Math.floor(Math.random() * (randomLimit.max - randomLimit.min + 1)) + randomLimit.min;
 
   // fetching the similar game
   const similarGame = await prisma.game.findMany({
     where: {
-      id: { not: gameigdbId },
+      igdbId: { not: gameigdbId },
       genres: {
         some: {
           id:genre.id,
         },
       },
+      developer: {
+        id: developerId || undefined,
+      },
+      platforms: {
+        some: {
+          id: { in: platformIds }
+        }
+      },
+      ageRatingId: ageRatingId || undefined,
       rating: { gte: 60 },
-      totalRatingCount: { gte: 10 },
-      id: { not: gameigdbId },
+      totalRatingCount: { gte: 5 },
     },
     skip: randomInt,
     take: 1,
@@ -538,4 +579,4 @@ async function getAdditionalSimilarGame(gameigdbId, genres) {
 
 
 
-module.exports = { getGamesByYear, getGamesByPlatform, populateAllGames, getRelatedGames };
+module.exports = { getGamesByYear, getGamesByPlatform, populateAllGames, getRelatedGames, getGenre };

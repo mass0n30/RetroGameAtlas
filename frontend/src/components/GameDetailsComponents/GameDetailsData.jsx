@@ -9,7 +9,7 @@ import  GameDetailsRunSection  from './GameDetailsRunSection';
 
 export default function GameDataSection({game, setLoading, setActiveImage, setCurrentIndex}) {
 
-const { id: gameId, igdbId: gameigdbId, name: gameName, originalPlatform, platforms, developer, genres } = game;
+const { id: gameId, igdbId: gameigdbId, name: gameName, originalPlatform, platforms, developer, genres, ageRating } = game;
 
   const [recordData, setRecordData] = useState(null);
   const [gameEbayData, setGameEbayData] = useState(null);
@@ -24,7 +24,7 @@ const { id: gameId, igdbId: gameigdbId, name: gameName, originalPlatform, platfo
     async function fetchDetails() {
       try {
         const res = await axios.post(
-          `${import.meta.env.VITE_API_URL}/home/details/data`, { gameId, gameigdbId, gameName, originalPlatform, platforms, developer, genres }
+          `${import.meta.env.VITE_API_URL}/home/details/data`, { gameId, gameigdbId, gameName, originalPlatform, platforms, developer, genres, ageRating }
         );
       res.data.game.worldRecord ? setRecordData(res.data.game.worldRecord.allTop3Data) : null;
       res.data.game.gameEbayData ? setGameEbayData(res.data.game.gameEbayData) : null;
@@ -41,15 +41,16 @@ const { id: gameId, igdbId: gameigdbId, name: gameName, originalPlatform, platfo
   fetchDetails();
 }, []);
 
+/// PROCESS OF REPLACING ID WITH IGDBID FOR NAVIGATION
  
   const navigate = useNavigate();
 
-  const handleNavigate = (id) => {
+  const handleNavigate = (igdbId) => {
     setLoading(true);
     setCurrentIndex(0);
     // keeps scrolled at top upon user nav back pages
     window.scrollTo({top: 0});
-    navigate(`/home/details/${id}`, {behavior: "smooth"} );
+    navigate(`/home/details/${igdbId}`, {behavior: "smooth"} );
   };
 
   if (loading) {
@@ -137,7 +138,7 @@ const { id: gameId, igdbId: gameigdbId, name: gameName, originalPlatform, platfo
               <div key={franchiseGame.id} className={styles.relatedgameitem}>
                 <div className={styles.relatedgamelink}>
                   <button 
-                    onClick={() => handleNavigate(franchiseGame.id)}
+                    onClick={() => handleNavigate(franchiseGame.igdbId)}
                     className={styles.coverBtn} 
                   >
                     <img 
@@ -164,7 +165,7 @@ const { id: gameId, igdbId: gameigdbId, name: gameName, originalPlatform, platfo
               ( relatedGame.coverUrl && ( 
               <div key={relatedGame.id} className={styles.relatedgameitem}>
                   <div className={styles.relatedgamelink}>
-                    <button className={styles.coverBtn} onClick={() => handleNavigate(relatedGame.id)}>
+                    <button className={styles.coverBtn} onClick={() => handleNavigate(relatedGame.igdbId)}>
                       <img src={relatedGame.coverUrl} className={styles.cover} width="264" height="374" />
                     </button>
                   </div>

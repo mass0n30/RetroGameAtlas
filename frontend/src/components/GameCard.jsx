@@ -8,7 +8,7 @@ function GameCard(props) {
 
    const [loading, setLoading] = useState(true);
    // eslint-disable-next-line react/prop-types
-   const {gameId, coverUrl, index, mount, setMount} = props;
+   const {gameId, gameIgdbId, coverUrl, index, mount, setMount} = props;
 
   //spinner upon mount with delay
   useEffect(() => {
@@ -23,7 +23,7 @@ function GameCard(props) {
    const navigate = useNavigate();
 
    const handleNavigate = () => {
-      navigate(`/home/details/${gameId}` );
+      navigate(`/home/details/${gameIgdbId}` );
       setMount(false);
    }
 

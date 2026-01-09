@@ -91,15 +91,19 @@ li {
   height: 100%;
   background-color: rgba(0, 0, 0, 0.8);
   display: flex;
+  flex: 1;
   justify-content: center;
   align-items: center;
   z-index: 2000;
-  cursor: zoom-out;
+  cursor: zoom-in;
 }
 
 .activeImage {
   box-shadow: 0 0 40px var(--color-background);
   border-radius: 10px;
+  width: auto;
+  height: 90%;
+  object-fit: contain;
 }
 
 

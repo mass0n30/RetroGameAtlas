@@ -36,7 +36,7 @@ const routes = [
           },
 
           {
-            path: "details/:gameId",
+            path: "details/:gameIgdbId",
             element: <GameDetails/>
           },
           {

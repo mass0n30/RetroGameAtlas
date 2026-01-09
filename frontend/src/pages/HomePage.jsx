@@ -66,11 +66,11 @@ function HomePage() {
     
       games.map((game, index) => (
         <GameCardSS style={mount ? { animationDelay: `${index * 0.24}s` }: {}} key={`${stableId}-${index}`} index={index} randomScreenshot={game.randomScreenshot.url} mount={mount} setMount={setMount}
-        gameId={game.id} setGameId={setGameId} coverUrl={game.coverUrl} loading={loading} screenshots={game.screenshots} length={game.screenshots.length} user={user} guest={guest}/>
+        gameId={game.id} gameIgdbId={game.igdbId} setGameId={setGameId} coverUrl={game.coverUrl} loading={loading} screenshots={game.screenshots} length={game.screenshots.length} user={user} guest={guest}/>
     ))) : (
       games.map((game, index) => (
         <GameCard style={mount ? { animationDelay: `${index * 0.24}s` }: {}} key={`${stableId}-${index}`} index={index} mount={mount} setMount={setMount}
-        gameId={game.id} setGameId={setGameId} coverUrl={game.coverUrl} loading={loading} user={user} guest={guest}/>
+        gameId={game.id} gameIgdbId={game.igdbId} setGameId={setGameId} coverUrl={game.coverUrl} loading={loading} user={user} guest={guest}/>
       ))
     )}
       </section>

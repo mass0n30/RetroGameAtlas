@@ -240,17 +240,18 @@
   display: flex;
   align-items: center;
   flex: 1;
-  max-width: 200%;
+  max-width: 300%;
   height: auto;
 }
 
 .ebayimg {
-  max-width: 200%;
+  max-width: 300%;
   border-radius: 8px;
   height: auto;
   object-fit: contain;
   animation: fadeInUp 0.6s ease-out forwards;
-
+  min-width: 200px;
+  min-height: 200px;
 }
 
 

@@ -331,22 +331,26 @@ async function handleGetGameOriginalPlatform(originalPlatform) {
 
 }
 
+const {getGenre} = require( "../services/twitch.js");
+
+
 async function handleGetGameDetails(req, res, next) {
 
-  const gameId = parseInt(req.params.gameid);
+  const gameIgdbId = parseInt(req.params.gameIgdbId);
+
+  const genres = await getGenre(gameIgdbId);
 
   try {
 
     const gameDetails = await prisma.game.findUnique({
       where: {
-        id: gameId
+          igdbId: gameIgdbId
       },
       include: {
         screenshots: true,
         developer: true,
         platforms: true,
         ageRating: true,
-        genres: true,
       },
     });
 
@@ -363,7 +367,7 @@ async function handleGetGameDetails(req, res, next) {
     const platformLogo = originalPlatformObj ? originalPlatformObj.platformLogo : null;
     const platformName = originalPlatformObj.displayabbrev;
 
-    return {gameDetails, normalizedScreenshots, platformLogo, platformName};
+    return {gameDetails, normalizedScreenshots, platformLogo, platformName, genres};
     
   } catch (error) {
     next(error);
@@ -373,7 +377,7 @@ async function handleGetGameDetails(req, res, next) {
 const { getRelatedGames } = require( "../services/twitch.js");
 
 async function handleGetGameData(req, res, next) {
-  const {gameId, gameigdbId, gameName, originalPlatform, platforms, developer, genres } = req.body;
+  const {gameId, gameigdbId, gameName, originalPlatform, platforms, developer, genres, ageRating } = req.body;
 
   const originalConsoleObj = await handleGetGameOriginalPlatform(originalPlatform);
 
@@ -383,7 +387,7 @@ async function handleGetGameData(req, res, next) {
     const [worldRecord, gameEbayData, relatedGames] = await Promise.all([
       getAllWorldRecordRunTimes(gameName, consoleAbbrev), // speedrun data
       getGamePrice(gameName, originalPlatform), // ebay data
-      getRelatedGames(gameigdbId, platforms, developer, genres), // similar and franchise games from IGDB
+      getRelatedGames(gameigdbId, platforms, developer, genres, ageRating), // similar and franchise games from IGDB
     ]);
 
     return  {worldRecord, gameEbayData, relatedGames};
