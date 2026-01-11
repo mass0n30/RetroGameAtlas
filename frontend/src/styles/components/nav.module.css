@@ -13,6 +13,17 @@ nav {
   backdrop-filter: blur(50px);
   background-color: var(--color-surface-translucent);
   overflow: hidden;
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 nav::before {
@@ -177,9 +188,11 @@ nav::before {
   transition: background-color 0.4s ease-in-out;
 }
 
+
+
 .searchBarContainer:focus-within {
   border-color: var(--color-primary-glow);
-  background-color: var(--color-surface);
+  background-color: var(--color-background);
 }
 
 .searchBarContainer input {

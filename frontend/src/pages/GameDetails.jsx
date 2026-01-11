@@ -210,7 +210,7 @@ if (loading) {
                 <img src={platformLogo} className={styles.platformlogo}/>
               </div>
               <div className={styles.platformnamecontainer}>
-                <span className={styles.originalreleasetxt}>Original Release</span>
+                <span className={styles.originalreleasetxt}>Released On</span>
                 <span className={styles.platname}>{platformName}</span>
               </div>
             </div>
@@ -280,9 +280,8 @@ if (loading) {
                   <div className={styles.ratingtxt}>
                   { gameDetails.genres && gameDetails.genres.length > 0 && (
                     <div className={styles.genrescontainer}>
-                      <div className={styles.genrestxt}>Genre: </div>
                       { gameDetails.genres.map((genre) => (
-                          <div key={genre.id}>{genre.name}</div>
+                          <div key={genre.id} className={styles.genrestxt}>{genre.name}</div>
                       ))}
                     </div>
                   )}

@@ -354,6 +354,8 @@ async function handleGetGameDetails(req, res, next) {
       },
     });
 
+    gameDetails.genres = genres;
+
     const normalizedScreenshots = gameDetails.screenshots.map(ss => ({
       id: ss.id,
       gameId: ss.gameId,

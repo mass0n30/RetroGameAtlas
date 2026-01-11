@@ -74,7 +74,7 @@ function HomePage() {
       ))
     )}
       </section>
-      {!hasMore && <p className='endResult'>No More Results</p>}
+      {!hasMore && <div className='endResultContainer'><p className='endResult'>No More Results</p> <img style={{ width: "80px", height: "auto" }} className='endResultImg' src="/logo/originallogo.png" alt="End of Results"/></div>}
     </InfiniteScroll>
   )
 }

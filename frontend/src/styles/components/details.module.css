@@ -60,6 +60,7 @@
   animation: fadeInUp 0.6s ease-out forwards;
   background: var(--color-background-translucent);
   backdrop-filter: blur(4px);
+  margin: 0%;
 }
 
 
@@ -102,7 +103,7 @@
 .outercontainer, .outercontaineralt {
   margin-left: 1%;
   margin-right: 1%;
-  box-shadow: 0px 3px 6px 0px var(--color-primary);
+  box-shadow: 0px 3px 6px 0px var(--color-primary-glow);
 
 }
 
@@ -512,6 +513,7 @@
 
 .informationheader {
   display: flex;
+  gap: 1rem;
   justify-content: space-between;
   font-family: var(--font-family);
   color: var(--color-text-muted);
@@ -533,6 +535,15 @@
   border: solid 2px var(--color-surface);
   border-radius: 10px;
   background-color: var(--color-background-light);
+  color: var(--color-text);
+}
+
+.genrestxt {
+  font-weight: 600;
+  font-size: 0.9rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 6px;
+  background-color: var(--blue-ambient);
   color: var(--color-text);
 }
 
@@ -602,7 +613,7 @@
   padding: 0%;
   width: 100%;
   margin-top: 1.5%;
-  border: solid 2px var(--color-surface);
+  border: solid 2px var(--color-surface-translucent);
   border-radius: 8px;
 }
 
@@ -610,7 +621,7 @@
   flex: 1;
   border-radius: 8px;
   padding-bottom: 0%;
-  border: solid 2px var(--color-surface);
+  border: solid 2px var(--color-background-translucent);
   border-radius: 8px;
 }
 

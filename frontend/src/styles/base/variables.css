@@ -19,9 +19,9 @@
   --purple-accent-dark: #321686;
   --orange-fire: #fd7310da; /* accent orange */
 
-  --purple-ambient: rgba(58, 25, 156, 0.137);
-  --blue-ambient:   rgba(59, 131, 246, 0.11);
-  --red-ambient:    rgba(240, 58, 71, 0.137);
+  --purple-ambient: rgba(58, 25, 156, 0.185);
+  --blue-ambient:   rgba(59, 131, 246, 0.212);
+  --red-ambient:    rgba(240, 58, 70, 0.26);
   --blue-light-ambient: #1992cf10;
 
   --color-primary: rgb(59, 130, 246);             /* main neon */

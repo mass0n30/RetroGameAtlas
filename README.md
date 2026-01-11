@@ -131,33 +131,35 @@ https://css-tricks.com/css-only-carousel/  Sliding carosoel effect
     - upon navigating back from game details, have no loader cards for seamless navigation
 - Add a share feature on Game details page? Sharing to socials or email.
 - add admin delete games
-  - finish up sidebar cateogories container (flexing category containers nicely upon selection *reference resume project)
-    - let categories flex container flex 3 over rest of containers to give category rows the most room upon flexing... (flexing makes sidebar height full??)
-  - Game Details page Screenshots in a carosel?
-  - Make a alert component for alerts (saved to games, ect)
-  - put ebay listings as 'related listings (good amount does not have exact title listings, more so related listings, perhaps I can improve this looking back through ebay api docs)
-  - design Game Details page (layout on paper sketch considering flex on mobile)
-  - Populate more Wii games, populate PSP titles and atari 2600 ?
-  - adding MVP features, user features 
-  - Typography improvements, especially on gameDetails page (font for paragraphs, headers, giving icons more stroke width over text labels? etc)
-  - put social links in a popout from clicking a share Icon on gamedetail page ( next to heart icon )
-  - !Add Related Games Section in Game Details
-  - Prisma studio filter to clean up filler games, may need raw sql for screenshots 
-  - Add guest account option (null out SavedGames or like or completing games (Give option to sign up))
-  - double check over loading and mounting upon navigation in details, add minimal fade ins for game details
-  -filter icon as an indication
-      (upon a search user should know filters are on clearly, so can reset if they are on and not correct results)
-  -! set Database prod URL in command line and set NES/SNES games from Wii games Original platforms by years in Prisma studio
-  - Speedrun CSS container design ** (making sure all videos embed or else no video info container?)
-  - constrain ebay image sizes for consistency?
-  - modal all images
+- finish up sidebar cateogories container (flexing category containers nicely upon selection *reference resume project)
+  - let categories flex container flex 3 over rest of containers to give category rows the most room upon flexing... (flexing makes sidebar height full??)
+- Game Details page Screenshots in a carosel?
+- Make a alert component for alerts (saved to games, ect)
+- put ebay listings as 'related listings (good amount does not have exact title listings, more so related listings, perhaps I can improve this looking back through ebay api docs)
+- design Game Details page (layout on paper sketch considering flex on mobile)
+- Populate more Wii games, populate PSP titles and atari 2600 ?
+- adding MVP features, user features 
+- Typography improvements, especially on gameDetails page (font for paragraphs, headers, giving icons more stroke width over text labels? etc)
+- put social links in a popout from clicking a share Icon on gamedetail page ( next to heart icon )
+- !Add Related Games Section in Game Details
+- Prisma studio filter to clean up filler games, may need raw sql for screenshots 
+- Add guest account option (null out SavedGames or like or completing games (Give option to sign up))
+- double check over loading and mounting upon navigation in details, add minimal fade ins for game details
+-filter icon as an indication
+    (upon a search user should know filters are on clearly, so can reset if they are on and not correct results)
+-! set Database prod URL in command line and set NES/SNES games from Wii games Original platforms by years in Prisma studio
+- Speedrun CSS container design ** (making sure all videos embed or else no video info container?)
+- constrain ebay image sizes for consistency?
+- modal all images
+- improve relatedGames listings with updated multiple genres fetched,
+add the genres on gamedetails as well
 
 TODO:
 
-  - improve relatedGames listings with updated multiple genres fetched,
-  add the genres on gamedetails as well
   - add profile dashboard
   - add breadcrumbs homepage?
+  - additional styling touchup, fade-ins, skeleton loader improvements,
+  gameDetails header changes, color gradients in containers like nav and sidebar, padded containers around videos (or CRT graphic??) ect. 
 
   Mobile: 
     - outside of design responsiveness for mobile viewports, android chrome, ect. browsers have stricter security, adding credentials to session headers needed. 

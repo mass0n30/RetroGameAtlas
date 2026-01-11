@@ -31,7 +31,7 @@ async function getTwitchToken() {
 
 async function requestOptions() {
   const token = await getTwitchToken();
-// console.log(token);
+  // console.log(token);
   return {
     queryMethod: 'body', 
     method: 'post',
@@ -61,6 +61,38 @@ async function populateAllGames(req, res, next) {
     }
   }
 };
+
+async function getGameGenres(gameIgdbId) {
+  try {
+    const options = await requestOptions();
+
+    const response = await apicalypse(options)
+      .fields('genres')
+      .where(`id = ${gameIgdbId};`)
+      .request('/games');
+
+    const gameData = response.data[0];
+
+    const genres = [];
+
+    // finding and pushing genres from poplulated db
+    for (let i=0; i<gameData.genres.length;i++) {
+      const genre = await prisma.genre.findUnique({
+        where: {igdbId:gameData.genres[i]}
+      })
+
+      if (genre) {
+        genres.push(genre)
+      }
+    }
+
+  return genres;
+
+  } catch (error) {
+    console.error('Error fetching game genres:', error);
+    return null;
+  }
+}
 
 
 async function getGamesByYear(req, res, next, year, page) { 
@@ -256,20 +288,21 @@ async function getScreenshots(game, options) {
   return null;
 };
 
-async function getGenre(game, options) {
+
+async function getGenre(igdbId, options) {
 
   if (!options) {
     options = await requestOptions();
   }
 
-  const genres = [];
+  const genres = await getGameGenres(igdbId);
 
-  if (game.genres) {
-    for (let i = 0; i < game.genres.length; i++) {
+  if (igdbId.genres) {
+    for (let i = 0; i < igdbId.genres.length; i++) {
       await delay(50);
       const response = await apicalypse(options)
       .fields('name, slug')
-      .where(`id = ${game.genres[i]}`)
+      .where(`id = ${igdbId.genres[i]}`)
       .request('/genres')
 
       const genresResponse = await response.data[0];
@@ -418,7 +451,6 @@ async function getRelatedGames(gameigdbId, platforms, developer, genres, ageRati
     const gameData = response.data[0];
   
 
-    console.log(response.data[0], 'relatedgames response');
     if (!gameData) return { franchiseGames: null, similarGames: null };
 
     const franchiseId = gameData.franchise || null; // id is franchise id for request
@@ -480,7 +512,7 @@ async function getRelatedGames(gameigdbId, platforms, developer, genres, ageRati
 
     // look for additional game from same genre 
       const additionalSimilarGames = [];
-      for (let i = 0; i < 50; i++) {
+      for (let i = 0; i < 100; i++) {
         const game = await getAdditionalSimilarGame(gameigdbId, genres, ageRating, platforms, developer);
         if (game && game.length > 0) {
           additionalSimilarGames.push(game);
@@ -513,14 +545,16 @@ async function getAdditionalSimilarGame(gameigdbId, genres, ageRating, platforms
 
   let genre = {};
 
+  const getRandomGenreIndex = Math.floor(Math.random() * genres.length);
+
   if (genres) {
-    genre = { [genres[Math.floor(Math.random() * genres.length)]]: null };
+    genre = genres[getRandomGenreIndex];
   }
   const ageRatingId = ageRating ? ageRating.id : null;
   const platformIds = platforms ? platforms.map(p => p.id) : [];
   const developerId = developer ? developer.id : null;
 
-  // getting count of games in same genre
+  // getting count of games in same genre, with same age rating, on same platforms
   const genreGameCount = await prisma.game.count({
     where: {
       genres: {
@@ -577,6 +611,42 @@ async function getAdditionalSimilarGame(gameigdbId, genres, ageRating, platforms
  
 }
 
+async function populateGameGenres() {
+  try {
+    const options = await requestOptions();
+
+    // fetching all games from my DB
+    const allGames = await prisma.game.findMany();
+
+    for (let i = 0; i < allGames.length; i++) {
+      const gameGenres = await getGenre(allGames[i], options);
+      
+      const fetchGenres = [];
+      for (let j = 0; j < gameGenres.length; j++) {
+        const genreInDb = await prisma.genre.findUnique({
+          where: { igdbId: gameGenres[j].id }
+        });
+        if (genreInDb) {
+          fetchGenres.push(genreInDb);
+        }
+      }
+      await prisma.game.update({
+        where: { id: allGames[i].id },
+        data: {
+          genres: {
+            set: fetchGenres.map(g => ({ id: g.id })),
+          },
+        },
+      });
+      console.log(`Updated genres for game: ${allGames[i].name}`);  
+
+    }
+
+  } catch (error) {
+    console.error('Error populating game genres:', error);
+  }
+}
 
 
-module.exports = { getGamesByYear, getGamesByPlatform, populateAllGames, getRelatedGames, getGenre };
+
+module.exports = { getGamesByYear, getGamesByPlatform, populateAllGames, getRelatedGames, getGenre, populateGameGenres };

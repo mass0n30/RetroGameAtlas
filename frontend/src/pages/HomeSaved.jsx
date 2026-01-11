@@ -45,7 +45,7 @@ function HomeSaved() {
         <section>
           { games.map((game, index) => (
             <GameCard style={mount ? { animationDelay: `${index * 0.24}s` }: {}} key={`${stableId}-${index}`} index={index} mount={mount} setMount={setMount}
-            gameId={game.id} setGameId={setGameId} coverUrl={game.coverUrl} loading={loading} user={user}/>
+            gameIgdbId={game.igdbId} setGameId={setGameId} coverUrl={game.coverUrl} loading={loading} user={user}/>
           ))
         };
       </section>

@@ -4,8 +4,17 @@ aside {
   position: sticky;
   top: 5rem;
   height:  calc(100vh - 5rem);
+  animation: fadeIn 0.3s ease-out forwards;
 }
 
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  } 
+}
 
 aside::before {
   content: "";
