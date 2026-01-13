@@ -64,48 +64,43 @@ const { id: gameId, igdbId: gameigdbId, name: gameName, originalPlatform, platfo
 
   return (
     <>
-      <div className={styles.relatedVideosContainer}>
-      </div>
-      <div className={styles.recordscontainer}>
-        {gameVideos && gameVideos.length > 0 && (
-            <div className={styles.recorditem}>
-              <div className={styles.recordsinnercard}>
-                <div className={styles.videoname}>
-                  <Tv className={styles.icons}/>
-                  <h3>{gameVideos[videosIndex].name}</h3>
-                </div>
-                <div key={gameVideos[videosIndex].id} className={styles.recordvideocontainer}>
-                { gameVideos.length > 1 && (
-                  <>
-                    <button
-                      className={styles.arrowL}
-                      onClick={() =>
-                        setVideosIndex((prev) =>
-                          prev === 0 ? gameVideos.length - 1 : prev - 1
-                        )
-                      }
-                    >
-                    <ChevronLeft className={styles.icons} color="#E8F1F2" />
-                    </button>
+    <div className={styles.recordscontainer}>
+      {gameVideos && gameVideos.length > 0 && (
+          <div className={styles.recorditem}>
+              <div className={styles.videoname}>
+                <Tv className={styles.icons}/>
+                <h3>{gameVideos[videosIndex].name}</h3>
+              </div>
+              <div key={gameVideos[videosIndex].id} className={styles.recordvideocontainer}>
+              { gameVideos.length > 1 && (
+                <>
+                  <button
+                    className={styles.arrowL}
+                    onClick={() =>
+                      setVideosIndex((prev) =>
+                        prev === 0 ? gameVideos.length - 1 : prev - 1
+                      )
+                    }
+                  >
+                  <ChevronLeft className={styles.icons} color="#E8F1F2" />
+                  </button>
 
-                    <button
-                      className={styles.arrowR}
-                      onClick={() =>
-                        setVideosIndex((prev) =>
-                          prev === gameVideos.length - 1 ? 0 : prev + 1
-                        )
-                      }
-                    >
-                    <ChevronRight className={styles.icons} color="#E8F1F2" />
+                  <button
+                    className={styles.arrowR}
+                    onClick={() =>
+                      setVideosIndex((prev) =>
+                        prev === gameVideos.length - 1 ? 0 : prev + 1
+                      )
+                    }
+                  >
+                  <ChevronRight className={styles.icons} color="#E8F1F2" />
 
-                    </button>
-                  </>
-                )}
-                  <YouTubeEmbed url={null} title={gameVideos[videosIndex].name} urlId={gameVideos[videosIndex].video_id} />
-                </div>
+                  </button>
+                </>
+              )}
+                <YouTubeEmbed url={null} title={gameVideos[videosIndex].name} urlId={gameVideos[videosIndex].video_id} />
               </div>
             </div>
-
         )}
         {recordData && (
           <>

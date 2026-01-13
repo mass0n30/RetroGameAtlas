@@ -149,5 +149,85 @@ export function styleMessages() {
 };
 
 
+export function getCompletedGamesStats(completedGames) {
+  const totalGames = completedGames.length;
+  const genresCount = {
+    "Shooter": 0,
+    "Arcade": 0,
+    "Sport": 0,
+    "Racing": 0,
+    "Card & Board Game": 0,
+    "Puzzle": 0,
+    "Simulator": 0,
+    "Strategy": 0,
+    "Music": 0,
+    "Adventure": 0,
+    "Fighting": 0,
+    "Platform": 0,
+    "Turn-based strategy (TBS)": 0,
+    "Pinball": 0,
+    "Role-playing (RPG)": 0,
+    "Tactical": 0,
+    "Point-and-click": 0,
+    "Hack and slash/Beat 'em up": 0,
+    "Real Time Strategy (RTS)": 0,
+    "Quiz/Trivia": 0,
+    "Indie": 0,
+    "Visual Novel": 0
+  };
+  const consolesCount = {
+    "Atari 2600": 0,
+    "NES": 0,
+    "Genesis": 0,
+    "Game Boy": 0,
+    "SNES": 0,
+    "PlayStation": 0,
+    "Saturn": 0,
+    "Nintendo 64": 0,
+    "Game Boy Color": 0,
+    "Dreamcast": 0,
+    "PS2": 0,
+    "GameCube": 0,
+    "Game Boy Advance": 0,
+    "Xbox": 0,
+    "Nintendo DS": 0,
+    "PSP": 0,
+    "Xbox 360": 0,
+    "Wii": 0,
+    "PS3": 0,
+    "Nintendo 3DS": 0
+  };
+
+  completedGames.forEach(game => {
+    if (game.genres && Array.isArray(game.genres)) {
+      game.genres.forEach(genre => {
+        genresCount[genre.name] += 1;
+      });
+    }
+  });
+
+  completedGames.forEach(game => {
+    if (game.platforms && Array.isArray(game.platforms)) {
+      game.platforms.forEach(platform => {
+        consolesCount[platform.displayabbrev] += 1;
+      });
+    }
+  });
+
+  const consolesArray = Object.entries(consolesCount).map(function ([name, count]) {
+    return { name: name, count: count };
+  });
+
+  const genresArray = Object.entries(genresCount).map(function ([name, count]) {
+    return { name: name, count: count };
+  });
+
+  return {
+    totalGames,
+    genresArray,
+    consolesArray
+  };
+};
+
 
 export default normalizeGameData;

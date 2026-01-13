@@ -1,28 +1,48 @@
 // viewController
 const {prisma} = require("../db/prismaClient.js");
 
-async function getUserProfile(req, res, next, userId) {
-
+async function getUserProfile(req, res, next) {
   try {
+    const userId = req.user?.id || req.params?.userId;
+
+    if (!userId) {
+      return res.status(400).json({ error: "Missing userId" });
+    }
+
     const profile = await prisma.userProfile.findUnique({
-      where: {
-        userId:userId
-      },
+      where: { userId: userId },
       select: {
-        savedGames: true,
-      }
+        savedGames: {
+          select: {
+            id: true,
+            name: true,
+            coverUrl: true,
+            igdbId: true,
+            genres: { select: { id: true, name: true } },
+            platforms: { select: { id: true, name: true, displayabbrev: true } },
+          },
+        },
+        completedGames: {
+          select: {
+            id: true,
+            name: true,
+            genres: { select: { id: true, name: true } },
+            platforms: { select: { id: true, name: true , displayabbrev: true} },
+          },
+        },
+      },
     });
 
+
     if (!profile) {
-      return null;
+      return res.status(404).json({ error: "Profile not found" });
     }
 
     return profile;
   } catch (error) {
-    next(error)
+    return next(error);
   }
-};
-
+}
 
 
 async function getAllCategoryData(req, res, next) {

@@ -6,6 +6,7 @@ import Signup from "./pages/Signup";
 import HomePage from "./pages/HomePage";
 import GameDetails from "./pages/GameDetails";
 import HomeSaved from "./pages/HomeSaved";
+import DashBoardPage from "./pages/DashBoardPage";
 import SettingsPage from "./pages/SettingsPage";
 
 const routes = [
@@ -42,6 +43,10 @@ const routes = [
           {
             path: "saved",
             element: <HomeSaved/>
+          },
+          {
+            path: "dashboard",
+            element: <DashBoardPage/>
           },
           {
             path: "settings",

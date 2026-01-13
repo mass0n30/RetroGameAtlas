@@ -14,9 +14,12 @@ export default function NavMenu({setMount, guest}) {
 
 
   //setting mount to keep loader cards upon nav back?
-  function handleNavigate() {
+  function handleNavigate(dashboard) {
     if (guest) { SetAlertGuest(true) 
 
+    } else if (dashboard) {
+      navigate('/home/dashboard');  
+      setMount(false);
     } else {
       navigate('/home/saved');
       setMount(false);
@@ -44,6 +47,8 @@ export default function NavMenu({setMount, guest}) {
         <Menu.Positioner className={styles.Positioner} sideOffset={10}>
           <Menu.Popup className={styles.Popup}>
 
+            <Menu.Item className={styles.Item} onClick={() => handleNavigate(true)}>Dashboard</Menu.Item>
+            <Menu.Separator className={styles.Separator} />
             <Menu.Item className={styles.Item} onClick={() => handleNavigate()}>Saved Games</Menu.Item>
             <Menu.Separator className={styles.Separator} />
             <Menu.Item className={styles.Item}>Settings</Menu.Item>

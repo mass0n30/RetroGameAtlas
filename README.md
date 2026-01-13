@@ -153,11 +153,16 @@ https://css-tricks.com/css-only-carousel/  Sliding carosoel effect
 - modal all images
 - improve relatedGames listings with updated multiple genres fetched,
 add the genres on gamedetails as well
+- add profile dashboard
+  - user welcome message
+  - add genre / category completed games toggle stats
+  - add information redirect for information on the app (adding api links, github, etc)
 
 TODO:
+  - add Ebay affiliate tracking? (for first release iteration) 
+  - add toggle timer for category side bar (resetting to default after selections)
+  - possible artwork section from fetch for next to video section to fill a bit of space?
 
-  - add profile dashboard
-  - add breadcrumbs homepage?
   - additional styling touchup, fade-ins, skeleton loader improvements,
   gameDetails header changes, color gradients in containers like nav and sidebar, padded containers around videos (or CRT graphic??) ect. 
 

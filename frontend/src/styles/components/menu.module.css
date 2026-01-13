@@ -67,12 +67,11 @@
 }
 
 .Item:hover {
-  border: solid var(--color-border) 3px;
   background-color: var(--color-background-light);
 }
 
 .Separator {
   margin: 0.375rem 1rem;
   height: 1px;
-  background-color: var(--color-border);
+  background-color: var(--color-surface);
 }

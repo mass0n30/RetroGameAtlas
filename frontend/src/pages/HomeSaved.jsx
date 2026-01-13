@@ -25,14 +25,15 @@ function HomeSaved() {
       }
     })
     .then(response => {
-      setGames(response.data.savedGames.savedGames);
+      console.log(response.data, 'test');
+      setGames(response.data.savedGames);
     })
     .catch(error => {
       console.error('Error fetching data:', error);
     });
-  })
+  }, [token])
 
-    if (loading && games.length == 0) {
+    if (loading || games.length == 0) {
       return (
         <div style={{ display: "flex", flex: 1, alignItems: "center", justifyContent: "center", marginTop: "2rem" }}>
           <CustomSpinner/>
@@ -42,13 +43,18 @@ function HomeSaved() {
 
     return (
       <>
-        <section>
-          { games.map((game, index) => (
-            <GameCard style={mount ? { animationDelay: `${index * 0.24}s` }: {}} key={`${stableId}-${index}`} index={index} mount={mount} setMount={setMount}
-            gameIgdbId={game.igdbId} setGameId={setGameId} coverUrl={game.coverUrl} loading={loading} user={user}/>
-          ))
-        };
-      </section>
+        <section className={'saved_games_section'}>
+          <div className='saved_games_header'>
+            <h1 className={'saved_games_title'}>Saved Games</h1>
+          </div>
+          <div className={'saved_games_container'}>
+            { games.savedGames.map((game, index) => (
+              <GameCard style={mount ? { animationDelay: `${index * 0.24}s` }: {}} key={`${stableId}-${index}`} index={index} mount={mount} setMount={setMount}
+              gameIgdbId={game.igdbId} setGameId={setGameId} coverUrl={game.coverUrl} loading={loading} user={user}/>
+            ))
+            }
+          </div>
+        </section>
       
       </>
     )
