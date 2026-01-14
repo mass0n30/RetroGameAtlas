@@ -51,7 +51,8 @@ export default function GameDetailsRunSection({ recordData, gameName }) {
       </button>
     );
   }
-  
+
+
   return (
     <>
 
@@ -60,7 +61,7 @@ export default function GameDetailsRunSection({ recordData, gameName }) {
         { recordData[categoryRunIndex].top3Runs.length > 1 && (
           <>
           <div className={styles.recordvideocontent}>
-            <div className={styles.videoname}>
+            <div className={styles.videoname} style={{ width: 'fit-content', backgroundColor: 'var(--color-background-light)', padding: '0.5rem', borderRadius: '8px' }}>
               <h3>{recordData[categoryRunIndex].categoryName}</h3>
             </div>
             <div className={styles.videoplaceinfo}>

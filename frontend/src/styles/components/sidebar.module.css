@@ -5,6 +5,8 @@ aside {
   top: 5rem;
   height:  calc(100vh - 5rem);
   animation: fadeIn 0.3s ease-out forwards;
+  background-color: var(--color-surface-translucent);
+  backdrop-filter: blur(2px);
   isolation: isolate; /* create a new stacking context, preventing z-index issues across browsers */
 }
 
@@ -20,21 +22,21 @@ aside {
 aside::before {
   content: "";
   position: absolute;
-  inset: -40% -20%;
-  background:
+  inset: -10% -20%;
+  background: 
 
   radial-gradient(
-      ellipse at 40% 10%, /* x y */
+      ellipse at 10% 50%, /* x y */
       var(--blue-light-ambient) 0%,
-      transparent 80%
+      transparent 50%
     ),
 
     radial-gradient(
-      ellipse at 60% 50%,
+      ellipse at 80% 70%,
       var(--purple-ambient) 0%,
-      transparent 80%
+      transparent 50%
     );
-  z-index: 0;
+  z-index: -1;
   pointer-events: none;
 }
 

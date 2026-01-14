@@ -62,14 +62,15 @@ const { id: gameId, igdbId: gameigdbId, name: gameName, originalPlatform, platfo
     )
   };
 
+
   return (
     <>
     <div className={styles.recordscontainer}>
       {gameVideos && gameVideos.length > 0 && (
           <div className={styles.recorditem}>
               <div className={styles.videoname}>
-                <Tv className={styles.icons}/>
-                <h3>{gameVideos[videosIndex].name}</h3>
+                <Tv className={styles.icons} fill="#000000ff"/>
+                <h3 className={styles.relatedMediaHeader}>{gameVideos[videosIndex].name}</h3>
               </div>
               <div key={gameVideos[videosIndex].id} className={styles.recordvideocontainer}>
               { gameVideos.length > 1 && (
@@ -104,7 +105,9 @@ const { id: gameId, igdbId: gameigdbId, name: gameName, originalPlatform, platfo
         )}
         {recordData && (
           <>
+          <div className={styles.videoname}>
             <h2 className={styles.relatedMediaHeader}>Speedrun Data</h2>
+          </div>
             <div className={styles.recordsectionscontainer}>
               <GameDetailsRunSection recordData={recordData} gameName={gameName} />
             </div>
@@ -115,7 +118,9 @@ const { id: gameId, igdbId: gameigdbId, name: gameName, originalPlatform, platfo
       {gameEbayData ? (
 
         <div className={styles.ebaycontainer}>
-          <h2 className={styles.relatedMediaHeader}>Related Listings</h2>
+          <div className={styles.videoname}>
+            <h2 className={styles.relatedMediaHeader}>Related Listings</h2>
+          </div>
           {gameEbayData.map((post, index) => (
             ebayListingSection({post, setActiveImage, index})
           ))}
@@ -126,7 +131,9 @@ const { id: gameId, igdbId: gameigdbId, name: gameName, originalPlatform, platfo
 
       {franchiseGames && franchiseGames.length > 0 && (
         <div className={styles.relatedgamescontainer}>
-          <h2 className={styles.relatedMediaHeader}>Franchise Games</h2>
+          <div className={styles.videoname}>
+            <h2 className={styles.relatedMediaHeader}>Franchise Games</h2>
+          </div>
           <div className={styles.relatedgamesflex}>
             {franchiseGames.map((franchiseGame) => (
               ( franchiseGame.cover?.url || franchiseGame.coverUrl ) && (
@@ -154,7 +161,9 @@ const { id: gameId, igdbId: gameigdbId, name: gameName, originalPlatform, platfo
 
       {similarGames && similarGames.length > 0 && (
         <div className={styles.relatedgamescontainer}>
-          <h2 className={styles.relatedMediaHeader}>Games you may like </h2>
+          <div className={styles.videoname}>
+            <h2 className={styles.relatedMediaHeader}>Games you may like </h2>
+          </div>
           <div className={styles.relatedgamesflex}>
             {similarGames.map((relatedGame) => (
               ( relatedGame.coverUrl && ( 

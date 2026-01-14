@@ -159,7 +159,7 @@ add the genres on gamedetails as well
   - add information redirect for information on the app (adding api links, github, etc)
 
 TODO:
-  - improve search query
+  - add In Progress column for games
   - add Ebay affiliate tracking? (for first release iteration) 
   - add toggle timer for category side bar (resetting to default after selections)
   - possible artwork section from fetch for next to video section to fill a bit of space?
