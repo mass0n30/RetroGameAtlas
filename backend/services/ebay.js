@@ -58,6 +58,10 @@ async function getGamePrice(gameName, platform) {
     }
   );
 
+  if (!res.ok) {
+    return null;
+  }
+
   if (!res.itemSummaries) {
     res = await fetch(
       `https://api.ebay.com/buy/browse/v1/item_summary/search?q=${encodeURIComponent(`${gameName} ${platform}`

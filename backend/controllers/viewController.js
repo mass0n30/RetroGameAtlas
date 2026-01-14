@@ -26,6 +26,8 @@ async function getUserProfile(req, res, next) {
           select: {
             id: true,
             name: true,
+            coverUrl: true,
+            igdbId: true,
             genres: { select: { id: true, name: true } },
             platforms: { select: { id: true, name: true , displayabbrev: true} },
           },

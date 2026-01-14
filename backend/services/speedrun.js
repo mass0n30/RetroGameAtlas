@@ -83,6 +83,9 @@ async function getUsernameById(userId) {
   if (!userId) return null;
 
   const res = await fetch(`https://www.speedrun.com/api/v1/users/${userId}`);
+
+  if (!res.ok) return null;
+
   const json = await res.json();
 
   return json?.data?.names?.international || null;

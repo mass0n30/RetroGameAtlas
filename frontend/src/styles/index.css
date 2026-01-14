@@ -220,13 +220,15 @@ li {
 
 .saved_games_title {
   font-size: 2rem;
-  font-weight: 700;
+  font-weight: 900;
   color: var(--color-text);
+  opacity: 90%;
   text-align: center;
   margin: 0;
 }
 
 .saved_games_container {
+  width: 100%;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;

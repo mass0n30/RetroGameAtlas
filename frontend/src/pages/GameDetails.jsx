@@ -127,11 +127,14 @@ const handleUpdateGame = async (type) => {
 
 
 function checkForSavedGames(gameDetails) {
+    //clearing state
+    setSaved(false);
+    setCompleted(false);
     // color fav heart if in savedGames
     userProfile?.savedGames?.forEach((game) => {
       if (gameDetails.igdbId == game.igdbId) {
         setSaved(true);
-      }
+      } 
     });
 
     // color if in savedGames

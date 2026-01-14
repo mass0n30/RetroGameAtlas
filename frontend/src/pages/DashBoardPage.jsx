@@ -1,21 +1,37 @@
 import styles from '../styles/components/dashboard.module.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useOutletContext } from 'react-router-dom';
 import { getCompletedGamesStats } from '../helpers';
 import CustomSpinner from '../components/Spinner';
 import { LayoutGrid, TableProperties } from 'lucide-react';
+import GameCard from '../components/GameCard';
+
+const stableId = 'dashboard_game_card';
 
 
 function DashBoardPage() {
-  const {user, userProfile, guest, query, loading, limit, setGameId, games, orderData, orderDirection, discover, setDiscover, screenshotMode, setScreenshotMode, open, setOpen,
+  const {user, userProfile, guest, query, limit, setGameId, games, orderData, orderDirection, discover, setDiscover, screenshotMode, setScreenshotMode, open, setOpen,
   setGames, index, setIndex, mount, setMount} = useOutletContext();
 
+  const [loading, setLoading] = useState(true);
   const [runType, setRunType] = useState('Platform');
   const [layoutStats, setLayoutStats] = useState('grid');
   const [category, setCategory] = useState(null);
 
   const completedGamesStats = getCompletedGamesStats(userProfile?.completedGames || []);
   console.log('Completed Games Stats:', completedGamesStats);
+
+  //spinner upon mount with delay
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+
+    window.scrollTo({top: 0, behavior: 'smooth'});
+
+    return () =>  {clearTimeout(timer)}; 
+  } ,[loading, setLoading]);
+
 
   if (loading) {
     return (
@@ -26,7 +42,7 @@ function DashBoardPage() {
   }
 
   return (
-    
+    <>
     <section>
       <div className={styles.dashboard_container}>
         <div className={styles.dashboard_inner_container}>
@@ -86,9 +102,32 @@ function DashBoardPage() {
             )}
           </div>
         </div>
-      </div>
-    </section>
 
+        <div className={'saved_games_container'}>
+          <div className='saved_games_header'>
+            <h1 className={'saved_games_title'}>Completed Games</h1>
+          </div>
+          { userProfile.completedGames.map((game, index) => (
+            <GameCard style={mount ? { animationDelay: `${index * 0.24}s` }: {}} key={`${stableId}-${index}`} index={index} mount={mount} setMount={setMount}
+            gameIgdbId={game.igdbId} setGameId={setGameId} coverUrl={game.coverUrl} loading={loading} user={user}/>
+          ))
+          }
+        </div>
+
+        <div className={'saved_games_container'}>
+          <div className='saved_games_header'>
+            <h1 className={'saved_games_title'}>Saved Games</h1>
+          </div>
+          { userProfile.savedGames.map((game, index) => (
+            <GameCard style={mount ? { animationDelay: `${index * 0.24}s` }: {}} key={`${stableId}-${index}`} index={index} mount={mount} setMount={setMount}
+            gameIgdbId={game.igdbId} setGameId={setGameId} coverUrl={game.coverUrl} loading={loading} user={user}/>
+          ))
+          }
+        </div>
+      </div>
+
+    </section>
+  </>
   );
 }
 

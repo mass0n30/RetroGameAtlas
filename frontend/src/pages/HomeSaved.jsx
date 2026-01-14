@@ -44,10 +44,10 @@ function HomeSaved() {
     return (
       <>
         <section className={'saved_games_section'}>
-          <div className='saved_games_header'>
-            <h1 className={'saved_games_title'}>Saved Games</h1>
-          </div>
           <div className={'saved_games_container'}>
+            <div className='saved_games_header'>
+              <h1 className={'saved_games_title'}>Saved Games</h1>
+            </div>
             { games.savedGames.map((game, index) => (
               <GameCard style={mount ? { animationDelay: `${index * 0.24}s` }: {}} key={`${stableId}-${index}`} index={index} mount={mount} setMount={setMount}
               gameIgdbId={game.igdbId} setGameId={setGameId} coverUrl={game.coverUrl} loading={loading} user={user}/>
