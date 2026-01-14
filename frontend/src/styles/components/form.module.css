@@ -14,6 +14,29 @@
   align-items: center;
   justify-content: center;
   gap: var(--space-md);
+  animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.logoContainer {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn 1s ease-in-out;
+}
+
+form {
+  animation: fadeIn 1s ease-in-out;
 }
 
 .logoContainerAlt {
@@ -22,6 +45,7 @@
   flex: 1;
   justify-content: center;
   align-items: center;
+  animation: fadeIn 1s ease-in-out;
 }
 
 .logo {
@@ -35,6 +59,10 @@
   color: var(--color-background-light);
   filter: brightness(250%);
   text-align: center;
+}
+
+.form_row {
+  animation: fadeIn 1s ease-in-out;
 }
 
 .logoTextTag {
@@ -62,6 +90,19 @@
   margin: 0;
   padding: var(--space-lg);
   padding-top: 0%;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  background-color: var(--color-background);
+}
+
+.formContainerLoading {
+  flex: 1;
+  height: auto;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-sm);
   background-color: var(--color-background);

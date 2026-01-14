@@ -39,7 +39,7 @@ const token = localStorage.getItem('usertoken');
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 1000);
+    }, 2000);
 
     window.scrollTo({top: 0, behavior: 'smooth'});
     setCurrentIndex(0);

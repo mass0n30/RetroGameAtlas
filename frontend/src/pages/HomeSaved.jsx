@@ -6,6 +6,7 @@ import GameCardSS from '../components/GameCardSS';
 import axios from "axios";
 import CustomSpinnerBottom from '../components/Spinner';
 import CustomSpinner from '../components/Spinner';
+import { DashBoardContainerSkeleton } from '../components/Skeleton';
 
 
 function HomeSaved() {
@@ -35,9 +36,9 @@ function HomeSaved() {
 
     if (loading || games.length == 0) {
       return (
-        <div style={{ display: "flex", flex: 1, alignItems: "center", justifyContent: "center", marginTop: "2rem" }}>
-          <CustomSpinner/>
-        </div>
+        <section>
+          <DashBoardContainerSkeleton />
+        </section>
       );
     }
 

@@ -159,6 +159,8 @@ add the genres on gamedetails as well
   - add information redirect for information on the app (adding api links, github, etc)
 
 TODO:
+  - searbar result drop down debounce
+  - icons sidebar
   - add In Progress column for games
   - add Ebay affiliate tracking? (for first release iteration) 
   - add toggle timer for category side bar (resetting to default after selections)

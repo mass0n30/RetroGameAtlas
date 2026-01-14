@@ -51,6 +51,7 @@ body {
   background: url('/Galactic.webp') center center fixed;
   background-size: cover;
   cursor: url('/icons/custompointervar.svg'), auto;
+  overflow-x: hidden;
 }
 
 
@@ -150,7 +151,7 @@ li {
 }
 
 
-.noResultsContainer, .loadingContainer {
+.noResultsContainer {
   width: 100%;
   height: 100%;
   flex: 1;
@@ -159,6 +160,18 @@ li {
   justify-content: center;
   align-items: center;
   background-color: var(--color-background);
+}
+
+.loadingContainer {
+  width: 100%;
+  height: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-surface-translucent);
+  backdrop-filter: blur(2px);
 }
 
 .noResultsText {

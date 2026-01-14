@@ -3,15 +3,29 @@ import { useEffect, useState } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import { CircleUserRound } from "lucide-react";
 import styles from '../styles/components/form.module.css';
-
+import  { formSkeleton }  from '../components/Skeleton';
+import CustomSpinner from '../components/Spinner';
 
 // eslint-disable-next-line react-refresh/only-export-components
 
 function Login() {
+
+  const [loading, setLoading] = useState(true);
+
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
   const navigate = useNavigate();
+
+    //spinner upon mount with delay
+    useEffect(() => {
+      const timer = setTimeout(() => {
+        setLoading(false);
+      }, 2000);
+  
+      return () =>  {clearTimeout(timer)}; 
+    });
+  
   
   useEffect(() => {
     const token = localStorage.getItem("usertoken");
@@ -81,7 +95,18 @@ function Login() {
         navigate("/home");
       }
     })
-  }
+  };
+
+  if (loading) 
+    return (
+      <>
+        <div className={styles.loginContainer}>
+          <div className={styles.formContainerLoading} >
+            <CustomSpinner />
+          </div>
+        </div>
+      </>
+    );
 
   return (
     <>

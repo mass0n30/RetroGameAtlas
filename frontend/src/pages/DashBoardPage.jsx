@@ -5,6 +5,7 @@ import { getCompletedGamesStats } from '../helpers';
 import CustomSpinner from '../components/Spinner';
 import { LayoutGrid, TableProperties } from 'lucide-react';
 import GameCard from '../components/GameCard';
+import { DashBoardContainerSkeleton } from '../components/Skeleton';
 
 const stableId = 'dashboard_game_card';
 
@@ -17,8 +18,9 @@ function DashBoardPage() {
   const [runType, setRunType] = useState('Platform');
   const [layoutStats, setLayoutStats] = useState('grid');
   const [category, setCategory] = useState(null);
+  const [completedGames, setCompletedGames] = useState(userProfile?.completedGames || []);
 
-  const completedGamesStats = getCompletedGamesStats(userProfile?.completedGames || []);
+  const completedGamesStats = getCompletedGamesStats(completedGames);
   console.log('Completed Games Stats:', completedGamesStats);
 
   //spinner upon mount with delay
@@ -35,9 +37,11 @@ function DashBoardPage() {
 
   if (loading) {
     return (
-      <div style={{ display: "flex", flex: 1, alignItems: "center", justifyContent: "center", marginTop: "2rem" }}>
-        <CustomSpinner />
-      </div>
+      <section>
+        <div className={styles.dashboard_container}>
+          <DashBoardContainerSkeleton />
+        </div>
+      </section>
     );
   }
 
@@ -63,7 +67,7 @@ function DashBoardPage() {
               <div className={styles.completedStatsToggleLeft}>
                 <div className={styles.names_container}>
                   <h2 className={styles.dashboard_alias}>{user?.alias}</h2>
-                  <h2 className={styles.dashboard_completed_games}>Total Completed Games {userProfile?.completedGames.length} </h2>
+                  <h2 className={styles.dashboard_completed_games}>Total Completed Games <strong>{userProfile?.completedGames.length}</strong> </h2>
                 </div>
                 <div className={styles.dashboard_games_container}>
                   <h2 className={styles.dashboard_header}>Completed Games by {runType}</h2>

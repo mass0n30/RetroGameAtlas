@@ -69,7 +69,7 @@ const { id: gameId, igdbId: gameigdbId, name: gameName, originalPlatform, platfo
       {gameVideos && gameVideos.length > 0 && (
           <div className={styles.recorditem}>
               <div className={styles.videoname}>
-                <Tv className={styles.icons} fill="#000000ff"/>
+                <Tv className={styles.icons} fill="#214055ff"/>
                 <h3 className={styles.relatedMediaHeader}>{gameVideos[videosIndex].name}</h3>
               </div>
               <div key={gameVideos[videosIndex].id} className={styles.recordvideocontainer}>
