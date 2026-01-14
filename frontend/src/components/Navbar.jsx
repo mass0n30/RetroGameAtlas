@@ -14,22 +14,21 @@ export default function Navbar({ toggle, setToggle, setSearch, search, discover,
   ,setPlatform, setDeveloper, setGenre, setYear, setOrder, setScreenshotMode, guest
 }) {
 
+  const [searchInput, setSearchInput] = useState(search || '');
+
   const handleToggle = () => {
     toggle ? setToggle(false) : setToggle(true);
-  };
-
-  const handleSearchChange = () => {
-    resetFilters(setPlatform, setDeveloper, setGenre,
-       setYear, setOrder, null, setScreenshotMode, null, setOpen, setDiscover);
-    (discover) ? setDiscover(false) : null;
-    (open) ? setOpen(new Set()) : null;
   };
 
   const navigate = useNavigate();
 
   const handleSearch = (value) => {
-    setSearch(value);
+    resetFilters(setPlatform, setDeveloper, setGenre,
+    setYear, setOrder, null, setScreenshotMode, null, setOpen, setDiscover);
+    (discover) ? setDiscover(false) : null;
+    (open) ? setOpen(new Set()) : null;
     navigate('/home');
+    setSearch(value);
   };
 
   const handleNavHome = () => {
@@ -74,16 +73,18 @@ export default function Navbar({ toggle, setToggle, setSearch, search, discover,
           className={styles.searchBarContainer}
           onSubmit={(e) => {
             e.preventDefault();
-            handleSearch(search);
+            handleSearch(searchInput);
           }}>
           <input 
             id='searchInput'
             type="text" 
             placeholder="Search games..." 
-            value={search} 
+            value={searchInput} 
             onChange={(e) => {
-              setSearch(e.target.value);
-              handleSearchChange();
+              setSearchInput(e.target.value);
+              if (e.target.value === '') {
+                setSearch('');
+              }
             }} 
             className={styles.searchInput}
           />

@@ -52,7 +52,6 @@ export default function SideBar({ categoryData, orderData, orderDirection, setOr
 
   // upon discovering games toggle, reset category filters
   const handleDiscoverGames = () => {
-    resetFilters(null, null, null, setYear, setOrder, setSearch, null, setMount, setOpen, setDiscover);
     setMount(true);
     setSearch("");
     setScreenshotMode(true);

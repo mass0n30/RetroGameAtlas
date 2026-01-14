@@ -38,6 +38,7 @@ function Home() {
   const [loading, SetLoading] = useState(true);
   const [success, SetSuccess] = useState(false);
   const [error, setError] = useState(null);
+  const [noResult, setNoResult] = useState(null);
   // used for scroll resoration, navigation
   const [mount, setMount] = useState(true);
 
@@ -143,9 +144,14 @@ function Home() {
     SetLoading(true);
     // scrolls to top page upon category changes
     axios
-      .get(`${import.meta.env.VITE_API_URL}/home/games?${query}&order=${order.data}&dir=${order.order}&offset=${index}&limit=${limit}&discover=${discover}`,{
+      .get(`${import.meta.env.VITE_API_URL}/home/games?${query}&order=${order.data}&dir=${order.order}&offset=${0}&limit=${limit}&discover=${discover}`,{
       })
       .then(res => {
+        if (res.data.games.length === 0) {
+          setNoResult(true);
+        } else {
+          setNoResult(false);
+        }
         setGames(res.data.games);
       })
       .catch((err) => console.log(err));
@@ -236,7 +242,7 @@ function Home() {
 
       <Outlet context={{query, limit, loading, success, SetLoading, SetSuccess, discover, setDiscover, screenshotMode, setScreenshotMode, mount, setMount, open, setOpen, 
         index, setIndex, guest, user, userProfile, SetUserProfile, gameId, setGameId, games, setCategoryData, orderData: order.data, orderDirection: order.order, setOrder, setGames, search, setSearch, genre, platform, developer, minyear: year.min, maxyear: year.max, 
-        setYear, setActiveImage }} />
+        setYear, setActiveImage, noResult }} />
     </main>
     </>
   )

@@ -5,6 +5,7 @@ aside {
   top: 5rem;
   height:  calc(100vh - 5rem);
   animation: fadeIn 0.3s ease-out forwards;
+  isolation: isolate; /* create a new stacking context, preventing z-index issues across browsers */
 }
 
 @keyframes fadeIn {
@@ -33,7 +34,7 @@ aside::before {
       var(--purple-ambient) 0%,
       transparent 80%
     );
-  z-index: -1;
+  z-index: 0;
   pointer-events: none;
 }
 
@@ -41,6 +42,7 @@ aside::before {
   height: 100%;
   display: flex;
   flex-direction: column;
+  z-index: 1;
 }
 
 .categoriescontainer {

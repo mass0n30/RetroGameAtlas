@@ -8,14 +8,14 @@ import axios from "axios";
 import CustomSpinnerBottom, { CustomSpinnerDotsBottom } from '../components/Spinner';
 import CustomSpinner from '../components/Spinner';
 import { CustomSpinnerDots } from '../components/Spinner';
-import { Funnel } from 'lucide-react';
+import { SearchX, Info } from 'lucide-react';
 
 //import Loader from "./Loader";
 
 
 function HomePage() {
   const {user, guest, query, loading, limit, setGameId, games, orderData, orderDirection, discover, setDiscover, screenshotMode, setScreenshotMode, open, setOpen,
-  setGames, index, setIndex, mount, setMount} = useOutletContext();
+  setGames, index, setIndex, mount, setMount, noResult} = useOutletContext();
 
   // InfiniteScroll state var
   const [hasMore, setHasMore] = useState(true);
@@ -43,13 +43,25 @@ function HomePage() {
   };
 
 
-    if (loading  || games.length == 0) {
+    if (loading) {
     return (
-      <div style={{ display: "flex", flex: 1, alignItems: "center", justifyContent: "center", marginTop: "2rem" }}>
+      <div style={{ display: "flex", flex: 1, alignItems: "center", justifyContent: "center"}} className='loadingContainer'>
         <CustomSpinner/>
       </div>
     );
   }
+
+   if (noResult === true) {
+    return (
+    <div style={{ display: "flex", gap: "1rem", flexDirection: "row", flex: 1, alignItems: "center", justifyContent: "center" }} className='noResultsContainer'>
+      <Info size={30} style={{ marginLeft: "0rem", marginBottom: "2rem" }} color='#a3a3a3ff'/>     
+      <div className='resultsTextContainer'>
+        <div className='noResultsText'>No Results Found</div>
+        <div style={{ color: '#a3a3a3ff', fontSize: '0.8rem' }}>Try a different spelling or fewer filters</div>
+      </div>
+    </div>
+  );
+}
 
   return (
     <InfiniteScroll
@@ -60,8 +72,8 @@ function HomePage() {
       scrollThreshold={"20px"}
       scrollableTarget={'gamesScrollContainer'}
       >
-
       <section>
+
       { screenshotMode ? (
     
       games.map((game, index) => (
@@ -74,7 +86,7 @@ function HomePage() {
       ))
     )}
       </section>
-      {!hasMore && <div className='endResultContainer'><p className='endResult'>No More Results</p> <img style={{ width: "80px", height: "auto" }} className='endResultImg' src="/logo/originallogo.png" alt="End of Results"/></div>}
+      {!hasMore && noResult !== true && <div className='endResultContainer'><p className='endResult'>No More Results</p> <img style={{ width: "80px", height: "auto" }} className='endResultImg' src="/logo/originallogo.png" alt="End of Results"/></div>}
     </InfiniteScroll>
   )
 }
