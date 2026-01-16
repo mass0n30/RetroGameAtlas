@@ -329,6 +329,7 @@ section {
 
     nav {
     height: 7rem;
+    overflow: hidden;
   }
   
 }

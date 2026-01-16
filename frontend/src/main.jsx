@@ -5,6 +5,10 @@ import routes from "./routes";
 import 'normalize.css';
 import './styles/index.css';
 
+import { registerSW } from "virtual:pwa-register";
+registerSW({ immediate: true });
+
+
 const router = createBrowserRouter(routes);
 
 createRoot(document.getElementById("root")).render(

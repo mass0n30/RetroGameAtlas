@@ -291,5 +291,10 @@ aside::before {
 
 
 
+@media (max-width: 400px) {
+  aside {
+    height: 100vh;
+    top: 0;
+  }
 
-
+}

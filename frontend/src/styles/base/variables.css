@@ -42,8 +42,8 @@
 :root {
   --font-family: 'Satoshi', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   --icon-size-desktop: 34px;
-  --icon-size-tablet: 32px;
-  --icon-size-mobile: 28px;
+  --icon-size-tablet: 28px;
+  --icon-size-mobile: 24px;
   --text-xs: 0.75rem;      /* 12px */
   --text-sm: 0.875rem;     /* 14px */
   --text-base: 1rem;       /* 16px */

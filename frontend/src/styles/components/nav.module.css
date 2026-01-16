@@ -250,11 +250,30 @@ nav::before {
 /* Tablet */
 @media (min-width: 361px) and (max-width: 1000px) {
 
-
+  .btn {
+    padding: 0.6rem;
+    height: 2.2rem;
+    font-size: 0.9rem;
+  }
 
 }
 
 @media (max-width: 500px) {
+
+  .logoTxt {
+    font-size: 1rem;
+  }
+
+  .logoPng {
+    max-height: 70px;
+    max-width: 80px;
+  }
+
+  .btn {
+    padding: 0.4rem;
+    height: 2rem;
+    font-size: 0.8rem;
+  }
 
   nav {
      flex-direction: column;
@@ -268,7 +287,19 @@ nav::before {
 
   .navLeftContainer {
     width: 100%;
+    flex: 2;
   }
+
+  .navRightContainer {
+    width: 100%;
+    flex: 2;
+    margin-top: 0.5rem;
+  }
+
+  .navMiddleContainer {
+    flex: 1;
+  }
+
   
 }
 
@@ -276,6 +307,5 @@ nav::before {
 /* Mobile */
 @media (max-width: 360px) {
 
-
-
+  
 }

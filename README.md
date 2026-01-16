@@ -1,6 +1,8 @@
 RetroGamingAtlas
 A full-stack game discovery and collection platform for exploring 25k+ titles with fast filtering, rich game detail pages, and user features and libraries (Saved / Completed).
 
+My Project Write Up Blog Post --> https://7thingscreativethink.blogspot.com/2026/01/my-first-full-stack-application.html
+
 Github: https://github.com/mass0n30
 Live: https://retro-game-atlas.vercel.app/
 
@@ -159,7 +161,7 @@ add the genres on gamedetails as well
   - add information redirect for information on the app (adding api links, github, etc)
 
 TODO:
-  - searbar result drop down debounce
+  - searbar result drop down debounce?
   - icons sidebar
   - add In Progress column for games
   - add Ebay affiliate tracking? (for first release iteration) 

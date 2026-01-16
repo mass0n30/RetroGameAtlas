@@ -45,13 +45,15 @@ export default function Navbar({ toggle, setToggle, setSearch, search, discover,
     <>
     <nav className={styles.navbar}>
       <div className={styles.navLeftContainer}>
-          <button className={styles.toggleBtn} onClick={() => handleToggle()}>
+         <div className={styles.navContainer}>
+          <button className={styles.btn} onClick={() => handleToggle()}>
             { toggle ? (
              <span className='mainIcons'><X width={'80%'} size={'auto'} className={styles.btnX}/></span> 
             ) : (
-            <span className='mainIcons'><PanelsTopLeft width={'80%'} size={'auto'}/></span>  
+            <span className='mainIcons'><PanelsTopLeft width={'80%'} size={'auto'} className={styles.btnP}/></span>  
             )}
           </button>
+        </div>
         <div className={styles.navContainer}>
           <button className={styles.btn} onClick={() => handleNavBack()}>
              <span className='mainIcons'><ArrowLeft width={'80%'} className={styles.btnA} size={'auto'}/></span> 
@@ -76,7 +78,6 @@ export default function Navbar({ toggle, setToggle, setSearch, search, discover,
             handleSearch(searchInput);
           }}>
           <input 
-            id='searchInput'
             type="text" 
             placeholder="Search games..." 
             value={searchInput} 
