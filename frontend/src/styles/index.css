@@ -313,7 +313,7 @@ section {
 }
 
 /* Tablet */
-@media (min-width: 361px) and (max-width: 1000px) {
+@media (min-width: 481px) and (max-width: 1000px) {
 
   section {
     min-width: 3rem;
@@ -335,7 +335,7 @@ section {
 }
 
 /* Mobile */
-@media (max-width: 360px) {
+@media (max-width: 480px) {
 
   .mainIcons {
     width: var(--icon-size-mobile);

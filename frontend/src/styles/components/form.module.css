@@ -226,7 +226,7 @@ form {
   gap: var(--space-md);
 }
 
-@media (min-width: 400px) and (max-width: 1000px) {
+@media (min-width: 480px) and (max-width: 1000px) {
 
     /* signup */
   .formContainerAlt {
@@ -245,7 +245,7 @@ form {
 }
 
 
-@media (max-width: 400px) {
+@media (max-width: 480px) {
   .formContainer {
       padding: 2rem;
   }
@@ -275,13 +275,6 @@ form {
     font-size: 0.9rem;
   }
 
-  .form_row {
-    font-size: 0.8rem;
-  }
-
-  .guestContainer {
-    font-size: 0.8rem;
-  }
 
     /* signup */
   .formContainerAlt {

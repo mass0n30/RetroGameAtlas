@@ -291,7 +291,7 @@ aside::before {
 
 
 
-@media (max-width: 400px) {
+@media (max-width: 480px) {
   aside {
     height: 100vh;
     top: 0;

@@ -112,8 +112,6 @@ https://css-tricks.com/css-only-carousel/  Sliding carosoel effect
   - map out all elements for all categories using id keys 
   - replace the t_thumb in screenshot URLS for larger size
   - look into normalizing the screenshot dimensions 
-  - fix error when refreshing details page
-  - fix sliding down page upon details load in
   - normalize dashes other symbols for search
   - Upon category selection, page must reset (remount), upon retrieiving more games doesn't refresh
   - adding additional filter logic for order by
@@ -122,7 +120,6 @@ https://css-tricks.com/css-only-carousel/  Sliding carosoel effect
   - screenshot image object fit discovering by screenshot (most are 1080x720) (screenshot thumbs replaced for big for mapping them on discovery route)
   - Add no cover holder for no cover art so cells aren't offset
   - ***Look at the Metrics under peformance where culmative shift is poor, ect (image dimensions)
-  - Adding star pattern as background, perhaps overly GIF, for background (scroll container width smaller and transluscent to keep background height 100% and static while scrolling, in active navbar while scrolling is 50% opacity)
   - adding custom loader
   - maybe put in Twitch data for World record speed runs?
   - maybe integrate ebay API for price data and ebay listing links
@@ -131,13 +128,11 @@ https://css-tricks.com/css-only-carousel/  Sliding carosoel effect
   - Rework fetching on gameDetails, implementing lazy loading fixing waterfalling problem, fetching gamedetails fast for users, before ebay + twitch data load in below on page. 
   - fix game card loader animation delay iterations
     - upon navigating back from game details, have no loader cards for seamless navigation
-- Add a share feature on Game details page? Sharing to socials or email.
 - add admin delete games
 - finish up sidebar cateogories container (flexing category containers nicely upon selection *reference resume project)
   - let categories flex container flex 3 over rest of containers to give category rows the most room upon flexing... (flexing makes sidebar height full??)
 - Game Details page Screenshots in a carosel?
 - Make a alert component for alerts (saved to games, ect)
-- put ebay listings as 'related listings (good amount does not have exact title listings, more so related listings, perhaps I can improve this looking back through ebay api docs)
 - design Game Details page (layout on paper sketch considering flex on mobile)
 - Populate more Wii games, populate PSP titles and atari 2600 ?
 - adding MVP features, user features 
@@ -156,11 +151,10 @@ https://css-tricks.com/css-only-carousel/  Sliding carosoel effect
 - improve relatedGames listings with updated multiple genres fetched,
 add the genres on gamedetails as well
 - add profile dashboard
-  - user welcome message
-  - add genre / category completed games toggle stats
-  - add information redirect for information on the app (adding api links, github, etc)
+- setup vite config for PWA for mobile
 
 TODO:
+  - add an about/external links + feedback section on dashboard?
   - searbar result drop down debounce?
   - icons sidebar
   - add In Progress column for games
