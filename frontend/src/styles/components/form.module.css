@@ -3,7 +3,7 @@
 
 @import '../base/variables.css';
 
-.loginContainer, .signupContainer {
+.loginContainer, .signupContainer, .logoContainer, .logoContainerAlt {
   display: flex;
   flex: 1;
   filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.623));
@@ -27,7 +27,6 @@
 }
 
 .logoContainer {
-  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -47,7 +46,7 @@ form {
 }
 
 .logo {
-  width: 23rem;
+  width: clamp(200px, 40vw, 400px);
   filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.589));
 }
 
@@ -77,19 +76,25 @@ form {
   filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.589));
 }
 
-.formContainer {
+.formContainerOuter {
   flex: 1;
   height: auto;
   justify-content: center;
   align-items: center;
   display: flex;
   flex-direction: column;
-  gap: var(--space-md);
   margin: 0;
-  padding-top: 0%;
+  padding-top: 5%;
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-sm);
   background-color: var(--color-background);
+}
+
+.formContainer {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
 }
 
 .formContainerLoading {
@@ -107,14 +112,11 @@ form {
 
 .formContainerAlt {
   flex: 1;
-  height: auto;
   justify-content: center;
   align-items: center;
   display: flex;
-  gap: var(--space-md);
   margin: 0;
   padding: var(--space-lg);
-  border-radius: var(--radius-md);
   box-shadow: var(--shadow-sm);
   background-color: var(--color-background);
 }
@@ -230,70 +232,55 @@ form {
 
     /* signup */
   .formContainerAlt {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     flex-direction: column;
-    padding: 2rem;
+
+    min-height: 100dvh;
+    padding: 16px;            
+    box-sizing: border-box;
   }
 
-    .logoSignup {
-    width: 12rem;
+  .logo,
+  .logoSignup {
+    width: clamp(180px, 70vw, 360px);
+    height: auto;
+    max-width: 100%;
+    display: block;
   }
 
-    .logoText {
-    font-size: 1rem;
-  }
+
 
 }
 
 
 @media (max-width: 480px) {
-  .formContainer {
-      padding: 2rem;
-  }
-
-  .logo, .logoSignup {
-      width: 16rem;
-  }
-
-  .logoText {
-      font-size: 1.2rem;
-  }
-
-  .logoTextTag {
-      font-size: 0.7rem;
-  }
-
-  .loginForm, .signupForm {
-    padding: 30px 20px;
-  }
-
-  .formInput {
-    font-size: 0.8rem;
-  }
-
-  .form_button {
-    padding: 12px;
-    font-size: 0.9rem;
-  }
 
 
-    /* signup */
   .formContainerAlt {
-    flex-direction: column;
+    display: flex;
+    flex-direction: column;  
+    align-items: center;
     justify-content: center;
-    padding: 0;
+
+  
+    min-height: 100vh;
+    min-height: 100dvh;
+
+    gap: var(--space-md);
+    padding: 16px;            
+    box-sizing: border-box;
   }
 
+  .logo,
   .logoSignup {
-    width: 10rem;
+    width: clamp(180px, 70vw, 360px);
+    height: auto;
+    max-width: 100%;
+    display: block;
   }
 
-  .logoText {
-    font-size: 1rem;
-  }
-
-  .signupContainer {
-    margin-bottom: 2%;
-  }
 
 
 }

@@ -27,6 +27,12 @@
 /* container selectors for flex and grid*/
 * {border: dashed var(--color-primary-glow) 0px;}
 
+html {
+    -webkit-text-size-adjust: 100%; /* Safari and Chrome */
+    -moz-text-size-adjust: 100%; /* Firefox */
+    text-size-adjust: 100%;
+}
+
 html, body, nav, #root, main, section, .infinite-scroll-component__outerdiv, .infinite-scroll-component {
     margin: 0;
     padding: 0;
@@ -62,7 +68,7 @@ body {
   text-align: center;
   display: flex;
   flex-direction: column;
-   box-shadow: inset 0px 50px 150px rgba(0, 0, 0, 0.8);
+  box-shadow: inset 0px 50px 150px rgba(0, 0, 0, 0.8);
 }
 
 

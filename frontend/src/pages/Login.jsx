@@ -112,9 +112,10 @@ function Login() {
     <>
     <div className={styles.loginContainer}>
 
-      <div className={styles.formContainer}  >
+      <div className={styles.formContainerOuter}  >
+        <div className={styles.formContainer}>
         <div className={styles.logoContainer}>
-          <div>
+          <div className={styles.logoImage}>
              <img className={styles.logo} src='/logo/fulllogo.png'></img>
           </div>
           <div className={styles.logoText}>Discover. Play. Repeat.</div>
@@ -171,6 +172,7 @@ function Login() {
               </div>
            </button>
           </div>
+        </div>
       </div>
     </div>
 
