@@ -398,7 +398,7 @@ async function handleGetGameDetails(req, res, next) {
   }
 };
 
-const { getRelatedGames } = require( "../services/twitch.js");
+const { getRelatedGames, getGameArtwork } = require( "../services/twitch.js");
 
 async function handleGetGameData(req, res, next) {
   const {gameId, gameigdbId, gameName, originalPlatform, platforms, developer, genres, ageRating } = req.body;
@@ -408,13 +408,14 @@ async function handleGetGameData(req, res, next) {
   const consoleAbbrev = originalConsoleObj ? originalConsoleObj.abbreviation : null;
 
   try {
-    const [worldRecord, gameEbayData, relatedGames] = await Promise.all([
+    const [worldRecord, gameEbayData, gameArtwork, relatedGames] = await Promise.all([
       getAllWorldRecordRunTimes(gameName, consoleAbbrev), // speedrun data
       getGamePrice(gameName, originalPlatform), // ebay data
+      getGameArtwork(gameigdbId), // game artwork from IGDB
       getRelatedGames(gameigdbId, platforms, developer, genres, ageRating), // similar and franchise games from IGDB
     ]);
 
-    return  {worldRecord, gameEbayData, relatedGames};
+    return  {worldRecord, gameEbayData, relatedGames, gameArtwork};
     
   } catch (error) {
     next(error);

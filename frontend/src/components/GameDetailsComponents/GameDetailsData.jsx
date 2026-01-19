@@ -17,7 +17,9 @@ const { id: gameId, igdbId: gameigdbId, name: gameName, originalPlatform, platfo
   const [similarGames, setSimilarGames] = useState(null);
   const [loading, setLoadingData] = useState(true);
   const [gameVideos, setGameVideos] = useState(null);
+  const [gameArtwork, setGameArtwork] = useState(null);
   const [videosIndex, setVideosIndex] = useState(0);
+  const [artIndex, setArtIndex] = useState(0);
 
 
   useEffect(() => {
@@ -31,6 +33,7 @@ const { id: gameId, igdbId: gameigdbId, name: gameName, originalPlatform, platfo
       res.data.game.relatedGames.franchiseGames ? setFranchiseGames(res.data.game.relatedGames.franchiseGames) : null;
       res.data.game.relatedGames.similarGames ? setSimilarGames(res.data.game.relatedGames.similarGames) : null;
       res.data.game.relatedGames.gameVideos ? setGameVideos(res.data.game.relatedGames.gameVideos) : null;
+      res.data.game.gameArtwork ? setGameArtwork(res.data.game.gameArtwork) : null;
 
     } catch (err) {
       console.error(err);
@@ -66,6 +69,63 @@ const { id: gameId, igdbId: gameigdbId, name: gameName, originalPlatform, platfo
   return (
     <>
     <div className={styles.recordscontainer}>
+      {gameArtwork && gameArtwork.length > 0 && (
+          <div className={styles.screenshotscontainer}>
+           {gameArtwork.length > 1 &&  (
+            <>
+            <button
+              className={styles.arrowL}
+              onClick={() =>
+                setCurrentIndex((prev) =>
+                  prev === 0 ? gameArtwork.length - 1 : prev - 1
+                )
+              }
+            >
+            <ChevronLeft className={styles.icons} color="#E8F1F2" />
+            </button>
+
+            <button
+              className={styles.arrowR}
+              onClick={() =>
+                setCurrentIndex((prev) =>
+                  prev === gameArtwork.length - 1 ? 0 : prev + 1
+                )
+              }
+            >
+            <ChevronRight className={styles.icons} color="#E8F1F2" />
+            </button>
+
+            <button
+              className={styles.arrowR}
+              onClick={() =>
+                setArtIndex((prev) =>
+                  prev === gameArtwork.length - 1 ? 0 : prev + 1
+                )
+              }
+            >
+            <ChevronRight className={styles.icons} color="#E8F1F2" />
+
+            </button>
+            </>
+            )}
+            {gameArtwork.length > 0 && gameArtwork[artIndex] !== undefined ? (
+              <div className={styles.carousel}>
+
+                <div className={styles.screenshotcarouselcontainer}> 
+                  <img
+                    src={`${gameArtwork[artIndex]}`}
+                    className={styles.screenshot}
+                    onClick={() => setActiveImage(`${gameArtwork[artIndex]}`)}
+                  />
+                </div>
+
+
+              </div>
+            ) : (
+              <p>No screenshots available.</p>
+            )}
+          </div>
+      )}
       {gameVideos && gameVideos.length > 0 && (
           <div className={styles.recorditem}>
               <div className={styles.videoname}>
@@ -75,6 +135,7 @@ const { id: gameId, igdbId: gameigdbId, name: gameName, originalPlatform, platfo
               <div key={gameVideos[videosIndex].id} className={styles.recordvideocontainer}>
               { gameVideos.length > 1 && (
                 <>
+                <div className={styles.arrowscontainerL}>
                   <button
                     className={styles.arrowL}
                     onClick={() =>
@@ -85,7 +146,8 @@ const { id: gameId, igdbId: gameigdbId, name: gameName, originalPlatform, platfo
                   >
                   <ChevronLeft className={styles.icons} color="#E8F1F2" />
                   </button>
-
+                  </div>
+                  <div>
                   <button
                     className={styles.arrowR}
                     onClick={() =>
@@ -97,6 +159,7 @@ const { id: gameId, igdbId: gameigdbId, name: gameName, originalPlatform, platfo
                   <ChevronRight className={styles.icons} color="#E8F1F2" />
 
                   </button>
+                  </div>
                 </>
               )}
                 <YouTubeEmbed url={null} title={gameVideos[videosIndex].name} urlId={gameVideos[videosIndex].video_id} />

@@ -8,7 +8,7 @@
   --color-background-light: #1a1e27;
   --color-surface: #1a2b29ad;
   --color-surface-translucent: #171f1e5b;
-  --color-surface-translucent-alt: #2c3d3bc4;
+  --color-border: #2c3d3bc4;
 
   --color-text: #e5e7eb;
   --color-text-paragraph: #d4d4d4;
@@ -33,8 +33,7 @@
   --color-secondary-light: #f03a4683;       /* accent red */
   --color-text-link:#646cff;
   --color-text-link-hover: #535bf2;
-  --color-text-muted: #6b7280;     /* Secondary / muted text */
-  --color-border: #E8F1F2;;         /* Borders / dividers */
+  --color-text-muted: #6b7280;     /* Secondary / muted text */      /* Borders / dividers */
 }
 
 /* ----------------- Typography ----------------- */

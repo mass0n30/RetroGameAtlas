@@ -49,6 +49,10 @@ export default function VideoEmbed({ url, title, urlId }) {
     cursor: 'pointer',
     borderRadius: '12px',
     overflow: 'hidden',
+    padding: '12px 20px',
+    boxSizing: 'border-box',
+    backgroundColor: 'var(--color-background)',
+    border: '2px solid var(--color-border)',
   };
 
   if (!clicked) {
@@ -59,7 +63,8 @@ export default function VideoEmbed({ url, title, urlId }) {
             <img
               src={thumbnail}
               loading="lazy"
-              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+              style={{ width: '100%', height: '100%', objectFit: 'cover',     borderRadius: '12px',
+              border: '2px solid var(--color-border)'}}
               alt={title || 'YouTube video thumbnail'}
             />
             <div

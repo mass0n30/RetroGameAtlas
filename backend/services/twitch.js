@@ -437,6 +437,32 @@ async function mapGameData(game, platformData) {
 
 const { getGame, getGameByIGDB } = require('../db/queries.js');
 
+
+async function getGameArtwork(gameigdbId) {
+  try {
+    const options = await requestOptions();
+
+    const response = await apicalypse(options)
+    .fields('animated,image_id,width,height,url')
+    .where(`game = ${gameigdbId};`)
+      .limit(10)
+      .request('/artworks');
+
+    const gameArtworkIds = response.data.map(artwork => artwork.image_id) || null;
+    const gameWorkImages  =[];
+
+    for (let i = 0; i < gameArtworkIds.length; i++) {
+      gameWorkImages[i] = `https://images.igdb.com/igdb/image/upload/t_720p/${gameArtworkIds[i]}.jpg`;
+    }
+
+    return gameWorkImages;
+  } catch(error) {
+    console.error('Error fetching game artwork:', error);
+    return null;
+  }
+
+}
+
 async function getRelatedGames(gameigdbId, platforms, developer, genres, ageRating) {
   try {
     const options = await requestOptions();
@@ -611,6 +637,8 @@ async function getAdditionalSimilarGame(gameigdbId, genres, ageRating, platforms
  
 }
 
+
+
 async function populateGameGenres() {
   try {
     const options = await requestOptions();
@@ -649,4 +677,4 @@ async function populateGameGenres() {
 
 
 
-module.exports = { getGamesByYear, getGamesByPlatform, populateAllGames, getRelatedGames, getGenre, populateGameGenres };
+module.exports = { getGamesByYear, getGamesByPlatform, populateAllGames, getGameArtwork, getRelatedGames, getGenre, populateGameGenres };
