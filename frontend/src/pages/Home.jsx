@@ -205,14 +205,8 @@ function Home() {
         SetGuestMode={SetGuestMode}
       />
     <main>
-    <aside
-      style={{
-        transform: toggle ? 'translateX(0)' : 'translateX(-100%)',
-        width: toggle ? '20em' : '0em',
-        opacity: toggle ? '100%': '0%',
-        transition: 'opacity 0.3s ease-in-out, width 0.2s ease-in-out',
-        overflow: 'hidden',
-        }} >
+    <aside className={`sidebar ${toggle ? "open" : "closed"}`}>
+
         <SideBar
           platform={platform}
           genre={genre}

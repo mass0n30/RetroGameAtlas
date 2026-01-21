@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useId } from "react";
 import { useNavigate } from 'react-router-dom';
 import styles from '../../styles/components/details.module.css';
 import axios from "axios";
@@ -21,6 +21,7 @@ const { id: gameId, igdbId: gameigdbId, name: gameName, originalPlatform, platfo
   const [videosIndex, setVideosIndex] = useState(0);
   const [artIndex, setArtIndex] = useState(0);
 
+  const stableId = useId();
 
   useEffect(() => {
     async function fetchDetails() {
@@ -68,103 +69,57 @@ const { id: gameId, igdbId: gameigdbId, name: gameName, originalPlatform, platfo
 
   return (
     <>
-    <div className={styles.recordscontainer}>
-      {gameArtwork && gameArtwork.length > 0 && (
-          <div className={styles.screenshotscontainer}>
-           {gameArtwork.length > 1 &&  (
-            <>
-            <button
-              className={styles.arrowL}
-              onClick={() =>
-                setCurrentIndex((prev) =>
-                  prev === 0 ? gameArtwork.length - 1 : prev - 1
-                )
-              }
-            >
-            <ChevronLeft className={styles.icons} color="#E8F1F2" />
-            </button>
-
-            <button
-              className={styles.arrowR}
-              onClick={() =>
-                setCurrentIndex((prev) =>
-                  prev === gameArtwork.length - 1 ? 0 : prev + 1
-                )
-              }
-            >
-            <ChevronRight className={styles.icons} color="#E8F1F2" />
-            </button>
-
-            <button
-              className={styles.arrowR}
-              onClick={() =>
-                setArtIndex((prev) =>
-                  prev === gameArtwork.length - 1 ? 0 : prev + 1
-                )
-              }
-            >
-            <ChevronRight className={styles.icons} color="#E8F1F2" />
-
-            </button>
-            </>
-            )}
-            {gameArtwork.length > 0 && gameArtwork[artIndex] !== undefined ? (
-              <div className={styles.carousel}>
-
-                <div className={styles.screenshotcarouselcontainer}> 
-                  <img
-                    src={`${gameArtwork[artIndex]}`}
-                    className={styles.screenshot}
-                    onClick={() => setActiveImage(`${gameArtwork[artIndex]}`)}
-                  />
-                </div>
-
-
+    <div className={styles.gameContentSection}>
+      <div className={styles.gameArtworkSection}>
+        {gameArtwork && gameArtwork.length > 0 && (
+          <div className={styles.artcontainer} >
+            {gameArtwork.map((art, index) => (
+              <div key={`${stableId}-${index}`} className={styles.artcell}>
+                <img src={art} className={styles.artwork} onClick={() => setActiveImage(gameArtwork[index])}/>
               </div>
-            ) : (
-              <p>No screenshots available.</p>
-            )}
+            ))}
           </div>
-      )}
+        )}
+        </div>
       {gameVideos && gameVideos.length > 0 && (
-          <div className={styles.recorditem}>
-              <div className={styles.videoname}>
-                <Tv className={styles.icons} fill="#214055ff"/>
-                <h3 className={styles.relatedMediaHeader}>{gameVideos[videosIndex].name}</h3>
-              </div>
-              <div key={gameVideos[videosIndex].id} className={styles.recordvideocontainer}>
-              { gameVideos.length > 1 && (
-                <>
-                <div className={styles.arrowscontainerL}>
-                  <button
-                    className={styles.arrowL}
-                    onClick={() =>
-                      setVideosIndex((prev) =>
-                        prev === 0 ? gameVideos.length - 1 : prev - 1
-                      )
-                    }
-                  >
-                  <ChevronLeft className={styles.icons} color="#E8F1F2" />
-                  </button>
-                  </div>
-                  <div>
-                  <button
-                    className={styles.arrowR}
-                    onClick={() =>
-                      setVideosIndex((prev) =>
-                        prev === gameVideos.length - 1 ? 0 : prev + 1
-                      )
-                    }
-                  >
-                  <ChevronRight className={styles.icons} color="#E8F1F2" />
-
-                  </button>
-                  </div>
-                </>
-              )}
-                <YouTubeEmbed url={null} title={gameVideos[videosIndex].name} urlId={gameVideos[videosIndex].video_id} />
-              </div>
+        <div className={styles.recorditem}>
+            <div className={styles.videoname}>
+              <Tv className={styles.icons} fill="#21405567"/>
+              <h3 className={styles.relatedMediaHeader}>{gameVideos[videosIndex].name}</h3>
             </div>
+            <div key={gameVideos[videosIndex].id} className={styles.recordvideocontainer}>
+            { gameVideos.length > 1 && (
+              <>
+              <div className={styles.arrowscontainerL}>
+                <button
+                  className={styles.arrowL}
+                  onClick={() =>
+                    setVideosIndex((prev) =>
+                      prev === 0 ? gameVideos.length - 1 : prev - 1
+                    )
+                  }
+                >
+                <ChevronLeft className={styles.icons} color="#E8F1F2" />
+                </button>
+                </div>
+                <div>
+                <button
+                  className={styles.arrowR}
+                  onClick={() =>
+                    setVideosIndex((prev) =>
+                      prev === gameVideos.length - 1 ? 0 : prev + 1
+                    )
+                  }
+                >
+                <ChevronRight className={styles.icons} color="#E8F1F2" />
+
+                </button>
+                </div>
+              </>
+            )}
+              <YouTubeEmbed url={null} title={gameVideos[videosIndex].name} urlId={gameVideos[videosIndex].video_id} />
+            </div>
+          </div>
         )}
         {recordData && (
           <>

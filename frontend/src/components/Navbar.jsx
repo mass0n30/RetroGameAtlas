@@ -45,31 +45,34 @@ export default function Navbar({ toggle, setToggle, setSearch, search, discover,
     <>
     <nav className={styles.navbar}>
       <div className={styles.navLeftContainer}>
-         <div className={styles.navContainer}>
-          <button className={styles.btn} onClick={() => handleToggle()}>
-            { toggle ? (
-             <span className='mainIcons'><X width={'80%'} size={'auto'} className={styles.btnX}/></span> 
-            ) : (
-            <span className='mainIcons'><PanelsTopLeft width={'80%'} size={'auto'} className={styles.btnP}/></span>  
-            )}
-          </button>
-        </div>
-        <div className={styles.navContainer}>
-          <button className={styles.btn} onClick={() => handleNavBack()}>
-             <span className='mainIcons'><ArrowLeft width={'80%'} className={styles.btnA} size={'auto'}/></span> 
-          </button>
+        <div className={styles.navLeftBtnContainer}>
+          <div className={styles.navContainer}>
+              <button className={styles.btn} onClick={() => handleToggle()}>
+                { toggle ? (
+                <span className='mainIcons'><X width={'80%'} size={'auto'} className={styles.btnX}/></span> 
+                ) : (
+                <span className='mainIcons'><PanelsTopLeft width={'80%'} size={'auto'} className={styles.btnP}/></span>  
+                )}
+              </button>
+            </div>
+          <div className={styles.navContainer}>
+            <button className={styles.btn} onClick={() => handleNavBack()}>
+              <span className='mainIcons'><ArrowLeft width={'80%'} className={styles.btnA} size={'auto'}/></span> 
+            </button>
 
-        </div>
-        <div className={styles.logoContainer}>
-          <div className={styles.logoTxtContainer}>
-            <h1 className={styles.logoTxt}>RetroGameAtlas</h1> 
-          </div>
-          <div className={styles.logoPngContainer}>
-            <img className={styles.logoPng} src='/logo/originallogo.png' />
           </div>
         </div>
-
       </div>
+
+      <div className={styles.logoContainer}>
+        <div className={styles.logoTxtContainer}>
+          <h1 className={styles.logoTxt}>RetroGameAtlas</h1> 
+        </div>
+        <div className={styles.logoPngContainer}>
+          <img className={styles.logoPng} src='/logo/originallogo.png' />
+        </div>
+      </div>
+
       <div className={styles.navMiddleContainer}>
         <form
           className={styles.searchBarContainer}
@@ -96,14 +99,17 @@ export default function Navbar({ toggle, setToggle, setSearch, search, discover,
       </div>
 
       <div className={styles.navRightContainer}>
+       <div className={styles.navRightBtnContainer}>
         <div className={styles.homebtncontainer}>
           <button className={styles.btn} onClick={() => handleNavHome()}>
            <span className='mainIcons'><House width={'80%'} size={'auto'} className={styles.btnH}/></span> 
           </button>
         </div>
           <div className={styles.navmenucontainer}>
-            <NavMenu setMount={setMount} guest={guest}></NavMenu>
+           <NavMenu setMount={setMount} width={'80%'} size={'auto'} guest={guest} className={styles.btnH}></NavMenu>
           </div>
+        </div>
+
       </div>
 
     </nav>

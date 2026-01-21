@@ -75,6 +75,8 @@
 
 .outercontainer, .outercontaineralt {
   box-shadow: 0px 6px 10px 0px var(--purple-ambient);
+  min-width: 0;
+  max-width: 100%;
 }
 
 @keyframes fadeIn {
@@ -96,7 +98,6 @@
   padding: 8%;
   padding-top: 2%;
   padding-bottom: 2%;
-  border-bottom: solid 2px var(--color-border);
 }
 
 /* Tablet styles */
@@ -130,6 +131,8 @@
   overflow-x: auto;
   padding-bottom: 1rem;
 }
+
+@media (min)
 
 
 
@@ -166,7 +169,7 @@
 
 .ebayinnercontainer {
   display: flex;
-  border: solid 2px var(--color-border);
+  border-bottom: solid 2px var(--color-border);
   background-color: var(--color-background);
 }
 
@@ -555,11 +558,10 @@
   font-weight: 500;
   color: white;
   background: var(--color-surface-translucent);
-  border-bottom-left-radius: 8px;
-  border-bottom-right-radius: 8px;
   padding-top: 2%;
   padding: 4%;
   padding-bottom: 4%;
+  border-bottom: solid 2px var(--color-border);
   border-top: solid 2px var(--color-border);
 }
 
@@ -580,10 +582,10 @@
 }
 
 .relatedMediaHeader {
-  font-size: 1.5rem;
-  font-weight: 800;
+  font-size: 1.2rem;
+  font-weight: 700;
   color: var(--color-text);
-  padding: 1rem 0rem 0.5rem 0rem;
+  padding: 0.5rem 0rem 0.5rem 0rem;
 }
 
 .summarycontainerskeleton {
@@ -648,6 +650,14 @@
 
 .screenshot {
   max-width: 100%;
+  border-radius: 8px;
+  object-fit: contain;
+  transition: opacity 5s ease;
+  animation: fadeIn 1.5s ease-in forwards;
+}
+
+.artwork {
+  max-height: 10rem;
   border-radius: 8px;
   object-fit: contain;
   transition: opacity 5s ease;
@@ -803,7 +813,6 @@
   margin-left: 0%;
   margin-right: 0%;
   margin-top: 0%;
-  border: solid 2px var(--color-border);
 }
 
 .recordsinnercard {
@@ -865,10 +874,36 @@ h3, h2 {
   align-items: center;
 }
 
-.recordscontainer {
+.gameContentSection {
   background-size: cover;
   background-position: center;
   background-color: var(--color-background);
+}
+
+.gameArtworkSection {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2%;
+  width: 100%;
+  overflow: hidden; 
+}
+
+.artcontainer {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: nowrap;           
+  overflow-x: auto;  
+  overflow-y: hidden;
+  box-sizing: border-box;       
+}
+
+.artcell {
+  flex: 0 0 auto;
+  margin: 0.5rem;
+  cursor: pointer;
 }
 
 .recordsloadercontainer {
@@ -901,8 +936,9 @@ h3, h2 {
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  border: solid 2px var(--color-border);
   background-color: var(--color-background-light);
+  border-top: solid 2px var(--color-border);
+  border-bottom: solid 2px var(--color-border);
 }
 
 .placeinfo {

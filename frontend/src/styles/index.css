@@ -41,6 +41,10 @@ html, body, nav, #root, main, section, .infinite-scroll-component__outerdiv, .in
 
 #root {
   background-color: var(--color-surface-translucent);
+  display: flex;
+  flex-direction: column;
+  max-width: 100%;
+  box-shadow: inset 0px 50px 150px rgba(0, 0, 0, 0.8);
 }
 
 body {
@@ -60,22 +64,11 @@ body {
   overflow-x: hidden;
 }
 
-
-
-
-#root {
-  flex: 1;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  box-shadow: inset 0px 50px 150px rgba(0, 0, 0, 0.8);
-}
-
-
 main {
-  width: 100%;
+  max-width: 100%;
   display: flex;
   position: relative;
+  min-width: 0;
 }
 
 li {
@@ -154,6 +147,24 @@ li {
 .funnelButton:hover {
   cursor: pointer;
   background-image: url("/icons/funnelx.svg");
+}
+
+.sidebar {
+  overflow: hidden;
+  transition: width 0.2s ease-in-out, opacity 0.3s ease-in-out, transform 0.2s ease-in-out;
+  will-change: width, transform, opacity;
+}
+
+.sidebar.open {
+  width: 20em;
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.sidebar.closed {
+  width: 0;
+  opacity: 0;
+  transform: translateX(-100%);
 }
 
 
@@ -331,25 +342,16 @@ section {
   }
 }
 
-@media (max-width: 500px) {
 
-    nav {
-    height: 7rem;
-    overflow: hidden;
-  }
-  
-}
+
 
 /* Mobile */
 @media (max-width: 480px) {
+
 
   .mainIcons {
     width: var(--icon-size-mobile);
   }
 
-  section {
-    gap: 0.5rem;
-    justify-content: center;
-  }
 }
 

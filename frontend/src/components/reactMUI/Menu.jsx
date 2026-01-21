@@ -1,5 +1,6 @@
 import { Menu } from '@base-ui-components/react/menu';
 import styles from '../../styles/components/menu.module.css';
+import stylesAlt from '../../styles/components/nav.module.css';
 import { useNavigate, Outlet, useOutletContext } from 'react-router-dom';
 import { useState } from 'react';
 import { Ellipsis } from 'lucide-react';
@@ -40,7 +41,7 @@ export default function NavMenu({setMount, guest}) {
     <>
     <SnackBarAlert open={alertGuest} setOpen={SetAlertGuest} status={guest} msg={'Signup for User Features'}/>
     <Menu.Root>
-      <Menu.Trigger className={styles.Button}>
+      <Menu.Trigger className={`${stylesAlt.btn} ${styles.menuBtn}`}>
        <span className='mainIcons'><Ellipsis width={'80%'} size={'auto'}/></span> 
       </Menu.Trigger>
       <Menu.Portal>

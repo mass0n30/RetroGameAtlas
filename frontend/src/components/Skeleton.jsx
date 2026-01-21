@@ -3,6 +3,7 @@ import styles from '../styles/components/details.module.css';
 const skeletonBg = "#1a1e27";
 const skeletonBgTransparent = "#1a1e2777";       
 const skeletonBgAlt = "#1a2b29ad";
+const border = "#2c3d3bc4"
 const skeletonHighlight = "#00aaff75"; 
 
 export function GameDetailsSkeleton() {
@@ -14,11 +15,11 @@ export function GameDetailsSkeleton() {
             <Skeleton 
               variant="rounded" 
               width={370} 
-              height={630} 
+              height={700} 
               animation="wave"
-              borderRadius={8}
+              borderradius={8}
               borderColor={skeletonHighlight}
-              sx={{ bgcolor: skeletonBg, border: '1px solid', borderColor: skeletonBgAlt,
+              sx={{ bgcolor: skeletonBg, border: '2px solid', borderColor: border,
                 boxShadow: `0 0 10px ${skeletonHighlight}`
               }}
             />
@@ -26,11 +27,11 @@ export function GameDetailsSkeleton() {
           <div className={styles.datacontainer}>
             <Skeleton 
               variant="rounded" 
-              width={790} 
+              width={780} 
               height={1000}
               animation="wave"
-              sx={{ bgcolor: skeletonBg, border: '1px solid', borderColor: skeletonBgAlt,
-                boxShadow: `0 0 10px ${skeletonHighlight}`, marginLeft: '16px'
+              sx={{ bgcolor: skeletonBg, border: '2px solid', borderColor: border,
+                boxShadow: `0 0 10px ${skeletonHighlight}`,
               }}
             />
           </div>
