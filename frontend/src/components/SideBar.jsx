@@ -4,11 +4,11 @@ import styles from '../styles/components/sidebar.module.css';
 import { resetFilters } from '../helpers';
 import { useEffect } from 'react';
 import  SectionTreeItem  from './SectionTreeItem';
-import {Star, CalendarDays, ArrowUpWideNarrow, ArrowDownWideNarrow, Joystick, LibraryBig, Handshake, Funnel, FunnelX, FunnelIcon , Flame, Pointer, Heart, HeartMinus, HeartPlus, Sparkles, Dices, Gift, BookImage, Image, FunnelPlus} from 'lucide-react';
+import {Star, CalendarDays, ArrowUpWideNarrow, ArrowDownWideNarrow, Joystick, LibraryBig, Handshake, Funnel, FunnelX, FunnelIcon , Flame, Pointer, Heart, HeartMinus, HeartPlus, Sparkles, Dices, Gift, BookImage, Image, FunnelPlus, X} from 'lucide-react';
 
 
  // eslint-disable-next-line react/prop-types
-export default function SideBar({ categoryData, orderData, orderDirection, setOrder, setPlatform, setGenre, setYear, setDeveloper, platform, genre, developer, minyear, maxyear, setSearch, discover, setDiscover, screenshotMode, setScreenshotMode, SetLoading, open, setOpen, setMount, setIndex}) {
+export default function SideBar({ categoryData, orderData, orderDirection, setOrder, setPlatform, setGenre, setYear, setDeveloper, platform, genre, developer, minyear, maxyear, setSearch, discover, setDiscover, screenshotMode, setScreenshotMode, SetLoading, open, setOpen, setMount, setIndex, toggle, setToggle }) {
 
     function toggleItem(id, category) {
 
@@ -79,6 +79,9 @@ export default function SideBar({ categoryData, orderData, orderDirection, setOr
           ) : (
             <Funnel className='funnelIcon'/>
           )} 
+        </div>
+        <div className={'closeContainer'}>
+          <X className='closeIcon' size={32} onClick={() => setToggle(false)} style={{ color: 'var(--color-text-muted)' }}/>
         </div>
         <div className={styles.discovergamesbtn}>
           <Button onClick={() => handleDiscoverGames()} style={discover && { backgroundColor: 'var(--purple-accent)', color: '#ffffffff' }}>

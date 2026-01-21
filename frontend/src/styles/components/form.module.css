@@ -228,7 +228,7 @@ form {
   gap: var(--space-md);
 }
 
-@media (min-width: 480px) and (max-width: 1000px) {
+@media (min-width: 600px) and (max-width: 1000px) {
 
     /* signup */
   .formContainerAlt {
@@ -255,7 +255,7 @@ form {
 }
 
 
-@media (max-width: 480px) {
+@media (max-width: 600px) {
 
 
   .formContainerAlt {

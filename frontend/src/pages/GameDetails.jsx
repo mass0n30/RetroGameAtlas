@@ -314,7 +314,7 @@ if (loading) {
                 { game.summary.length > 190 && (
                 <div 
                   onClick={() => setIsExpanded(!isExpanded)}
-                  className="flex items-center justify-between w-full cursor-pointer"
+                  className="flex items-center center w-full cursor-pointer"
                   style={{
                     margin: '0',
                     padding: '0',
@@ -349,6 +349,7 @@ if (loading) {
         <div className={styles.storylinecontainer}> 
           <div className={styles.storylinetitle} >Storyline</div>
                 { game.storyline.length > 422 && (
+                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                 <div 
                   onClick={() => setIsExpandedAlt(!isExpandedAlt)}
                   className="flex items-center justify-between w-full cursor-pointer"
@@ -360,11 +361,19 @@ if (loading) {
                 >
 
                   {isExpandedAlt ? (
-                    <ChevronUp/>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}> 
+                      <div style={{ color: 'var(--color-text-muted)' }}>Read Less</div>
+                      <ChevronUp/>
+                    </div>
+
                   ) : (
-                    <ChevronDown/>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                      <div style={{ color: 'var(--color-text-muted)' }}>Read More</div>
+                      <ChevronDown/>
+                    </div>
                   )}  
                 </div> 
+              </div>
                 )}
                 <div 
                   className={styles.storytxt}
@@ -378,7 +387,7 @@ if (loading) {
                     {game.storyline}
                   </p>
                 </div>
-        </div>
+              </div>
       ) : (
           <> </>
       )}

@@ -43,9 +43,11 @@ html, body, nav, #root, main, section, .infinite-scroll-component__outerdiv, .in
   background-color: var(--color-surface-translucent);
   display: flex;
   flex-direction: column;
+  width: 100vw;
   max-width: 100%;
   box-shadow: inset 0px 50px 150px rgba(0, 0, 0, 0.8);
 }
+
 
 body {
   font-family: var(--font-family);
@@ -114,6 +116,19 @@ li {
   z-index: 100;
   width: 35px;
   align-self: flex-start;
+}
+
+.closeContainer {
+  position: absolute;
+  top: 0.2rem;
+  left: 2%;       
+  z-index: 100;
+  width: 35px;
+  align-self: flex-start;
+}
+
+.closeContainer:hover {
+  cursor: pointer;
 }
 
 
@@ -330,7 +345,7 @@ section {
 }
 
 /* Tablet */
-@media (min-width: 481px) and (max-width: 1000px) {
+@media (min-width: 600px) and (max-width: 1000px) {
 
   section {
     min-width: 3rem;
@@ -338,20 +353,24 @@ section {
   }
 
   .mainIcons {
-    width: var(--icon-size-tablet);
+    width: var(--icon-size-tablet)
   }
+
+
 }
 
 
 
 
 /* Mobile */
-@media (max-width: 480px) {
+@media (max-width: 600px) {
 
+  :root { font-size: 19px; }
 
   .mainIcons {
-    width: var(--icon-size-mobile);
+    width: var(--icon-size-mobile)
   }
+
 
 }
 

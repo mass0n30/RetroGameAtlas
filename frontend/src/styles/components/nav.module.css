@@ -8,7 +8,7 @@ nav {
   position: sticky;
   isolation: isolate;
   top: 0;
-  height: 5rem;
+  height: 11vh;
   z-index: 100;
 
   backdrop-filter: blur(50px);
@@ -68,7 +68,7 @@ nav::before {
   background-color: var(--color-background);
   border-color: var(--color-background-light);
   border: 3px solid var(--color-background-light);
-  height: 2.5rem;
+  height: 44px;
   color: var(--color-text);
   padding: 1rem;
   box-sizing: border-box;
@@ -201,7 +201,7 @@ nav::before {
   justify-content: flex-start;
   border: 3px solid var(--color-background-light);
   border-radius: 2rem;
-  padding: 0.2rem 0.4rem;
+  padding: 0.4rem 0.6rem;
   transition: all 0.25s ease-in-out;
   transition: background-color 0.4s ease-in-out;
 }
@@ -265,12 +265,13 @@ nav::before {
 
   .btn {
     padding: 0.6rem;
-    height: 2.2rem;
+    height: 48px;
     font-size: 0.9rem;
   }
 
   nav {
-    height: 8rem;
+    height: 15vh;
+    padding: 16px;
 
   }
   .navLeftContainer {
@@ -317,7 +318,7 @@ nav::before {
 
 
 /* Mobile */
-@media (max-width: 480px) {
+@media (max-width: 600px) {
 
     .logoTxt {
     font-size: 1rem;
@@ -329,16 +330,15 @@ nav::before {
   }
 
   .btn {
-    padding: 0.4rem;
-    height: 2rem;
-    font-size: 0.8rem;
+    height: 44px;
+    font-size: 0.9rem;
   }
 
   nav {
      flex-direction: column;
      padding: 16px;
     backdrop-filter: blur(10px);
-    height: 10rem;
+    height: 25vh;
   }
 
   .searchBarContainer {

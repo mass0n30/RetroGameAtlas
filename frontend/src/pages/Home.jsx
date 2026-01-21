@@ -231,6 +231,8 @@ function Home() {
           setOpen={setOpen}
           setMount={setMount}
           setIndex={setIndex}
+          toggle={toggle}
+          setToggle={setToggle}
         />
       </aside>
 
