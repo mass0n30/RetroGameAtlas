@@ -87,11 +87,11 @@ export default function SideBar({ categoryData, orderData, orderDirection, setOr
           <Button onClick={() => handleDiscoverGames()} style={discover && { backgroundColor: 'var(--purple-accent)', color: '#ffffffff' }}>
             {discover ?
               <div className={styles.discovergamestxt}> 
-              <div>Discovering Games</div>
+              <div className={styles.sidebarbtntxt}>Discovering Games</div>
               <Sparkles style={{ marginLeft: '0.5rem' }} />
               </div> : 
               <div className={styles.discovergamestxt}>
-              <div>Discover Games</div>
+              <div className={styles.sidebarbtntxt}>Discover Games</div>
                 <span className='mainIcons'><Dices width={'80%'} size={'auto'} style={{ marginLeft: '0.5rem' }} /></span> 
               </div>}
           </Button>
@@ -105,7 +105,7 @@ export default function SideBar({ categoryData, orderData, orderDirection, setOr
             </div> 
                 : 
               <div className={styles.discovermodetxt}>
-                <div>Cover Art Mode</div>
+                <div className={styles.sidebarbtntxt}>Cover Art Mode</div>
                <span className='mainIcons'><BookImage width={'80%'} size={'auto'} style={{ marginLeft: '0.5rem' }} /> </span> 
               </div>}
           </Button>
@@ -172,7 +172,7 @@ export default function SideBar({ categoryData, orderData, orderDirection, setOr
           <Button onClick={() => handleToggleOrder("Rating")}>
             <div className={styles.ordertxt}>
               {orderData === "Rating" ? <span className='mainIcons'><Star size={'auto'} color="#ffee03ff" fill='#ffee03ff'/></span>  : <span className='mainIcons'><Star size={'auto'} color="#E8F1F2" /></span> }
-              <div>Rating</div>
+              <div className={styles.sidebarbtntxt}>Rating</div>
               {orderData === "Rating" ? (orderDirection === true ?<ArrowDownWideNarrow size={24} color="#E8F1F2" /> : <ArrowUpWideNarrow size={24} color="#E8F1F2" />) : ""}
             </div>
           </Button>
@@ -181,7 +181,7 @@ export default function SideBar({ categoryData, orderData, orderDirection, setOr
           <Button onClick={() => handleToggleOrder("Popularity")}>
            <div className={styles.ordertxt}>
               {orderData === "Popularity" ? <span className='mainIcons'><Flame size={'auto'} color="#F03A47" fill='#F03A47'/> </span> : <span className='mainIcons'><Flame size={'auto'} color="#E8F1F2" /></span>}
-              <div>Popularity</div>
+              <div className={styles.sidebarbtntxt}>Popularity</div>
               {orderData === "Popularity" ? (orderDirection === true ? <ArrowDownWideNarrow size={24} color="#E8F1F2" /> : <ArrowUpWideNarrow size={24} color="#E8F1F2" />) : ""}
             </div> 
           </Button>
@@ -190,13 +190,13 @@ export default function SideBar({ categoryData, orderData, orderDirection, setOr
           <Button onClick={() => handleToggleOrder("Release Date")}>
             <div className={styles.ordertxt}>
               {orderData === "Release Date" ? <span className='mainIcons'><CalendarDays size={'auto'} color="#03A9F4" fill='#03a8f4b4'/></span>  : <span className='mainIcons'><CalendarDays size={'auto'} color="#E8F1F2" /></span> }
-              <div>Release Date</div> 
+              <div className={styles.sidebarbtntxt}>Release Date</div>
               {orderData === "Release Date" ? (orderDirection === true ? <ArrowDownWideNarrow size={24} color="#E8F1F2" /> : <ArrowUpWideNarrow size={24} color="#E8F1F2" />) : ""}
             </div>
           </Button>
         </div>
         <div className={styles.clearfilterscontainer}>
-          <Button onClick={() => resetFilters(setPlatform, setDeveloper, setGenre, setYear, setOrder, setSearch, undefined, setMount, setOpen, setDiscover)}>Clear Filters</Button>
+          <Button onClick={() => resetFilters(setPlatform, setDeveloper, setGenre, setYear, setOrder, setSearch, undefined, setMount, setOpen, setDiscover)} className={styles.sidebarbtntxt}>Clear Filters</Button>
         </div>
       </div>
 

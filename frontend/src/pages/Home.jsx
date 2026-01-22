@@ -3,6 +3,7 @@ import { useParams, Outlet, useNavigate } from "react-router-dom";
 import { useEffect, useState,  } from 'react';
 import Navbar from "../components/Navbar";
 import SideBar from "../components/SideBar";
+import BottomNav from "../components/BottomNav";
 import CustomSpinner from "../components/Spinner";
 import { resetFilters } from '../helpers';
 import axios from "axios";
@@ -203,6 +204,24 @@ function Home() {
         setScreenshotMode={setScreenshotMode}
         guest={guest}
         SetGuestMode={SetGuestMode}
+      />
+      <BottomNav
+        toggle={toggle}
+        setToggle={setToggle}
+        setSearch={setSearch}
+        search={search}
+        discover={discover}
+        setDiscover={setDiscover}
+        open={open}
+        setOpen={setOpen}
+        setMount={setMount}
+        setPlatform={setPlatform}
+        setDeveloper={setDeveloper}
+        setGenre={setGenre}
+        setYear={setYear}
+        setOrder={setOrder}
+        setScreenshotMode={setScreenshotMode}
+        guest={guest}
       />
     <main>
     <aside className={`sidebar ${toggle ? "open" : "closed"}`}>

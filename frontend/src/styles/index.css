@@ -347,13 +347,21 @@ section {
 /* Tablet */
 @media (min-width: 600px) and (max-width: 1000px) {
 
+  .sidebar.open {
+    width: 50vh;
+    opacity: 1;
+    transform: translateX(0);
+  }
+
   section {
     min-width: 3rem;
     justify-content: center;
   }
 
-  .mainIcons {
-    width: var(--icon-size-tablet)
+  .sidebar.open {
+    width: 50vw;
+    opacity: 1;
+    transform: translateX(0);
   }
 
   :root { font-size: 1.2rem; }

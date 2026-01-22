@@ -5,8 +5,7 @@ aside {
   top: 5rem;
   height:  calc(100vh - 12vh);
   animation: fadeIn 0.3s ease-out forwards;
-  background-color: var(--color-surface-translucent);
-  backdrop-filter: blur(2px);
+  backdrop-filter: blur(10px);
   isolation: isolate; /* create a new stacking context, preventing z-index issues across browsers */
 }
 
@@ -98,7 +97,7 @@ aside::before {
 
 .orderfiltercontainer {
   gap: 0.5rem;
-  flex: 2;
+  flex: 1;
   padding-bottom: 1rem;
   display: flex;
   justify-content: center;
@@ -290,18 +289,30 @@ aside::before {
 } 
 
 
+@media (min-width: 600px) and (max-width: 1000px) {
+  .categoriescontainer {
+    flex: 4;
+  }
+
+  .sidebarcontainer {
+    font-size: 1.2rem;
+  }
+
+}
+
+
 
 @media (max-width: 900px) {
   aside {
     position: fixed;
-    width: 100vw;
     min-height: 100vh;
     top: 0;
     z-index: 3000;
+    background-color: var(--color-surface-translucent);
   }
 
-
-
-
-
+  .sidebarbtntxt {
+    font-size: 1.2rem;
+    font-weight: 700;
+  }
 }

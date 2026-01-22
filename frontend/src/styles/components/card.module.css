@@ -87,13 +87,6 @@
 
 
 
-/* Tablet */
-@media (min-width: 600px) and (max-width: 1000px) {
-
-  .card {
-    transform: scale(1.2);
-  }
-}
 
 /* mobile */
 @media (max-width: 600px) {

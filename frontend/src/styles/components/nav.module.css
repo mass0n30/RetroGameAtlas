@@ -266,10 +266,40 @@ nav::before {
 }
 
 
+.bottomNavBar {
+  display: none;
+}
+
 
 
 /* Tablet */
 @media (max-width: 1200px) {
+
+  .navLeftContainer, .navRightContainer {
+    display: none;
+    grid-row: 0;
+    grid-column: 0;
+  }
+
+.bottomNavBar {    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    height: 72px;
+    width: 100vw;
+
+    z-index: 5000;
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    background-color: var(--color-surface-translucent);
+    backdrop-filter: blur(20px);
+
+    padding-bottom: env(safe-area-inset-bottom);
+}
 
   .btn {
     padding: 0.6rem;
@@ -278,18 +308,20 @@ nav::before {
   }
 
   nav {
-    height: 15vh;
+    height: 12vh;
     padding: 16px;
-
   }
-  .navLeftContainer {
+  .navLeftContainerAlt {
+    flex: 1;
+    display: flex;
     grid-row: 6 / span 5;
     grid-column: 1 / span 5;
     justify-content: space-evenly;
+;
   }
 
   .navMiddleContainer {
-    grid-row: 1 / span 5;
+    grid-row: 1 / span 10;
     grid-column: 6 / span 5;
   }
 
@@ -299,14 +331,16 @@ nav::before {
   }
 
 
-  .navRightContainer {
+  .navRightContainerAlt {
+    flex: 1;
+    display: flex;
     grid-row: 6 / span 5;
     grid-column:  6 / span 6;
     justify-content: space-evenly;
   }
 
   .logoContainer {
-    grid-row: 1 / 6;
+    grid-row: 1 / span 10;
     grid-column: 1 / span 5;
   }
 
@@ -326,7 +360,11 @@ nav::before {
 
 
 /* Mobile */
-@media (max-width: 600px) {
+@media (max-width: 700px) {
+
+  .navLeftContainer, .navRightContainer {
+    display: none;
+  }
 
     .logoTxt {
     font-size: 1rem;
@@ -343,11 +381,16 @@ nav::before {
   }
 
   nav {
-     flex-direction: column;
+    flex-direction: column;
      padding: 16px;
-    backdrop-filter: blur(10px);
-    height: 15vh;
+      backdrop-filter: blur(10px);
+    height: 10vh;
+      overflow: visible;   
+    height: auto;       
+
+    
   }
+
 
   .searchBarContainer {
     margin: 0%;
@@ -356,13 +399,13 @@ nav::before {
   }
 
   .navLeftContainer {
-    width: 100%;
-    flex: 2;
+    left: 0;
+    width: 50%;
   }
 
   .navRightContainer {
-    width: 100%;
-    flex: 2;
+    right: 0;
+    width: 50%;
   }
 
   .navMiddleContainer {
