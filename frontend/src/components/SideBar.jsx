@@ -81,7 +81,7 @@ export default function SideBar({ categoryData, orderData, orderDirection, setOr
           )} 
         </div>
         <div className={'closeContainer'}>
-          <X className='closeIcon' size={32} onClick={() => setToggle(false)} style={{ color: 'var(--color-text-muted)' }}/>
+          <X className='closeIcon' onClick={() => setToggle(false)} style={{ color: 'var(--color-text-muted)' }}/>
         </div>
         <div className={styles.discovergamesbtn}>
           <Button onClick={() => handleDiscoverGames()} style={discover && { backgroundColor: 'var(--purple-accent)', color: '#ffffffff' }}>
@@ -224,6 +224,7 @@ const YearDropdown = ({ selectedYear, compYear, setSelectedYear, arg }) => {
 
   return (
     <select
+      name="year"
       value={selectedYear}
       onChange={(e) => handleSetYear(compYear,setSelectedYear ,arg, e.target.value )}
     >

@@ -205,7 +205,7 @@ aside::before {
 
 #categorybtn {
   width: 100%;
-  height: auto  ;
+  height: 100%;
   margin-bottom: 0.4rem;
   font-size: 1rem;
   font-weight: 500;
@@ -294,7 +294,7 @@ aside::before {
 @media (max-width: 900px) {
   aside {
     position: fixed;
-    width: 100%;
+    width: 100vw;
     min-height: 100vh;
     top: 0;
     z-index: 3000;

@@ -69,8 +69,7 @@ function HomePage() {
       next={fetchMoreData}
       hasMore={hasMore}
       loader={<CustomSpinnerDotsBottom/>}
-      scrollThreshold={"20px"}
-      scrollableTarget={'gamesScrollContainer'}
+      scrollableTarget={null}
       >
       <section>
 

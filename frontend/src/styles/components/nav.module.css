@@ -81,6 +81,14 @@ nav::before {
   opacity: 70%;
 }
 
+@media (max-width: 700px) {
+  .btn {
+    height: 48px;
+    padding: 1.4rem;
+    font-size: 0.9rem;
+  }
+}
+
 .btn:hover, .toggleBtn:hover {
   opacity: 100%;
 }
@@ -338,7 +346,7 @@ nav::before {
      flex-direction: column;
      padding: 16px;
     backdrop-filter: blur(10px);
-    height: 25vh;
+    height: 15vh;
   }
 
   .searchBarContainer {

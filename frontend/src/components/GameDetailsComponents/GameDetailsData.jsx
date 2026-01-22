@@ -204,7 +204,7 @@ const { id: gameId, igdbId: gameigdbId, name: gameName, originalPlatform, platfo
 function ebayListingSection({post, setActiveImage, index}) {
 
   return (
-    <>
+    <div key={index} className={styles.ebaylistingsection}>
       <div className={styles.ebayinnercontainer} key={post.itemId}>
         <div className={styles.ebaylink}>
           <div>
@@ -250,6 +250,6 @@ function ebayListingSection({post, setActiveImage, index}) {
         </div>
     </div>
 
-    </>
+    </div>
   )
 };

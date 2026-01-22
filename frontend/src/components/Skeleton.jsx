@@ -18,8 +18,8 @@ export function GameDetailsSkeleton() {
               height={700} 
               animation="wave"
               borderradius={8}
-              borderColor={skeletonHighlight}
-              sx={{ bgcolor: skeletonBg, border: '2px solid', borderColor: border,
+              bordercolor={skeletonHighlight}
+              sx={{ bgcolor: skeletonBg, border: '2px solid', bordercolor: border,
                 boxShadow: `0 0 10px ${skeletonHighlight}`
               }}
             />
@@ -30,7 +30,7 @@ export function GameDetailsSkeleton() {
               width={780} 
               height={1000}
               animation="wave"
-              sx={{ bgcolor: skeletonBg, border: '2px solid', borderColor: border,
+              sx={{ bgcolor: skeletonBg, border: '2px solid', bordercolor: border,
                 boxShadow: `0 0 10px ${skeletonHighlight}`,
               }}
             />
@@ -83,7 +83,7 @@ export function DashBoardContainerSkeleton() {
       animation="wave"
       borderRadius={12}
       padding={12}
-      sx={{ bgcolor: skeletonBg, border: '2px solid', borderColor: skeletonBgAlt,
+      sx={{ bgcolor: skeletonBg, border: '2px solid', bordercolor: skeletonBgAlt,
         boxShadow: `0 0 10px ${skeletonHighlight}`,
       }}
     />
@@ -98,7 +98,7 @@ export function formSkeleton() {
       width={'100%'}    
       height={'100%'}
       animation="wave"
-      sx={{ bgcolor: skeletonBg, border: '1px solid', borderColor: skeletonBgAlt,
+      sx={{ bgcolor: skeletonBg, border: '1px solid', bordercolor: skeletonBgAlt,
         boxShadow: `0 0 10px ${skeletonHighlight}`,
       }}
     />
