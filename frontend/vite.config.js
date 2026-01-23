@@ -16,7 +16,7 @@ export default defineConfig({
         start_url: "/",
         scope: "/",
         display: "standalone", // removes browser UI for more app like UI
-        background_color: "#ffffff",
+        background_color: "#111827",
         theme_color: "#111827",
         icons: [
           { src: "/pwa-192.png", sizes: "192x192", type: "image/png" },
@@ -37,5 +37,5 @@ export default defineConfig({
   server: {
     host: true,
     allowedHosts: "all", // CHANGE IN PRODUCTION!!
-  },
+  }, 
 })

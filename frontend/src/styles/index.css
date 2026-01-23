@@ -220,8 +220,8 @@ li {
 .infinite-scroll-component__outerdiv {
   display: flex;
   flex: 1;
-  justify-content: center;
-  align-items: center;
+  justify-content: stretch;
+  align-items: stretch;
 }
 
 .infinite-scroll-component {
@@ -345,13 +345,7 @@ section {
 }
 
 /* Tablet */
-@media (min-width: 600px) and (max-width: 1000px) {
-
-  .sidebar.open {
-    width: 50vh;
-    opacity: 1;
-    transform: translateX(0);
-  }
+@media (min-width: 900px) and (max-width: 1200px) {
 
   section {
     min-width: 3rem;
@@ -381,7 +375,7 @@ text-align: center;
 
 
 /* Mobile */
-@media (max-width: 600px) {
+@media (max-width: 1200px) {
   .sidebar.open {
     width: 100vw;
     opacity: 1;

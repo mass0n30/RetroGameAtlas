@@ -17,9 +17,7 @@ export function GameDetailsSkeleton() {
               width={370} 
               height={700} 
               animation="wave"
-              borderradius={8}
-              bordercolor={skeletonHighlight}
-              sx={{ bgcolor: skeletonBg, border: '2px solid', bordercolor: border,
+              sx={{ bgcolor: skeletonBg, border: '2px solid', borderColor: skeletonBgAlt, borderRadius: '8px',
                 boxShadow: `0 0 10px ${skeletonHighlight}`
               }}
             />
@@ -30,7 +28,7 @@ export function GameDetailsSkeleton() {
               width={780} 
               height={1000}
               animation="wave"
-              sx={{ bgcolor: skeletonBg, border: '2px solid', bordercolor: border,
+              sx={{ bgcolor: skeletonBg, border: '2px solid', borderColor: skeletonBgAlt, borderRadius: '8px',
                 boxShadow: `0 0 10px ${skeletonHighlight}`,
               }}
             />
