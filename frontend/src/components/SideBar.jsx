@@ -70,8 +70,8 @@ export default function SideBar({ categoryData, orderData, orderDirection, setOr
   (developer?.size ?? 0) > 0;
 
   return (
-    <div className={[styles.sidebarcontainer, 'glass'].join(' ')}>
-      <div className={styles.discovermodecontainer}>
+    <div className={'p-12 bg-red-500'}>
+      <div className={'bg-color-primary p-4 flex justify-between items-center'}>
         <div className='funnelContainer'>
           { filterStatus ? (
             <div className='funnelButton' onClick={() => resetFilters(setPlatform, setDeveloper, setGenre, setYear, setOrder, setSearch, undefined, setMount, setOpen, setDiscover)}>
@@ -86,7 +86,7 @@ export default function SideBar({ categoryData, orderData, orderDirection, setOr
         <div className={styles.discovergamesbtn}>
           <Button onClick={() => handleDiscoverGames()} style={discover && { backgroundColor: 'var(--purple-accent)', color: '#ffffffff' }}>
             {discover ?
-              <div className={styles.discovergamestxt}> 
+              <div className={'bg-red-500'}> 
               <div className={styles.sidebarbtntxt}>Discovering Games</div>
                <span className='mainIcons'><Sparkles width={'80%'} size={'auto'} style={{ marginLeft: '0.5rem' }} /></span>
               </div> : 
@@ -112,7 +112,7 @@ export default function SideBar({ categoryData, orderData, orderDirection, setOr
         </div>
       </div>
 
-      <div className={styles.categoriescontainer}>
+      <div className={'p-4 flex bg-color-backgroundAlt'}>
         <Tree aria-label="Categories" className={styles.tree}>
           {categoryData.map((section) => (
             <TreeItem
@@ -121,8 +121,8 @@ export default function SideBar({ categoryData, orderData, orderDirection, setOr
               className={styles.treeItem}
               textValue={section.category}
             >
-              <TreeItemContent className={styles.categoryheader}>
-                <div className={styles.categoryheadertxt}>
+              <TreeItemContent className={'p-2 flex items-center gap-2'}>
+                <div className={'p-2 flex items-center gap-2'}>
                   {section.category === "Consoles" && <span className='mainIcons'><Joystick size={'auto'} color="#E8F1F2" /></span> }
                   {section.category === "Genres" && <span className='mainIcons'><LibraryBig size={'auto'} color="#E8F1F2" /></span> }
                   {section.category === "Developers" && <span className='mainIcons'><Handshake size={'auto'} color="#E8F1F2" /></span> }

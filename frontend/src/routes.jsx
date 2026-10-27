@@ -9,6 +9,9 @@ import HomeSaved from "./pages/HomeSaved";
 import DashBoardPage from "./pages/DashBoardPage";
 import SettingsPage from "./pages/SettingsPage";
 
+import { Navigate } from "react-router-dom";
+
+
 const routes = [
   {
     path: "/", 
@@ -17,11 +20,11 @@ const routes = [
     children: [
       {
         index: true, // default render
-        element:<Login/>,         
+        element:<Navigate to="/home"/>,         
       },
       {
         path: "login",
-        element: <Login/>
+        element: <Navigate to="/home"/>
       },
       {
         path: "sign-up",
