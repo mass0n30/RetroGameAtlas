@@ -37,7 +37,7 @@ function GameCard(props) {
       ) : (
          <button onClick={(() => handleNavigate())} className={styles.card_button} style={mount ? { animationDelay: `${index * 0.24}s` }: {}}>
             <div className={styles.card}  >
-               <img className={styles.card_image} src={coverUrl?.replace('t_cover_big', 't_cover_big_2x')}></img>
+               <img loading='lazy' decoding='async' className={styles.card_image} src={coverUrl?.replace('t_cover_big', 't_cover_big')}></img>
             </div>
          </button>
       )}

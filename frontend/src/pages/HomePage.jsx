@@ -71,7 +71,7 @@ function HomePage() {
       loader={<CustomSpinnerDotsBottom/>}
       scrollableTarget={null}
       >
-      <section>
+      <section className='gameListContainer'>
 
       { screenshotMode ? (
     

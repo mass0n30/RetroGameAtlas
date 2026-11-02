@@ -2,10 +2,11 @@
 import { useParams, Outlet, useNavigate } from "react-router-dom";
 import { useEffect, useState,  } from 'react';
 import Navbar from "../components/Navbar";
-import SideBar from "../components/SideBar";
+import FilterDrop from "../components/FilterDrop";
 import BottomNav from "../components/BottomNav";
 import CustomSpinner from "../components/Spinner";
 import { resetFilters } from '../helpers';
+import { Funnel } from 'lucide-react';
 import axios from "axios";
 
 
@@ -224,9 +225,13 @@ function Home() {
         guest={guest}
       />
     <main>
-    <aside className={`sidebar ${toggle ? "open" : "closed"}`}>
+    <div onClick={() => setToggle(!toggle)} className="mr-1 flex items-center gap-2 px-1 text-sm text-zinc-400">
+      <Funnel size={16} aria-hidden="true" />
+      <span>Filters</span>
+    </div>
 
-        <SideBar
+    <section className={`filter ${toggle ? "open" : "closed"}`}>
+      { toggle && ( <FilterDrop
           platform={platform}
           genre={genre}
           developer={developer}
@@ -253,7 +258,8 @@ function Home() {
           toggle={toggle}
           setToggle={setToggle}
         />
-      </aside>
+      )}
+      </section>
 
       <Outlet context={{query, limit, loading, success, SetLoading, SetSuccess, discover, setDiscover, screenshotMode, setScreenshotMode, mount, setMount, open, setOpen, 
         index, setIndex, guest, user, userProfile, SetUserProfile, gameId, setGameId, games, setCategoryData, orderData: order.data, orderDirection: order.order, setOrder, setGames, search, setSearch, genre, platform, developer, minyear: year.min, maxyear: year.max, 

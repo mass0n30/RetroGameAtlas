@@ -1,13 +1,8 @@
+@import "tailwindcss";
 @import "./base/variables.css";
 @import "./base/typography.css";
 @import "./components/button.module.css";
 @import "./components/card.module.css";
-
-/* Change this line: */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 /* global styles here imported in main.jsx */
 /* base meaning global styles, defined for Tailwind */
 @layer base {
@@ -119,9 +114,19 @@ body {
   overflow-x: hidden;
 }
 
+button {
+  font-family: var(--font-family);
+  color: black;
+  font-weight: 500;
+  line-height: 1.6;
+  letter-spacing: -0.01em;
+  cursor: pointer;
+}
+
 main {
   max-width: 100%;
   display: flex;
+  flex-direction: column;
   position: relative;
   min-width: 0;
 }
@@ -161,80 +166,7 @@ li {
   object-fit: contain;
 }
 
-.funnelContainer {
-  position: absolute;
-  top: 0.2rem;
-  right: 2%;
-  z-index: 100;
-  width: 35px;
-  align-self: flex-start;
-}
 
-.closeContainer {
-  position: absolute;
-  top: 0.2rem;
-  left: 2%;
-  z-index: 100;
-  width: 35px;
-  align-self: flex-start;
-}
-
-.closeContainer:hover {
-  cursor: pointer;
-}
-
-.funnelIcon {
-  width: 100%;
-  height: auto;
-  display: block;
-  color: var(--color-text-muted);
-  opacity: 70%;
-}
-
-.funnelIconActive {
-  width: 100%;
-  height: auto;
-  display: block;
-  color: var(--purple-accent);
-  opacity: 70%;
-}
-
-.funnelButton {
-  width: 35px;
-  height: 35px;
-
-  background-image: url("/icons/funnel-plus.svg");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-  background-color: transparent;
-  border: none;
-}
-.funnelButton:hover {
-  cursor: pointer;
-  background-image: url("/icons/funnelx.svg");
-}
-
-.sidebar {
-  overflow: hidden;
-  transition:
-    width 0.2s ease-in-out,
-    opacity 0.3s ease-in-out,
-    transform 0.2s ease-in-out;
-  will-change: width, transform, opacity;
-}
-
-.sidebar.open {
-  width: 20em;
-  opacity: 1;
-  transform: translateX(0);
-}
-
-.sidebar.closed {
-  width: 0;
-  opacity: 0;
-  transform: translateX(-100%);
-}
 
 .noResultsContainer {
   width: 100%;
@@ -377,7 +309,7 @@ li {
   }
 }
 
-section {
+.gameListContainer {
   flex: 1;
   width: 100%;
   min-width: 20rem;
@@ -402,11 +334,43 @@ section {
   justify-content: center;
 }
 
+.filter .open {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: var(--sidebar-width);
+  height: 100%;
+  background-color: var(--color-background);
+  box-shadow: var(--shadow-md);
+  z-index: 1000;
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+.filter .closed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: var(--sidebar-width);
+  height: 100%;
+  background-color: var(--color-background);
+  box-shadow: var(--shadow-md);
+  z-index: 1000;
+  transform: translateX(-100%);
+  opacity: 0;
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
 /* Tablet */
 @media (min-width: 900px) and (max-width: 1200px) {
   section {
     min-width: 3rem;
     justify-content: center;
+  }
+
+  .filter .open {
+    height: 10vw;
+    opacity: 1;
+    transform: translateX(0);
   }
 
   .sidebar.open {
@@ -426,6 +390,13 @@ a {
 
 /* Mobile */
 @media (max-width: 1200px) {
+
+  .filter .open {
+    height: 10vw;
+    opacity: 1;
+    transform: translateX(0);
+  }
+
   .sidebar.open {
     width: 100vw;
     opacity: 1;
