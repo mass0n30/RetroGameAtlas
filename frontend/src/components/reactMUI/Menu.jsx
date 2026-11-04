@@ -1,6 +1,5 @@
 import { Menu } from '@base-ui-components/react/menu';
 import styles from '../../styles/components/menu.module.css';
-import stylesAlt from '../../styles/components/nav.module.css';
 import { useNavigate, Outlet, useOutletContext } from 'react-router-dom';
 import { useState } from 'react';
 import { Ellipsis } from 'lucide-react';

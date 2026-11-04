@@ -1,119 +1,87 @@
 import { useEffect, useState } from 'react';
-import styles from '../styles/components/nav.module.css';
 import { useDebounce } from '../helpers';
 import { Link, useNavigate } from 'react-router-dom';
 import  NavMenu  from './reactMUI/Menu';
 import  {House} from 'lucide-react';
-import { ArrowLeft, Ellipsis, X, PanelsTopLeft } from 'lucide-react';
+import { ArrowLeft, Ellipsis, X, PanelsTopLeft, Funnel } from 'lucide-react';
 import { resetFilters } from '../helpers';
+import FilterDrop from './FilterDrop';
 
 
 // eslint-disable-next-line react/prop-types
-export default function Navbar({ toggle, setToggle, setSearch, search, discover, setDiscover, open, setOpen, setMount
-  // eslint-disable-next-line react/prop-types
-  ,setPlatform, setDeveloper, setGenre, setYear, setOrder, setScreenshotMode, guest
-}) {
+export default function Navbar({ ui, setUi, filters, setFilters, gameData, setGameData, setStatus }) {
 
-  const [searchInput, setSearchInput] = useState(search || '');
-
-  const handleToggle = () => {
-    toggle ? setToggle(false) : setToggle(true);
-  };
+  const [searchInput, setSearchInput] = useState(filters.search || '');
 
   const navigate = useNavigate();
 
   const handleSearch = (value) => {
-    resetFilters(setPlatform, setDeveloper, setGenre,
-    setYear, setOrder, null, setScreenshotMode, null, setOpen, setDiscover);
-    (discover) ? setDiscover(false) : null;
-    (open) ? setOpen(new Set()) : null;
+    setFilters(prev => ({
+      ...prev,
+      platform: undefined,
+      developer: undefined,
+      genre: undefined,
+      year: { min: 1974, max: 2012 },
+      order: { data: "Rating", order: true },
+      discover: false,
+      search: value,
+    }));
+
+    setUi(prev => ({
+      ...prev,
+      screenshotMode: false,
+      open: new Set(),
+    }));
+
     navigate('/home');
-    setSearch(value);
   };
-
-  const handleNavHome = () => {
-    navigate('/home');
-  };
-
-  const handleNavBack = () => {
-
-    navigate(-1);
-  };
-
 
   return (
-    <>
-    <nav className={styles.navbar}>
-      <div className={styles.navLeftContainer}>
-        <div className={styles.navLeftBtnContainer}>
-          <div className={styles.navContainer}>
-              <button className={styles.btn} onClick={() => handleToggle()}>
-                { toggle ? (
-                <span className='mainIcons'><X width={'80%'} size={'auto'} className={styles.btnX}/></span> 
-                ) : (
-                <span className='mainIcons'><PanelsTopLeft width={'80%'} size={'auto'} className={styles.btnP}/></span>  
-                )}
-              </button>
-            </div>
-          <div className={styles.navContainer}>
-            <button className={styles.btn} onClick={() => handleNavBack()}>
-              <span className='mainIcons'><ArrowLeft width={'80%'} className={styles.btnA} size={'auto'}/></span> 
-            </button>
-
-          </div>
-        </div>
-      </div>
-
-      <div className={styles.logoContainer}>
-        <div className={styles.logoTxtContainer}>
-          <h1 className={styles.logoTxt}>RetroGameAtlas</h1> 
-        </div>
-        <div className={styles.logoPngContainer}>
-          <img className={styles.logoPng} src='/logo/originallogo.png' />
-        </div>
-      </div>
-
-      <div className={styles.navMiddleContainer}>
+    <div className='w-full h-16 flex items-center justify-between px-4 bg-primary border-b border-background-light fixed top-0 z-50'>
+    <nav className='w-full h-16 flex items-center justify-between px-4 bg-primary border-b border-background-light fixed top-0 z-50'>
+      <div>
         <form
-          className={styles.searchBarContainer}
           onSubmit={(e) => {
             e.preventDefault();
             handleSearch(searchInput);
           }}>
-          <input 
-            type="text" 
-            placeholder="Search games..." 
-            value={searchInput} 
+          <input
+            type="text"
+            placeholder="Search games..."
+            value={searchInput}
             onChange={(e) => {
               setSearchInput(e.target.value);
               if (e.target.value === '') {
-                setSearch('');
+                setFilters(prev => ({ ...prev, search: '' }));
               }
-            }} 
-            className={styles.searchInput}
+            }}
           />
-          <button className={styles.searchButton} type="submit">
+          <button type="submit">
             <img src="/icons/search.png" alt="search" />
           </button>
         </form>
+    <div onClick={() => setUi(prev => ({ ...prev, toggle: !prev.toggle }))} className="mr-1 flex items-center gap-2 px-1 text-sm text-zinc-400">
+      <Funnel size={16} aria-hidden="true" />
+      <span>Filters</span>
+    </div>
       </div>
 
-      <div className={styles.navRightContainer}>
-       <div className={styles.navRightBtnContainer}>
-        <div className={styles.homebtncontainer}>
-          <button className={styles.btn} onClick={() => handleNavHome()}>
-           <span className='mainIcons'><House width={'80%'} size={'auto'} className={styles.btnH}/></span> 
-          </button>
-        </div>
-          <div className={styles.navmenucontainer}>
-           <NavMenu setMount={setMount} width={'80%'} size={'auto'} guest={guest} className={styles.btnH}></NavMenu>
-          </div>
-        </div>
+    <section className={`filter ${ui.toggle ? "open" : "closed"}`}>
+      { ui.toggle && gameData.categoryData && ( <FilterDrop
+          filters={filters}
+          setFilters={setFilters}
+          ui={ui}
+          setUi={setUi}
+          categoryData={gameData.categoryData.allData}
+          setStatus={setStatus}
+          setGameData={setGameData}
+        />
+      )}
+      </section>
 
-      </div>
 
     </nav>
-  </>
+  </div>
   );
 }
 

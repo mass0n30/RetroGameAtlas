@@ -14,8 +14,7 @@ import { SearchX, Info } from 'lucide-react';
 
 
 function HomePage() {
-  const {user, guest, query, loading, limit, setGameId, games, orderData, orderDirection, discover, setDiscover, screenshotMode, setScreenshotMode, open, setOpen,
-  setGames, index, setIndex, mount, setMount, noResult} = useOutletContext();
+  const {session, query, limit, filters, gameData, setGameData, ui, setUi, status} = useOutletContext();
 
   // InfiniteScroll state var
   const [hasMore, setHasMore] = useState(true);
@@ -25,16 +24,18 @@ function HomePage() {
   // fetch more logic for Infinite Scroll
   // Loader logic or Load more ?????
   const fetchMoreData = () => {
-    setMount(false);
+    setUi(prev => ({ ...prev, mount: false }));
     setTimeout(() => {
     axios
-    .get(`${import.meta.env.VITE_API_URL}/home/games?${query}&order=${orderData}&dir=${orderDirection}&offset=${index + 1}&limit=${limit}&discover=${discover}`,)
+    .get(`${import.meta.env.VITE_API_URL}/home/games?${query}&order=${filters.order.data}&dir=${filters.order.order}&offset=${gameData.index + 1}&limit=${limit}&discover=${filters.discover}`,)
     .then((res) => {
       console.log(res, 'response');
 
-      const combinedGames = [...games, ...res.data.games];
-      setIndex((prevIndex) => prevIndex + 1);
-      setGames(combinedGames);
+      setGameData(prev => ({
+        ...prev,
+        index: prev.index + 1,
+        games: [...prev.games, ...res.data.games],
+      }));
 
       res.data.games.length > 0 ? setHasMore(true) : setHasMore(false);       
     })
@@ -43,7 +44,7 @@ function HomePage() {
   };
 
 
-    if (loading) {
+    if (status.loading) {
     return (
       <div style={{ display: "flex", flex: 1, alignItems: "center", justifyContent: "center"}} className='loadingContainer'>
         <CustomSpinner/>
@@ -51,7 +52,7 @@ function HomePage() {
     );
   }
 
-   if (noResult === true) {
+   if (status.noResult === true) {
     return (
     <div style={{ display: "flex", gap: "1rem", flexDirection: "row", flex: 1, alignItems: "center", justifyContent: "center" }} className='noResultsContainer'>
       <Info size={30} style={{ marginLeft: "0rem", marginBottom: "2rem" }} color='#a3a3a3ff'/>     
@@ -65,7 +66,7 @@ function HomePage() {
 
   return (
     <InfiniteScroll
-      dataLength={games.length * index}
+      dataLength={gameData.games.length * gameData.index}
       next={fetchMoreData}
       hasMore={hasMore}
       loader={<CustomSpinnerDotsBottom/>}
@@ -73,19 +74,25 @@ function HomePage() {
       >
       <section className='gameListContainer'>
 
-      { screenshotMode ? (
+      { ui.screenshotMode ? (
     
-      games.map((game, index) => (
-        <GameCardSS style={mount ? { animationDelay: `${index * 0.24}s` }: {}} key={`${stableId}-${index}`} index={index} randomScreenshot={game.randomScreenshot.url} mount={mount} setMount={setMount}
-        gameId={game.id} gameIgdbId={game.igdbId} setGameId={setGameId} coverUrl={game.coverUrl} loading={loading} screenshots={game.screenshots} length={game.screenshots.length} user={user} guest={guest}/>
+      gameData.games.map((game, index) => (
+        <GameCardSS style={ui.mount ? { animationDelay: `${index * 0.24}s` }: {}} key={`${stableId}-${index}`} index={index} randomScreenshot={game.randomScreenshot.url} mount={ui.mount}
+        setMount={(value) => setUi(prev => ({ ...prev, mount: typeof value === 'function' ? value(prev.mount) : value }))}
+        gameId={game.id} gameIgdbId={game.igdbId}
+        setGameId={(value) => setGameData(prev => ({ ...prev, gameId: typeof value === 'function' ? value(prev.gameId) : value }))}
+        coverUrl={game.coverUrl} loading={status.loading} screenshots={game.screenshots} length={game.screenshots.length} user={session.user} guest={session.guest}/>
     ))) : (
-      games.map((game, index) => (
-        <GameCard style={mount ? { animationDelay: `${index * 0.24}s` }: {}} key={`${stableId}-${index}`} index={index} mount={mount} setMount={setMount}
-        gameId={game.id} gameIgdbId={game.igdbId} setGameId={setGameId} coverUrl={game.coverUrl} loading={loading} user={user} guest={guest}/>
+      gameData.games.map((game, index) => (
+        <GameCard style={ui.mount ? { animationDelay: `${index * 0.24}s` }: {}} key={`${stableId}-${index}`} index={index} mount={ui.mount}
+        setMount={(value) => setUi(prev => ({ ...prev, mount: typeof value === 'function' ? value(prev.mount) : value }))}
+        gameId={game.id} gameIgdbId={game.igdbId}
+        setGameId={(value) => setGameData(prev => ({ ...prev, gameId: typeof value === 'function' ? value(prev.gameId) : value }))}
+        coverUrl={game.coverUrl} loading={status.loading} user={session.user} guest={session.guest}/>
       ))
     )}
       </section>
-      {!hasMore && noResult !== true && <div className='endResultContainer'><p className='endResult'>No More Results</p> <img style={{ width: "80px", height: "auto" }} className='endResultImg' src="/logo/originallogo.png" alt="End of Results"/></div>}
+      {!hasMore && status.noResult !== true && <div className='endResultContainer'><p className='endResult'>No More Results</p> <img style={{ width: "80px", height: "auto" }} className='endResultImg' src="/logo/originallogo.png" alt="End of Results"/></div>}
     </InfiniteScroll>
   )
 }
