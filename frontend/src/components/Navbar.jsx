@@ -3,7 +3,7 @@ import { useDebounce } from '../helpers';
 import { Link, useNavigate } from 'react-router-dom';
 import  NavMenu  from './reactMUI/Menu';
 import  {House} from 'lucide-react';
-import { ArrowLeft, Ellipsis, X, PanelsTopLeft, Funnel } from 'lucide-react';
+import { ArrowLeft, Ellipsis, X, PanelsTopLeft, Funnel, Search } from 'lucide-react';
 import { resetFilters } from '../helpers';
 import FilterDrop from './FilterDrop';
 
@@ -37,15 +37,18 @@ export default function Navbar({ ui, setUi, filters, setFilters, gameData, setGa
   };
 
   return (
-    <div className='w-full h-16 flex items-center justify-between px-4 bg-primary border-b border-background-light fixed top-0 z-50'>
-    <nav className='w-full h-16 flex items-center justify-between px-4 bg-primary border-b border-background-light fixed top-0 z-50'>
-      <div>
+    <div className='w-full bg-background h-20 flex items-center justify-between p-lg bg-red border-b border-background-light fixed z-50'>
+      <nav className='w-[1200px] h-20 flex items-center justify-between p-lg border-b border-background-light fixed z-50'>
+      <div className='flex w-full items-center gap-4'>
+
         <form
+          className='flex flex-1 items-center gap-2'
           onSubmit={(e) => {
             e.preventDefault();
             handleSearch(searchInput);
           }}>
           <input
+            className='flex flex-1 border bg-foreground w-full border-border-light rounded-md p-2'
             type="text"
             placeholder="Search games..."
             value={searchInput}
@@ -56,8 +59,8 @@ export default function Navbar({ ui, setUi, filters, setFilters, gameData, setGa
               }
             }}
           />
-          <button type="submit">
-            <img src="/icons/search.png" alt="search" />
+          <button className='flex items-center justify-center p-2' type="submit">
+            <Search size={16} aria-hidden="true" />
           </button>
         </form>
     <div onClick={() => setUi(prev => ({ ...prev, toggle: !prev.toggle }))} className="mr-1 flex items-center gap-2 px-1 text-sm text-zinc-400">
@@ -78,8 +81,6 @@ export default function Navbar({ ui, setUi, filters, setFilters, gameData, setGa
         />
       )}
       </section>
-
-
     </nav>
   </div>
   );

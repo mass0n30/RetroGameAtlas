@@ -20,28 +20,40 @@ export default {
 
     },
       height: {
-        navHeight: "var(--nav-height)",
-        headerHeight: "var(--header-height)",
+        "nav-height": "var(--nav-height)",
+        "header-height": "var(--header-height)",
       },
-      colors: {
-        primary: "var(--color-primary)",
-        primaryGlow: "var(--glow-primary)",
-        primaryDark: "var(--color-primary-dark)",
-        primaryLight: "var(--color-primary-light)",
-        secondary: "var(--color-secondary)",
-        destructive: "var(--color-destructive)",
-        success: "var(--color-success)",
-        background: "var(--color-background)",
-        backgroundAlt: "var(--color-background-alt)",
-        foreground: "var(--color-foreground)",
-        muted: "var(--color-muted)",
-        border: "var(--color-border)",
-        accentOrange: "var(--accent-orange)",
 
-      },
+    colors: {
+      // Primary
+      primary: "var(--color-primary)",
+      "primary-dark": "var(--color-primary-dark)",
+      "primary-light": "var(--color-primary-light)",
+
+      // Secondary & Status
+      secondary: "var(--color-secondary)",
+      destructive: "var(--color-destructive)",
+      success: "var(--color-success)",
+      "accent-orange": "var(--accent-orange)",
+
+      // Backgrounds & Surfaces
+      background: "var(--color-background)",
+      "background-alt": "var(--color-background-alt)",
+      surface: "var(--color-surface)",
+      "surface-elevated": "var(--color-surface-elevated)",
+
+      // Typography
+      text: "var(--color-text)",
+      foreground: "var(--color-foreground)",
+      muted: "var(--color-muted)",
+
+      // Borders
+      border: "var(--color-border)",
+      "border-subtle": "var(--color-border-subtle)",
+    },
 
       boxShadow: {
-        primaryGlow: "var(--glow-primary)",
+        "primary-glow": "var(--glow-primary)",
       },
 
       borderRadius: {

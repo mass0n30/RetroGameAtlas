@@ -1,34 +1,51 @@
-import React from "react";
+
+import { useNavigate } from "react-router-dom";
 
 const Sidebar = () => {
-  const items = ["Dashboard", "Discover", "My Collection", "WatchList"];
+  const navigate = useNavigate();
 
   return (
-    <aside className="min-h-screen w-60 shrink-0 bg-gray-900 p-4 text-white">
-      <div className="mb-6 flex items-center gap-2">
-        <img
-          className="h-10 w-10 object-contain"
-          src="/logo/originallogo.png"
-          alt=""
-        />
-        <h1 className="text-lg font-bold">RetroGameAtlas</h1>
-      </div>
+      <aside className="fixed inset-y-0 left-0 hidden w-60 flex-col bg-backgroundAlt p-lg pt-sm md:flex">
 
-      <nav>
-        <ul className="m-0 list-none space-y-3 p-0">
-          {items.map((item) => (
-            <li key={item}>
-              <button
-                type="button"
-                className="w-full cursor-pointer rounded-lg border-0 bg-gray-800 px-4 py-3 text-left text-white transition-colors hover:bg-gray-700"
-              >
-                {item}
-              </button>
-            </li>
-          ))}
-        </ul>
-      </nav>
-    </aside>
+        <div className="border mb-10 flex items-center gap-sm px-sm py-md">
+          <img
+            src="/logo/originallogo.png"
+            alt=""
+            className="h-10 w-10 object-contain"
+          />
+          <span className="text-lg text-primary-light font-bold">RetroGameAtlas</span>
+        </div>
+
+        <nav className="flex flex-col gap-sm">
+          <button
+            disabled
+            className="rounded-lg px-md py-3 text-left"
+          >
+            Dashboard
+          </button>
+
+          <button
+            onClick={() => navigate('/home')}
+            className="rounded-lg bg-primary/10 px-md py-3 text-left"
+          >
+            Discover
+          </button>
+
+          <button
+            disabled
+            className="rounded-lg px-md py-3 text-left"
+          >
+            My collection
+          </button>
+
+          <button
+            disabled
+            className="rounded-lg px-md py-3 text-left text-muted"
+          >
+            Watchlist
+          </button>
+        </nav>
+      </aside>
   );
 };
 

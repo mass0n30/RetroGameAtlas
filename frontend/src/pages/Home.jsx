@@ -188,9 +188,29 @@ function Home() {
     return (<div>Error: {status.error.message}</div>);
   }
 
-  if ( !gameData.categoryData ) {
-    return (
-      <>
+  return (
+    <div className="min-h-screen bg-background font-sans text-foreground">
+
+      {/* screenshot overlay */}
+      { ui.activeImage && (
+        <div
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-background/95 p-lg"
+          onClick={() => setUi(prev => ({ ...prev, activeImage: null }))}
+        >
+          <img
+            src={ui.activeImage}
+            alt="Active Screenshot"
+            className="max-h-[90vh] max-w-full rounded-lg object-contain"
+          />
+        </div>
+      )}
+
+      {/* sidebar */}
+      <Sidebar/>
+
+      {/* page content */}
+      <div className="md:ml-60">
+
         <Navbar
           ui={ui}
           setUi={setUi}
@@ -202,35 +222,89 @@ function Home() {
           setGameData={setGameData}
           setStatus={setStatus}
         />
-        <div style={{ display: "flex", flex: 1, alignItems: "center", justifyContent: "center", marginTop: "2rem" }}>
-          <CustomSpinner/>
-        </div>
-      </>
-    );
-  }
-    return (
-    <>
-    { ui.activeImage && (
-      <div className="activeImageOverlay" onClick={() => setUi(prev => ({ ...prev, activeImage: null }))}>
-        <img src={ui.activeImage} alt="Active Screenshot" className="activeImage"/>
-      </div>
-    )}
-      <Navbar
-        ui={ui}
-        setUi={setUi}
-        filters={filters}
-        setFilters={setFilters}
-        session={session}
-        setSession={setSession}
-        gameData={gameData}
-        setGameData={setGameData}
-        setStatus={setStatus}
-      />
-    <main>
 
-      <Outlet context={{query, limit, session, setSession, filters, setFilters, gameData, setGameData, ui, setUi, status, setStatus }} />
-    </main>
-    </>
+        <main className="mx-auto max-w-screen-2xl px-md pb-8 pt-24 md:px-lg">
+
+          {/* heading */}
+          <div className="mb-lg">
+            <p className="mb-sm text-xs font-bold uppercase tracking-widest text-primary">
+              Your atlas
+            </p>
+            <p className="mt-3 text-lg text-muted">
+              Revisit the classics. Discover what you missed.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 gap-lg lg:grid-cols-3">
+
+            {/* left column */}
+            <div className="min-w-0 space-y-lg lg:col-span-2">
+
+              {/* featured section */}
+              <section className="relative flex min-h-72 items-end overflow-hidden rounded-lg border border-border bg-backgroundAlt">
+
+                { gameData.games[0]?.randomScreenshot?.url && (
+                  <img
+                    src={gameData.games[0].randomScreenshot.url}
+                    alt=""
+                    className="absolute inset-0 h-full w-full object-cover"
+                  />
+                )}
+
+                <div className="absolute inset-0 bg-gradient-to-r from-background via-background/80 to-transparent"/>
+
+              </section>
+
+              {/* existing game list */}
+              <section
+                id="browse-games"
+                className="scroll-mt-24 rounded-lg border border-border bg-backgroundAlt p-md md:p-lg"
+              >
+                <div className="mb-lg">
+                  <h2 className="text-xl font-bold">Explore the library</h2>
+                  <p className="mt-xs text-sm text-muted">
+                    More worlds worth getting lost in.
+                  </p>
+                </div>
+
+                { !gameData.categoryData ? (
+                  <div className="flex justify-center py-12">
+                    <CustomSpinner/>
+                  </div>
+                ) : (
+                  <Outlet context={{query, limit, session, setSession, filters, setFilters, gameData, setGameData, ui, setUi, status, setStatus }} />
+                )}
+              </section>
+
+            </div>
+
+            {/* right column */}
+            <aside className="space-y-lg">
+
+              <section className="rounded-lg border border-border bg-color-surface-elevated p-lg">
+                <h2 className="text-xl font-bold">Watchlist alerts</h2>
+                <p className="mt-xs text-sm text-muted">
+                  Keep an eye on your next find.
+                </p>
+
+                <div className="mt-lg rounded-lg border border-dashed border-border p-lg">
+
+                </div>
+              </section>
+
+              <section className="rounded-lg border border-border bg-backgroundAlt p-lg">
+                <h2 className="text-xl font-bold">Jump back in</h2>
+                <p className="mt-xs text-sm text-muted">
+                  Pick up where you left off.
+                </p>
+              </section>
+
+            </aside>
+
+          </div>
+        </main>
+      </div>
+    </div>
   )
 }
 
