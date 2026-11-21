@@ -2,11 +2,9 @@
 
 @import "tailwindcss";
 @import "./base/variables.css";
-@import "./base/typography.css";
-@import "./components/button.module.css";
-@import "./components/card.module.css";
+@import "./base/typography.css"; 
 
-@config "../../tailwind.config.js";
+@config "../../tailwind.config.mjs";
 
 /* global styles here imported in main.jsx */
 /* base meaning global styles, defined for Tailwind */
@@ -157,11 +155,7 @@ li {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-family);
   font-weight: 700;
-  line-height: 1.2;
-  letter-spacing: -0.01em;
-  margin: 0;
   color: var(--color-text);
 }
 
@@ -305,8 +299,6 @@ p {
   padding: 1rem;
   margin-top: 1.5rem;
   box-sizing: border-box;
-  background-image: url("/rock.webp");
-  background-size: cover;
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-md);
   margin: 1rem;

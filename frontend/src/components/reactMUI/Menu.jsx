@@ -1,5 +1,4 @@
 import { Menu } from '@base-ui-components/react/menu';
-import styles from '../../styles/components/menu.module.css';
 import { useNavigate, Outlet, useOutletContext } from 'react-router-dom';
 import { useState } from 'react';
 import { Ellipsis } from 'lucide-react';
@@ -38,30 +37,7 @@ export default function NavMenu({setMount, guest}) {
 
   return (
     <>
-    <SnackBarAlert open={alertGuest} setOpen={SetAlertGuest} status={guest} msg={'Signup for User Features'}/>
-    <Menu.Root>
-      <Menu.Trigger className={`${stylesAlt.btn} ${styles.menuBtn}`}>
-       <span className='mainIcons'><Ellipsis width={'80%'} size={'auto'}/></span> 
-      </Menu.Trigger>
-      <Menu.Portal>
-        <Menu.Positioner className={styles.Positioner} sideOffset={10}>
-          <Menu.Popup className={styles.Popup}>
 
-            <Menu.Item className={styles.Item} onClick={() => handleNavigate(true)}>Dashboard</Menu.Item>
-            <Menu.Separator className={styles.Separator} />
-            <Menu.Item className={styles.Item} onClick={() => handleNavigate()}>Saved Games</Menu.Item>
-            <Menu.Separator className={styles.Separator} />
-            <Menu.Item className={styles.Item}>Settings</Menu.Item>
-            <Menu.Separator className={styles.Separator} />
-            { guest ? (
-              <Menu.Item className={styles.Item} onClick={() => handleLogOut()}>Logout Guest</Menu.Item>
-            ) : (
-              <Menu.Item className={styles.Item} onClick={() => handleLogOut()}>Log Out</Menu.Item>
-            )}
-          </Menu.Popup>
-        </Menu.Positioner>
-      </Menu.Portal>
-    </Menu.Root>
     </>
   );
 }

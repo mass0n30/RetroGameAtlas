@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import styles from '../styles/components/card.module.css';
 import {Loader } from 'lucide-react';
 import { SSCardSkeleton } from './Skeleton';
 

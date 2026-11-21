@@ -36,54 +36,77 @@ export default function Navbar({ ui, setUi, filters, setFilters, gameData, setGa
     navigate('/home');
   };
 
-  return (
-    <div className='w-full bg-background h-20 flex items-center justify-between p-lg bg-red border-b border-background-light fixed z-50'>
-      <nav className='w-[1200px] h-20 flex items-center justify-between p-lg border-b border-background-light fixed z-50'>
-      <div className='flex w-full items-center gap-4'>
 
-        <form
-          className='flex flex-1 items-center gap-2'
-          onSubmit={(e) => {
-            e.preventDefault();
-            handleSearch(searchInput);
-          }}>
-          <input
-            className='flex flex-1 border bg-foreground w-full border-border-light rounded-md p-2'
-            type="text"
-            placeholder="Search games..."
-            value={searchInput}
-            onChange={(e) => {
-              setSearchInput(e.target.value);
-              if (e.target.value === '') {
-                setFilters(prev => ({ ...prev, search: '' }));
-              }
-            }}
-          />
-          <button className='flex items-center justify-center p-2' type="submit">
-            <Search size={16} aria-hidden="true" />
-          </button>
-        </form>
-    <div onClick={() => setUi(prev => ({ ...prev, toggle: !prev.toggle }))} className="mr-1 flex items-center gap-2 px-1 text-sm text-zinc-400">
-      <Funnel size={16} aria-hidden="true" />
-      <span>Filters</span>
-    </div>
-      </div>
+return (
+  <div className="fixed top-0 z-50 w-full border-b border-border bg-background">
+    <nav className="relative flex h-20 w-full items-center px-4 sm:px-6">
 
-    <section className={`filter ${ui.toggle ? "open" : "closed"}`}>
-      { ui.toggle && gameData.categoryData && ( <FilterDrop
-          filters={filters}
-          setFilters={setFilters}
-          ui={ui}
-          setUi={setUi}
-          categoryData={gameData.categoryData.allData}
-          setStatus={setStatus}
-          setGameData={setGameData}
+      <form
+        className="flex w-full min-w-0 items-center gap-2"
+        onSubmit={(e) => {
+          e.preventDefault();
+          handleSearch(searchInput);
+        }}
+      >
+        <input
+          className="  w-[clamp(140px,75vw,1400px)] 
+          rounded-md border border-border bg-foreground p-2 text-text"
+          type="text"
+          placeholder="Search games..."
+          value={searchInput}
+          onChange={(e) => {
+            setSearchInput(e.target.value);
+
+            if (e.target.value === "") {
+              setFilters((prev) => ({
+                ...prev,
+                search: "",
+              }));
+            }
+          }}
         />
-      )}
+
+        <div className="flex shrink-0 items-center gap-2">
+          <button
+            className="flex shrink-0 items-center justify-center p-2"
+            type="submit"
+            aria-label="Search games"
+          >
+            <Search size={18} aria-hidden="true" />
+          </button>
+
+          <button
+            type="button"
+            onClick={() =>
+              setUi((prev) => ({
+                ...prev,
+                toggle: !prev.toggle,
+              }))
+            }
+            className="flex shrink-0 items-center gap-2 p-2 text-sm text-zinc-400"
+          >
+            <Funnel size={18} aria-hidden="true" />
+            <span className="hidden sm:inline">Filters</span>
+          </button>
+        </div>
+      </form>
+
+      <section
+        className={`filter ${ui.toggle ? "open" : "closed"}`}
+      >
+        {ui.toggle && gameData.categoryData && (
+          <FilterDrop
+            filters={filters}
+            setFilters={setFilters}
+            ui={ui}
+            setUi={setUi}
+            categoryData={gameData.categoryData.allData}
+            setStatus={setStatus}
+            setGameData={setGameData}
+          />
+        )}
       </section>
+
     </nav>
   </div>
-  );
-}
-
-
+)};

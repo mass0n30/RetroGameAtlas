@@ -38,7 +38,7 @@ function Home() {
   });
 
   // temporary
-  const limit = 100;
+  const limit = 20;
 
   // loading state settings
   const [status, setStatus] = useState({
@@ -163,6 +163,7 @@ function Home() {
   if (filters.search) params.append("search", filters.search);
 
   const query = params.toString();
+  const randomNumber = Math.floor(Math.random() * 10); // Generate a random number between 0 and 10
 
   // initial mount for inital games (maybe save state scroll location?)
   useEffect(() => {
@@ -200,7 +201,7 @@ function Home() {
           <img
             src={ui.activeImage}
             alt="Active Screenshot"
-            className="max-h-[90vh] max-w-full rounded-lg object-contain"
+            className="max-h-[90vh] max-w-full rounded-lg "
           />
         </div>
       )}
@@ -209,7 +210,7 @@ function Home() {
       <Sidebar/>
 
       {/* page content */}
-      <div className="md:ml-60">
+      <div className="flex flex-1 flex-col md:pl-60">
 
         <Navbar
           ui={ui}
@@ -297,6 +298,7 @@ function Home() {
                 <p className="mt-xs text-sm text-muted">
                   Pick up where you left off.
                 </p>
+
               </section>
 
             </aside>

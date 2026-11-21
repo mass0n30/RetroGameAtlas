@@ -44,8 +44,8 @@ export function GameDetailsSkeleton() {
 
 export function CardSkeleton() {
   return (
-      <div className={styles.card_loader_container}>
-        <div className={styles.card_loader} >
+      <div >
+        <div>
             <Skeleton 
               variant="rounded" 
               width={'100%'} 
