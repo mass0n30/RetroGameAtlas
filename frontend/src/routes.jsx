@@ -5,7 +5,7 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import DiscoverSection from "./pages/Discover";
 import GameDetails from "./pages/GameDetails";
-import HomeSaved from "./pages/HomeSaved";
+import Collection from "./pages/Collection";
 import DashboardSection from "./pages/DashBoard";
 import SettingsPage from "./pages/SettingsPage";
 
@@ -40,7 +40,6 @@ const routes = [
           },
           {
             path: "discover",
-            
             element: <DiscoverSection/>
           },
           {
@@ -49,7 +48,7 @@ const routes = [
           },
           {
             path: "saved",
-            element: <HomeSaved/>
+            element: <Collection/>
           },
           {
             path: "settings",

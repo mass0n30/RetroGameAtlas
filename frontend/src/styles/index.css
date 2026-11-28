@@ -368,10 +368,9 @@ p {
 .filter .open {
   position: fixed;
   top: 0;
-  left: 0;
   width: var(--sidebar-width);
   height: 100%;
-  background-color: var(--color-background);
+  background-color: var(--color-primary);
   box-shadow: var(--shadow-md);
   z-index: 1000;
   transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
@@ -380,10 +379,9 @@ p {
 .filter .closed {
   position: fixed;
   top: 0;
-  left: 0;
   width: var(--sidebar-width);
   height: 100%;
-  background-color: var(--color-background);
+  background-color: var(--color-primary);
   box-shadow: var(--shadow-md);
   z-index: 1000;
   transform: translateX(-100%);

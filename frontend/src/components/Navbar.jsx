@@ -90,23 +90,22 @@ return (
           </button>
         </div>
       </form>
-
-      <section
-        className={`filter ${ui.toggle ? "open" : "closed"}`}
-      >
-        {ui.toggle && gameData.categoryData && (
-          <FilterDrop
-            filters={filters}
-            setFilters={setFilters}
-            ui={ui}
-            setUi={setUi}
-            categoryData={gameData.categoryData.allData}
-            setStatus={setStatus}
-            setGameData={setGameData}
-          />
-        )}
-      </section>
-
     </nav>
+    <section
+      className={`filter ${ui.toggle ? "open" : "closed"}`}
+    >
+      {ui.toggle && gameData.categoryData && (
+        <FilterDrop
+          filters={filters}
+          setFilters={setFilters}
+          ui={ui}
+          setUi={setUi}
+          categoryData={gameData.categoryData.allData}
+          setStatus={setStatus}
+          setGameData={setGameData}
+          gameData={gameData}
+        />
+      )}
+    </section>
   </div>
 )};

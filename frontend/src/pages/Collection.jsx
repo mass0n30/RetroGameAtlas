@@ -9,9 +9,8 @@ import CustomSpinner from '../components/Spinner';
 import { DashBoardContainerSkeleton } from '../components/Skeleton';
 
 
-function HomeSaved() {
-  const {user, query, loading, SetLoading, limit, setGameId, orderData, orderDirection, discover, setDiscover, screenshotMode, setScreenshotMode, open, setOpen,
-  setCategoryData, search, setSearch, genre, platform, developer, minyear, maxyear, mount, setMount} = useOutletContext();
+function Collection() {
+  const {loading, mount, setMount} = useOutletContext();
 
   const [games, setGames] = useState([]);
 
@@ -53,7 +52,7 @@ function HomeSaved() {
               <GameCard style={mount ? { animationDelay: `${index * 0.24}s` }: {}} key={`${stableId}-${index}`} index={index} mount={mount} setMount={setMount}
               gameIgdbId={game.igdbId} setGameId={setGameId} coverUrl={game.coverUrl} loading={loading} user={user}/>
             ))
-            }
+            } Collection
           </div>
         </section>
       
@@ -62,4 +61,4 @@ function HomeSaved() {
 
 }
 
-export default HomeSaved;
+export default Collection;
