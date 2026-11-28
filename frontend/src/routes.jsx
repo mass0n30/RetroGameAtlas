@@ -3,10 +3,10 @@ import Home from "./pages/Home";
 import ErrorPage from "./pages/ErrorPage";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
-import HomePage from "./pages/HomePage";
+import DiscoverSection from "./pages/Discover";
 import GameDetails from "./pages/GameDetails";
 import HomeSaved from "./pages/HomeSaved";
-import DashBoardPage from "./pages/DashBoardPage";
+import DashboardSection from "./pages/DashBoard";
 import SettingsPage from "./pages/SettingsPage";
 
 import { Navigate } from "react-router-dom";
@@ -32,13 +32,17 @@ const routes = [
       },
       {
         path: "home",
-        element: <Home />,
+        element: <Home/>,
         children: [
           {
             index: true,
-            element: <HomePage/> 
+            element: <DashboardSection/> 
           },
-
+          {
+            path: "discover",
+            
+            element: <DiscoverSection/>
+          },
           {
             path: "details/:gameIgdbId",
             element: <GameDetails/>
@@ -46,10 +50,6 @@ const routes = [
           {
             path: "saved",
             element: <HomeSaved/>
-          },
-          {
-            path: "dashboard",
-            element: <DashBoardPage/>
           },
           {
             path: "settings",

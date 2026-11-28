@@ -31,13 +31,15 @@ const Sidebar = () => {
       </div>
 
       <nav className="flex flex-col gap-sm">
-        <button disabled className={buttonClass}>
+        <button 
+        onClick={() => navigate("/home")}
+        className={buttonClass}>
           <Home className={iconClass} />
           <span>Dashboard</span>
         </button>
 
         <button
-          onClick={() => navigate("/home")}
+          onClick={() => navigate("/home/discover")}
           className={`${buttonClass} bg-primary/10`}
         >
           <Compass className={iconClass} />

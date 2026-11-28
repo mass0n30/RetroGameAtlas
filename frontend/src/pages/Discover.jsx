@@ -13,7 +13,7 @@ import { SearchX, Info } from 'lucide-react';
 //import Loader from "./Loader";
 
 
-function HomePage() {
+function DiscoverSection() {
   const {session, query, limit, filters, gameData, setGameData, ui, setUi, status} = useOutletContext();
 
   // InfiniteScroll state var
@@ -97,4 +97,4 @@ function HomePage() {
   )
 }
 
-export default HomePage;
+export default DiscoverSection;

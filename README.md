@@ -1,3 +1,9 @@
+
+// TO DO
+
+- remove explore games from dashboard mount. Routes adjusted, finish UI
+- add handleGetGameData to initial dashboard mount displaying game art?
+
 RetroGamingAtlas
 A full-stack game discovery and collection platform for exploring 25k+ titles with fast filtering, rich game detail pages, and user features and libraries (Saved / Completed).
 
